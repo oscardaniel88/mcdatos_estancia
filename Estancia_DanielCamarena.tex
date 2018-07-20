@@ -3,6 +3,7 @@
 \usepackage{lmodern}
 \usepackage{amsmath}
 \usepackage{enumitem}
+\usepackage{graphicx}
 \title{\Huge Modelo de Predicción de Demanda y Pricing Dinámico}
 \author{Oscar Daniel Camarena Gómez}
 \date{}
@@ -53,6 +54,11 @@ En cuanto a las habitaciones el tamaño puede variar por marca, sin embargo ofre
 \paragraph {Crecimiento} ~ \\
 Hoteles CityExpress fue fundada en 2002 con su primer hotel construido en Saltillo. A partir de ese entonces se ejecutó un ambicioso plan de crecimiento en el cuál se impuso la meta de abrir un nuevo hotel cada 6.8 semanas. Esto llevo a que la cadena de hoteles contara con más de 140 propiedades en un lapso de 16 años.
 Hoy en día Hoteles CityExpress cuenta con propiedades en 34 de los 36 estados de la República Mexicana y 5 mas en Latinoamérica: 1 en Costa Rica, 1 en Chile, 3 en Colombia. El plan de crecimiento sigue siendo ambicioso y la cadena espera contar con 180 propiedades para el 2020.
+\begin{figure}[!]
+  \includegraphics[width=\linewidth]{Imagenes/Ubicaciones.png}
+  \caption{Plan de crecimiento}
+  \label{fig:crecimiento}
+\end{figure}
 \section{Descripción del Problema}
 \subsection{Gestión de las propiedades}
 Hoteles CityExpress cuenta con un modelo de gestión comercial de sus propiedades ejecutado desde sus oficinas centrales ubicadas en la Ciudad de México. Este modelo de gestión se enfoca en optimizar la venta de los cuartos de las distintas propiedades, buscando siempre maximizar el ingreso obtenido por estas ventas.
@@ -135,7 +141,7 @@ Dentro de CityExpress las decisiones de cambios de precios en las tarifas se tom
 \item Tarifa Promedio de la competencia
 \item Tarifa Efectiva de la competencia
 \end{itemize}
-Derivado de las conclusiones del análisis de estas variables, los hoteles y el equipo de la oficina central pueden tomar alguna de las siguientes decisiones:
+Derivado de las conclusiones del análisis de estas variables, los hoteles y el equipo de la oficina central pueden tomar alguna de las siguientes decisiones para alcanzar el objetivo deseado:
 \begin{itemize}[noitemsep]
 \item Subir precio de tarifa
 \item Bajar precio de tarifa
@@ -144,8 +150,31 @@ Derivado de las conclusiones del análisis de estas variables, los hoteles y el 
 \item Promover la venta de un segmento específico mediante una promoción
 \item Inhibir la venta de un segmento en específico cerrando disponibilidad de alguna tarifa
 \end{itemize}
-
+\subsection{Situación Actual}
+Como se mencionó en el apartado anterior, hoy en día CityExpress gestiona su estrategia comercial desde las oficinas centrales delegando tareas clave a cada uno de los gerentes de las distintas propiedades, esto aunado al ambicioso plan de crecimiento de la cadena ha hecho que este modelo de gestión comercial se vuelva un proceso complicado de administrar y ejecutar de manera efectiva ya que se tienen las siguientes dependencias en el proceso:
+ \begin{itemize}[noitemsep]
+\item Publicación de reportes diarios
+\item Análisis de información publicada
+\item Presentación de plan de acción de acuerdo al modelo de gestión
+\item Aprobación del plan de acción por parte de la oficina central
+\item Ejecución del plan de acción en los sistemas de control
+\item Validación de resultados del plan de acción
+\end{itemize}
+\subsection{Propuesta de mejora al proceso}
+Este proyecto tiene como objetivo mejorar el proceso de gestión de hoteles en CityExpress mediante la construcción de un sitio en donde se integre toda la información que hoy en día se expone en distintos reportes dentro de la empresa y además cuente con un modelo que permita pronosticar el $\%\ de\ ocupacion$ de cada una de las propiedades y a su vez haga una recomendación del precio para la tarifa que se ofrece al público en general que ayude a maximizar el ingreso por venta de cuartos dentro de la propiedad.
+Con esta herramienta se espera que el modelo de gestión comercial se automatice y la ejecución del plan de acción se realice de manera más ágil.
 \section{Metodología Propuesta}
+\subsection{Plan de implementación}
+A continuación se presentan los pasos que se siguieron para la implementación de este nuevo sistema de gestión:
+\begin{description}
+\item [$\bullet$ Entendimiento del negocio:]  Antes de construir una herramienta / producto de datos se dedicó un tiempo a conocer los procesos operativos de la cadena hotelera.
+\item [$\bullet$ Entendimiento del sistema de gestión comercial:] Para que el producto final agregue verdadero valor a la empresa se debió comprender el tramo de control de cada puesto operativo destinado a hacer uso de esta herramienta, es decir, se identificaron las acciones que cada usuario puede ejecutar en los distintos sistemas para alcanzar sus objetivos comerciales.
+\item [$\bullet$ Identificación de posibles fuentes de datos:] Una vez comprendidos los procesos operativos y de toma de decisiones, se identificaron los sistemas que proveen la información que ayuda al personal de CityExpress durante la toma de decisiones.
+\item [$\bullet$ Análisis exploratorio de datos:] Una vez identificadas las fuentes de datos, se ejecutó un análisis exploratorio de datos con el fin de poder conocer los datos con que se trabajaron para posteriormente fijar un alcance para el producto final.
+\item [$\bullet$ Modelo de predicción de ocupación y sugerencia de precios:] Una vez perfilados los datos y con un EDA concluido se realizó un esfuerzo para construir un modelo que fuera capaz de pronosticar el $\%\ de\ ocupacion$ y que sugiriera el $precio\ publico$ óptimo de cada una de las propiedades.
+\item [$\bullet$ Construcción de prototipo de producto de datos:] Para finalizar este proyecto, se definió la arquitectura final del producto de datos y se construyó un prototipo totalmente funcional que apoya la toma de decisiones de los participantes del proceso de gestión comercial.
+\end{description}
+\subsection{Fuentes de datos}
 \section{Resultados}
 \section{Referencias}
 
