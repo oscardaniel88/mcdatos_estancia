@@ -176,12 +176,20 @@ A continuación se presentan los pasos que se siguieron para la implementación 
 \end{description}
 \subsection{Fuentes de datos}
 Una vez hecho el análisis de negocio y conociendo la operación de CityExpress, detectamos que las fuentes principales para la construcción del producto de datos son las siguientes:
- \begin{itemize}[noitemsep]
-\item Central de Reservaciones: Módulo encargado de realizar las reservaciones de cuartos en las distintas propiedades.
-\item Property Management System (PMS): Módulo encargado de gestionar las propiedades. Aquí se pueden consultar las habitaciones ocupadas, disponibles y fuera de servicio, así como las llegadas y salidas del día.
-\item Market Share: Sistema encargado de recopilar la información de la competencia. Las variables recopiladas son Tarifa Promedio, Habitaciones Disponibles, Habitaciones ocupadas, entre otras. 
-\item Tarifas de la competencia: Consulta de las tarifas disponibles en las agencias de viajes en línea para la competencia.
+ \begin{itemize}
+\item \textbf{Central de Reservaciones}: Módulo encargado de realizar las reservaciones de cuartos en las distintas propiedades. De este sistema obtuvimos el comportamiento histórico de cada una de las propiedades, es decir, cuantas habitaciones fueron reservadas, en qué momento y con qué tarifa.
+\item \textbf{Property Management System (PMS)}: Módulo encargado de gestionar las propiedades. Aquí se pueden consultar las habitaciones ocupadas, disponibles y fuera de servicio, así como las llegadas y salidas del día. De este sistema obtuvimos las reservaciones en libros (bookings) o llegadas pendientes, esta información es crucial para poder conocer en la demanda real de cada una de las propiedades en el tiempo.
+\item \textbf{Market Share}: Sistema encargado de recopilar la información de la competencia. Las variables recopiladas son Tarifa Promedio, Habitaciones Disponibles, Habitaciones ocupadas, entre otras. 
+\item \textbf{Tarifas de la competencia}: Consulta de las tarifas disponibles en las agencias de viajes en línea para la competencia.
 \end{itemize}
+\subsection{Análisis Exploratorio de Datos}
+A continuación se mostrará a detalle análisis exploratorio realizado al dataset inicial. Este data set comprendía información de 5 hoteles y el objetivo de este era brindar un apoyo a la comprensión de los datos para poder establecer una metodología de trabajo al momento de crear un modelo de predicción de demanda para cada una de las propiedades. Para fines de este trabajo detallaremos el "EDA" utilizando datos de una sola propiedad: "CEXXX".
+\paragraph{Descripción del DataSet}
+\paragraph{Graficas del DataSet}
+\subparagraph{Líneas de tiempo}
+\subparagraph{Histogramas}
+\subparagraph{Otros Gráficos Interesantes}
+\subsection{Propuesta de Modelo Predictivo}
 \section{Resultados}
 \section{Referencias}
 
