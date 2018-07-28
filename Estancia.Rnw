@@ -17,6 +17,7 @@ set.seed(53079239)
 library(tidyverse)
 library(Hmisc)
 library(knitr)
+library(ggplot2)
 knitr::opts_chunk$set(echo = TRUE)
 @
 
@@ -227,7 +228,25 @@ summary(historico_ocupacion)
 \item PAX: Personas amparadas por la reservación
 \end{itemize}
 
+<<graficosOcupacion, echo=FALSE>>=
+tl_ocup <- historico_ocupacion %>% group_by(date_in) %>% summarise(nights=sum(nights))
+ggplot(tl_ocup, aes(date_in, nights)) + geom_line() +
+ xlab("") + ylab("Cuartos Ocupados")
+@
 
+<<pickup, echo=FALSE>>=
+historico_ocupacion$antelacion <- as.integer(difftime(historico_ocupacion$date_in,historico_ocupacion$date_create,units = "days"))
+pickup <- historico_ocupacion %>% group_by(antelacion) %>% summarise(nights=sum(nights))
+ggplot(pickup, aes(antelacion, nights)) + geom_line() +
+ xlab("Dias de Antelacion") + ylab("Cuartos Reservados")
+@
+
+<<pickuplog, echo=FALSE>>=
+historico_ocupacion$antelacion <- as.integer(difftime(historico_ocupacion$date_in,historico_ocupacion$date_create,units = "days"))
+pickup <- historico_ocupacion %>% group_by(antelacion) %>% summarise(nights=sum(nights))
+ggplot(pickup, aes(antelacion, log(nights))) + geom_line() +
+ xlab("Dias de Antelacion") + ylab("Cuartos Reservados")
+@
 \paragraph{Graficas del DataSet}
 \subparagraph{Líneas de tiempo}
 \subparagraph{Histogramas}
