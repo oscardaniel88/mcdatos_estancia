@@ -5,6 +5,20 @@
 \usepackage{enumitem}
 \usepackage{graphicx}
 \usepackage{listings}
+\usepackage{booktabs}
+\usepackage{longtable}
+\usepackage{array}
+\usepackage{multirow}
+\usepackage[table]{xcolor}
+\usepackage{wrapfig}
+\usepackage{float}
+\usepackage{colortbl}
+\usepackage{pdflscape}
+\usepackage{tabu}
+\usepackage{threeparttable}
+\usepackage{threeparttablex}
+\usepackage[normalem]{ulem}
+\usepackage{makecell}
 \begin{document}
 <<knitr_options, include=FALSE>>=
 opts_chunk$set(fig.width=12, fig.height=4, fig.path='figures/',
@@ -18,6 +32,7 @@ library(tidyverse)
 library(Hmisc)
 library(knitr)
 library(ggplot2)
+library(kableExtra)
 knitr::opts_chunk$set(echo = TRUE)
 @
 
@@ -210,6 +225,8 @@ Durante la construcción del modelo se hizo uso de tres datasets principalmente.
 <<summary, echo=FALSE>>=
 summary(historico_ocupacion)
 @
+\paragraph{} ~\\
+A continuación se presenta el diccionario de datos para el data set presentado:
 \begin{itemize}[noitemsep]
 \item rsrv\_code: Código de confirmación de reserva
 \item date\_create: Fecha de creación de la reserva
@@ -227,30 +244,80 @@ summary(historico_ocupacion)
 \item room\_type: Tipo de habitación
 \item PAX: Personas amparadas por la reservación
 \end{itemize}
+Revisando el resumen de este data set es importante resaltar que los datos fueron trabajados previamente para presentarse de manera desagregada, es decir, si una reserva ampara una estancia de 5 noches tendremos un registro por cada noche de la estancia, por ejemplo:
 
-<<graficosOcupacion, echo=FALSE>>=
-tl_ocup <- historico_ocupacion %>% group_by(date_in) %>% summarise(nights=sum(nights))
-ggplot(tl_ocup, aes(date_in, nights)) + geom_line() +
- xlab("") + ylab("Cuartos Ocupados")
+
+<<registros, echo=FALSE>>=
+reservas<-historico_ocupacion %>% filter(rsrv_code == 6265739) %>% select(rsrv_code,date_create,date_in,date_out,nights,room_type)
+kable(reservas, "latex") %>% 
+kable_styling(latex_options = "striped")
 @
+\paragraph{} ~\\
+Como podemos observar el numero de reservación es el mismo en los 6 registros, lo mismo ocurre con la fecha de creación, las noches, y el tipo de habitación, sin embargo, la fecha de entrada y la fecha de salida va cambiando en cada registro. En algunos casos es más fácil trabajar con los registros desagregados, sin embargo hay casos en dónde necesitaremos agrupar la información.
 
+\paragraph{Ocupación} ~\\
+De las primeras preguntas que se vienen a la mente al momento de analizar la información de esta propiedad es ¿Qué nivel de ocupación tiene este hotel a lo largo del tiempo? Para contestar esta pregunta, se generáron las siguientes gráficas:
+\paragraph{} ~\\
+<<HabitacionesOcupadas, echo=FALSE>>=
+tl_habocup <- historico_ocupacion %>% group_by(date_in) %>% summarise(nights=sum(nights))
+ggplot(tl_habocup, aes(date_in, nights)) + geom_line() +
+ xlab("") + ylab("Cuartos Ocupados")+ggtitle("Habitaciones Ocupadas")
+@
+\paragraph{} ~\\
+<<Ocupacion, echo=FALSE>>=
+tl_ocup <- historico_ocupacion %>% group_by(date_in) %>% summarise(ocupacion=sum(nights)/159)
+ggplot(tl_ocup, aes(date_in, ocupacion)) + geom_line() +
+ xlab("") + ylab("% Ocupacion")+ggtitle("% Ocupacion") + geom_smooth()
+@
+\paragraph{} ~\\
+Como podemos observar esta propiedad tiene niveles de ocupación alrededor del 75\% llegando en repetidas ocasiones al 100\% de ocupación. Las caídas en los níveles de ocupación se deben a los fines de semana. A continuación presentamos una gráfica que nos ayudará a sustentar esta conclusión.
+\paragraph{} ~\\
+<<Ocupacion Dia Semana, echo=FALSE>>=
+ocup_dia_sem <- historico_ocupacion %>% group_by(date_in) %>% summarise(nights=sum(nights),
+                                                                        dia_sem = min(Dia_Sem),
+                                                                        count_sem = 1) %>% 
+                                                              group_by(dia_sem) %>% summarise(nights=sum(nights),
+                                                                                              semanas = sum(count_sem)) %>% 
+                                                              mutate(ocup=nights/(semanas*159))
+
+ggplot(ocup_dia_sem, aes(dia_sem,ocup)) + geom_bar(stat="identity") +
+ xlab("Dia de la semana") + ylab("% Ocupacion")+ggtitle("% Ocupacion por dia de la semana") +
+  scale_x_discrete(limits=c("lun","mar","mie","jue","vie","sab","dom"))
+
+@
+\paragraph{Pickup} ~\\
+Al realizar este tipo de análisis resulta interesante estudiar el tiempo de antelación con el cual el cliente reserva un cuarto, a esto se le llama curva de pickup. Para poder graficar esta curva necesitaremos agrupar los datos por numero de reservación obteniendo la mínima fecha de entrada y la máxima fecha de salida para cada una de ellas. Una vez trabajados los datos podremos calcular la antelación obteniendo la diferencia entre la fecha de entrada y la fecha de creación en días.
+\paragraph{} ~\\
 <<pickup, echo=FALSE>>=
-historico_ocupacion$antelacion <- as.integer(difftime(historico_ocupacion$date_in,historico_ocupacion$date_create,units = "days"))
-pickup <- historico_ocupacion %>% group_by(antelacion) %>% summarise(nights=sum(nights))
-ggplot(pickup, aes(antelacion, nights)) + geom_line() +
- xlab("Dias de Antelacion") + ylab("Cuartos Reservados")
+historico_grp_rsrv <- historico_ocupacion %>% group_by(rsrv_code) %>% summarise(nights=sum(nights),
+                                                                      date_create = min(date_create),
+                                                                      date_in = min(date_in),
+                                                                      date_out = max(date_out),
+                                                                      antelacion =as.integer(difftime(date_in,date_create,units="days")),
+                                                                      count = 1)
+pickup_rsrv <- historico_grp_rsrv %>% group_by(antelacion) %>% summarise(reservas=sum(count))
+ggplot(pickup_rsrv, aes(antelacion, reservas)) + geom_line() + xlim(-1,100) + ggtitle("Pickup 100 dias")
+
+@
+\paragraph{} ~\\
+<<pickupzoom, echo=FALSE>>=
+ggplot(pickup_rsrv, aes(antelacion, reservas)) + geom_line() + xlim(-1,25) + ggtitle("Pickup 25 dias")
+@
+\paragraph{} ~\\
+Como podemos observar en la gráfica "Pickup 25 días" el mayor número de reservaciones en esta propiedad ocurre 5 días antes de que el huésped llegue al hotel. Con esto podemos concluír que los clientes que visitan esta propiedad planean su estancia con a lo más 5 días de antelación. 
+Resulta interesante ampliar este análisis para cada uno de los canales de reservación disponibles.
+\paragraph{} ~\\
+<<pickupsrc, echo=FALSE>>=
+historico_grp_rsrv_src <- historico_ocupacion %>% group_by(rsrv_code,rsrv_src) %>% summarise(nights=sum(nights),
+                                                                      date_create = min(date_create),
+                                                                      date_in = min(date_in),
+                                                                      date_out = max(date_out),
+                                                                      antelacion =as.integer(difftime(date_in,date_create,units="days")),
+                                                                      count = 1)
+pickup_src <- historico_grp_rsrv_src %>% group_by(rsrv_src,antelacion) %>% summarise(reservas=sum(count))
+ggplot(pickup_src, aes(antelacion, reservas)) + geom_line() + xlim(-1,25) + facet_wrap(~rsrv_src) + ggtitle("Pickup por Canal de Reserva")
 @
 
-<<pickuplog, echo=FALSE>>=
-historico_ocupacion$antelacion <- as.integer(difftime(historico_ocupacion$date_in,historico_ocupacion$date_create,units = "days"))
-pickup <- historico_ocupacion %>% group_by(antelacion) %>% summarise(nights=sum(nights))
-ggplot(pickup, aes(antelacion, log(nights))) + geom_line() +
- xlab("Dias de Antelacion") + ylab("Cuartos Reservados")
-@
-\paragraph{Graficas del DataSet}
-\subparagraph{Líneas de tiempo}
-\subparagraph{Histogramas}
-\subparagraph{Otros Gráficos Interesantes}
 \subsection{Propuesta de Modelo Predictivo}
 \section{Resultados}
 \section{Referencias}

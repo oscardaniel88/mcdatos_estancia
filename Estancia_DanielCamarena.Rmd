@@ -1,0 +1,78 @@
+---
+title: "Estancia"
+author: "Daniel Camarena"
+date: "28/7/2018"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+library(tidyverse)
+library(Hmisc)
+library(knitr)
+knitr::opts_chunk$set(echo = TRUE)
+setwd("~/Documents/CienciaDatos/GitHub/mcdatos_estancia")
+
+```
+
+## Exploratory Data Analysis
+
+A continuación se presenta el documento de analisis exploratorio de datos para los data sets utilizados para construír el modelo de predicción de demanda y pricing dinámico para la cadena de hoteles CityExpress.
+
+### Data Sets
+
+Durante la construcción de este modelo se utilizaron tres data sets principalmente.
+
+El primero de ellos llamado "historico_ocupacion" fue obtenido directamente del sistema de gestión de propiedades y contiene los principales indicadores estudiados en la hoteleria: %ocupación, tarifa promedio,z
+```{r cars}
+historico_ocupacion<-read_csv("datos/EST_PAS_UNIC_CEINS.csv")
+summary(historico_ocupacion)
+```
+
+```{r}
+tl_ocup <- historico_ocupacion %>% group_by(date_in) %>% summarise(nights=sum(nights))
+ggplot(tl_ocup, aes(date_in, nights)) + geom_line() +
+ xlab("") + ylab("Cuartos Ocupados")
+```
+
+```{r}
+historico_ocupacion$antelacion <- as.integer(difftime(historico_ocupacion$date_in,historico_ocupacion$date_create,units = "days"))
+pickup <- historico_ocupacion %>% group_by(antelacion) %>% summarise(nights=sum(nights))
+head(pickup,100)
+ggplot(pickup, aes(antelacion, log(nights))) + geom_line() +
+ xlab("Dias de Antelacion") + ylab("Cuartos Reservados")
+
+```
+
+```{r}
+historico_grp_rsrv <- historico_ocupacion %>% group_by(rsrv_code) %>% summarise(nights=sum(nights),
+                                                                      date_create = min(date_create),
+                                                                      date_in = min(date_in),
+                                                                      date_out = max(date_out),
+                                                                      antelacion =as.integer(difftime(date_in,date_create,units="days")),
+                                                                      count = 1)
+pickup_rsrv <- historico_grp_rsrv %>% group_by(antelacion) %>% summarise(count=sum(count))
+ggplot(pickup_rsrv, aes(antelacion, count)) + geom_line() +
+ xlab("Dias de Antelacion") + ylab("No. Reservaciones")
+
+reservas<-historico_ocupacion %>% filter(rsrv_code == 6265739)
+reservas
+
+historico_grp_rsrv_src <- historico_ocupacion %>% group_by(rsrv_code,rsrv_src) %>% summarise(nights=sum(nights),
+                                                                      date_create = min(date_create),
+                                                                      date_in = min(date_in),
+                                                                      date_out = max(date_out),
+                                                                      antelacion =as.integer(difftime(date_in,date_create,units="days")),
+                                                                      count = 1)
+
+                                                          
+pickup_src <- historico_grp_rsrv_src %>% group_by(rsrv_src,antelacion) %>% summarise(reservas=sum(count))
+ggplot(pickup_src, aes(antelacion, reservas)) + geom_line() + xlim(-1,25) + facet_wrap(~rsrv_src)
+
+ocup_dia_sem <- historico_ocupacion %>% group_by(date_in) %>% summarise(nights=sum(nights),
+                                                                        dia_sem = min(Dia_Sem),
+                                                                        count_sem = 1) %>% 
+                                                              group_by(dia_sem) %>% summarise(nights=sum(nights),
+                                                                                              semanas = sum(count_sem)) %>% 
+                                                              mutate(ocup=nights/(semanas*159))
+                        
+```
