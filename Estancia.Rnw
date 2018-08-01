@@ -21,7 +21,7 @@
 \usepackage{makecell}
 \begin{document}
 <<knitr_options, include=FALSE>>=
-opts_chunk$set(fig.width=12, fig.height=4, fig.path='figures/',
+opts_chunk$set(fig.width=14, fig.height=5, fig.path='figures/',
                warning=FALSE, message=FALSE, tidy=FALSE)
 options(width=60)
 set.seed(53079239)
@@ -39,6 +39,8 @@ knitr::opts_chunk$set(echo = TRUE)
 <<working_directlory, include=FALSE>>=
 setwd("~/Documents/CienciaDatos/GitHub/mcdatos_estancia")
 historico_ocupacion<-read_csv("datos/EST_PAS_UNIC_CEINS.csv")
+canales <- read_csv("datos/cat_canales.csv") %>% select(Id_Origen, Descripcion)
+segmentos <- read_csv("datos/cat_segmentos.csv") %>% select(ID_SUBSEGM,Descripcion)
 @
 \title{\Huge Modelo de Predicción de Demanda y Pricing Dinámico}
 \author{Oscar Daniel Camarena Gómez}
@@ -303,7 +305,7 @@ ggplot(pickup_rsrv, aes(antelacion, reservas)) + geom_line() + xlim(-1,100) + gg
 <<pickupzoom, echo=FALSE>>=
 ggplot(pickup_rsrv, aes(antelacion, reservas)) + geom_line() + xlim(-1,25) + ggtitle("Pickup 25 dias")
 @
-\paragraph{} ~\\
+\paragraph{Pickup por Canal de Venta} ~\\
 Como podemos observar en la gráfica "Pickup 25 días" el mayor número de reservaciones en esta propiedad ocurre 5 días antes de que el huésped llegue al hotel. Con esto podemos concluír que los clientes que visitan esta propiedad planean su estancia con a lo más 5 días de antelación. 
 Resulta interesante ampliar este análisis para cada uno de los canales de reservación disponibles.
 \paragraph{} ~\\
@@ -313,10 +315,28 @@ historico_grp_rsrv_src <- historico_ocupacion %>% group_by(rsrv_code,rsrv_src) %
                                                                       date_in = min(date_in),
                                                                       date_out = max(date_out),
                                                                       antelacion =as.integer(difftime(date_in,date_create,units="days")),
-                                                                      count = 1)
-pickup_src <- historico_grp_rsrv_src %>% group_by(rsrv_src,antelacion) %>% summarise(reservas=sum(count))
-ggplot(pickup_src, aes(antelacion, reservas)) + geom_line() + xlim(-1,25) + facet_wrap(~rsrv_src) + ggtitle("Pickup por Canal de Reserva")
+                                                                      count = 1)%>% left_join(canales, by=c("rsrv_src"="Id_Origen"))
+
+pickup_src <- historico_grp_rsrv_src %>% group_by(Descripcion,antelacion) %>% summarise(reservas=sum(count)) 
+ggplot(pickup_src, aes(antelacion, reservas)) + geom_line() + xlim(-1,25) + facet_wrap(~Descripcion) + ggtitle("Pickup por Canal de Reserva")
 @
+\paragraph{} ~\\
+Podemos notar que para este hotel en particular el pickup es similar (alrededor de 5 días de antelación) en los canales que producen ventas de cuartos, sin embargo resulta interesante observar que no todos los canales tienen una producción significativa en esta propiedad ya que el grueso de las ventas se concentra en los siguientes canales:
+\begin{itemize}[noitemsep]
+\item Contact Center
+\item Hotel
+\item Ota's
+\item Internet (Website)
+\item GDS's
+\end{itemize}
+\paragraph{} ~\\
+<<reservacionesxcanal, echo=FALSE, fig.width=20, fig.height=15>>=
+produccion_src <- historico_grp_rsrv_src %>% group_by(Descripcion) %>% summarise(reservas = sum(count),
+                                                                                 cuartos = sum(nights)) %>% arrange(-reservas)
+ggplot(produccion_src, aes(reorder(Descripcion,-reservas),reservas)) + geom_bar(stat="identity") + theme(axis.text.x = element_text(angle = 60, hjust = 1)) +xlab("canal") + ggtitle("Reservas por Canal")
+@
+\paragraph{} ~\\
+Por último estudiaremos si existe una correlación entre la hora de reservación y el canal de venta utilizado
 
 \subsection{Propuesta de Modelo Predictivo}
 \section{Resultados}
