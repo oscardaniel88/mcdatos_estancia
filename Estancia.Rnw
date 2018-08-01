@@ -20,9 +20,7 @@
 \usepackage[normalem]{ulem}
 \usepackage{makecell}
 \begin{document}
-\SweaveOpts{concordance=TRUE}
 <<knitr_options, include=FALSE>>=
-library(knitr)
 opts_chunk$set(fig.width=14, fig.height=5, fig.path='figures/',
                warning=FALSE, message=FALSE, tidy=FALSE)
 options(width=60)
@@ -35,17 +33,11 @@ library(Hmisc)
 library(knitr)
 library(ggplot2)
 library(kableExtra)
-library(lubridate)
 knitr::opts_chunk$set(echo = TRUE)
 @
 
 <<working_directlory, include=FALSE>>=
-system <- Sys.info()
-if(system["sysname"]=="Windows"){
-  setwd("~/GitHub/mcdatos_estancia")
-} else{
-  setwd("~/Documents/CienciaDatos/GitHub/mcdatos_estancia")
-}
+setwd("~/Documents/CienciaDatos/GitHub/mcdatos_estancia")
 historico_ocupacion<-read_csv("datos/EST_PAS_UNIC_CEINS.csv")
 canales <- read_csv("datos/cat_canales.csv") %>% select(Id_Origen, Descripcion)
 segmentos <- read_csv("datos/cat_segmentos.csv") %>% select(ID_SUBSEGM,Descripcion)
@@ -303,8 +295,8 @@ historico_grp_rsrv <- historico_ocupacion %>% group_by(rsrv_code) %>% summarise(
                                                                       date_create = min(date_create),
                                                                       date_in = min(date_in),
                                                                       date_out = max(date_out),
+                                                                      antelacion =as.integer(difftime(date_in,date_create,units="days")),
                                                                       count = 1)
-historico_grp_rsrv$antelacion<-as.integer(difftime(historico_grp_rsrv$date_in,historico_grp_rsrv$date_create, units="days"))
 pickup_rsrv <- historico_grp_rsrv %>% group_by(antelacion) %>% summarise(reservas=sum(count))
 ggplot(pickup_rsrv, aes(antelacion, reservas)) + geom_line() + xlim(-1,100) + ggtitle("Pickup 100 dias")
 
@@ -322,8 +314,9 @@ historico_grp_rsrv_src <- historico_ocupacion %>% group_by(rsrv_code,rsrv_src) %
                                                                       date_create = min(date_create),
                                                                       date_in = min(date_in),
                                                                       date_out = max(date_out),
+                                                                      antelacion =as.integer(difftime(date_in,date_create,units="days")),
                                                                       count = 1)%>% left_join(canales, by=c("rsrv_src"="Id_Origen"))
-historico_grp_rsrv_src$antelacion<-as.integer(difftime(historico_grp_rsrv_src$date_in,historico_grp_rsrv_src$date_create, units="days"))
+
 pickup_src <- historico_grp_rsrv_src %>% group_by(Descripcion,antelacion) %>% summarise(reservas=sum(count)) 
 ggplot(pickup_src, aes(antelacion, reservas)) + geom_line() + xlim(-1,25) + facet_wrap(~Descripcion) + ggtitle("Pickup por Canal de Reserva")
 @
