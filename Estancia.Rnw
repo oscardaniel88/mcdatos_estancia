@@ -379,6 +379,8 @@ Los segmentos que mas reservan son:
 \item Negocios-Promociones (Viajeros de negocios con cupones promocionales)
 \end{itemize}
 Podemos decir que el perfil del huésped que visita esta propiedad es el viajero de negocios que visita oficinas corporativas cercanas a la ubicación del hotel durante la semana laboral (Lunes - Viernes).
+\paragraph{Producción de Cuartos por Segmentos} ~\\
+Contrastaremos la gráfica anterior contra la producción de cuartos vendidos por cada uno de los segmentos para poder tener una ídea de cuantos cuartos vende cada segmento en cada una de las reservaciones generadas.
 \paragraph{} ~\\
 <<SegmentosMercadoCNO, echo=FALSE, fig.width=20, fig.height=15>>=
 historico_mkt <- historico_ocupacion %>%left_join(segmentos, by=c("mkt_sgm"="ID_SUBSEGM")) %>%  group_by(rsrv_code) %>% summarise(nights=sum(nights),
@@ -391,7 +393,11 @@ historico_mkt_cno <- historico_mkt %>% left_join(segmentos, by=c("mkt_sgm"="ID_S
 
 ggplot(historico_mkt_cno, aes(reorder(Descripcion,-cuartos),cuartos)) + geom_bar(stat="identity") + theme(axis.text.x = element_text(angle = 60, hjust = 1)) +xlab("Segmento") + ggtitle("Produccion de Cuartos por Segmento")
 @
+\paragraph{} ~\\
+Podemos notar que el segmento de Negocios-Convenios produce más cuartos en un menor número de reservas, al contrario de las OTA's que producen mas reservaciones con menos venta de cuartos.
 \paragraph{Estancia Promedio por Segmento} ~\\
+A continuación graficaremos la estancia promedio de cada uno de los segmentos, esta medida nos deja ver cuantas noches pasa un huésped dentro de una propiedad. La fórmula para obtener esta variable es: $ Estancia\ Promedio=\frac{Cuartos Vendidos}{Reservas Generadas}$.
+\paragraph{} ~\\
 <<EstanciaPromedio, echo=FALSE, fig.width=20, fig.height=15>>=
 historico_mkt <- historico_ocupacion %>%left_join(segmentos, by=c("mkt_sgm"="ID_SUBSEGM")) %>%  group_by(rsrv_code) %>% summarise(nights=sum(nights),
                                                                       date_create = min(date_create),
@@ -403,6 +409,8 @@ historico_mkt_eprom <- historico_mkt %>% left_join(segmentos, by=c("mkt_sgm"="ID
 
 ggplot(historico_mkt_eprom, aes(reorder(Descripcion,-eprom),eprom)) + geom_bar(stat="identity") + theme(axis.text.x = element_text(angle = 60, hjust = 1)) +xlab("Segmento") + ggtitle("Estancia Promedio por Segmento")
 @
+\paragraph{} ~\\
+Como podemos ver, la estancia promedio más alta la tiene el segmento de Negocios-Directos, con una estancia promedio de aproximadamente tres noches, contrastada con el segmento de Placer-Otros con una estancia promedio de aproximadamente noche. Esta información nos ayuda a complementar el perfil del huésped para esta propiedad ya que nos refuerza la idea de que el viajero de Negocios utiliza las propiedades durante la semana laboral, y un viajero de placer puede que se quede u
 \subsection{Propuesta de Modelo Predictivo}
 \section{Resultados}
 \section{Referencias}
