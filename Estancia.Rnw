@@ -46,6 +46,7 @@ if(system["sysname"]=="Windows"){
 historico_ocupacion<-read_csv("datos/EST_PAS_UNIC_CEINS.csv")
 canales <- read_csv("datos/cat_canales.csv") %>% select(Id_Origen, Descripcion)
 segmentos <- read_csv("datos/cat_segmentos.csv") %>% select(ID_SUBSEGM,Descripcion)
+indicadores<-read_csv("datos/Indicadores_CEINS.csv")
 @
 \title{\Huge Modelo de Predicción de Demanda y Pricing Dinámico}
 \author{Oscar Daniel Camarena Gómez}
@@ -410,7 +411,40 @@ historico_mkt_eprom <- historico_mkt %>% left_join(segmentos, by=c("mkt_sgm"="ID
 ggplot(historico_mkt_eprom, aes(reorder(Descripcion,-eprom),eprom)) + geom_bar(stat="identity") + theme(axis.text.x = element_text(angle = 60, hjust = 1)) +xlab("Segmento") + ggtitle("Estancia Promedio por Segmento")
 @
 \paragraph{} ~\\
-Como podemos ver, la estancia promedio más alta la tiene el segmento de Negocios-Directos, con una estancia promedio de aproximadamente tres noches, contrastada con el segmento de Placer-Otros con una estancia promedio de aproximadamente noche. Esta información nos ayuda a complementar el perfil del huésped para esta propiedad ya que nos refuerza la idea de que el viajero de Negocios utiliza las propiedades durante la semana laboral, y un viajero de placer puede que se quede u
+Como podemos ver, la estancia promedio más alta la tiene el segmento de Negocios-Directos, con una estancia promedio de aproximadamente tres noches, contrastada con el segmento de Placer-Otros con una estancia promedio de aproximadamente noche. Esta información nos ayuda a complementar el perfil del huésped para esta propiedad ya que nos refuerza la idea de que el viajero de negocios utiliza las propiedades durante la semana laboral, y un viajero de placer puede que se hospede un día en fin de semana.
+\paragraph{} ~\\
+El segundo data set con el que contamos, trae información diaria sobre los níveles de ocupación, tarifa promedio, tarifa efectiva, habitaciones disponibles, penetración de ocupación y penetración de tarifa para los hoteles sujetos al estudio. Para efectos de este trabajo tomaremos información sobre el hotel con el que hemos venido trabajando.
+<<SummaryIndicadores, echo=FALSE>>=
+summary(indicadores)
+@
+\paragraph{} ~\\
+Lo primero que podemos observar es que contamos con datos para el hotel CEXXX a partir del "2017-01-01" y hasta el "2017-12-31". Esta propiedad tiene 159 habitaciones disponibles y maneja niveles de ocupación alrededor del 81.7\%; su tarifa promedio se encuentra alrededor de \$1486.60 y con PO y PT muy cercana a 1 indicando que es un hotel fuerte dentro del set competitivo de la plaza.
+\paragraph{Ocupación} ~\\
+<<IndicadoresOcupación, echo=FALSE>>=
+ggplot(indicadores, aes(fecha, occ)) + geom_line() +
+ xlab("") + ylab("% Ocupacion")+ggtitle("% Ocupacion") + geom_smooth()
+@
+\paragraph{Tarifa Promedio} ~\\
+<<IndicadoresTarifaPromedio, echo=FALSE>>=
+ggplot(indicadores, aes(fecha, tp)) + geom_line() +
+ xlab("") + ylab("TP" )+ggtitle("Tarifa Promedio") + geom_smooth()
+@
+\paragraph{Penetración de Ocupación} ~\\
+<<IndicadoresPO, echo=FALSE>>=
+ggplot(indicadores, aes(fecha, po)) + geom_line() +
+ xlab("") + ylab("PO" )+ggtitle("Penetracion Ocupacion") + geom_smooth()
+@
+\paragraph{Penetración de Tarifa} ~\\
+<<IndicadoresPT, echo=FALSE>>=
+ggplot(indicadores, aes(fecha, pt)) + geom_line() +
+ xlab("") + ylab("PT" )+ggtitle("Penetracion Tarifa") + geom_smooth()
+@
+\paragraph{Penetración de Tarifa vs Penetración de Ocupación} ~\\
+<<POvsPT, echo=FALSE>>=
+ggplot(indicadores, aes(po, pt)) + geom_point(alpha=0.3) +
+ xlab("PO") + ylab("PT" )+ggtitle("PO vs PT") 
+@
+
 \subsection{Propuesta de Modelo Predictivo}
 \section{Resultados}
 \section{Referencias}
