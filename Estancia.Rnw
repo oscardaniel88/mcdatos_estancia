@@ -441,7 +441,7 @@ ggplot(indicadores, aes(fecha, pt)) + geom_line() +
 @
 \paragraph{Penetración de Tarifa vs Penetración de Ocupación} ~\\
 <<POvsPT, echo=FALSE>>=
-ggplot(indicadores, aes(po, pt)) + geom_point(alpha=0.3) +
+ggplot(indicadores, aes(po, pt)) + geom_point(alpha=0.3) + geom_smooth(method='lm',formula=y~x) +
  xlab("PO") + ylab("PT" )+ggtitle("PO vs PT") 
 @
 
