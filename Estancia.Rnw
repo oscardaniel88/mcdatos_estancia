@@ -439,11 +439,15 @@ ggplot(indicadores, aes(fecha, po)) + geom_line() +
 ggplot(indicadores, aes(fecha, pt)) + geom_line() +
  xlab("") + ylab("PT" )+ggtitle("Penetracion Tarifa") + geom_smooth()
 @
-\paragraph{Penetración de Tarifa vs Penetración de Ocupación} ~\\
+\paragraph{Penetración de Ocupación vs Penetración de Tarifa} ~\\
+Al estudiar los datos notamos que hay una correlación negativa entre la penetración de ocupación y la penetración de la tarifa, recordemos que la primera indica cuanta ocupación tiene una de las propiedades de CityExpress con respecto a la ocupación de su plaza, y la segunda indica cuánto del ingreso disponible se está quedando dentro de la propiedad de interés. En otras palabras podemos pensar en una relación similar a la del precio de un bien vs la demanda de un bien. A mayor precio menor demanda y a menor precio mayor demanda, lo cual indica que la relación entre ambas variables debe ser negativa.
+\paragraph{} ~\\
 <<POvsPT, echo=FALSE>>=
-ggplot(indicadores, aes(po, pt)) + geom_point(alpha=0.3) + geom_smooth(method='lm',formula=y~x) +
+library(devtools)
+ggplot(indicadores, aes(po, pt)) + geom_point(alpha=0.3) + geom_smooth(method='lm',formula=y~x,) +
  xlab("PO") + ylab("PT" )+ggtitle("PO vs PT") 
 @
+
 
 \subsection{Propuesta de Modelo Predictivo}
 \section{Resultados}
