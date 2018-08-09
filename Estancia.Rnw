@@ -47,6 +47,7 @@ historico_ocupacion<-read_csv("datos/EST_PAS_UNIC_CEINS.csv")
 canales <- read_csv("datos/cat_canales.csv") %>% select(Id_Origen, Descripcion)
 segmentos <- read_csv("datos/cat_segmentos.csv") %>% select(ID_SUBSEGM,Descripcion)
 indicadores<-read_csv("datos/Indicadores_CEINS.csv")
+competencia<-read_csv("datos/BOP_CEINS.csv") %>% select(nombre,fecha,precio)
 @
 \title{\Huge Modelo de Predicción de Demanda y Pricing Dinámico}
 \author{Oscar Daniel Camarena Gómez}
@@ -419,22 +420,23 @@ summary(indicadores)
 @
 \paragraph{} ~\\
 Lo primero que podemos observar es que contamos con datos para el hotel CEXXX a partir del "2017-01-01" y hasta el "2017-12-31". Esta propiedad tiene 159 habitaciones disponibles y maneja niveles de ocupación alrededor del 81.7\%; su tarifa promedio se encuentra alrededor de \$1486.60 y con PO y PT muy cercana a 1 indicando que es un hotel fuerte dentro del set competitivo de la plaza.
-\paragraph{Ocupación} ~\\
+A continuación presentamos los datos de manera gráfica.
+\paragraph{Ocupación en el tiempo} ~\\
 <<IndicadoresOcupación, echo=FALSE>>=
 ggplot(indicadores, aes(fecha, occ)) + geom_line() +
  xlab("") + ylab("% Ocupacion")+ggtitle("% Ocupacion") + geom_smooth()
 @
-\paragraph{Tarifa Promedio} ~\\
+\paragraph{Tarifa Promedio en el tiempo} ~\\
 <<IndicadoresTarifaPromedio, echo=FALSE>>=
 ggplot(indicadores, aes(fecha, tp)) + geom_line() +
  xlab("") + ylab("TP" )+ggtitle("Tarifa Promedio") + geom_smooth()
 @
-\paragraph{Penetración de Ocupación} ~\\
+\paragraph{Penetración de Ocupación en el tiempo} ~\\
 <<IndicadoresPO, echo=FALSE>>=
 ggplot(indicadores, aes(fecha, po)) + geom_line() +
  xlab("") + ylab("PO" )+ggtitle("Penetracion Ocupacion") + geom_smooth()
 @
-\paragraph{Penetración de Tarifa} ~\\
+\paragraph{Penetración de Tarifa en el tiempo} ~\\
 <<IndicadoresPT, echo=FALSE>>=
 ggplot(indicadores, aes(fecha, pt)) + geom_line() +
  xlab("") + ylab("PT" )+ggtitle("Penetracion Tarifa") + geom_smooth()
@@ -443,9 +445,18 @@ ggplot(indicadores, aes(fecha, pt)) + geom_line() +
 Al estudiar los datos notamos que hay una correlación negativa entre la penetración de ocupación y la penetración de la tarifa, recordemos que la primera indica cuanta ocupación tiene una de las propiedades de CityExpress con respecto a la ocupación de su plaza, y la segunda indica cuánto del ingreso disponible se está quedando dentro de la propiedad de interés. En otras palabras podemos pensar en una relación similar a la del precio de un bien vs la demanda de un bien. A mayor precio menor demanda y a menor precio mayor demanda, lo cual indica que la relación entre ambas variables debe ser negativa.
 \paragraph{} ~\\
 <<POvsPT, echo=FALSE>>=
-library(devtools)
 ggplot(indicadores, aes(po, pt)) + geom_point(alpha=0.3) + geom_smooth(method='lm',formula=y~x,) +
  xlab("PO") + ylab("PT" )+ggtitle("PO vs PT") 
+@
+\paragraph{Precio de la competencia} ~\\
+El último data set con el que contamos contiene información sobre los precios de la competencia definida para CEXXX publicados en las agencias de viajes en línea.
+\paragraph{} ~\\
+<<PrecioCompetencia, echo=FALSE>>=
+summary(competencia)
+@
+\paragraph{Precios en el tiempo} ~\\
+<<PreciosGraf, echo=FALSE>>=
+ggplot(competencia, aes(fecha,precio,colour=nombre)) + geom_line()
 @
 
 
