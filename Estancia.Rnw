@@ -458,8 +458,15 @@ summary(competencia)
 <<PreciosGraf, echo=FALSE>>=
 ggplot(competencia, aes(fecha,precio,colour=nombre)) + geom_line()
 @
-
-
+\paragraph{} ~\\
+Nos llaman la atención algunos datos que salen del patrón del comportamiento, para estudiarlos con mas detalle veamos la siguiente gráfica:
+\paragraph{} ~\\
+<<PreciosBoxPlot, echo=FALSE,fig.width=20, fig.height=15>>=
+ggplot(competencia, aes(nombre,precio)) + geom_boxplot(outlier.colour="red", outlier.shape=1,
+                outlier.size=2)+ theme(axis.text.x = element_text(angle = 60, hjust = 1))
+@
+\paragraph{} ~\\
+Podemos observar que este data set contiene datos atípicos, por ejemplo el hotel "Courtyard by Marriot Mexico City Revolución" tiene tarifas arriba de los \$10,000 MXN, lo cual es poco probable ya que es un hotel que compite directamente con CityExpress y su mercado es el mismo (Viajero de Negocios). Estos casos se deberán tomar en cuenta al momento de construír el modelo de pronóstico y pricing dinámico para evitar resultados erróneos. 
 \subsection{Propuesta de Modelo Predictivo}
 \section{Resultados}
 \section{Referencias}
