@@ -1,28 +1,28 @@
 ID_SUBSEGM,Descripcion,Grupo,Total
-28,Placer-Promociones,PLACER,Total
-1,Negocios-Directos,NEGOCIOS,Total
-11,Negocios-Corporativa,NEGOCIOS,Total
-3,Negocios-Viajero Frecuente,NEGOCIOS,Total
-4,Agencias Minoristas,MAYOREO,Total
-5,OTA´s,MAYOREO,Total
-6,Linea Aerea / Tripulaciones,MAYOREO,Total
-7,"Grupos-Ferias, Congresos y Convenciones",GRUPOS,Total
-8,Grupos-Sociales,GRUPOS,Total
-10,Uso Casa,OTROS,Total
-2,Negocios-Convenios,NEGOCIOS,Total
-12,Negocios-Consorcios,NEGOCIOS,Total
-13,Negocios-Promociones,NEGOCIOS,Total
-14,Negocios-Otros,NEGOCIOS,Total
-15,Placer-Directos,PLACER,Total
-16,Placer-Fin de Semana,PLACER,Total
-17,Placer-Otros,PLACER,Total
-18,Agencias Mayoristas,MAYOREO,Total
-19,Mayoreo-Otros,MAYOREO,Total
-9,Grupos-Juntas,GRUPOS,Total
-21,Grupos-Deportes,GRUPOS,Total
-22,Cortesías,OTROS,Total
-23,Noches Premios,OTROS,Total
-24,Intercambio,OTROS,Total
-25,Empleados,OTROS,Total
-26,Industria Turística,OTROS,Total
-27,Otros-Otros,OTROS,Total
+028,Placer-Promociones,PLACER,Total
+001,Negocios-Directos,NEGOCIOS,Total
+011,Negocios-Corporativa,NEGOCIOS,Total
+003,Negocios-Viajero Frecuente,NEGOCIOS,Total
+004,Agencias Minoristas,MAYOREO,Total
+005,OTA´s,MAYOREO,Total
+006,Linea Aerea / Tripulaciones,MAYOREO,Total
+007,"Grupos-Ferias, Congresos y Convenciones",GRUPOS,Total
+008,Grupos-Sociales,GRUPOS,Total
+010,Uso Casa,OTROS,Total
+002,Negocios-Convenios,NEGOCIOS,Total
+012,Negocios-Consorcios,NEGOCIOS,Total
+013,Negocios-Promociones,NEGOCIOS,Total
+014,Negocios-Otros,NEGOCIOS,Total
+015,Placer-Directos,PLACER,Total
+016,Placer-Fin de Semana,PLACER,Total
+017,Placer-Otros,PLACER,Total
+018,Agencias Mayoristas,MAYOREO,Total
+019,Mayoreo-Otros,MAYOREO,Total
+009,Grupos-Juntas,GRUPOS,Total
+021,Grupos-Deportes,GRUPOS,Total
+022,Cortesías,OTROS,Total
+023,Noches Premios,OTROS,Total
+024,Intercambio,OTROS,Total
+025,Empleados,OTROS,Total
+026,Industria Turística,OTROS,Total
+027,Otros-Otros,OTROS,Total
