@@ -467,10 +467,76 @@ ggplot(competencia, aes(nombre,precio)) + geom_boxplot(outlier.colour="red", out
 @
 \paragraph{} ~\\
 Podemos observar que este data set contiene datos atípicos, por ejemplo el hotel "Courtyard by Marriot Mexico City Revolución" tiene tarifas arriba de los \$10,000 MXN, lo cual es poco probable ya que es un hotel que compite directamente con CityExpress y su mercado es el mismo (Viajero de Negocios). Estos casos se deberán tomar en cuenta al momento de construír el modelo de pronóstico y pricing dinámico para evitar resultados erróneos. 
-
-
-
 \subsection{Propuesta de Modelo Predictivo}
+\paragraph{Descripción del modelo} ~\\
+Para el desarrollo del modelo utilizaremos los data sets que contienen la información de las reservaciones modelados como curvas de "pick up". Estas curvas nos describen la velocidad en que un hotel vende su inventario para un día en específico. Lo que el modelo hará es ajustar una curva que resuma el comportamiento del hotel para un día similar al que se está estudiando, de esa manera podremos predecir cuantos cuartos venderá el hotel y con cuantos días de antelación.Para lograr esto se construirá un modelo de regresión Poisson fundamentado en la distribución de la llegada de las reservaciones como un proceso discreto que depende del tiempo y para darle un enfoque de uso predictivo al modelo, se utiliza un modelo de regresión lineal con predictores que dependen del tiempo para dar un valor estimado por día y por hotel de las curvas de "pick Up".
+\paragraph{Modelo de regresión Poisson} ~\\
+Derivado de la curva de “Pick-up” que representa el movimiento de las reservaciones en función a los días de anticipación antes de una fecha dada, se observó que la forma de la curva presenta una forma logarítmica, es por ello que se optó por considerar este modelo para la primera parte de la ecuación.
+$$\log(E(Y|X))=\beta_0 + \beta_1{X}$$
+Se contruyeron series por día y hotel en función del número de días de antelación para la reservación.
+~\\
+La selección del modelo de regresión Poisson se fundamenta en la distribución de la llegada de las reservaciones como un proceso discreto que depende del tiempo. El conteo de las reservaciones es inversamente proporcional a la cercanía de la fecha de entrada al hotel y por tanto la probabilidad de ocurrencia de llenado del hotel incrementa conforme se acerca la fecha para la que se hace la reservación.
+\paragraph{Modelo de regresión lineal} ~\\
+Considerando que las principales variables que describen la predictividad de la demanda son temporales, se propone un modelo que explique los parámetros de las curvas de "pick up" mediante un modelo lineal. Se generan series temporales para hacer predictivo el modelo de pronóstico de demanda y proyectamos en función de la historia en el mismo día calendario del año anterior, el día de la semana para compensar los efectos diferenciados por hotel, así como los eventos que afectan la demanda en un calendario anticipado por hotel, y finalmente el comportamiento de las tarifas que ofrece la competencia.
+$$\log(E(Y|X))=\beta_0 + \beta_1{X}$$
+\subsection{Desarrollo del modelo}
+A continuación se presenta el código del modelo desarrollado en R.
+<<Modelo, echo=TRUE>>=
+library(plyr)
+HIS_CEXXX<-read_csv("datos/EST_PAS_UNIC_CEINS.csv")
+#HIS_CEXXX$antelacion <-as.integer(difftime(HIS_CEXXX$date_in,HIS_CEXXX$date_create, units="days"))
+
+
+#Juntamos todas las tablas en un solo dataset
+#datos <- rbind(HIS_CEINS, HIS_CEMID, HIS_CEMTA, HIS_CEMZT, HIS_CEPAZ, HIS_CEPDC, RES_CEINS, RES_CEMID, RES_CEMTA, RES_CEMZT, RES_CEPAZ, RES_CEPDC)
+datos <-(HIS_CEXXX)
+#Modelo de regresión Poisson para obtener parámetros de modelo predictivo
+modelo.1<-function(base,h){
+  hotel<-subset(base,prop_code==h)
+  dia<-sort(unique(hotel$date_in))
+  ndia<-length(dia)
+  beta0<-rep(0,ndia)
+  beta1<-rep(0,ndia)
+  variacion<-rep(0,ndia)
+  for(i in 1:ndia){
+    eleccion <- ddply(subset(hotel,as.character(date_in)==as.character(dia[i]),select = c('antelacion','nights')),
+                      .(antelacion),summarise, nights = sum(nights))
+    eleccion <- eleccion[with(eleccion,order(-antelacion)), ]
+    eleccion$nights <- cumsum(eleccion$nights)
+    eleccion <- eleccion[eleccion$antelacion<=60,]
+    mod <- glm(nights~antelacion, family = "poisson", data = eleccion)
+    coeficientes <- coef(mod)
+    beta0[i] <- coeficientes[1]
+    beta1[i]<- coeficientes[2]
+    variacion[i] <- sqrt(mod$deviance)
+  }
+  yresp <- data.frame(hotel=rep(h,ndia),dia,beta0,beta1,variacion)
+  return(yresp)
+}
+
+# Prepara datos 2017 de entrada del modelo
+res <- ddply(datos,.(prop_code,date_create,date_in), summarise, nights=sum(nights))
+res$prop_code<-toupper(res$prop_code)
+res$antelacion <- as.numeric(res$date_in - res$date_create)
+res <- subset(res,format(res$date_in, "%Y")=="2017")
+yresp.1 <- modelo.1(res,"CEINS")
+#yresp <- rbind(yresp.1, yresp.2, yresp.3, yresp.4, yresp.5, yresp.6)
+yresp<-yresp.1
+
+
+### Preparación de datos para modelo predictivo (2015)
+series2018 <- subset(yresp,format(yresp$dia, "%Y")=="2017")
+series2018$dia <- as.Date(series2018$dia)+365
+names(series2018) <- c("hotel","dia","AAbeta0","AAbeta1","variacion")
+
+### Series a la fecha de corte en la extracción
+series2018al11ago <- subset(series2018,as.numeric(dia)<as.numeric(as.Date("2018-08-11")))
+res2018al11ago <- subset(res,as.numeric(date_in)<as.numeric(as.Date("2018-08-11")))
+res2018al11ago <- subset(res2018al11ago,format(res2018a11ago$date_in, "%Y")=="2018")
+
+
+@
+
 \section{Resultados}
 \section{Referencias}
 \end{document}
