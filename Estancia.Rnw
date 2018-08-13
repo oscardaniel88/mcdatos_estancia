@@ -595,8 +595,18 @@ series2018$eventos <- as.factor(series2018$eventos)
 series2018$pred.beta0 <- ifelse(series2018$hotel=="CEINS",predict(mod.CEINS.beta0,newdata=series2018,type="response"),0)
 series2018$pred.beta1 <- ifelse(series2018$hotel=="CEINS",predict(mod.CEINS.beta1,newdata=series2018,type="response"),0)
 
+
+test <- seq(0:62)
+test <- test -2
+beta0<-4.417952
+beta1<--0.09497318
+test2 <- exp(beta0+beta1*test) 
+
+result <-as.data.frame(cbind(test,test2))
+ggplot(data=result,aes(x=test,y=test2))+geom_line(colour="red")
 @
 
 \section{Resultados}
 \section{Referencias}
 \end{document}
+
