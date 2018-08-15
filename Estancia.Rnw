@@ -33,6 +33,7 @@ library(Hmisc)
 library(knitr)
 library(ggplot2)
 library(kableExtra)
+library(corrplot)
 knitr::opts_chunk$set(echo = TRUE)
 @
 
@@ -51,7 +52,7 @@ competencia<-read_csv("datos/BOP_CEINS.csv") %>% select(nombre,fecha,precio)
 TDC <- read.csv("datos/tdc.csv")
 names(TDC) <- c("dia","tdc")
 TDC$dia <- as.Date(TDC$dia)
-reservas <- read_csv("datos/CEINS_RESERVAS.csv")
+reservasCEINS <- read_csv("datos/CEINS_RESERVAS.csv")
 eventos <- read_csv("datos/eventos.csv") %>% select(hotel_clave,fecha,eventos)
 names(eventos)<-c("hotel","dia","eventos")
 eventos2018 <- eventos %>% filter(format(dia,"%Y")=="2017") %>% mutate(dia = dia +365)
@@ -359,7 +360,6 @@ corr_hour$hour <- as.numeric(corr_hour$hour)
 corr_hour<- corr_hour %>% spread(Descripcion, count)
 corr_hour[is.na(corr_hour)]<-0
 corr_hour <- as.matrix(corr_hour)
-#cor(corr_hour)
 corr_hour_hist<-historico_ocupacion %>% left_join(canales, by=c("rsrv_src"="Id_Origen")) %>% select(date_create,Descripcion,nights) %>% mutate(hour=format(date_create,"%H")) %>% select(hour,Descripcion)
 ggplot(corr_hour_hist, aes(hour)) +geom_bar()+theme(axis.text.x = element_text(angle = 60, hjust = 1))+ facet_wrap(~Descripcion)
 @
@@ -474,8 +474,58 @@ Nos llaman la atención algunos datos que salen del patrón del comportamiento, 
 ggplot(competencia, aes(nombre,precio)) + geom_boxplot(outlier.colour="red", outlier.shape=1,
                 outlier.size=2)+ theme(axis.text.x = element_text(angle = 60, hjust = 1))
 @
-\paragraph{} ~\\
+~\\
 Podemos observar que este data set contiene datos atípicos, por ejemplo el hotel "Courtyard by Marriot Mexico City Revolución" tiene tarifas arriba de los \$10,000 MXN, lo cual es poco probable ya que es un hotel que compite directamente con CityExpress y su mercado es el mismo (Viajero de Negocios). Estos casos se deberán tomar en cuenta al momento de construír el modelo de pronóstico y pricing dinámico para evitar resultados erróneos. 
+\paragraph{Tipo de Cambio}~\\
+Otro data set con el que contamos es el tipo de cambio, a continuación mostramos las series de tiempo para el tipo de cambio:
+~\\
+<<TiposdeCambio, echo=FALSE>>=
+ggplot(TDC, aes(dia,tdc)) + geom_line()
+@
+\paragraph{Correlación de variables}~\\
+<<Correlación, echo=FALSE, fig.width=20, fig.height=15>>=
+datoscorr <- reservasCEINS %>% select(prop_code,date_in,nights,Dia_Sem) %>% group_by(prop_code,date_in,Dia_Sem) %>% summarise(nights=sum(nights)) %>% mutate(occ=nights/159)
+datoscorr$date_in <- as.Date(datoscorr$date_in)
+id<-seq(1:7)
+dia<-c("lun","mar","mie","jue","vie","sab","dom")
+dias_sem<-as.data.frame(cbind(id,dia))
+datoscorr<-inner_join(datoscorr,TDC, by=c("date_in"="dia")) %>% inner_join(indicadores,by=c("prop_code"="Hotel","date_in"="fecha")) %>% inner_join(dias_sem,by=c("Dia_Sem"="dia"))
+
+datoscorr$prop_code<-as.numeric(as.factor(datoscorr$prop_code))
+datoscorr$date_in<-as.numeric(as.factor(datoscorr$date_in))
+datoscorr$id<-as.numeric(as.factor(datoscorr$id))
+datoscorr<-datoscorr[,-3]
+datoscorr<-datoscorr[,-4]
+names(datoscorr)<-c("hotel","date_in","nights","tdc","occ","habs_disp","tp","po","pt","te","id")
+cormat<-round(cor(datoscorr),2)
+library(reshape2)
+melted_cormat <- melt(cormat)
+# Melt the correlation matrix
+ggheatmap <- ggplot(melted_cormat, aes(Var2, Var1, fill = value))+
+ geom_tile(color = "white")+
+ scale_fill_gradient2(low = "blue", high = "red", mid = "white", 
+   midpoint = 0, limit = c(-1,1), space = "Lab", 
+    name="Pearson\nCorrelation") +
+  theme_minimal()+ # minimal theme
+ theme(axis.text.x = element_text(angle = 45, vjust = 1, 
+    size = 12, hjust = 1))+
+ coord_fixed()
+
+ggheatmap + 
+geom_text(aes(Var2, Var1, label = value), color = "black", size = 4) +
+theme(
+  axis.title.x = element_blank(),
+  axis.title.y = element_blank(),
+  panel.grid.major = element_blank(),
+  panel.border = element_blank(),
+  panel.background = element_blank(),
+  axis.ticks = element_blank(),
+  #legend.justification = c(1, 0),
+  #legend.position = c(0.6, 0.7),
+  legend.direction = "horizontal")+
+  guides(fill = guide_colorbar(barwidth = 7, barheight = 1,
+                title.position = "top", title.hjust = 0.5))
+@
 \subsection{Propuesta de Modelo Predictivo}
 \paragraph{Descripción del modelo} ~\\
 Para el desarrollo del modelo utilizaremos los data sets que contienen la información de las reservaciones modelados como curvas de "pick up". Estas curvas nos describen la velocidad en que un hotel vende su inventario para un día en específico. Lo que el modelo hará es ajustar una curva que resuma el comportamiento del hotel para un día similar al que se está estudiando, de esa manera podremos predecir cuantos cuartos venderá el hotel y con cuantos días de antelación.Para lograr esto se construirá un modelo de regresión Poisson fundamentado en la distribución de la llegada de las reservaciones como un proceso discreto que depende del tiempo y para darle un enfoque de uso predictivo al modelo, se utiliza un modelo de regresión lineal con predictores que dependen del tiempo para dar un valor estimado por día y por hotel de las curvas de "pick Up".
@@ -490,7 +540,7 @@ Considerando que las principales variables que describen la predictividad de la 
 $$\log(E(Y|X))=\beta_0 + \beta_1{X}$$
 \subsection{Desarrollo del modelo}
 A continuación se presenta el código del modelo desarrollado en R.
-<<Modelo, echo=TRUE>>=
+<<Modelo, echo=FALSE>>=
 library(plyr)
 HIS_CEINS<-read_csv("datos/EST_PAS_UNIC_CEINS.csv")
 RES_CEINS <- read.csv("datos/CEINS_RESERVAS.csv")
@@ -597,15 +647,16 @@ series2018$eventos <- as.factor(series2018$eventos)
 series2018$pred.beta0 <- ifelse(series2018$hotel=="CEINS",predict(mod.CEINS.beta0,newdata=series2018,type="response"),0)
 series2018$pred.beta1 <- ifelse(series2018$hotel=="CEINS",predict(mod.CEINS.beta1,newdata=series2018,type="response"),0)
 
-test_index <- as.integer(runif(1,min=0,max=3)*100)
-test <- seq(0:62)
-test <- test -2
-beta0<-series2018[test_index,]$pred.beta0
-beta1<-series2018[test_index,]$pred.beta1
-test2 <- as.integer(exp(beta0+beta1*test))
+head(series2018)
+##test_index <- as.integer(runif(1,min=0,max=3)*100)
+##test <- seq(0:62)
+##test <- test -2
+##beta0<-series2018[test_index,]$pred.beta0
+##beta1<-series2018[test_index,]$pred.beta1
+##test2 <- as.integer(exp(beta0+beta1*test))
 
-result <-as.data.frame(cbind(test,test2))
-ggplot(data=result,aes(x=test,y=test2))+geom_line(colour="red")
+##result <-as.data.frame(cbind(test,test2))
+##ggplot(data=result,aes(x=test,y=test2))+geom_line(colour="red")
 @
 
 \section{Resultados}
