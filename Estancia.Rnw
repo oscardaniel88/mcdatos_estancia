@@ -701,16 +701,19 @@ Dónde:
 \item $x$ = días de antelación al día analizado
 \end{itemize}
 ~\\
-Aplicando esta ecuación para una fecha aleatoria:
-<<ValidacionModelo, echo=FALSE>>=
+Validamos el modelo con fechas aleatorias y obtenemos las siguientes gráficas:
+~\\
+<<ValidacionModelo, echo=FALSE, fig.width=20, fig.height=15>>=
 detach(package:plyr)
 library(dplyr)
 #2018-01-17
 dias<-series2018 %>% select(dia) %>% 
   filter(dia<='2018-08-11')
-index<-sample(1:223,1)
+val<-sample(1:223,4)
+i<-1
+plots<-list()
+for(index in val){
 fecha<-dias[index,]
-
 beta0<-as.numeric(series2018 %>% filter(dia==fecha) %>% select(pred.beta0)) 
 beta1<-as.numeric(series2018 %>% filter(dia==fecha) %>% select(pred.beta1)) 
 antelacion <- seq(1:62)-2
@@ -731,7 +734,12 @@ datos_reales <- datos_reales %>% select(antelacion,nights) %>% dplyr::group_by(a
 datos_reales$cumsum <- rev(cumsum(rev(datos_reales$cn))) 
 
 datos_reales<- datos_reales %>% select(antelacion,cumsum)
-ggplot(data=test_result, aes(antelacion,cn_predic))+geom_point()+geom_line(data=datos_reales, aes(x=antelacion,y=cumsum, colour="red"))
+plots[[i]]<-ggplot(data=test_result, aes(antelacion,cn_predic),guide=TRUE)+
+  geom_point()+geom_line(data=datos_reales, aes(x=antelacion,y=cumsum, colour="red"))+
+  xlab("Antelacion")+ylab("Cuartos Vendidos")
+i<-i+1
+}
+cowplot::plot_grid(plotlist = plots, ncol = 2)
 @
 \section{Resultados}
 \section{Anexo A: Código del modelo pronóstico de demanda}
