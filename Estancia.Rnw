@@ -331,6 +331,7 @@ historico_grp_rsrv <- historico_ocupacion %>% group_by(rsrv_code) %>% summarise(
                                                                       count = 1)
 historico_grp_rsrv$antelacion<-as.integer(difftime(historico_grp_rsrv$date_in,historico_grp_rsrv$date_create, units="days"))
 pickup_rsrv <- historico_grp_rsrv %>% group_by(antelacion) %>% summarise(reservas=sum(count))
+pickup_rsrv$reservas<-rev(cumsum(rev(pickup_rsrv$reservas)))
 ggplot(pickup_rsrv, aes(antelacion, reservas)) + geom_line() + xlim(-1,100) + ggtitle("Pickup 100 dias")
 
 @
@@ -350,6 +351,7 @@ historico_grp_rsrv_src <- historico_ocupacion %>% group_by(rsrv_code,rsrv_src) %
                                                                       count = 1)%>% left_join(canales, by=c("rsrv_src"="Id_Origen"))
 historico_grp_rsrv_src$antelacion<-as.integer(difftime(historico_grp_rsrv_src$date_in,historico_grp_rsrv_src$date_create, units="days"))
 pickup_src <- historico_grp_rsrv_src %>% group_by(Descripcion,antelacion) %>% summarise(reservas=sum(count)) 
+pickup_src <- pickup_src %>% group_by(Descripcion) %>% mutate(reservas = rev(cumsum(rev(reservas))))
 ggplot(pickup_src, aes(antelacion, reservas)) + geom_line() + xlim(-1,25) + facet_wrap(~Descripcion) + ggtitle("Pickup por Canal de Reserva")
 @
 ~\\
@@ -502,7 +504,7 @@ ggplot(TDC, aes(dia,tdc)) + geom_line() + geom_smooth() +ggtitle("Serie de Tipos
 \paragraph{Correlación de variables}~\\
 Para concluír el análisis exploratorio de datos estudiaremos la correlación de cada una de las variables contra el nível de ocupación, esto nos ayudará a decidir qué variables debemos utilizar dentro del modelo construído.
 ~\\
-<<Correlación, echo=FALSE, fig.width=20, fig.height=15>>=
+<<Correlacion, echo=FALSE, fig.width=20, fig.height=15>>=
 datoscorr <- reservasCEINS %>% select(prop_code,date_in,nights,Dia_Sem) %>% group_by(prop_code,date_in,Dia_Sem) %>% summarise(nights=sum(nights)) %>% mutate(occ=nights/159)
 datoscorr$date_in <- as.Date(datoscorr$date_in)
 id<-seq(1:7)
@@ -680,15 +682,7 @@ series2018$pred.beta1 <- ifelse(series2018$hotel=="CEINS",
                                 predict(mod.CEINS.beta1,newdata=series2018,type="response"),0)
 
 head(series2018)
-##test_index <- as.integer(runif(1,min=0,max=3)*100)
-##test <- seq(0:62)
-##test <- test -2
-##beta0<-series2018[test_index,]$pred.beta0
-##beta1<-series2018[test_index,]$pred.beta1
-##test2 <- as.integer(exp(beta0+beta1*test))
 
-##result <-as.data.frame(cbind(test,test2))
-##ggplot(data=result,aes(x=test,y=test2))+geom_line(colour="red")
 @
 ~\\
 Las variables de interés son: "pred.beta0" y "pred.beta1" ya que son los parámetros generados por los modelos y que nos ayudarán a reconstruír las curvas de pickup. Para reconstruír la curva de pickup de un día en específico, debemos obtener los parámetros "pred.beta0" y "pred.beta1" para el día elegido y posteriormente debemos calcular hacer el siguiente cálculo: $$E[y|x]=e^{\beta_0 + \beta_1{x}}$$
@@ -879,6 +873,7 @@ series2018$pred.beta1 <- ifelse(series2018$hotel=="CEINS",
                                         newdata=series2018,
                                         type="response"),0)
 @
+
 
 \section{Referencias}
 \end{document}
