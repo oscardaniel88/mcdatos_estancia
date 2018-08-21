@@ -551,6 +551,7 @@ theme(
 Derivado de este análisis podemos hacer las siguientes conclusiones:
 
 \subsection{Propuesta de Modelo Predictivo}
+\paragraph{Antecedentes del modelo} ~\\
 \paragraph{Descripción del modelo} ~\\
 Para el desarrollo del modelo utilizaremos los data sets que contienen la información de las reservaciones modelados como curvas de "pick up". Estas curvas nos describen la velocidad en que un hotel vende su inventario para un día en específico. Lo que el modelo hará es ajustar una curva que resuma el comportamiento del hotel para un día similar al que se está estudiando, de esa manera podremos predecir cuantos cuartos venderá el hotel y con cuantos días de antelación.Para lograr esto se construirá un modelo de regresión Poisson fundamentado en la distribución de la llegada de las reservaciones como un proceso discreto que depende del tiempo y para darle un enfoque de uso predictivo al modelo, se utiliza un modelo de regresión lineal con predictores que dependen del tiempo para dar un valor estimado por día y por hotel de las curvas de "pick Up".
 \paragraph{Modelo de regresión Poisson} ~\\
@@ -703,7 +704,7 @@ library(dplyr)
 #2018-01-17
 dias<-series2018 %>% select(dia) %>% 
   filter(dia<='2018-08-11')
-val<-sample(1:223,4)
+val<-sample(1:223,30)
 i<-1
 plots<-list()
 for(index in val){
@@ -733,7 +734,7 @@ plots[[i]]<-ggplot(data=test_result, aes(antelacion,cn_predic),guide=TRUE)+
   xlab("Antelacion")+ylab("Cuartos Vendidos")
 i<-i+1
 }
-cowplot::plot_grid(plotlist = plots, ncol = 2)
+cowplot::plot_grid(plotlist = plots, ncol = 4)
 @
 \section{Resultados}
 \section{Anexo A: Código del modelo pronóstico de demanda}
