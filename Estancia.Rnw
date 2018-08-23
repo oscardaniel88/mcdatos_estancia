@@ -57,7 +57,7 @@ eventos <- read_csv("datos/eventos.csv") %>% select(hotel_clave,fecha,eventos)
 names(eventos)<-c("hotel","dia","eventos")
 eventos2018 <- eventos %>% filter(format(dia,"%Y")=="2017") %>% mutate(dia = dia +365)
 eventos <- rbind(eventos,eventos2018)
-
+price <- read_csv("datos/Prices.csv")
 @
 \title{\Huge Modelo de Predicción de Demanda y Pricing Dinámico}
 \author{Oscar Daniel Camarena Gómez}
