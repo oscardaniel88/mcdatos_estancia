@@ -57,7 +57,7 @@ eventos <- read_csv("datos/eventos.csv") %>% select(hotel_clave,fecha,eventos)
 names(eventos)<-c("hotel","dia","eventos")
 eventos2018 <- eventos %>% filter(format(dia,"%Y")=="2017") %>% mutate(dia = dia +365)
 eventos <- rbind(eventos,eventos2018)
-price <- read_csv("datos/Prices.csv")
+price <- read_csv("datos/Prices.csv") %>% select (prop_code,rate_start,rate_key,curr_code,price_1pax) %>% filter(rate_start<='2018-08-11') %>% arrange(rate_start)
 @
 \title{\Huge Modelo de Predicción de Demanda y Pricing Dinámico}
 \author{Oscar Daniel Camarena Gómez}
@@ -477,7 +477,7 @@ ggplot(indicadores, aes(po, pt)) + geom_point(alpha=0.3) + geom_smooth(method='l
  xlab("PO") + ylab("PT" )+ggtitle("PO vs PT") 
 @
 \paragraph{Precio de la competencia} ~\\
-El último data set con el que contamos contiene información sobre los precios de la competencia definida para CEXXX publicados en las agencias de viajes en línea.
+Para este proyecto contamos con un dataset que contiene información sobre los precios de la competencia definida para CEXXX publicados en las agencias de viajes en línea.
 ~\\
 <<PrecioCompetencia, echo=FALSE>>=
 summary(competencia)
@@ -495,6 +495,22 @@ ggplot(competencia, aes(nombre,precio)) + geom_boxplot(outlier.colour="red", out
 @
 ~\\
 Podemos observar que este data set contiene datos atípicos, por ejemplo los hoteles "Courtyard by Marriot Mexico City Revolución", "Holiday Inn Mexico City-Plaza Universidad" y "Holiday Inn Mexico City - Trade Center" tienen tarifas arriba de los \$10,000 MXN, lo cual es poco probable ya que son hoteles que compiten directamente con CityExpress y su mercado es el mismo (Viajero de Negocios). Estos casos se deberán tomarse en cuenta al momento de construír el modelo de pronóstico y pricing dinámico para evitar resultados erróneos. 
+\paragraph{Precios publicos}
+Estudiaremos también los precios públicos para la propiedad que esta siendo sujeta al análisis
+<<Preciospublicos, echo=FALSE>>=
+summary(price)
+@
+\paragraph{Precios publicos en el tiempo} ~\\
+<<PreciospubGraf, echo=FALSE>>=
+ggplot(price, aes(rate_start,price_1pax)) + geom_line() + geom_smooth()
+
+@
+~\\
+<<Boxplotpubprice, echo=FALSE>>=
+ggplot(price, aes(prop_code,price_1pax)) + geom_boxplot(outlier.colour="red", outlier.shape=1,
+                outlier.size=2) + geom_smooth()
+@
+
 \paragraph{Tipo de Cambio}~\\
 Otro data set con el que contamos es el tipo de cambio, a continuación mostramos las series de tiempo para el tipo de cambio:
 ~\\
