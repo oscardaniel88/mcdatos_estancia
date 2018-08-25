@@ -34,6 +34,7 @@ library(knitr)
 library(ggplot2)
 library(kableExtra)
 library(corrplot)
+library(ggrepel)
 knitr::opts_chunk$set(echo = TRUE)
 @
 
@@ -58,6 +59,8 @@ names(eventos)<-c("hotel","dia","eventos")
 eventos2018 <- eventos %>% filter(format(dia,"%Y")=="2017") %>% mutate(dia = dia +365)
 eventos <- rbind(eventos,eventos2018)
 price <- read_csv("datos/Prices.csv") %>% select (prop_code,rate_start,rate_key,curr_code,price_1pax) %>% filter(rate_start<='2018-08-11') %>% arrange(rate_start)
+calidad <- read_csv("datos/calidad.csv") %>% arrange(plaza)
+names(calidad)<-c("plaza","hotel","calidad")
 @
 \title{\Huge Modelo de Predicción de Demanda y Pricing Dinámico}
 \author{Oscar Daniel Camarena Gómez}
@@ -510,7 +513,27 @@ ggplot(price, aes(rate_start,price_1pax)) + geom_line() + geom_smooth()
 ggplot(price, aes(prop_code,price_1pax)) + geom_boxplot(outlier.colour="red", outlier.shape=1,
                 outlier.size=2) + geom_smooth()
 @
-
+~\\
+\paragraph{Calidad}
+~\\
+<<Calidad, echo=FALSE>>=
+summary(calidad)
+@
+~\\
+\paragraph{Calidad vs Precio}
+~\\
+<<CalidadvsPrecio, echo=FALSE>>=
+calidad <- calidad %>% filter(plaza == "CEINS")
+calidad$id <- c(1,2,3,4,5,6,7,8,9,10)
+calcomp <- competencia %>% filter(fecha=="2018-08-11")
+calcomp$id <- c(9,2,4,5,6,7,8,1)
+calidadvsprecio<-calidad %>%  inner_join(calcomp) %>% select(hotel,calidad,precio)
+ggplot(calidadvsprecio, aes(calidad,precio)) + geom_point() + geom_label_repel(aes(label = hotel),
+                  box.padding   = 0.35, 
+                  point.padding = 0.5,
+                  segment.color = 'grey50') +
+  theme_classic()
+@
 \paragraph{Tipo de Cambio}~\\
 Otro data set con el que contamos es el tipo de cambio, a continuación mostramos las series de tiempo para el tipo de cambio:
 ~\\
@@ -753,6 +776,11 @@ i<-i+1
 cowplot::plot_grid(plotlist = plots, ncol = 4)
 @
 \section{Resultados}
+\paragraph{Pronostico vs realidad}
+\paragraph{Pseudo R cuadrada}
+\paragraph{Modelo simple de pricing dinámico}
+\subparagraph{Sustento teórico}
+\subparagraph{Implementación}
 \section{Anexo A: Código del modelo pronóstico de demanda}
 <<AnexoModelo, echo=TRUE, eval=FALSE>>=
 library(plyr)
