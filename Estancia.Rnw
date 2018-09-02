@@ -71,8 +71,13 @@ names(calidad)<-c("plaza","hotel","calidad")
 \tableofcontents
 \newpage
 \pagenumbering{arabic}
-\section{Introducción}
-\paragraph {CityExpress} ~ \\
+\section{Objetivo}
+El objetivo del presente trabajo es generar un producto de datos que permita a la cadena de hoteles CityExpress pronosticar la demanda de ocupación de sus propiedades. Esto permitirá que el equipo comercial que opera las propiedades manipulen los precios de cada una de las tarifas disponibles de tal forma que puedan maximizar el ingreso de cada una de ellas.
+~ \\ 
+Para poder generar el modelo deseado CityExpress puso a nuestra disposición data sets que contienen información de las reservaciones generadas en cada una de las propiedades desde el año 2013, información de las reservaciones pendientes por llegar para el año 2018 - 2019, información de las principales variables hoteleras para la competencia e información de los precios de su competencia publicados en las agencias de viajes en línea (Expedia, Booking.com,etc).
+~\\ 
+Antes de hacer un análisis exhaustivo a los datos de la cadena, se hizo un análisis de negocio lo cual ayudó a que pudieramos dar un contexto social a la información que nos proporcionaron y a su vez ayudó a la interpretación de los resultados arrojados por los distintos análisis ejecutados.
+\section {Contexto de Negocio} ~ \\
 CityExpress es una cadena de hoteles 100\% mexicana enfocada al turismo de negocios. Actualmente cuenta con 140 hoteles en México y Latinoamérica (Colombia, Costa Rica y Chile). CityExpress cuenta con hoteles pensados para el viajero de negocios, sus instalaciones son prácticas, la tarifa es baja y ofrece servicios limitados pero valiosos durante un viaje de negocios, por ejemplo:
 \begin{itemize}[noitemsep]
 \item Internet gratuito en las habitaciones
@@ -591,6 +596,8 @@ Derivado de este análisis podemos hacer las siguientes conclusiones:
 
 \subsection{Propuesta de Modelo Predictivo}
 \paragraph{Antecedentes del modelo} ~\\
+Se le ha llamado "yield management" a la estrategia de variar precios basándose en el entendimiento, anticipación e influenciando el comportamiento de los clientes con el fin de poder maximizar el ingreso o utilidad generada por la venta de un inventario fijo de productos perecederos o que tienen un tiempo de venta limitado (como asientos en un vuelo o cuartos de hotel). La estrategia de "yield management involucra una estrategia de control de inventario para vender el producto correcto al cliente correcto en el tiempo correcto por un precio correcto. Dicho proceso puede resultar en una discriminación de precio, en la cual clientes consumiendo el mismo producto o servicio pagan precios totalmente diferentes. (https://en.wikipedia.org/wiki/Yield_management)
+
 \paragraph{Descripción del modelo} ~\\
 Para el desarrollo del modelo utilizaremos los data sets que contienen la información de las reservaciones modelados como curvas de "pick up". Estas curvas nos describen la velocidad en que un hotel vende su inventario para un día en específico. Lo que el modelo hará es ajustar una curva que resuma el comportamiento del hotel para un día similar al que se está estudiando, de esa manera podremos predecir cuantos cuartos venderá el hotel y con cuantos días de antelación.Para lograr esto se construirá un modelo de regresión Poisson fundamentado en la distribución de la llegada de las reservaciones como un proceso discreto que depende del tiempo y para darle un enfoque de uso predictivo al modelo, se utiliza un modelo de regresión lineal con predictores que dependen del tiempo para dar un valor estimado por día y por hotel de las curvas de "pick Up".
 \paragraph{Modelo de regresión Poisson} ~\\
