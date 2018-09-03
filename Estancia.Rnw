@@ -596,8 +596,17 @@ Derivado de este análisis podemos hacer las siguientes conclusiones:
 
 \subsection{Propuesta de Modelo Predictivo}
 \paragraph{Antecedentes del modelo} ~\\
-Se le ha llamado "yield management" a la estrategia de variar precios basándose en el entendimiento, anticipación e influenciando el comportamiento de los clientes con el fin de poder maximizar el ingreso o utilidad generada por la venta de un inventario fijo de productos perecederos o que tienen un tiempo de venta limitado (como asientos en un vuelo o cuartos de hotel). La estrategia de "yield management involucra una estrategia de control de inventario para vender el producto correcto al cliente correcto en el tiempo correcto por un precio correcto. Dicho proceso puede resultar en una discriminación de precio, en la cual clientes consumiendo el mismo producto o servicio pagan precios totalmente diferentes. (https://en.wikipedia.org/wiki/Yield_management)
-
+Se le ha llamado "yield management" a la estrategia de variar precios basándose en el entendimiento, anticipación e influenciando el comportamiento de los clientes con el fin de poder maximizar el ingreso o utilidad generada por la venta de un inventario fijo de productos perecederos o que tienen un tiempo de venta limitado (como asientos en un vuelo o cuartos de hotel). La estrategia de "yield management involucra una estrategia de control de inventario para vender el producto correcto al cliente correcto en el tiempo correcto por un precio correcto. Dicho proceso puede resultar en una discriminación de precio, en la cual clientes consumiendo el mismo producto o servicio pagan precios totalmente diferentes. 
+~\\
+Para poder aplicar el concepto de "yield management" necesitamos que se den tres condiciones:
+\begin{itemize}[noitemsep]
+\item Debe existir un inventario fijo disponible para la venta.
+\item Los productos deben de ser perecederos (o deben contar con un tiempo limite de venta. Una vez transcurrido este tiempo el producto pierde su valor).
+\item Diferentes clientes están dispuestos a pagar diferentes precios por el mismo producto.
+\end{itemize}
+~\\
+Las estrategias de "yield management" han alterado la industria del transporte y hospitalidad desde los años 80's. Desde el momento en el que estas estrategias fueron concebidas, estas empresas han requerido contar con analistas con un conocimiento detallado del mercado asi como con sistemas computacionales avanzados en los cuales se implementan sofisticados técnicas matemáticas que analizan el comportamiento del mercado y capturan oportunidades de ingresos.
+~\\
 \paragraph{Descripción del modelo} ~\\
 Para el desarrollo del modelo utilizaremos los data sets que contienen la información de las reservaciones modelados como curvas de "pick up". Estas curvas nos describen la velocidad en que un hotel vende su inventario para un día en específico. Lo que el modelo hará es ajustar una curva que resuma el comportamiento del hotel para un día similar al que se está estudiando, de esa manera podremos predecir cuantos cuartos venderá el hotel y con cuantos días de antelación.Para lograr esto se construirá un modelo de regresión Poisson fundamentado en la distribución de la llegada de las reservaciones como un proceso discreto que depende del tiempo y para darle un enfoque de uso predictivo al modelo, se utiliza un modelo de regresión lineal con predictores que dependen del tiempo para dar un valor estimado por día y por hotel de las curvas de "pick Up".
 \paragraph{Modelo de regresión Poisson} ~\\
