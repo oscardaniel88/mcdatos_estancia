@@ -607,6 +607,11 @@ Para poder aplicar el concepto de "yield management" necesitamos que se den tres
 ~\\
 Las estrategias de "yield management" han alterado la industria del transporte y hospitalidad desde los años 80's. Desde el momento en el que estas estrategias fueron concebidas, estas empresas han requerido contar con analistas con un conocimiento detallado del mercado asi como con sistemas computacionales avanzados en los cuales se implementan sofisticados técnicas matemáticas que analizan el comportamiento del mercado y capturan oportunidades de ingresos.
 ~\\
+\paragraph{Yield Management en la hotelería}~\\
+En el caso de uso específico para la hotelería podemos estudiar la venta de habitaciones como la venta de un inventario fijo (dificilmente se puede incrementar o cambiar), que además las habitaciones que no se venden cada noche dejarán de producir ingresos a la propiedad por lo que se puede decir que caducaron. Es por ello que algunos hoteles utilizan software especializado para monitorear como es que los cuartos están siendo vendidos y reaccionar con base en sus observaciones. Hay varios métodos de control del inventario por ejemplo, ofrecer descuentos en propiedades con baja demanda o caso contrario, aumentar precios en propiedades con alta demanda. Otra forma de controlar el inventario es mediante la venta anticipada, es decir, se reserva parte del inventario para la venta anticipada a 30 días, 15 días, 7 días y un día y conforme se van agotando los cuartos los precios van cambiando, de tal forma que si pocos cuartos de una categoría han sido reservados, los precios para esa categoría bajan.
+~\\
+\paragraph{Trabajo previo}~\\
+
 \paragraph{Descripción del modelo} ~\\
 Para el desarrollo del modelo utilizaremos los data sets que contienen la información de las reservaciones modelados como curvas de "pick up". Estas curvas nos describen la velocidad en que un hotel vende su inventario para un día en específico. Lo que el modelo hará es ajustar una curva que resuma el comportamiento del hotel para un día similar al que se está estudiando, de esa manera podremos predecir cuantos cuartos venderá el hotel y con cuantos días de antelación.Para lograr esto se construirá un modelo de regresión Poisson fundamentado en la distribución de la llegada de las reservaciones como un proceso discreto que depende del tiempo y para darle un enfoque de uso predictivo al modelo, se utiliza un modelo de regresión lineal con predictores que dependen del tiempo para dar un valor estimado por día y por hotel de las curvas de "pick Up".
 \paragraph{Modelo de regresión Poisson} ~\\
@@ -795,8 +800,6 @@ cowplot::plot_grid(plotlist = plots, ncol = 4)
 \paragraph{Pronostico vs realidad}
 \paragraph{Pseudo R cuadrada}
 \paragraph{Modelo simple de pricing dinámico}
-\subparagraph{Sustento teórico}
-\subparagraph{Implementación}
 \section{Anexo A: Código del modelo pronóstico de demanda}
 <<AnexoModelo, echo=TRUE, eval=FALSE>>=
 library(plyr)
