@@ -592,7 +592,26 @@ theme(
                 title.position = "top", title.hjust = 0.5))
 @
 ~\\
-Derivado de este análisis podemos hacer las siguientes conclusiones:
+\paragraph{Duración de Estancia}~\\
+<<LOS1, echo=FALSE>>=
+los<-historico_grp_rsrv %>% group_by(nights) %>% summarise(count=sum(count))
+los$prob <- los$count/sum(los$count)
+los <- los %>% filter(nights<435)
+ggplot(data = los, aes(x=nights,y=prob))+geom_line()
+@
+~\\
+Podemos ver que la longitud de estancia se concentra entre 0 y 10 noches, por lo tanto estudiaremos este intervalo de cerca
+~\\
+<<LOS2, echo=FALSE>>=
+los <- los %>% filter(nights<11)
+ggplot(data = los, aes(x=nights,y=prob))+geom_line()
+
+mean(historico_grp_rsrv$nights)
+@
+~\\
+
+Derivado de este análisis podemos concluir lo siguiente:
+\paragraph{Conclusiones}
 
 \subsection{Propuesta de Modelo Predictivo}
 \paragraph{Antecedentes del modelo} ~\\
@@ -611,6 +630,24 @@ Las estrategias de "yield management" han alterado la industria del transporte y
 En el caso de uso específico para la hotelería podemos estudiar la venta de habitaciones como la venta de un inventario fijo (dificilmente se puede incrementar o cambiar), que además las habitaciones que no se venden cada noche dejarán de producir ingresos a la propiedad por lo que se puede decir que caducaron. Es por ello que algunos hoteles utilizan software especializado para monitorear como es que los cuartos están siendo vendidos y reaccionar con base en sus observaciones. Hay varios métodos de control del inventario por ejemplo, ofrecer descuentos en propiedades con baja demanda o caso contrario, aumentar precios en propiedades con alta demanda. Otra forma de controlar el inventario es mediante la venta anticipada, es decir, se reserva parte del inventario para la venta anticipada a 30 días, 15 días, 7 días y un día y conforme se van agotando los cuartos los precios van cambiando, de tal forma que si pocos cuartos de una categoría han sido reservados, los precios para esa categoría bajan.
 ~\\
 \paragraph{Trabajo previo}~\\
+Existe una gran cantidad de literatura que describe trabajos realizados previamente con el objetivo de construír un modelo que pronostique la demanda de un producto y a partir de este pronóstico se fije un precio que maximize el ingreso del inventario.
+~\\
+Durante la construcción de este modelo, se revisó parte de la literatura disponible en la red. Durante esta investigación se descubrió lo siguiente:
+
+* La mayoría de los modelos construídos anteriormente parten el problema de pricing en dos:
+  + Modelo de pronóstico de demanda
+  + Modelo de pricing dinámico
+* La mayoría de los artículos utilizan una simulación de montecarlo para simular la ocupación a futuro de las propiedades
+* Se debe estudiar cuidadosamente la temporalidad de la ocupación en el hotel
+* Se pueden utilizar factores multiplicadores que dependen de una serie de variables para poder asignar el nuevo precio del producto.
+* La demanda de la propiedad (en el caso de hoteles) puede ser modelada como un proceso poisson.
+* Se pueden incluír heurísticas de control de inventario, aunque esto tiende a complicar el modelado.
+* El precio dependerá también del inventario que aún está disponible en cualquier momento en el que se dé una reservación.
+
+~\\
+La información recabada durante la investigación realizada fue utilizada durante la construcción del modelo propuesto para CityExpress, con lo cuál se aseguró el éxito del proyecto.
+
+~\\
 
 \paragraph{Descripción del modelo} ~\\
 Para el desarrollo del modelo utilizaremos los data sets que contienen la información de las reservaciones modelados como curvas de "pick up". Estas curvas nos describen la velocidad en que un hotel vende su inventario para un día en específico. Lo que el modelo hará es ajustar una curva que resuma el comportamiento del hotel para un día similar al que se está estudiando, de esa manera podremos predecir cuantos cuartos venderá el hotel y con cuantos días de antelación.Para lograr esto se construirá un modelo de regresión Poisson fundamentado en la distribución de la llegada de las reservaciones como un proceso discreto que depende del tiempo y para darle un enfoque de uso predictivo al modelo, se utiliza un modelo de regresión lineal con predictores que dependen del tiempo para dar un valor estimado por día y por hotel de las curvas de "pick Up".
