@@ -606,7 +606,6 @@ Podemos ver que la longitud de estancia se concentra entre 0 y 10 noches, por lo
 los <- los %>% filter(nights<11)
 ggplot(data = los, aes(x=nights,y=prob))+geom_line()
 
-mean(historico_grp_rsrv$nights)
 @
 ~\\
 
@@ -632,31 +631,31 @@ En el caso de uso específico para la hotelería podemos estudiar la venta de ha
 \paragraph{Trabajo previo}~\\
 Existe una gran cantidad de literatura que describe trabajos realizados previamente con el objetivo de construír un modelo que pronostique la demanda de un producto y a partir de este pronóstico se fije un precio que maximize el ingreso del inventario.
 ~\\
-Durante la construcción de este modelo, se revisó parte de la literatura disponible en la red. Durante esta investigación se descubrió lo siguiente:
-
-* La mayoría de los modelos construídos anteriormente parten el problema de pricing en dos:
-  + Modelo de pronóstico de demanda
-  + Modelo de pricing dinámico
-* La mayoría de los artículos utilizan una simulación de montecarlo para simular la ocupación a futuro de las propiedades
-* Se debe estudiar cuidadosamente la temporalidad de la ocupación en el hotel
-* Se pueden utilizar factores multiplicadores que dependen de una serie de variables para poder asignar el nuevo precio del producto.
-* La demanda de la propiedad (en el caso de hoteles) puede ser modelada como un proceso poisson.
-* Se pueden incluír heurísticas de control de inventario, aunque esto tiende a complicar el modelado.
-* El precio dependerá también del inventario que aún está disponible en cualquier momento en el que se dé una reservación.
-
+Para la construcción de este modelo se revisaron artículos disponibles así como trabajos previos en esta área y se obtuvieron las siguientes conclusiones:
+\begin{itemize}[noitemsep]
+\item La mayoría de los modelos construídos anteriormente parten el problema de pricing en dos:
+\subitem Modelo de pronóstico de demanda
+\subitem Modelo de pricing dinámico
+\item La mayoría de los artículos utilizan una simulación de montecarlo para simular la ocupación a futuro de las propiedades
+\item Se debe estudiar cuidadosamente la temporalidad de la ocupación en el hotel
+\item Se pueden utilizar factores multiplicadores que dependen de una serie de variables para poder asignar el nuevo precio del producto.
+\item La demanda de la propiedad (en el caso de hoteles) puede ser modelada como un proceso poisson.
+\item Se pueden incluír heurísticas de control de inventario, aunque esto tiende a complicar el modelado.
+\item El precio dependerá también del inventario que aún está disponible en cualquier momento en el que se dé una reservación.
+\end{itemize}
 ~\\
-La información recabada durante la investigación realizada fue utilizada durante la construcción del modelo propuesto para CityExpress, con lo cuál se aseguró el éxito del proyecto.
-
-~\\
+Tomamos estas conclusiones como punto de partida para el modelo realizado en CityExpress.
 
 \paragraph{Descripción del modelo} ~\\
 Para el desarrollo del modelo utilizaremos los data sets que contienen la información de las reservaciones modelados como curvas de "pick up". Estas curvas nos describen la velocidad en que un hotel vende su inventario para un día en específico. Lo que el modelo hará es ajustar una curva que resuma el comportamiento del hotel para un día similar al que se está estudiando, de esa manera podremos predecir cuantos cuartos venderá el hotel y con cuantos días de antelación.Para lograr esto se construirá un modelo de regresión Poisson fundamentado en la distribución de la llegada de las reservaciones como un proceso discreto que depende del tiempo y para darle un enfoque de uso predictivo al modelo, se utiliza un modelo de regresión lineal con predictores que dependen del tiempo para dar un valor estimado por día y por hotel de las curvas de "pick Up".
 \paragraph{Modelo de regresión Poisson} ~\\
-Derivado de la curva de “Pick-up” que representa el movimiento de las reservaciones en función a los días de anticipación antes de una fecha dada, se observó que la forma de la curva presenta una forma logarítmica, es por ello que se optó por considerar este modelo para la primera parte de la ecuación.
+Por la naturaleza del estudio que se está realizando se optó por implementar una regresión Poisson, la cuál es un modelo linear genearlizado usado comúnmente en problemas de conteos de datos y tablas de contingencia. La regresión de Poisson asume que la variable de respuesta $Y$ tiene una distribución de Poisson y también asume que el logaritmo de su valor esperado puede ser modelado por una comibinación lineal de los parámetros desconocidos.
+El modelo de regresión Poisson puede ser expresado como sigue:
 $$\log(E(Y|X))=\beta_0 + \beta_1{X}$$
-Se contruyeron series por día y hotel en función del número de días de antelación para la reservación.
+Para poder aplicar el modelo a la información proporcionada, se contruyeron series por día y hotel en función del número de días de antelación para la reservación.
 ~\\
 La selección del modelo de regresión Poisson se fundamenta en la distribución de la llegada de las reservaciones como un proceso discreto que depende del tiempo. El conteo de las reservaciones es inversamente proporcional a la cercanía de la fecha de entrada al hotel y por tanto la probabilidad de ocurrencia de llenado del hotel incrementa conforme se acerca la fecha para la que se hace la reservación.
+
 \paragraph{Modelo de regresión lineal} ~\\
 Considerando que las principales variables que describen la predictividad de la demanda son temporales, se propone un modelo que explique los parámetros de las curvas de "pick up" mediante un modelo lineal. Se generan series temporales para hacer predictivo el modelo de pronóstico de demanda y proyectamos en función de la historia en el mismo día calendario del año anterior, el día de la semana para compensar los efectos diferenciados por hotel, así como los eventos que afectan la demanda en un calendario anticipado por hotel, y finalmente el comportamiento de las tarifas que ofrece la competencia.
 $$\log(E(Y|X))=\beta_0 + \beta_1{X}$$
@@ -833,10 +832,20 @@ i<-i+1
 }
 cowplot::plot_grid(plotlist = plots, ncol = 4)
 @
+
+\paragraph{Modelo simple de pricing dinámico}~\\
+<<Forecasted_Demand, echo=FALSE, fig.width=20, fig.height=15>>=
+param_pricing_ocup<-series2018 %>% select(dia,pred.beta0,pred.beta1)
+param_pricing_ocup$cn_predic <- as.integer(exp(param_pricing_ocup$pred.beta0 + param_pricing_ocup$pred.beta1*0))
+param_pricing_ocup$ocup<-as.integer((param_pricing_ocup$cn_predic/159)*100)
+pricing_ocup <- param_pricing_ocup %>%  select (dia, cn_predic) %>% filter(dia <= "2018-08-11")
+write_csv(pricing_ocup,"result/forecasted_demand.csv")
+write_csv(pricing_ocup, "jupyter/data/forecasted_demand.csv")
+@
 \section{Resultados}
 \paragraph{Pronostico vs realidad}
 \paragraph{Pseudo R cuadrada}
-\paragraph{Modelo simple de pricing dinámico}
+
 \section{Anexo A: Código del modelo pronóstico de demanda}
 <<AnexoModelo, echo=TRUE, eval=FALSE>>=
 library(plyr)
