@@ -832,8 +832,39 @@ i<-i+1
 }
 cowplot::plot_grid(plotlist = plots, ncol = 4)
 @
-
+~\\
 \paragraph{Modelo simple de pricing dinámico}~\\
+Una vez pronósticado el nível de ocupación para cada una de las propiedades de la cadena, se alimentó un modelo de pricing dinámico que entrega recomendaciones de precios para la tarifa pública tomando en cuenta la demanda pronósticada para cierto día del año.
+
+~\\
+\subparagraph{Problema de asignación de precios}~\\
+Típicamente el gerente de la propiedad controla la cantidad de cuartos ofrecidos a diferentes precios, es decir, se asigna cierto número de cuartos a cada nível de tarifa de tal forma que cuando el inventario asignado al precio mas bajo se agota, se consume el inventario asignado al siguiente nivel de tarifa que será mayor al primer precio ofertado. 
+~\\
+A continuación se muestra un esquema donde se ejemplifica la idea mencionada anteriormente:
+
+\begin{figure}[!]
+  \includegraphics[width=\linewidth]{Imagenes/buckets.png}
+  \caption{Asignacion de inventario}
+  \label{fig:Asignacion de Inventario}
+\end{figure}
+
+~\\
+Como se puede observar, tenemos un inventario de 32 cuartos divido en 4 níveles de precios:
+\begin{itemize}[noitemsep]
+\item 12 cuartos son ofrecidos a un valor de 110 USD
+\item 8 cuartos son ofrecidos a un valor de 120 USD
+\item 7 cuartos son ofrecidos a un valor de 130 USD
+\item 5 cuartos son ofrecidos a un valor de 155 USD
+\end{itemize}
+~\\
+Hay que considerar que el hecho de poder encontrar el precio que maximiza el ingreso de una propiedad constituye un problema complejo de optimización, en donde el hotel debería explorar un gran número de escenarios, sin embargo, para superar la complejidad computacional que este calculo requiere muchos hoteles han optado por usar varias simplificaciones por ejemplo, utilizar un enfoque basado en la asignación de precios, en la cual se pre asigna un número fijo de inventario disponible a cada nível de precios y los precios pueden variar a lo largo del tiempo.
+~\\
+\subparagraph{Formulación Matemática}~\\
+Un problema de maximización de ingresos es básicamente un problema de optimización sujeto a restricciones, en este caso, se quiere maximizar la siguiente función objetivo:
+$$\sum_{n=0}^{n}p_i*o_i$$
+
+
+
 <<Forecasted_Demand, echo=FALSE, fig.width=20, fig.height=15>>=
 param_pricing_ocup<-series2018 %>% select(dia,pred.beta0,pred.beta1)
 param_pricing_ocup$cn_predic <- as.integer(exp(param_pricing_ocup$pred.beta0 + param_pricing_ocup$pred.beta1*0))
@@ -843,8 +874,6 @@ write_csv(pricing_ocup,"result/forecasted_demand.csv")
 write_csv(pricing_ocup, "jupyter/data/forecasted_demand.csv")
 @
 \section{Resultados}
-\paragraph{Pronostico vs realidad}
-\paragraph{Pseudo R cuadrada}
 
 \section{Anexo A: Código del modelo pronóstico de demanda}
 <<AnexoModelo, echo=TRUE, eval=FALSE>>=
