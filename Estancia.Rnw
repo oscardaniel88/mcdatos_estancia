@@ -862,8 +862,21 @@ Hay que considerar que el hecho de poder encontrar el precio que maximiza el ing
 \subparagraph{Formulación Matemática}~\\
 Un problema de maximización de ingresos es básicamente un problema de optimización sujeto a restricciones, en este caso, se quiere maximizar la siguiente función objetivo:
 $$\sum_{n=0}^{n}p_i*o_i$$
-
-
+En donde i es la índice de la noche, $p_i$ es el precio del cuarto para la i-ésima noche y $o_i$ es la ocupación pronósticada (demanda) para la i-ésima noche al precio $p_i$. Asumimos también que la función de la ocupación (demanda) está sujeta al precio bajo la siguiente relación:
+$$o = o_{nominal} * (\frac{p}{p_{nominal}})^e$$
+Donde $o_{nominal}$ corresponde a la ocupación pronosticada para una noche dada tomando como base un precio nominal ($p_{nominal}$). Para este caso el $p_{nominal}$ es igual a la tarifa pública promediada a lo largo del año. El valor de $e$ (elasticidad) toma un valor = -2. En otras palabras, $p$ incrementa en un 10\% y la demanda decrece cerca de un 20\%.
+~\\
+Para poder hacer una asignación dinámica de los precios, evitando tener que correr el modelo conforme la información del hotel es actualizada, se partió el inventario en 4 níveles de disponiblidad (80,60,40 y 20 cuartos disponibles). Para cada nível de capacidad se resolvió la función objetivo para obtener 4 conjuntos de precios, de esta forma, el gerente de la propiedad puede saber a qué nível de precio debe subir la tarifa pública de la propiedad conforme las habitaciones disponibles decrecen.
+~\\
+\subparagraph{Limitantes del modelo}~\\
+Este modelo se formuló considerando los siguientes puntos:
+\begin{itemize}[noitemsep]
+  \item Se consideran estancias de una sola noche
+  \item No se toman en cuenta reservaciones para grupos ni cancelaciones
+  \item Asusmimos paridad de precios entre los canales, es decir, los precios no varían entre los canales de venta
+  \item Se considera solamente un tipo de habitación, el incremento por cambio de habitación es un monto fijo conocido como gap
+  \item Se asume un valor para la elasticidad (-2) que es un valor razonable para la industria
+\end{itemize}
 
 <<Forecasted_Demand, echo=FALSE, fig.width=20, fig.height=15>>=
 param_pricing_ocup<-series2018 %>% select(dia,pred.beta0,pred.beta1)
