@@ -866,7 +866,7 @@ En donde i es la índice de la noche, $p_i$ es el precio del cuarto para la i-é
 $$o = o_{nominal} * (\frac{p}{p_{nominal}})^e$$
 Donde $o_{nominal}$ corresponde a la ocupación pronosticada para una noche dada tomando como base un precio nominal ($p_{nominal}$). Para este caso el $p_{nominal}$ es igual a la tarifa pública promediada a lo largo del año. El valor de $e$ (elasticidad) toma un valor = -2. En otras palabras, $p$ incrementa en un 10\% y la demanda decrece cerca de un 20\%.
 ~\\
-Para poder hacer una asignación dinámica de los precios, evitando tener que correr el modelo conforme la información del hotel es actualizada, se partió el inventario en 4 níveles de disponiblidad (80,60,40 y 20 cuartos disponibles). Para cada nível de capacidad se resolvió la función objetivo para obtener 4 conjuntos de precios, de esta forma, el gerente de la propiedad puede saber a qué nível de precio debe subir la tarifa pública de la propiedad conforme las habitaciones disponibles decrecen.
+Para poder hacer una asignación dinámica de los precios, evitando tener que correr el modelo conforme la información del hotel es actualizada, se partió el inventario en 4 níveles de disponiblidad (159,120,80 y 40 cuartos disponibles). Para cada nível de capacidad se resolvió la función objetivo para obtener 4 conjuntos de precios, de esta forma, el gerente de la propiedad puede saber a qué nível de precio debe subir la tarifa pública de la propiedad conforme las habitaciones disponibles decrecen.
 ~\\
 \subparagraph{Limitantes del modelo}~\\
 Este modelo se formuló considerando los siguientes puntos:
@@ -887,11 +887,24 @@ write_csv(pricing_ocup,"result/forecasted_demand.csv")
 write_csv(pricing_ocup, "jupyter/data/forecasted_demand.csv")
 @
 \subparagraph{Resultados del modelo de pricing}~\\
+El modelo de pricing, como comentarmos anteriormente, arroja como resultado una matriz de día vs precio por niveles de inventario. A continuación se muestra un ejemplo:
+~\\
 <<Pricing, echo=FALSE, fig.width=20, fig.height=15>>=
 prices<-read_csv("jupyter/data/rates.csv")
-head(prices,10)
+prices<-as.data.frame(prices)
+names(prices)<-c("day","40","80","120","159")
+prices[sample(nrow(prices), 10), ]
+pricing_ocup$habs_disp<-159-pricing_ocup$cn_predic
+#head(pricing_ocup)
 @
-
+~\\
+Graficando los resultados:
+~\\
+<<Pricing_graph, echo=FALSE, fig.width=20, fig.height=15>>=
+head(prices)
+prices_tidy <- prices %>% gather('habs_disp','tarifa',2:5)
+ggplot(data=prices_tidy,aes(x=day,y=tarifa, col=habs_disp))+geom_line()
+@
 \section{Anexo A: Implementación del modelo pronóstico de demanda}
 <<AnexoModelo, echo=TRUE, eval=FALSE>>=
 library(plyr)
@@ -1031,7 +1044,7 @@ series2018$pred.beta1 <- ifelse(series2018$hotel=="CEINS",
 @
 
 \section{Anexo B: Implementación del Modelo de Pricing}
-<<Pricing, echo=TRUE, eval=FALSE, fig.width=20, fig.height=15>>=
+<<Pricing_ANEXO, echo=TRUE, eval=FALSE, fig.width=20, fig.height=15>>=
 import pandas as pd
 import numpy as np
 import scipy
