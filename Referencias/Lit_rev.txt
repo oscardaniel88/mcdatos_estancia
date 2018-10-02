@@ -1,0 +1,47 @@
+Literature Review:
+
+#######################################################
+* Revenue Management: Research Overview and Prospects
+* Author: Jeffrey I. McGill & Garrett J. Van Ryzin
+* Año de publicación: 1999
+* Transportation Science Vol. 33, No. 2, May 1999
+* ISBN: 0041-1655/99//3302-0233
+* Abstract: Forty-year History of research on transportation revenue management (also known as yield management).
+  Covers development in forecasting, overbooking, seat inventory control and pricing, as they relate to revenue mngmnt,
+  and suggest future research directions. The survey includes a glossary of revenue management terminology and a bib of 190 ref
+* Ideas
+** Indeed, expectations of revenue gains that are possible with expanded revenue management capabilities are now driving the acquisition of new IT.
+** Four key areas : -Forecasting, overbooking, seat inventory control, and pricing.
+** Airlines have the longest history of development in revenue management.
+** More detailed accounts of the origins of revenue management can be found in BELOBABA (1987a), SMITH, LEIMKUHLER, and DARROW (1992), CROSS (1995), DUNLEAVY (1995), and VINOD (1995).
+** The objective in revenue management is to maximize profits
+** Revenue Management in Hospitality - Rothstein (1974), Ladany (1977), Liberman and Yechiali (1977, 1978), Kimes (1989), Bitran and
+Mondschein (1995), Feng and Gallego (1995), Bitran and Gilbert (1996)
+** BECKMANN and BOBKOWSKI (1958). In that paper, the authors compare Poisson, Negative Binomial, and Gamma models of total passenger arrivals
+** The use of the Poisson process, when appropriate, is useful in dynamic treatments because of the memoryless property of the exponential interarrival distribution
+** Data contained in historical booking records are censored by the presence of booking and capacity limits on past demands.
+** Traditional regression techniques for aggregate airline forecasting are described in a book by TANEJA (1978).
+** Sa (1987). Sa concludes that use of regres- sion techniques can improve the performance of revenue management systems when compared to time series analysis or historical averages.
+** It is now common for airline practitioners to view pricing as part of the revenue management process.
+
+#######################################################
+* Forecasting for Hotel Revenue Management: Testing Aggregation Against Disaggregation
+* Author: Lawrence R. Weatherford, Sheryl E. Kimes, Darren A. Scott
+* CITA: Weatherford, L. R., Kimes, S. E., & Scott, D. A. (2001). Forecasting for hotel revenue management: Testing aggregation against disaggregation [Electronic version]. Cornell Hotel and Restaurant Administration Quarterly, 42(4), 53-65. Retrieved [2018/09], from Cornell University, School of Hospitality Administration site: http://scholarship.sha.cornell.edu/articles/465/
+* Abstract: A successful yield-management strategy is predicated on effective control of customer demand.
+  Businesses have two interrelated strategic levers with which to accomplish this, namely, pricing and duration of customer use.
+  Prices can be fixed or variable and duration can be predictable or unpredictable.
+  Variable pricing to control demand is conceptually a straightforward process.
+  It can take the form of discount prices at off-peak hours for all customers or it can be in the form of price discounts for certain classes of customers.
+* Ideas
+** Industries traditionally associated with revenue management (hotel, airline, rental car, and cruise line) tend to use variable pricing for services with a specified or predictable duration.
+** Predicting Customer Arrivals
+   Successful revenue-management applications are generally found in industries where managers can make a reasonable prediction regarding customers’ duration of use (Quadrant 2)
+   Forecasting is key. Accurate forecasting is one of the ways to increase the predictability of duration of use.
+   Forecast accuracy has a significant effect on revenue generated from revenue-management systems. In his study of airline forecasting, Lee found that a 10-percent improvement in forecast accuracy on high-demand flights resulted in an increase in revenue of 1.5 to 3.0 percent.
+   Finding the best approach. Most major hotel chains use linear-programming-based models that require detailed forecasts by day of arrival, length of stay, and rate category
+   Previous research has shown that exponential smoothing and the classical-pickup method pro- duce the most accurate forecasts of six methods that were tested
+** Forecast Aggregation and Disaggregation
+   The data showed the volatility typical in the hotel industry
+   This volatility makes it extremely difficult to achieve accurate forecasts, and may cause the random-walk forecast to outperform other fore- casting methods.
+   
