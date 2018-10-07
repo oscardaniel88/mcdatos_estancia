@@ -44,4 +44,116 @@ Mondschein (1995), Feng and Gallego (1995), Bitran and Gilbert (1996)
 ** Forecast Aggregation and Disaggregation
    The data showed the volatility typical in the hotel industry
    This volatility makes it extremely difficult to achieve accurate forecasts, and may cause the random-walk forecast to outperform other fore- casting methods.
-   
+
+#######################################################
+* Dynamic room pricing model for hotel revenue management systems
+* Author: Heba Abdel Aziz a, Mohamed Saleh a,*, Mohamed H. Rasmy a, Hisham ElShishiny b
+* El Cairo University
+* Abstract: This paper addresses the problem of room pricing in hotels.
+  We propose a hotel revenue management model based on dynamic pricing to provide hotel managers with a flexible and efficient decision support tool for room revenue maximization.
+  The two pillars of the proposed framework are a novel optimization model, and a multi-class scheme similar to the one implemented in airlines.
+  Our hypothesis is that this framework can overcome the limitations associated with the research gaps in pricing literature;
+  and can also contribute significantly in increasing the revenue of hotels. We test this hypothesis on three different approaches,
+  and the results show an increase in revenue compared to the classical model used in literature.
+* Ideas
+** Revenue management is commonly practiced in the hotel industry to help hotels decide on room rate and allocation.
+** Hotel revenue management is perceived as a managerial tool for attempting to sell each room with the highest price so as to achieve the highest revenue
+** A revenue management system applies basic economic prin- ciples to pricing and controlling rooms’ inventory. In fact there are three basic categories of demand-management decisions that are addressed by revenue management in general
+  – Structural decisions: Decide which selling format to use; which segmentation or differentiation mechanisms to use; which terms to trade to offer.
+  – Price decisions: Decide on how to set posted prices, individ- ual-offer prices, and reserve prices; how to price across product categories; how to price over time; how to discount over the product lifetime.
+  – Quantity decisions: Decide whether to accept or reject an offer to buy; how to allocate capacity to different segments; when to withhold a product from the market and sale at later points in time.
+** Traditionally hotels use the capacity controls/quantity deci- sions as a default tactic, this is due to its simplicity as the different products a hotel offers are all supplied using the same, homogeneous hotel capacity.
+** Our main assumption is that using price decisions in hotel revenue management systems will signif- icantly increase the revenue of the hotel
+** Price is not only important from a financial point of view, but also from an operational standpoint. It is a tool that helps to regulate inventory and production pressures.
+** Previous work on dynamic pricing use a predetermined dis- crete set of prices from which they optimally allocate the price for a given night, since using a continuous set of prices would add to the complexity of the model and will need a sophisticated large-scale programming solver to obtain the optimal solution
+** For example, to calibrate the value of elasticity in the third approach we implemented the following algorithm:
+  – Loop for different values of the elasticity ‘e’.
+    Begin loop For Cl=Lowest capacity: Highest capacity.
+􏰂      Solve the optimization model given ‘Cl’ and ‘e’.
+􏰂      Plot the graph of optimized prices along the simulated
+    End loop.
+    Compare all plotted prices (for a given e) with the price range extracted from the actual data in Plaza hotel.
+  – End Loop.
+
+#######################################################
+* A Comparison of Forecasting Methods for Hotel Revenue Management
+* Cita: Weatherford, L. R., & Kimes, S. E. (2003). A comparison of forecasting methods for hotel revenue management [Electronic version]. Retrieved [2018/09], from Cornell University, School of Hotel Administration site: http://scholarship.sha.cornell.edu/articles/753
+* Abstract: The arrivals forecast is one of the key inputs for a successful hotel revenue management system, but no research on the best forecasting method has been conducted.
+  In this research, we used data from Choice Hotels and Marriott Hotels to test a variety of forecasting methods and to determine the most accurate method
+  Preliminary results using the Choice Hotel data show that pickup methods and regression produced the lowest error, while the booking curve and combination forecasts produced fairly inaccurate results.
+  The more in-depth study using the Marriott Hotel data showed that exponential smoothing, pickup, and moving average models were the most robust.
+** Lee (1990) found that a 10% increase in forecast accuracy in the airline industry increased revenue by 0.5-3.0% on high demand flights
+** The data that is used for hotel forecasting has two dimensions to it: when the reservation was booked and when the room was consumed. The booking information gives the manager additional detail which can be used to update the forecast. Without this information, the manager would have to rely solely on the historical information on the daily number of arrivals or rooms sold.
+** Revenue management forecasting methods fall into one of three types (Lee, 1990): historical booking models, advanced booking models and combined models
+** Historical booking models only consider the final number of rooms or arrivals on a particular stay night
+** Advanced booking models only include the build-up of reservations over time for a particular stay night.
+** Combined models use either regression or a weighted average of historical and advanced booking models to develop forecasts.
+** Most published research on revenue management forecasting is primarily based on the airline industry (e.g., L’Heureux, 1986; Lee, 1990; Wickham, 1995), while unpublished research covers a variety of industries but is considered proprietary in nature.
+Tabla 1
+
+Historical: 1. Same day last year
+            2. Moving average
+            3. Exponential smoothing
+            4. ARIMA
+
+Advanced:   1. Additive
+              a. Classical pickup
+              b. Advanced pickup
+            2. Multiplicative
+              1. Synthetic Booking curve
+            3. Other time series
+
+Combined:   1. Weighted average of historical and advanced booking forecasts
+            2. regression
+            3. Full information model (Lee,1990)
+** Wickham (1995) presented a simple linear regression method in which the independent variable was the number of reservations on hand for a flight at a particular reading day and the dependent variable was the final number of seats sold. Skwarek (1996), Weatherford (1997) and Zickus (1998) have presented a similar approach.
+** Wickham (1995) studied the accuracy of a variety of forecasting methods for a set of airline data. He studied both (a) historical forecasting methods (simple averages and weighted averages) and (b) pickup- based forecasting methods (classical and advanced pickup methods) and found that in general, pickup- based forecasting methods provided the most accurate forecasts of the two groups he studied.
+** Weatherford (1998) compared additive methods, multiplicative methods, and regression in an airline context and found that additive methods and regression out-performed multiplicative methods.
+** Zickus (1998) found that the choice of unconstraining method, combined with the choice of forecasting method and optimization method impacted revenue produced.
+** Managers must also consider what to forecast (arrivals or room nights), the level of aggregation (total, by rate category (RC), by length of stay (LOS), or some combination), the type of data (constrained or unconstrained), the number of periods to include in the forecast, which data to use, outliers and the measurement of accuracy
+** Although most hotels rely on room night forecasts (1B), most sophisticated revenue management systems rely on arrivals- based forecasts (1A).
+*+ Arrivals- based forecasts are more appropriate for revenue management because the types of rate and availability controls usually imposed are applied to guests arriving on a particular night.
+** Along with the arrivals-based forecast comes the question of the appropriate level of aggregation. Most sophisticated revenue management systems rely on detailed arrivals forecasts. Information is commonly available by rate category, length of stay, and in some cases, room type
+** Historical room sales are constrained by the capacity of the hotel and by the booking limits placed on various rate categories and lengths of stay.
+** Lee (1990) and Wickham (1995) tested the impact of truncated and censored data on the accuracy of the forecast and found that forecasts made with unconstrained data were more accurate.
+** The classical pickup method (L’Heureux, 1986) uses booking data for only completed stay nights (5A) while the advanced pickup method (L’Heureux, 1986) uses all booking data, even from incomplete stay nights (5B).
+** In terms of the forecasting typology presented in Table 2, the Choice Hotels data used were arrivals- based (1A), were aggregated across all rate categories and lengths of stay (2A) and had been unconstrained using a booking curve approach (3C2). Forecasts were developed using a select number of periods that varied from 1 to 12 (4B) and for most of the forecasting methods, only completed stay nights were used (5A
+** Advanced pick-up and regression methods outperformed multiplicative methods for all four hotels (see Fig. 1 for a typical graph).
+
+#######################################################
+* A Machine Learning Model for Occupancy Rates and Demand Forecasting in the Hospitality Industry
+* Authors: William Caicedo-Torres and Fabi ́an Payares
+* Universidad Tecnoloógica de Bolıvar
+* Abstract: Occupancy rate forecasting is a very important step in the decision-making process of hotel planners and managers.
+  Popular strate- gies as Revenue Management feature forecasting as a vital activity for dynamic pricing, and without accurate forecasting,
+  errors in pricing will negatively impact hotel financial performance. However, having accurate enough forecasts is no simple task for a wealth of reasons,
+  as the inherent variability of the market, lack of personnel with statistical skills, and the high cost of specialized software. In this paper,
+  several machine learning techniques were surveyed in order to construct models to forecast daily occupancy rates for a hotel,
+  given historical records of bookings and occupation. Several approaches related to dataset construction and model validation are discussed.
+  The results obtained in terms of the Mean Absolute Percentage Error (MAPE) are promising, and support the use of machine learning models as a tool to
+  help solve the problem of occupancy rates and demand forecasting.
+* Ideas
+** The discipline of Revenue Management, which allows selling each room at the highest price customers are willing to pay, so the highest income can be achieved
+** In Revenue Management, forecasting is the essential element in pricing
+** Basically, approaches to occupation forecasting can be grouped in two cat- egories: historical booking models and advanced booking models
+** Historical booking models try to solve the forecasting problem as a time series modelling problem, and advanced booking problems use reservations data, and the concept of ”Pick-Up”, which is the increment of bookings N from now to a day T (for which there are already K reservations) in the future, resulting in an occupation forecast of K + N for day T
+** We propose the use of Machine Learning algorithms to build predictive models for the occupancy rates and demand in the hospitality industry, that can be readily used by hotel personnel, without advanced training in statistics
+** Ridge Regression [9] is a regression algorithm that includes a complexity penalty (called a regularization term) in its cost function in order to better approximate the out-of-sample error. Ridge Regression penalizes the the algorithm by a factor proportional to the Euclidean (L2) norm of its parameter vector,
+** Kernel Ridge Regression [12] is a Kernel Method that projects the original data to a feature space, without explicitly computing the transformations, via the Kernel Trick [
+** The Multilayer Perceptron [15] is a feed forward neural network model capable of classification and regression
+** Radial Basis Function (RBF) Networks [5] are Neural Networks with usually one hidden layer, that employ a set of functions called Radial Basis Functions as feature detectors. RBF nets can be used to perform regression and classification as well. Each neuron in the hidden layer uses a a RBF as activation function φ, with the Gaussian function
+** model performance is measured through Mean Absolute Percentage Error (MAPE), defined as average of (real - predicted )/ real
+** We used the Mlpy Python library [2] implementation of Ridge Regression and Kernel Ridge Regression, the ALGLIB library [4] implementation of Multilayer Perceptron and Thomas Ru ̈ckstieß Radial Basis Function Networks implemen- tation
+** Different mod- els were trained and validated using Ridge Regression, Kernel Ridge Regression, Multilayer Perceptron and Radial Basis Function Networks.
+** The results obtained are promising and support the use of black-box Machine Learning based tools for estimating hotel occupation, which require little statistical expertise by the hotel staff
+
+#######################################################
+* AN INTEGRATED FORECASTING APPROACH FOR HOTELS
+* Authors: Sedat Yüksel
+* ISAHP 2005, Honolulu, Hawaii, July 8-10, 2005
+* Abstract: It was aimed to search to be able to forecast the crises which arise from demand fluctuations, and to able to generate a systematic and dynamic
+  process in the hotel businesses. In the quantitative period, forecasting was realized to 149 monthly series of a five star hotel in Ankara via MA, Simple,
+  Holt's, Winter's Exponential Smoothing and ARIMA. 
+  The results of these methods were compared by some error measures. At the other side of integration, two Delphi based inquiry panels were realized:
+  The Variables Determination Panel and The Environmental Monitoring Panel. The opinions of second group panelists were used to adjust Winter's Multiplicative
+  forecasts via AHP based approach.
