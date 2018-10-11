@@ -153,7 +153,34 @@ Combined:   1. Weighted average of historical and advanced booking forecasts
 * ISAHP 2005, Honolulu, Hawaii, July 8-10, 2005
 * Abstract: It was aimed to search to be able to forecast the crises which arise from demand fluctuations, and to able to generate a systematic and dynamic
   process in the hotel businesses. In the quantitative period, forecasting was realized to 149 monthly series of a five star hotel in Ankara via MA, Simple,
-  Holt's, Winter's Exponential Smoothing and ARIMA. 
+  Holt's, Winter's Exponential Smoothing and ARIMA.
   The results of these methods were compared by some error measures. At the other side of integration, two Delphi based inquiry panels were realized:
   The Variables Determination Panel and The Environmental Monitoring Panel. The opinions of second group panelists were used to adjust Winter's Multiplicative
   forecasts via AHP based approach.
+
+#######################################################
+* A taxonomy of demand uncensoring methods in revenue management
+* Authors: Shadi Sharif Azadeha, Patrice Marcotteb and Gilles Savarda
+* Polytechnique Montreal, Montreal, Canada; and bUniversity of Montreal, Montreal, Canada
+* Abstract: Revenue management systems rely on customer data, and are thus affected by the absence of registered demand that arises when a product is no longer available.
+  In the present work, we review the uncensoring (or unconstraining) techniques that have been proposed to deal with this issue, and develop a taxonomy based on their respective
+  features. This study will be helpful in identifying the relative merits of these techniques, as well as avenues for future research.
+* Ideas:
+** According to Weatherford and Belobaba (2002), underestimating demand by 12.5–25 per cent can result in a loss of revenue from 1 per cent to 3 per cent, which is significant
+** Advanced booking models (including pickup, advanced pickup, booking profile) are based on registered bookings over time, and can be of the additive or multiplicative type
+** Classical or advanced pickups are additive models that differ in their treatment of historical data (Lee, 1990; Wickham, 1995).
+
+#######################################################
+* Forecasting Destination Weekly Hotel Occupancy with Big Data
+* Cita: Pan, B. & Yang, Y. (2017). Forecasting destination weekly hotel occupancy with big data, Journal of Travel Research, In Press.
+* Abstract: Accurate forecasting of future performance of hotels is needed so hospitality constituencies in specific destinations can benchmark their properties and better optimize operations
+  As competition increases, hotel managers have urgent need for accurate short-term forecasts.
+  In this study, time series models including several tourism big data sources, including search engine queries, website traffic and weekly weather information, are tested in order to construct an accurate forecasting model of weekly hotel occupancy for a destination
+  The results show the superiority of ARMAX models with both search engine queries and website traffic data in accurate forecasting.
+  Also, the results suggest that weekly dummies are superior to Fourier terms in capturing the hotel seasonality
+  The limitations of the inclusion of multiple big data sources are noted since the reduction in forecasting error is minimal
+* Ideas
+** Increased competition and the adoption of revenue management practices have driven demand for accurate forecasting to maximize profits and optimize operations in the hotel industry (Schwartz and Hiemstra 1997).
+** Traditional forecasting methods include time series analysis, statistical methods, neural networks, pickup methods, and simulation (Law 1998, Song and Li 2008).
+** In this study, we adopt two methods to capture the seasonality of a destination’s weekly hotel occupancy.
+** we use two different models (Autoregressive Integrated Moving Average with External Variables and a Markov switching dynamic regression model) to predict weekly hotel occupancy for one destination, both with and without big data
