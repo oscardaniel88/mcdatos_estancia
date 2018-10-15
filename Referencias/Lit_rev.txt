@@ -184,3 +184,10 @@ Combined:   1. Weighted average of historical and advanced booking forecasts
 ** Traditional forecasting methods include time series analysis, statistical methods, neural networks, pickup methods, and simulation (Law 1998, Song and Li 2008).
 ** In this study, we adopt two methods to capture the seasonality of a destination’s weekly hotel occupancy.
 ** we use two different models (Autoregressive Integrated Moving Average with External Variables and a Markov switching dynamic regression model) to predict weekly hotel occupancy for one destination, both with and without big data
+
+#######################################################
+* Forecasting for Hotel Revenue Management: Testing Aggregation against Disaggregation
+* LAWRENCE R. WEATHERFORD, SHERYL E. KIMES, AND DARREN A. SCOTT
+* Ideas:
+** Lee found that a 10-percent improvement in forecast accuracy on high-demand flights resulted in an increase in rev- enue of 1.5 to 3.0 percent.2
+
