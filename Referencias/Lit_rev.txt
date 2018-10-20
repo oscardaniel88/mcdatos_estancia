@@ -191,3 +191,56 @@ Combined:   1. Weighted average of historical and advanced booking forecasts
 * Ideas:
 ** Lee found that a 10-percent improvement in forecast accuracy on high-demand flights resulted in an increase in rev- enue of 1.5 to 3.0 percent.2
 
+#######################################################
+* Dynamic Pricing for Hotel Revenue Management Using Price Multipliers
+* Authors: Abd El-Moniem Bayoumi, Mohamed Saleh, Amir Atiya, Heba Abdel Aziz, Amir Atiya
+* Abstract: In this paper we propose a new dynamic pricing approach for the hotel revenue management problem.
+  The proposed approach is based on having “price multipliers” that vary around “1” and provide a varying discount premium over some seasonal reference price.
+  The price multipliers are a function of certain influencing variables.
+  We apply an optimization algorithm for determining the parameters of these multipliers, the goal being to maximize the revenue, taking into account current demand, and the demand-price sensitivity of the hotel’s guest.
+  The optimization algorithm makes use of a Monte Carlo simulator that simulates all the hotel’s processes, such as reservations arrivals, cancellations, duration of stay, no shows, group reservations, seasonality, trend, etc, as faithfully as possible.
+  We have tested the proposed approach by successfully applying it to the revenue management problem of Plaza Hotel, Alexandria, Egypt, as a case study.
+* Ideas
+** Hotel revenue systems can be partitioned into two major groups: Quantity control approach and dynamic pricing approach
+** Each multiplier will adjust the price up or down around the reference price based on a certain influencing variables
+** The proposed dynamic pricing model has the advantage of framing the price in terms of carefully optimized premiums and discounts over a time varying or seasonal reference price set by the hotel.
+** Feng and Xiao (2000) present a dynamic pricing model, where prices are selected from a set of predetermined prices over time
+** Zhao and Zheng (2000) present a dynamic pricing model for selling a stock of a perishable product, where the demand is stochastic and it follows a non-homogeneous Poisson process
+** Gallego and Van Ryzin (1994) investigate the problem of pricing a perishable stock of items. They find an upper bound for general demand. Finally, they extend their results by modeling the demand as a compound Poisson process
+** It is common in the literature to assume Poisson arrivals for the product demand.
+** A hotel room reservation typically covers a number of days, and this duration of stay effect has to be taken into account.
+** We have four multipliers that represent the “control variables”. They will be multiplied by the reference price, to obtain the final price
+**  Each of the four multipliers corresponds to a variable that is known to have an influencing effect on pricing decisions.
+    1. Time from reservation till arrival date.
+    2. The hotel’s remaining capacity at the time of the reservation.
+    3. The length of stay, abbreviated as LoS.
+    4. The number of rooms to be reserved (group size).
+**  To simplify the problem formulation, these multipliers are usually taken as linear or piecewise linear functions of the influencing variables, whose levels and slope are determined by the optimization algorithm.
+** For instance, if the remaining capacity is high, then the multiplier should be low in order to attract more customers using the lower price
+** Conversely, if the remaining capacity is small, the hotel prices the rooms higher to better save the remaining few rooms for higher paying customers.
+** Price = Seasonal Reference Price * Time multiplier * Capacity multiplier * Los Multiplier * Group Size multiplier
+** The proposed model uses the concept of price multipliers that provide a varying discount/premium within some bands over some seasonal reference price.
+
+#######################################################
+* Forecasting hotel arrivals and occupancy using Monte Carlo simulation
+* Athanasius Zakharya, Amir F. Atiyab, Hisham El-Shishinyc and Neamat E. Gayara
+* Abstract: Forecasting hotel arrivals and occupancy is an important component in hotel revenue management systems.
+  In this article, we propose a new Monte Carlo simulation approach for the arrivals and occupancy forecasting problem
+  In this approach, we simulate the hotel reservations process forward in time,and these future Monte Carlo paths will yield forecast densities.
+  A key step for the faithful emulation of the reservations process is the accurate estimation of its parameters.
+  We propose an approach for the estimation of these parameters from the historical data.
+  Then, the reservations process will be simulated forward with all its constituent processes such as reservation arrivals, cancellations, length of stay, no shows, group reservations, seasonality, trend and so on
+* Ideas
+** A key component of hotel room RM system is the forecasting of the daily hotel arrivals and occupancy.
+** Inaccurate forecasts will signifi- cantly impact the performance of the RM system, because the forecast is the main driver of the pricing/room allocation decisions (see Lee (1990) and Weatherford and Kimes (2003)
+** Developing an empirical formula that relates the value to be forecasted with the recent history (for example, ARIMA-type or exponential smoothing mod- els).
+** The other approach focuses on developing a model from first principles that relates the value in question with the available variables/ parameters and so on, and simulates that model forward to obtain the forecast
+** Basically, the approaches can be grouped into two cate- gories: time series models and reservations- based models.
+** Time series models consider only the arrivals or the occupancy time series, and apply time series models (such as exponential smoothing, ARIMA and so on) on these.
+** The reservations-based approach, on the other hand, makes use of the reservations data to forecast future arrivals. It typically utilizes the concept of ‘pick-up’. This means that given K reservations for a future day T, we expect to ‘pick-up’ N more reservations from now until T.
+** The forecast will then be K + N
+** There are two versions of the pick-up model (see Weatherford and Kimes, 2003). In the additive version, we add to the current number of reservations the average number of reser- vations typically picked up between the current date and the arrival date (of course, taking seasonality into account).
+** The multiplicative pick-up model is similar except that we add a fraction of the current number of reserva- tions, rather than an amount independent of that number.
+** In the first phase, we estimate all the parameters of the reservations process (only the in-sample data are used for this purpose).
+*+ In the second phase, we simulate the reservations process forward in time to obtain the forecasts using the parameter estimates obtained in the first phase.
+** A possible way to model reservations arrivals is to use a Poisson process. Because of the discrete nature of the way the data are recorded (that is, by days) this approach can lead to difficulties and rounding inaccuracies. So we opted for a different approach whereby we model the reservations arrivals as Bernoulli trials.
