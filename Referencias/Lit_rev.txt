@@ -244,3 +244,47 @@ Combined:   1. Weighted average of historical and advanced booking forecasts
 ** In the first phase, we estimate all the parameters of the reservations process (only the in-sample data are used for this purpose).
 *+ In the second phase, we simulate the reservations process forward in time to obtain the forecasts using the parameter estimates obtained in the first phase.
 ** A possible way to model reservations arrivals is to use a Poisson process. Because of the discrete nature of the way the data are recorded (that is, by days) this approach can lead to difficulties and rounding inaccuracies. So we opted for a different approach whereby we model the reservations arrivals as Bernoulli trials.
+
+#######################################################
+* Hotel revenue management – a critical literature review
+* Stanislav Ivanov and Vladimir Zhechev
+* Abstract: The paper presents a critical literature review of the main concepts of hotel revenue management (RM) and current state of theoretical research.
+  It emphasizes on the different directions of hotel RM research and focuses comprehensively on the elements of the hotel RM system and the stages of RM process.
+  Special attention is paid to the different hotel RM centres, the pricing and non-pricing RM tools, forecasting methods, the RM software, RM team and ethical considerations as they play a central role in the RM practice.
+* Ideas
+** The application of RM requires a lot of data regarding different RM metrics – average daily rate (ADR), revenue per available room (RevPAR), occupancy, yield, profit per available room, etc
+** Non pricing tools: Capacity management, overbooking, Los control, channel Management
+** Pricing tools: Price discrimination, dynamic Pricing
+
+
+#######################################################
+* ANALYZING THE USE OF AN ADVANCE BOOKING CURVE IN FORECASTING HOTEL RESERVATIONS
+* Tony Sze Ming Tse Yiu Tung Poon
+* Abstract: Although there is considerable interest in the advance bookings model as a forecasting method in the hotel industry, there has been little research analyzing the use of an advance booking curve in forecasting hotel reservations.
+  The mainstream of advance booking models reviewed in the literature uses only the bookings-on-hand data on a certain day and ignores the previous booking data.
+  This empirical study analyzes the entire booking data set for one year provided by the Hotel ICON in Hong Kong, and identifies the trends and patterns in the data.
+  The analysis demonstrates the use of an advance booking curve in forecasting hotel reservations at property level.
+* Ideas
+** The seven forecast- ing methods are simple exponential smoothing; moving average methods; linear regression; logarithmic linear regression; additive method; multiplicative method; and Holt’s double expo- nential smoothing.
+** regression produced the lowest error, while the booking curve and combination forecasts produced fairly inaccurate results.
+** Rajopadhye, Ghalia, Wang, Baker, and Eister (2001), on the other hand, simulate the process of hotel reservation requests using a Poisson distribution to forecast occupancy
+** In fact, the hotel industry believes that booking pickup is one of the most acc- urate prognosticators of future performance (Rubicon, 2010), and it has been reported that the average hotel reservation lead time is 36 days for leisure travel and 21 days for business travel
+** Therefore it can be argued that the bookings-on-hand subsume all the factors affecting room occupancy, and such effects will carry through over the entire booking per- iod. If a booking trend based on the advance bookings-on-hand can be estimated or estab- lished, it could be a good indicator of final room occupancy.
+** Linear regression methods assume that there is a correlation between the current number of reservations-on-hand (Day n) and the final number of reservations (Day 0): Forecast@Day 0 = a + b x bookings@Day n
+** Logarithmic linear regression methods also assume a different relation between the current number of reservations-on- hand (Day n) and the final number of reservations (Day 0): Log (Forecast@Day 0) =  a + b x Log(bookings@Day n)
+** The additive method adds the current book- ings to the average historical pickup in bookings from the reading day (Day n) to the actual night of the stay (Day 0): Forecast@Day 0 =  bookings@Day n + average pickup (Day n to Day 0)
+** The multiplicative method multiplies the current bookings by the average historical pickup ratio in bookings from the reading day (Day n) to the actual night of the stay (Day 0): Forecast@Day 0 = bookings@Day n x average pickup ratio (Day n to Day 0)
+
+#######################################################
+* An Overview of Pricing Models for Revenue Management
+* Gabriel Bitran, René Caldentey, (2003) An Overview of Pricing Models for Revenue Management. Manufacturing & Service Operations Management 5(3):203-229. https://doi.org/10.1287/msom.5.3.203.16031
+* Abstract: In this paper, we examine the research and results of dynamic pricing policies and their relation to revenue management.
+  The survey is based on a generic revenue management problem in which a perishable and nonrenewable set of resources satisfy stochastic price- sensitive demand processes over a finite period of time.
+  In this class of problems, the owner (or the seller) of these resources uses them to produce and offer a menu of final products to the end customers.
+  Within this context, we formulate the stochastic control problem of capacity that the seller faces: How to dynamically set the menu and the quantity of products and their corresponding prices to maximize the total revenue over the selling horizon.
+* Ideas
+** Price is one of the most effective variables that managers can manipulate to encourage or discourage demand in the short run.
+** The costs associated with relabelling the prices of the products and informing customers about these changes have dropped significantly in the electronic environment when compared to traditional brick-and- mortar businesses (e.g., Brynjolfsson and Smith 1999)
+
+
+ç**
