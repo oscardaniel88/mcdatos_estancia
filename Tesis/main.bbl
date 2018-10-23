@@ -1,8 +1,33 @@
 \begin{thebibliography}{1}
 
-\bibitem{test}
-test test.
-\newblock {\em test: a test preparation test}.
-\newblock Testely, 2018.
+\bibitem{El-Gayar, et al.2008ICGST}
+El-Gayar N, Hendawi AT, Zakhary A, El-Shishiny H.
+\newblock {\em A proposed decision support model for hotel room revenue management}.
+\newblock ICGST Int J Artif Intell Mach Learn 2008.
+
+\bibitem{Aziz, et al.2011Cairo University}
+Heba Abdel Aziz, Mohamed Saleh, Mohamed H. Rasmy, Hisham ElShishiny
+\newblock {\em Dynamic room pricing model for hotel revenue management systems}.
+\newblock Faculty of Computers and Information, Cairo University 2011.
+
+\bibitem{Bitran 2011 MIT}
+Gabriel Bitran, Rene Caldentey
+\newblock {\em An Overview of Pricing Models for Revenue Management}.
+\newblock Sloan School of Management, MIT, Cambridge, Massachusetts 2011.
+
+\bibitem{McGill 1999 Revenue}
+McGill, J. and van Ryzin, G
+\newblock {\em Revenue management: research overview and prospects}.
+\newblock Transportation Science 1999.
+
+\bibitem{Cross 1997 Revenue}
+Cross, R.
+\newblock {\em Revenue Management: Hard-Core Tactics for Market Domination}.
+\newblock New York, NY: Broadway Books 1997.
+
+\bibitem{Marriot2000}
+Marriott, Jr., J. and Cross, R.
+\newblock {\em Room at the revenue inn. In Book of Management Wisdom: Classic Writings by Legendary Managers}.
+\newblock Peter Krass, New York, NY: Wiley 2000.
 
 \end{thebibliography}
