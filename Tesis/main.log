@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017) (preloaded format=pdflatex 2017.10.5)  24 OCT 2018 19:23
+This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017) (preloaded format=pdflatex 2017.10.5)  25 OCT 2018 15:45
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -629,14 +629,20 @@ LaTeX Info: Redefining \% on input line 55.
 
  (./Chapters/marco.tex
 Cap\'{\i }tulo 2.
-) [6
+[6
 
 
 
 ]
+LaTeX Info: Redefining \. on input line 32.
+LaTeX Info: Redefining \% on input line 32.
+ [7])
 LaTeX Info: Redefining \. on input line 57.
 LaTeX Info: Redefining \% on input line 57.
- [7] (./main.bbl) [8
+ [8]
+LaTeX Info: Redefining \. on input line 57.
+LaTeX Info: Redefining \% on input line 57.
+ [9] (./main.bbl) [10
 
 
 
@@ -654,11 +660,11 @@ LaTeX Info: Redefining \% on input line 26.
  (./Chapters/introduction.aux)
 (./Chapters/marco.aux)) ) 
 Here is how much of TeX's memory you used:
- 2912 strings out of 492995
- 38298 string characters out of 6132704
- 113963 words of memory out of 5000000
- 6396 multiletter control sequences out of 15000+600000
- 7358 words of font info for 26 fonts, out of 8000000 for 9000
+ 2915 strings out of 492995
+ 38343 string characters out of 6132704
+ 113964 words of memory out of 5000000
+ 6399 multiletter control sequences out of 15000+600000
+ 7665 words of font info for 27 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  39i,11n,45p,1152b,411s stack positions out of 5000i,500n,10000p,200000b,80000s
 </usr/local/texlive/2017/texmf-dist/fonts/type1/public
@@ -668,11 +674,12 @@ msfonts/cm/cmcsc10.pfb></usr/local/texlive/2017/texmf-dist/fonts/type1/public/a
 msfonts/cm/cmr10.pfb></usr/local/texlive/2017/texmf-dist/fonts/type1/public/ams
 fonts/cm/cmr12.pfb></usr/local/texlive/2017/texmf-dist/fonts/type1/public/amsfo
 nts/cm/cmr17.pfb></usr/local/texlive/2017/texmf-dist/fonts/type1/public/amsfont
-s/cm/cmti10.pfb>
-Output written on main.pdf (15 pages, 801028 bytes).
+s/cm/cmr7.pfb></usr/local/texlive/2017/texmf-dist/fonts/type1/public/amsfonts/c
+m/cmti10.pfb>
+Output written on main.pdf (17 pages, 813453 bytes).
 PDF statistics:
- 82 PDF objects out of 1000 (max. 8388607)
- 56 compressed objects within 1 object stream
+ 92 PDF objects out of 1000 (max. 8388607)
+ 63 compressed objects within 1 object stream
  0 named destinations out of 1000 (max. 500000)
  6 words of extra memory for PDF output out of 10000 (max. 10000000)
 
