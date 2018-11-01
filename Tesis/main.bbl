@@ -35,4 +35,20 @@ Weatherford, L. R.,Kimes, S. E.
 \newblock {\em A comparison of forecasting methods for hotel revenue management}.
 \newblock Cornell University 2003.
 
+\bibitem{BeckmannBobkowski}
+M. J. Beckmann and F. Bobkowski,
+\newblock {\em Airline Demand: An Analysis of Some Frequency Distributions}.
+\newblock Naval Res. Logistics 1958.
+
+
+\bibitem{ZakharyAtiya}
+Athanasius Zakharya, Amir F. Atiyab, Hisham El-Shishinyc and Neamat E. Gayara
+\newblock {\em Forecasting hotel arrivals and occupancy using Monte Carlo simulation}
+\newblock Faculty of Computers and Information, Cairo University 2009.
+
+\bibitem{Lee1990}
+Lee, A.
+\newblock {\em Airline Reservations Forecasting}
+\newblock Erewhon, NC: Prentice-Hall 1990
+
 \end{thebibliography}

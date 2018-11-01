@@ -102,7 +102,32 @@ En las siguientes secciones discutiremos acerca de los trabajos previos sobre lo
 
 La base de una práctica efectiva de \emph{revenue management} es un buen modelo de pronóstico de demanda, ya que el resultado de este será la entrada del modelo de optimización de precio de tal suerte que mientras menor sea el error en el pronóstico de la demanda, mejor será la optimización de los precios para cada uno de los productos sujetos al análisis.
 
-Se tiene registro de trabajo previo para el desarrollo de modelos de pronóstico de demanda en diferentes industrias, algunas de ellas son: \emph{líneas aéreas}, \emph{retail}, \emph{telecomunicaciones} y \emph{hospitalidad}, siendo la primera la que cuenta con modelos de pronóstico más maduros. (Revisar articulo Revenue Management: Research Overview and Prospects)
+Se tiene registro de trabajo previo para el desarrollo de modelos de pronóstico de demanda en diferentes industrias, algunas de ellas son: \emph{líneas aéreas}, \emph{retail}, \emph{telecomunicaciones} y \emph{hospitalidad}, siendo la primera la que cuenta con modelos de pronóstico más maduros, este hecho obedece a que en esta industria es en dónde a principios de los años 80's nace la disciplina de \emph{revenue management}. 
+
+La venta de asientos en un vuelo es un caso dónde naturalmente se puede utilizar un modelo de optimización de ingresos ya que cuenta con ciertas características que hacen que el modelado del problema sea muy intuitivo:
+\begin{itemize}
+  \item Se cuenta con un inventario reducido
+  \item El inventario es perecedero (una vez que el avión despega, los asientos vacíos no generan un ingreso
+  \item Se cuenta con un amplio segmento de mercado que genera demanda sobre el producto
+  \item Los asientos se compran con distintos tiempos de anticipación (hay clientes que compran con un mayor tiempo de anticipación que otros)
+  \item Se conoce el tiempo de estancia de cada uno de los clientes en la aeronave.
+\end{itemize}
+
+Las condiciones mencionadas anteriormente facilitan la construcción de un modelo de pronóstico de demanda. A continuación haremos una breve descripción de la evolución de este tipo de modelos a lo largo del tiempo.
+
+\texttt{Beckmann y Bobkowski (1958)} presentaron modelos estadísticos que describen reservaciones de pasajeros, cancelación de reservaciones y \emph{no shows}. En su trabajo los autores comparan modelos utilizando diferentes distribuciones probabilísticas: \emph{Poisson}, \emph{Binomial Negativa} y \emph{Gamma} aplicadas en datos generados por aerolineas con la finalidad de modelar las reservaciones efectivas y propone una condicion optima para un nivel de sobreventa para un vuelo en partícular.
+
+Posteriormente otros autores continuaron explorando nuevas metodologías para poder construír modelos de predicción de demanda. Uno de los autores mas citados en las investigaciones de modelos de pronóstico de demanda es Lee (1990) que presenta un artículo en donde explica don enfoques para resolver el problema de pronóstico de ocupación en aerolíneas:
+\begin{itemize}
+  \item Modelos de series de tiempo 
+  \item Modelos basados en información de reservaciones
+\end{itemize}
+
+Los modelos basados en series de tiempo consideran unicamente las series de tiempo con la información de llegadas o porcentajes de ocupación aplicandoles modelos de series de tiempo (como suavizamiento exponencial, ARIMA, etc). En estos casos no se utiliza la información propia de las reservaciones.
+
+El enfoque basado en reservaciones hace uso de la información contenida en las reservaciones para pronosticar llegadas futuras. En este tipo de modelos típicamente se considera el concepto de \emph{pick-up}. Esto quiere decir que dadas \emph{K} reservaciones para un dia futuro \emph{T}, esperamos tener un \emph{pick-up} de \emph{N} reservaciones más desde este momento hasta el momento T. El pronóstico entonces será \emph{K + N}
+
+
 
 
 \subsection*{Modelos de series de tiempo}
