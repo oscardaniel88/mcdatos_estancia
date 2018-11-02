@@ -127,6 +127,8 @@ Los modelos basados en series de tiempo consideran unicamente las series de tiem
 
 El enfoque basado en reservaciones hace uso de la información contenida en las reservaciones para pronosticar llegadas futuras. En este tipo de modelos típicamente se considera el concepto de \emph{pick-up}. Esto quiere decir que dadas \emph{K} reservaciones para un dia futuro \emph{T}, esperamos tener un \emph{pick-up} de \emph{N} reservaciones más desde este momento hasta el momento T. El pronóstico entonces será \emph{K + N}
 
+Existen dos versiones del modelo de \emph{pick-up} (Weatherford y Kimes, 2003). La versión aditiva del modelo en donde a las reservaciones registradas en el hotel se le suman el promedio de reservaciones que típicamente llegan en un periodo entre la fecha actual y la fecha de llegada del huésped (tomando la temporalidad del hotel en cuenta), y la versión multiplicativa, la cual es muy similar, con la única diferencia de únicamente se toma en cuenta una fracción de las reservasciones actualmente registradas en el hotel 
+
 
 
 
