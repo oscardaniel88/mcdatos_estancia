@@ -117,7 +117,7 @@ Las condiciones mencionadas anteriormente facilitan la construcción de un model
 
 \texttt{Beckmann y Bobkowski (1958)} presentaron modelos estadísticos que describen reservaciones de pasajeros, cancelación de reservaciones y \emph{no shows}. En su trabajo los autores comparan modelos utilizando diferentes distribuciones probabilísticas: \emph{Poisson}, \emph{Binomial Negativa} y \emph{Gamma} aplicadas en datos generados por aerolineas con la finalidad de modelar las reservaciones efectivas y propone una condicion optima para un nivel de sobreventa para un vuelo en partícular.
 
-Posteriormente otros autores continuaron explorando nuevas metodologías para poder construír modelos de predicción de demanda. Uno de los autores mas citados en las investigaciones de modelos de pronóstico de demanda es Lee (1990) que presenta un artículo en donde explica don enfoques para resolver el problema de pronóstico de ocupación en aerolíneas:
+Posteriormente, otros autores continuaron explorando nuevas metodologías para poder construír modelos de predicción de demanda. Uno de los autores mas citados en las investigaciones de modelos de pronóstico de demanda es Lee (1990) que presenta un artículo en donde explica don enfoques para resolver el problema de pronóstico de ocupación en aerolíneas:
 \begin{itemize}
   \item Modelos de series de tiempo 
   \item Modelos basados en información de reservaciones
@@ -127,15 +127,46 @@ Los modelos basados en series de tiempo consideran unicamente las series de tiem
 
 El enfoque basado en reservaciones hace uso de la información contenida en las reservaciones para pronosticar llegadas futuras. En este tipo de modelos típicamente se considera el concepto de \emph{pick-up}. Esto quiere decir que dadas \emph{K} reservaciones para un dia futuro \emph{T}, esperamos tener un \emph{pick-up} de \emph{N} reservaciones más desde este momento hasta el momento T. El pronóstico entonces será \emph{K + N}
 
-Existen dos versiones del modelo de \emph{pick-up} (Weatherford y Kimes, 2003). La versión aditiva del modelo en donde a las reservaciones registradas en el hotel se le suman el promedio de reservaciones que típicamente llegan en un periodo entre la fecha actual y la fecha de llegada del huésped (tomando la temporalidad del hotel en cuenta), y la versión multiplicativa, la cual es muy similar, con la única diferencia de únicamente se toma en cuenta una fracción de las reservasciones actualmente registradas en el hotel 
+Existen dos versiones del modelo de \emph{pick-up} (\texttt{Weatherford y Kimes}, 2003). La versión aditiva del modelo en donde a las reservaciones registradas en el hotel se le suman el promedio de reservaciones que típicamente llegan en un periodo entre la fecha actual y la fecha de llegada del huésped (tomando la temporalidad del hotel en cuenta), y la versión multiplicativa, la cual es muy similar, con la única diferencia de únicamente se toma en cuenta una fracción de las reservaciones actualmente registradas en el hotel.
+
+Existen trabajos en los cuales se presenta un modelo avanzado en el cual se combinan modelos de series de tiempo y modelos basados en reservaciones, tal es el caso del artículo presentado por \texttt{Flides y Ord} (2002) en el cuál se concluye que la combinación de ambos modelos generalmente tienen un mejor desempeño en cuanto al pronóstico de la demanda. Otro trabajo que presenta un enfoque similar es el realizado por \texttt{Sa} (1987) en el cuál se utiliza una regresión multiple para desarrollar un modelo de pronóstico combinado, en este caso, la variable dependiente eran las reservaciones pendientes por llegar mientras la variable independiente incluía el número de resrvaciones confirmadas, un índice de temporalidad,  índice semanal y un promedio del comportamiento histórico de las reservaciones pendientes. Esta regresión se corría para varios días antes de la llegada de los clientes (t = 7, 14, 21, y 28).
+
+Es importante hacer las siguientes observaciones sobre los modelos comentados anteriormente:
+
+\begin{itemize}
+  \item Los modelos de regesión lineal asumen que existe una correlación entre el número de reservaciones confirmadas y el número final de reservaciones (en el día 0), de tal forma que: $pronostico_{dia0} = a + b * reservaciones_{diaN}$
+  \item Los modelos de regresión logarítmica asumen que existe una correlación entre el número de reservaciones confirmadas y el número final de reservaciones (en el día 0), de tal forma que: $log(pronostico_{dia0} = a + b * log(reservaciones_{diaN}$
+  \item El modelo aditivo suma las reservaciones actuales al promedio histórico del \emph{pickup} de reservas desde el día de la lectura \emph{diaN} hasta el dia de la estancia \emph{dia0}: $pronostico_{dia0} = reservas_{diaN} + \sum_{i=0}^{n} \frac{pickup_i}{n}$
+  \item El modelo multiplicativo multiplica las reservaciones actuales por la proporción del promedio histórico de reservaciones  desde el \emph{diaN} hasta el dia de la estancia \emph{dia0}: $pronostico_{dia0} = reservas_{diaN} * \frac{reservas_n - \sum_{i=0}^{n} \frac{pickup_i}{n}}{reservas_n}$
+\end{itemize}
+
+La tabla 2.1 resume los modelos más comunes utilizados para pronosticar ocupación, agrupados por categoría.
+
+
+\begin{table}[]
+\centering
+\begin{tabular}{|c|l|}
+\hline
+\multicolumn{1}{|l|}{Categoria} & Modelo                                                                                                                                                    \\ \hline
+Historico                       & \begin{tabular}[c]{@{}l@{}}1. Mismo día año anterior\\ 2. Promedios móviles\\ 3. Suvizamiento exponencial\\ 4. ARIMA\end{tabular}                         \\ \hline
+Avanzado                        & \begin{tabular}[c]{@{}l@{}}1. Aditivo\\   a. Pickup Clasico\\   b. Pickup Avanzado\\ 2. Multiplicativo\\   a. Curva de reservaciones\end{tabular}         \\ \hline
+Combinados                      & \begin{tabular}[c]{@{}l@{}}1. Promedios ponderados de modelo histórico y modelo avanzado\\ 2. Regresión \\ 3. Modelo de información completa\end{tabular} \\ \hline
+\end{tabular}
+\caption{Modelos de pronosótico por categoría}
+\label{ModelosOcup}
+\end{table}
+
+\subsection*{Desempeño de modelos de pronóstico}
+
+Se han realizado estudios con el objetivo de comparar el desempeño de los modelos previamente presentados, a continuación presentaremos los resultados obtenidos.
+
+\texttt{Wickham} (1995) estudió la efectividad de una variedad de modelos de pronóstico de ocupación utilizando datos de aerolíneas. Durante este trabajo se comparan modelos históricos de ocupación (utilizando promedios simples y promedios ponderados) y modelos de \emph{pickup} (clasicos y avanzados) llegando a la conclusión de que los segundos son más efectivos, al menos para los datos aplicados durante su análisis.
+
+\texttt{Weahterford} (1998) comparó los modelos aditivos frente a los modelos multiplicativos y modelos de regresión dentro del contexto de las aerolíneas y encontró que los modelos aditivos y de regresión tienen un mejor desempeño que los multiplicativos.
 
 
 
-
-\subsection*{Modelos de series de tiempo}
-\subsubsection*{ARIMA}
-\subsubsection*{Modelos de pickup}
-\subsection*{Suavizamientos de curvas}
-\subsection*{Modelos de regresión}
 \subsection*{Modelos de machine learning}
+\subsection*{Modelos de Big Data}
+\subsection*{Modelos de optimizacion de ingresos}
 \subsection*{Resumen}
