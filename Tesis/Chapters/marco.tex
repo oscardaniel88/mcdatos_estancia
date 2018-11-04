@@ -192,11 +192,23 @@ Ajustamos un modelo en un espacio dimensional mayor inducido pro $\phi$ sin tene
 
 Y el Kernel Gaussiano $$k(x_1,x_2)=exp(-\frac{||x_1-x_2||^2}{2{\delta}^2})$$
 
-\subsubsection*{Perceptrón multipcapa}
+\subsubsection*{Red neuronal multipcapa}
 
-El perceptrón multicapa es una red neuronal capáz de clasificar y realizar regresión. Esta compuesta por $n$ capaz totalmente conectadas de neuronas artificiales formando un grafo conectado (en el caso más simple se tiene una capa oculta y una capa de salida). En este modelo, la salida de cada capa de neuronas será la entrada de la siguiente capa. La función de activación es dada por la siguiente ecuación $$y=f(\sum_{i}^{n} w_ix_i+b)$$ donde $f$ es una función de activación. Entre las opciones más populares se encuentran la sigmoide $y = (1+exp(-x))^{-1}$ y la función lineal $y=x$. La elección de la función de activación en la capa de salida define el tipo de red neuronal (si clasifica o realiza regresión)
+Una red neuronal es un modelo de \texttt{M.L.} capáz de clasificar y realizar regresión. Esta compuesta por $n$ capas totalmente conectadas de neuronas artificiales formando un grafo conectado (en el caso más simple se tiene una capa oculta y una capa de salida). En este modelo, la salida de cada capa de neuronas será la entrada de la siguiente capa. La función de activación es dada por la siguiente ecuación $$y=f(\sum_{i}^{n} w_ix_i+b)$$ donde $f$ es una función de activación. Entre las opciones más populares se encuentran la sigmoide $y = (1+exp(-x))^{-1}$ y la función lineal $y=x$. La elección de la función de activación en la capa de salida define el tipo de red neuronal (si clasifica o realiza regresión)
 
 Las redes neuronales son entrenadas mediante un algorítmo llamado \emph{propagación hacia atrás (backpropagation)} que es una aplicación del algorítmo de descenso por gradiente que toma en cuenta la contribución de las neuronas de la capa oculta al error $E$
+
+\subsubsection*{Red neuronal de base radial}
+
+Las reded nueronales de base radial (RBF) usualmente tienen una sola capa oculta que emplea una serie de funciones llamadas \emph{funciones de base radial} como detectores de características. Las redes RBF pueden ser utilizadas para realizar regresiones o clasificaciones. En este modelo la capa oculta utiliza funcion gaussiana como función de activación $\phi$: $$\phi_j(x)=exp(-\frac{||x-\mu_j||^2}{2\sigma_j^2})$$
+
+Y como función de salida, se tiene la siguiente ecuación: $$y(x)=\sum_{j=0}^{M} w_{kj} \phi_j(x)$$
+
+donde $w_{kj}$ es el vector de pesos que conecta la neurona $j$ de la capa oculta con la neurona $k$ de la capa de salida.
+
+El entrenamiento de este tipo de modelos consiste en encontrar un conjunto de valores para los parámetros $\mu_j$, $\sigma_j$ y $w_{jk}$ que maximizan el desempeño de la red. 
+
+\subsection*{Desempeño de algoritmos de M.L.}
 
 
 
