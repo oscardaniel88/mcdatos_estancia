@@ -164,9 +164,42 @@ Se han realizado estudios con el objetivo de comparar el desempeño de los model
 
 \texttt{Weahterford} (1998) comparó los modelos aditivos frente a los modelos multiplicativos y modelos de regresión dentro del contexto de las aerolíneas y encontró que los modelos aditivos y de regresión tienen un mejor desempeño que los multiplicativos.
 
-
-
 \subsection*{Modelos de machine learning}
+
+Si bien las técnicas estadísticas anteriormente mencionadas pueden predecir efectivamente níveles de ocupación y demanda, se requieren de amplios conocimientos en estadística y de largos procedimientos para poderlas aplicar de manera tal que funcionen correctamente o de otra manera se puede optar por el uso de \emph{software} comercial el cuál resulta muy costoso la mayoría de las veces. Para solventar estos hechos, algunos autores presentan un enfoque diferente para construír modelos de predicción de ocupación, tal es el caso de \texttt{Caicedo-Torres, Payares} (2016) quienes proponen el uso de algorítmos de \emph{Machine Learning} para construír modelos predictivos de ocupación y demanda en la industria de la hospitalidad. La ventaja de estos modelos es que estan listos para ser utilizados por el staff administrativo de la propiedad  sin la necesidad de contar con amplios conocimientos de estadística. Además, estos modelos tienen la ventaja de poder ser empaquetados dentro de aplicaciones de bajo costo, o de ser ejecutados en una infraestructura basada en la nube, lo cual significan soluciones rentables para el sector de hospitalidad.
+
+A continuación presentaremos a detalle algunos algorímtos de \texttt{M.L.} utilizados para la construcción de este tipo de modelos.
+
+\subsubsection*{Regresión de Ridge}
+
+La regresión de ridge es un algorítmo de regresión que incluye un término de regularización en su función de costos con el fin de lograr una mejor aproximación al momento de generalizar el modelo. La regresión de Ridge penaliza el algorítmo con un factor proporcional a la norma Euclidiana (L2) del vector de parámetros. $$J(\theta)=\sum_{i=1}^{n} (\theta^Tx_i - y_i)^2 + \alpha||\theta||^2$$
+
+Dónde el factor de regularización $\alpha$ controla la importancia relativa de la penalidad compleja. Para optimizar esta ecuación se debe encontrar la derivada de la función de costos e igualarla a cero, de tal forma que el vector de parámetros que minimza el error es: $$\theta = (X^TX+\lambda I)^{-1} X^T y$$
+
+Las nuevas predicciones se pueden calcular como sigue: $$h(X) = \theta^Tx=\sum_{i=1}^{n} \theta_ix_i$$
+
+\subsubsection*{Ridge Regresión con Kernel}
+
+Este método consta de aplicar el truco del Kernel a la regresión previamente comentada, esto con la finalidad de projectar los datos originales en un espectro de variables sin tener que explicitamente calcular las transformaciones. Para esto, se comienza con el vector de pesos optimizados para la Regresión de Ridge: $$\theta = (X^TX+\lambda I)^{-1} X^T y$$
+
+Se manipula algebraícamente para obtener: $$\theta = X^T(XX^T + \lambda I)^{-1}y$$
+
+De tal forma que una predicción puede ser obtenida por: $$h(x') = \theta^Tx' = y^T(XX^T + \lambda I)^{-1}Xx'$$
+
+Una función de Kernel evalúa a un producto punto de la forma $$f(x_1,x_2) = \phi (x_1)\cdot \phi (x_2)$$ sin tener que explícitamente calcular la transformación $\phi$. Si definimos $K_{i,j}=f(x_i,x_j)$ y $k_i = f(x_i,x')$, donde $x_i$ es la iésima fila de la matriz $X$, entonces $$h(x') = \theta^Tx' = y^T(K + \lambda I)^{-1}k$$
+
+Ajustamos un modelo en un espacio dimensional mayor inducido pro $\phi$ sin tener que incurrir en una complejidad computacional adicional. Se pueden utilizar varios Kernels, entre los más populares están el Kernel polinomial $$k(x_1,x_2)=( \gamma x_{1}^{T} x_2 + \beta)^ {\delta}$$
+
+Y el Kernel Gaussiano $$k(x_1,x_2)=exp(-\frac{||x_1-x_2||^2}{2{\delta}^2})$$
+
+\subsubsection*{Perceptrón multipcapa}
+
+El perceptrón multicapa es una red neuronal capáz de clasificar y realizar regresión. Esta compuesta por $n$ capaz totalmente conectadas de neuronas artificiales formando un grafo conectado (en el caso más simple se tiene una capa oculta y una capa de salida). En este modelo, la salida de cada capa de neuronas será la entrada de la siguiente capa. La función de activación es dada por la siguiente ecuación $$y=f(\sum_{i}^{n} w_ix_i+b)$$ donde $f$ es una función de activación. Entre las opciones más populares se encuentran la sigmoide $y = (1+exp(-x))^{-1}$ y la función lineal $y=x$. La elección de la función de activación en la capa de salida define el tipo de red neuronal (si clasifica o realiza regresión)
+
+Las redes neuronales son entrenadas mediante un algorítmo llamado \emph{propagación hacia atrás (backpropagation)} que es una aplicación del algorítmo de descenso por gradiente que toma en cuenta la contribución de las neuronas de la capa oculta al error $E$
+
+
+
 \subsection*{Modelos de Big Data}
 \subsection*{Modelos de optimizacion de ingresos}
 \subsection*{Resumen}
