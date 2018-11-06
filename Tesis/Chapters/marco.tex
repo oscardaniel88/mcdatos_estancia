@@ -192,7 +192,7 @@ Ajustamos un modelo en un espacio dimensional mayor inducido pro $\phi$ sin tene
 
 Y el Kernel Gaussiano $$k(x_1,x_2)=exp(-\frac{||x_1-x_2||^2}{2{\delta}^2})$$
 
-\subsubsection*{Red neuronal multipcapa}
+\subsubsection*{Red neuronal multicapa}
 
 Una red neuronal es un modelo de \texttt{M.L.} capáz de clasificar y realizar regresión. Esta compuesta por $n$ capas totalmente conectadas de neuronas artificiales formando un grafo conectado (en el caso más simple se tiene una capa oculta y una capa de salida). En este modelo, la salida de cada capa de neuronas será la entrada de la siguiente capa. La función de activación es dada por la siguiente ecuación $$y=f(\sum_{i}^{n} w_ix_i+b)$$ donde $f$ es una función de activación. Entre las opciones más populares se encuentran la sigmoide $y = (1+exp(-x))^{-1}$ y la función lineal $y=x$. La elección de la función de activación en la capa de salida define el tipo de red neuronal (si clasifica o realiza regresión)
 
@@ -210,8 +210,15 @@ El entrenamiento de este tipo de modelos consiste en encontrar un conjunto de va
 
 \subsection*{Desempeño de algoritmos de M.L.}
 
+Para realizar el entrenamiento, validación y pruebas de estos modelos se utilizó un proceso de \emph{Cross Validation} en cada uno de los data sets. Los pronósticos se hicieron para un día posterior y para 7 días posteriores, midiendo el desempeño del modelo utilizando la medida \emph{MAPE} (Mean Absolute Percentage Error) definida como: $$MAPE=\frac{1}{n}\sum_{t=1}^{n}|\frac{y_t-h_t}{y_t}|$$
 
+Los resultados mostraron que la \emph{regresión de Ridge} una transformación polinomial de grado dos tuvo el mejor desempeño con un \emph{MAPE} del 8.2012\% durante la validación y un \emph{MAPE} del 8.6561\% durante las pruebas. Durante el proceso de pruebas no se tuvo evidencia de sobreajuste del modelo.
+
+Por otra parte el modelo la \emph{regresión de Ridge con Kernel} tuvo un \emph{MAPE} de 8.69622\% durante la validación, seguido por la \emph{red neuronal} con un \emph{MAPE} del 12.89174\% y finalmente la \emph{red neuronal RBF} con un \emph{MAPE} de 26.32086\%.
+
+Los resultados obtenidos durante esta investigación fueron bastante prometedores sustentando el uso de modelos de \texttt{M.L.} como modelos de caja negra para estimar la ocupación futura de una propiedad, sin requerir conocimiento o experiencia estadística del estaff del hotel, permitiendo nuevos avances el las técnicas de \emph{revenue management} en el sector de hospitalidad.
 
 \subsection*{Modelos de Big Data}
+
 \subsection*{Modelos de optimizacion de ingresos}
 \subsection*{Resumen}
