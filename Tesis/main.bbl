@@ -75,4 +75,13 @@ Caicedo-Torres, W., Payares, F.
 \newblock {\em A machine learning model for occupancy rates and demand forecasting in the hospitality industry}
 \newblock{Universidad Tecnologica de Bolivar 2016}
 
+\bibitem{TierneyPan2012}
+Tierney, Heather L.R, Bing Pan
+\newblock {\em A poisson regresion examination of the relationship between website traffic and search engine queries}
+\newblock {Netnomics 2012}
+
+\bibitem{BigData}
+Pan,B., Yang, Y
+\newblock {\em Forecasting destination weekly hotel occupancy with big data}
+\newblock {Journal of Travel Research, 2017}
 \end{thebibliography}

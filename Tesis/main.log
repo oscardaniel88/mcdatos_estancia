@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017) (preloaded format=pdflatex 2017.10.5)  5 NOV 2018 18:46
+This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017) (preloaded format=pdflatex 2017.10.5)  8 NOV 2018 13:30
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -678,17 +678,29 @@ LaTeX Info: Redefining \% on input line 197.
  [17]
 LaTeX Info: Redefining \. on input line 211.
 LaTeX Info: Redefining \% on input line 211.
- [18])
+ [18]
+LaTeX Info: Redefining \. on input line 225.
+LaTeX Info: Redefining \% on input line 225.
+ [19]
+LaTeX Info: Redefining \. on input line 237.
+LaTeX Info: Redefining \% on input line 237.
+ [20]
+Overfull \hbox (3.52122pt too wide) in paragraph at lines 239--240
+[]\OT1/cmr/m/n/10 Para em-pe-zar con la es-ti-ma-ci^^Son del mo-de-lo se uti-li
+-za el al-go-rim-to EM \OT1/cmr/m/it/10 expectation-
+ []
+
+)
 LaTeX Info: Redefining \. on input line 57.
 LaTeX Info: Redefining \% on input line 57.
- [19] (./main.bbl [20
+ [21] (./main.bbl [22
 
 
 
 ])
 LaTeX Info: Redefining \. on input line 95.
 LaTeX Info: Redefining \% on input line 95.
- [21] (./main.aux
+ [23] (./main.aux
 LaTeX Info: Redefining \. on input line 6.
 LaTeX Info: Redefining \% on input line 6.
 LaTeX Info: Redefining \. on input line 10.
@@ -699,17 +711,17 @@ LaTeX Info: Redefining \. on input line 22.
 LaTeX Info: Redefining \% on input line 22.
 LaTeX Info: Redefining \. on input line 26.
 LaTeX Info: Redefining \% on input line 26.
-
-(./Chapters/introduction.aux) (./Chapters/marco.aux)) )
+ (./Chapters/introduction.aux)
+(./Chapters/marco.aux)) )
 (\end occurred inside a group at level 1)
 
 ### simple group (level 1) entered at line 60 ({)
 ### bottom level 
 Here is how much of TeX's memory you used:
- 2926 strings out of 492995
- 38484 string characters out of 6132704
- 114013 words of memory out of 5000000
- 6409 multiletter control sequences out of 15000+600000
+ 2928 strings out of 492995
+ 38509 string characters out of 6132704
+ 114023 words of memory out of 5000000
+ 6411 multiletter control sequences out of 15000+600000
  7833 words of font info for 28 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  39i,14n,45p,1222b,471s stack positions out of 5000i,500n,10000p,200000b,80000s
@@ -729,10 +741,10 @@ r/local/texlive/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr
 /local/texlive/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb></usr/l
 ocal/texlive/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmti10.pfb></usr/lo
 cal/texlive/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt10.pfb>
-Output written on main.pdf (28 pages, 925104 bytes).
+Output written on main.pdf (30 pages, 932309 bytes).
 PDF statistics:
- 160 PDF objects out of 1000 (max. 8388607)
- 111 compressed objects within 2 object streams
+ 166 PDF objects out of 1000 (max. 8388607)
+ 115 compressed objects within 2 object streams
  0 named destinations out of 1000 (max. 500000)
  6 words of extra memory for PDF output out of 10000 (max. 10000000)
 

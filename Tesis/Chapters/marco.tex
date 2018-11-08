@@ -220,5 +220,23 @@ Los resultados obtenidos durante esta investigación fueron bastante prometedore
 
 \subsection*{Modelos de Big Data}
 
+En el sector de turismo y hospitalidad se han hecho esfuerzos para obtener modelos de pronóistico de llegadas y ocupación basados en información generada a partir de las búsquedas en páginas web y el tráfico generado en ellas. Si bien, los resultados obtenidos han confirmado la validéz de algunas fuentes de datos generados en línea, poco trabajo se ha hecho cruzando diferentes fuentes de datos, por ejemplo, utilizar los datos de las búsquedas realizadas en \emph{Google} combinados con el tráfico generado en el sitio web del hotel, los cuales deben estar altamente correlacionados (Tierney y Pan 2012).
+
+Existen algunos trabajos en donde se adoptan dos métodos principales para obtener la ocupación de un hotel a partir de datos generados en línea. Los metódos utilizados son: \emph{Promedios móviles integrados autoregresivos con variables externas} y \emph{Modelo de regresión dinámica con cambios Markov (MS DR)}
+
+En el estudio presentado por \texttt{Pan y Yang (2017)} se presentan dos modelos de series de tiempo en el que se incoroporan tres fuentes de información generada en línea para predecir la ocupación de un hotel.
+
+El primer modelo presentado es un modelo \emph{ARMAX} en donde se utilizan variables generadas con \emph{big data} como predictores directos de la ocupación. El modelo se definió de la siguiente manera: $$y_t = \alpha + x_t \beta + \mu_t$$ $$\mu_t = \sum_{i=1}^{m} \rho_i \mu_{t-i} + \sum_{j=1}^{n} \theta_j \epsilon_{t-j} + \epsilon_i$$
+
+donde $y_t$ es la variable dependiente y $x_t$ es un vector de variables exógenas independientes. Si $\beta$ es igual a 0, el modelo se convierte en un modelo ARMA(m,n) estándar.
+
+El segundo modelo presentado en este trabajo es el MSDR específicado como: $$y_t = \tau_s + x_t \alpha + z_t \beta_s + \epsilon_s$$
+
+dónde $\tau_s$ es el estado de intercepción; $x_t$ es un vector de variables exógenas con coeficientes independientes del estado; $z_t$ es un vector de variables exógenas con coeficientes dependientes del estado $\beta_s$; $\epsilon_s$ es un error normal \emph{i.i.d} con media 0 y una varianza dependiente del estado de $\sigma^2$.Este modelo permite a las variables en el vector $z_t$ con parámetros dependientes del estado tomar diferentes comportamientos basados en el estado que responden a un proceso de Markov con $J$ estados y una probabilidad transicional $p_{ij}$ específicada como sigue: $$p_{ij} = \frac{1}{1 + \sum_{m=1}^{k} exp(-q_{im})}\ si\ j = k$$ $$p_{ij} = \frac{exp(-q_{ij})}{1 + \sum_{m=1}^{k} exp(-q_{im})}\ si\ j \neq k$$
+
+donde $q_{ij}$ es el parámetro transformado definido como $$q_{ij}=-log(\frac{p_{ij}}{p_{ik}})$$
+
+Para empezar con la estimación del modelo se utiliza el algorimto EM \emph{expectation-maximization} el cuál arroja el valor inicial. Posteriormente se predicen las probabilidades de cada uno de los estados y actualizando la verosimilitud en cada paso. Un paso clave de esta estimación es el cálculo de la verosimilitud de los estados latentes la cual es obtenida mediante la iteración de la verosimilitud condicional.
+
 \subsection*{Modelos de optimizacion de ingresos}
 \subsection*{Resumen}
