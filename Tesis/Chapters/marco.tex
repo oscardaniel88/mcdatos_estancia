@@ -224,7 +224,13 @@ En el sector de turismo y hospitalidad se han hecho esfuerzos para obtener model
 
 Existen algunos trabajos en donde se adoptan dos métodos principales para obtener la ocupación de un hotel a partir de datos generados en línea. Los metódos utilizados son: \emph{Promedios móviles integrados autoregresivos con variables externas} y \emph{Modelo de regresión dinámica con cambios Markov (MS DR)}
 
-En el estudio presentado por \texttt{Pan y Yang (2017)} se presentan dos modelos de series de tiempo en el que se incoroporan tres fuentes de información generada en línea para predecir la ocupación de un hotel.
+En el estudio presentado por \texttt{Pan y Yang (2017)} se presentan dos modelos de series de tiempo en el que se incoroporan tres fuentes de información generada en línea para predecir la ocupación de un hotel. Los datos de entrada contenían datos que describían:
+\begin{itemize}
+  \item Tráfico generado en el sitio web de la propiedad
+  \item Información relacionada con las peticiones realizadas a los motores de búsquedas (\emph{Google})
+  \item Información del clima en el destino en dónde se ubica la propiedad
+\end{itemize}
+
 
 El primer modelo presentado es un modelo \emph{ARMAX} en donde se utilizan variables generadas con \emph{big data} como predictores directos de la ocupación. El modelo se definió de la siguiente manera: $$y_t = \alpha + x_t \beta + \mu_t$$ $$\mu_t = \sum_{i=1}^{m} \rho_i \mu_{t-i} + \sum_{j=1}^{n} \theta_j \epsilon_{t-j} + \epsilon_i$$
 
@@ -237,6 +243,13 @@ dónde $\tau_s$ es el estado de intercepción; $x_t$ es un vector de variables e
 donde $q_{ij}$ es el parámetro transformado definido como $$q_{ij}=-log(\frac{p_{ij}}{p_{ik}})$$
 
 Para empezar con la estimación del modelo se utiliza el algorimto EM \emph{expectation-maximization} el cuál arroja el valor inicial. Posteriormente se predicen las probabilidades de cada uno de los estados y actualizando la verosimilitud en cada paso. Un paso clave de esta estimación es el cálculo de la verosimilitud de los estados latentes la cual es obtenida mediante la iteración de la verosimilitud condicional.
+
+Para medir el desempeño de ambos modelos se utilizó la medida \emph{MAPE} $$MAPE=\frac{1}{n}\sum_{t=1}^{n}|\frac{y_t-h_t}{y_t}|$$ 
+
+Los resultados arrojan que el modelo ARIMAX tuvo un mejor desempeño con un \emph{MAPE} del 3.804\% comparado con el 4.714\% obtenido por el modelo MS DR
+
+Se puede concluír que los modelos basados en big data presentan una alternativa para poder generar pronósticos de ocupación y demanda utilizando información exógena a los hoteles, sin embargo se debe tomar en cuenta que el costo asociado a la configuración y puesta en marcha de este tipo de modelos es alto ya que se debe de contar con una infraestructura que pueda soportar el manejo de grandes volúmenes de información.
+
 
 \subsection*{Modelos de optimizacion de ingresos}
 \subsection*{Resumen}

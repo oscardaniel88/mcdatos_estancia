@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017) (preloaded format=pdflatex 2017.10.5)  8 NOV 2018 13:30
+This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017) (preloaded format=pdflatex 2017.10.5)  8 NOV 2018 18:39
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -682,10 +682,10 @@ LaTeX Info: Redefining \% on input line 211.
 LaTeX Info: Redefining \. on input line 225.
 LaTeX Info: Redefining \% on input line 225.
  [19]
-LaTeX Info: Redefining \. on input line 237.
-LaTeX Info: Redefining \% on input line 237.
+LaTeX Info: Redefining \. on input line 241.
+LaTeX Info: Redefining \% on input line 241.
  [20]
-Overfull \hbox (3.52122pt too wide) in paragraph at lines 239--240
+Overfull \hbox (3.52122pt too wide) in paragraph at lines 245--246
 []\OT1/cmr/m/n/10 Para em-pe-zar con la es-ti-ma-ci^^Son del mo-de-lo se uti-li
 -za el al-go-rim-to EM \OT1/cmr/m/it/10 expectation-
  []
@@ -741,7 +741,7 @@ r/local/texlive/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr
 /local/texlive/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb></usr/l
 ocal/texlive/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmti10.pfb></usr/lo
 cal/texlive/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt10.pfb>
-Output written on main.pdf (30 pages, 932309 bytes).
+Output written on main.pdf (30 pages, 933445 bytes).
 PDF statistics:
  166 PDF objects out of 1000 (max. 8388607)
  115 compressed objects within 2 object streams
