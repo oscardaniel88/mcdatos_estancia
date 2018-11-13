@@ -48,40 +48,45 @@ Athanasius Zakharya, Amir F. Atiyab, Hisham El-Shishinyc and Neamat E. Gayara
 \bibitem{Lee1990}
 Lee, A.
 \newblock {\em Airline Reservations Forecasting}
-\newblock Erewhon, NC: Prentice-Hall 1990
+\newblock Erewhon, NC: Prentice-Hall 1990.
 
 \bibitem{FlidesOrdes}
 Flides, R, Ord, K.
 \newblock {\em Forecasting competitions: their role in improving forecasting practice and research}
-\newblock Oxford: Blackwell 2002
+\newblock Oxford: Blackwell 2002.
 
 \bibitem{TseTung}
 Ming Tse, Tony S., Tung Poon Yiu
 \newblock {\em Analyzing the use of an advance booking curve in forecasting hotel reservations}
-\newblock Taylor and Francis 2015
+\newblock Taylor and Francis 2015.
 
 \bibitem{Wickham1995}
 Wickham, R. R.
 \newblock {\em Evaluation of forecasting techniques for short term demand of air transportation}
-\newblock MIT Thesis: Fligt Transportation Lab 1995
+\newblock MIT Thesis: Fligt Transportation Lab 1995.
 
 \bibitem{Weatherford1998}
 Weatherford, L. R.
 \newblock {\em Forecasting issues in revenue management}
-\newblock Springs INFORMS Conference 1998
+\newblock Springs INFORMS Conference 1998.
 
 \bibitem{Caicedo2016}
 Caicedo-Torres, W., Payares, F.
 \newblock {\em A machine learning model for occupancy rates and demand forecasting in the hospitality industry}
-\newblock{Universidad Tecnologica de Bolivar 2016}
+\newblock Universidad Tecnologica de Bolivar 2016.
 
 \bibitem{TierneyPan2012}
 Tierney, Heather L.R, Bing Pan
 \newblock {\em A poisson regresion examination of the relationship between website traffic and search engine queries}
-\newblock {Netnomics 2012}
+\newblock Netnomics 2012.
 
 \bibitem{BigData}
 Pan,B., Yang, Y
 \newblock {\em Forecasting destination weekly hotel occupancy with big data}
-\newblock {Journal of Travel Research, 2017}
+\newblock Journal of Travel Research 2017.
+
+\bibitem{PriceMult}
+Aziz, et al.
+\newblock {\em Dynamic Pricing for Hotel Revenue Management Using Price Multipliers}
+\newblock Faculty of Computers and Information, Cairo University 2011.
 \end{thebibliography}

@@ -257,8 +257,38 @@ Recordemos que un systema de gestión de ingresos para un hotel se puede clasifi
 
 En esta sección se presentaran los módelos utilizados en trabajos anteriores para poder asignar precios dinámicos a un inventario con el fin de maximizar los ingresos de una propiedad.
 
-\subsection*{Modelo de precios escalonados}
-Ver Dynamic Pricing PDF
+\subsection*{Modelo de multiplicadores de precio}
+
+El módelo de multiplicadores de precio propone un enfoque sencillo para resolver el problema de maximización de ingresos de una propiedad.
+
+Este modelo propone tener un precio base de referencia (dependiendo de la temporalidad del hotel) y modificarlo utlilizando un conjunto definido de multiplicadores (cuyo valor se encuentra alrededor del 1) y que son infulenciados por variables sensibles a la operación de la propiedad, por ejemplo el \% ocupación, el tiempo de antelación de una reserva, etc., de tal forma que cada multiplicador ajusta el precio por encima o por debajo del precio de referencia. 
+
+El objetivo de este modelo es maximizar los ingresos de la propiedad tomando en cuenta la demanda y la elasticidad del precio. Este modelo tiene la ventaja de enmarcar el pecio en términos de \emph{primas} o \emph{descuentos} en un tiempo variable o sobre un precio de referencia temporal definido por el staff de la propiedad y al ser un modelo muy sencillo de entender permite que el gerente de la propiedad transimita un poco de su experiencia al modelo al ser el quien define el precio de referencia para cada una de las temporadas del hotel.
+
+En trabajos previos se pronponen las siguientes variables que influencían le efecto en los precios:
+\begin{itemize}
+  \item Tiempo de antelación de una reserva
+  \item Habitaciones disponibles al momento de crear una reservación
+  \item Tiempo de estancia de una reserva (LoS)
+  \item Número de cuartos reservados (tamaño de grupo)
+\end{itemize}
+
+A partir de estas variables de influencia se construyen multiplicadores (1 multiplicador por cada variable). Para simplificar la formulación del problema, los multiplicadores usualmente sonn formulados como funciones lineales de las variables de infulencia. Las funciones lineales son elegidas tomando en cuenta una relación lógica entre las variables de influencia y el comportamiento de la propiedad, por ejemplo, si al momento de hacer una reserva hay una alta disponibilidad de habitaciones entonces se esperaría que el multiplicador del precio lo haga bajar con la finalidad de incrementar la demanda de la propiedad.
+
+El modelo recomendará un precio tomando en cuenta el precio de referencia dado por el gerente de la propiedad y los multiplicadores utilizando la siguiente fórmula:
+
+$$Precio_{final} = P_{Referencia} * M_{tiempo} * M_{capacidad} * M_{LoS} * M_{Grupo}$$
+
+Como se puede observar, este modelo es sencillo, sin embargo tiene algunas limitantes:
+\begin{itemize}
+  \item Las funciones lineales de los multiplicadores deberán ser afinadas continuamente
+  \item Todo el modelo depende de la elecciòn de un precio inicial dado
+  \item Se debe estimar la elasticidad del precio, esta estimación tendrá un error
+\end{itemize}
+
+Sin embargo, una gran ventaja de este modelo es la forma transparente en la que opera, permitiendo que el equipo administrativo de las propiedades se familiarice con estos sistemas.
+
+
 
 \subsection*{Modelo de maximización sujeto a restricciones}
 Ver Dynamic room pricing model for hotel revenue management systems pdf
