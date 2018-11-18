@@ -291,9 +291,46 @@ Sin embargo, una gran ventaja de este modelo es la forma transparente en la que 
 
 
 \subsection*{Modelo de maximización sujeto a restricciones}
-Ver Dynamic room pricing model for hotel revenue management systems pdf
 
-\subsection*{Modelo de optimización de redes}
+Un hotel tipicamente designa un conjunto definido de categorías de precio, posteriormente asigna un inventario a cada categoria, de tal forma que las reservaciones que se hacen con un mayor tiempo de anticipación reciben un precio mas bajo y conforme el inventario se va agotando se reservan las habitaciones con una categoría de precio mayor. El problema con este enfoque radica en que si se asigna un gran número de cuartos a la categoría de precios mas baja, se tendrá un gran número de reservaciones pero a costo de una pérdida en el ingreso generado, y por el contrario, si se asigna un mayor número a la categoría con el precio mas alto se dejaran mas cuartos sin vender.
+
+Este tipo de modelos permite al equipo que administra la propiedad encontrar el precio óptimo para cada categoría en cada noche de tal forma que el ingreso se maximice. Esto conlleva a un sofisticado problema de optimización que tome en cuenta las reservaciones futuras y su probabilidad de ocurrencia. Los precios son dinámicos y cambian día con día. Hay que mencionar que para que este modelo sea certero depende de una buena estimación de la demanda futura de los cuartos.
+
+Para formular el modelo, se define una estancia por los parámetros \emph{(a,L)}, dónde \emph{a} es la primera noche de estancia y \emph{L} es la duración de la estancia, de tal forma que el modelo queda definido como sigue:
+
+Maximizar $$\sum_{l=1}^{Max\ l} P_l O_l$$
+
+Sujeto a $$O_l \leq C_l\  \forall l$$ $$P_l \geq 0 \ \forall l$$
+
+Dónde las variables de decisión del modelo son:
+
+$P_l$: Precio para la noche $l\ \forall l$
+
+Y las variables auxiliares:
+
+$X_{a,L}$: El numero de cuartos asignado a una estancia del tipo $(a,L)$ definido como: $$X_{a,L} = d_{a,L}(\frac{\sum_{l=a}^{a+L-1} P_l}{L*P_{nominal}})^e$$
+
+$O_l$: Es el número de habitaciones reservadas para una noche dada y está definida como sigue $$O_l = \sum_{a,L\in N_l} X_{a,L}$$
+
+Y las entradas del modelo:
+
+$P_{nominal}$: Precio nominal de la propiedad (usualmente la tarifa promedio histórica)
+
+$e$: Elasticidad entre precio y demanda
+
+$d_{a,L}$: La demanda de la estancias tipo $a,L$
+
+$N_l$: El número de estancias que utilizan la noche $l$
+
+$C_l$: El número de cuartos disponibles en el hotel
+
+La salida de este modelo serán los precios optimos para cada noche. 
+
+Es importante notar que este modelo conlleva un sofisticado problema de optimización que requiere un poder de cómputo considerable para poder ser resuelto y además se debe iterar sobre distintos valores para el parámetro de elasticidad para encontrar el valor que garantice una solución factible del problema.
+
+
+
+ \subsection*{Modelo de optimización de redes}
 Ver rm-hotel pdfs
 
 
