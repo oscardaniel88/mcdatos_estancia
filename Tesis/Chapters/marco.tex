@@ -331,9 +331,57 @@ Es importante notar que este modelo conlleva un sofisticado problema de optimiza
 
 
  \subsection*{Modelo de optimización de redes}
-Ver rm-hotel pdfs
 
+El modelo de optimización de redes es una formula de programación estocástica que permite capturar la aleatoreidad de la demanda desconocida, por ejemplo, el número de llegadas a la propiedad para cierto día o la longitud de estancia para una reserva dada)
 
+Antes de entrar al detalle de este tipo de modelos debemos de tomar en cuenta la siguiente notación:
 
+\begin{itemize}
+  \item $x_{i,j}$ es el número de reservaciones confirmadas para hacer \emph{check-in} en el día $i$ y para hacer \emph{check-out} en el día $j$, dónde $0\leq i \leq j \leq T$ . $i={0,1,2,...,T-1}$ es el índice de tiempo para \emph{check-in} y $j={1,2,3,....,T}$ es el índice para \emph{check-out}
+  \item $C$ es la capacidad total del hotel (Cuartos disponibles).
+  \item $R_{i,j}$ es el ingreso ganado por la reservación con \emph{check-in} en el día $i$ y \emph{check-out} en el día $j$.
+  \item $U_{i,j}$ es la demanda de reseravs con \emph{check-in} del día $i$ y \emph{check-out} el día $j$.
+\end{itemize}
+
+Nótese que:
+
+\begin{itemize}
+  \item $\sum_{j=i+1}^{T} x_{i,j}$ es el número de \emph{check-ins} en el día $i$.
+  \item $\sum_{i=0}^{j-1} x_{i,j}$ es el número de check-outs en el día j.
+\end{itemize}
+
+Se asume que no hay clientes con estancias en días anteriores al día 0 y que todos los clientes salen del hotel antes, o en el día $T$. También se asume que cualquier cliente debe permanecer en el hotel por lo menos una noche.
+
+\subsubsection*{Formulación de red estocástica}
+
+Los \emph{check-ins} y \emph{check-outs} pueen ser modelados como flujos de entrada y de salida de los nodos en una red. En la figura 2.1 se considera un día particular, el día $k$ ($k={1,2,...,(T-1)}$).
+
+\begin{figure}
+  \includegraphics{Figure1.PNG}
+  \caption{Flujo de check-ins y check-outs para el día k.}
+  \label{fig:Figure2.1}
+\end{figure}
+
+La siguiente ecuaci{on modela la ocupaci{on del hotel para el día $k$ con $k = 1,2,3,...,(T-1)$:$$\sum_{i=0}^{k-1}\sum_{j=k+1}^{T} x_{i,j} + \sum_{j=k+1}^{T} x_{k,j} - \sum_{i=0}^{k-1} x_{i,k}$$
+
+Debemos considerar también que el hotel tiene una capacidad limitada, por lo tanto se tienen las siguientes restricciones para el día $k$:
+$$\sum_{i=0}^{k-1}\sum_{j=k+1}^{T} x_{i,j} + \sum_{j=k+1}^{T} x_{k,j} - \sum_{i=0}^{k-1} x_{i,k} \leq C$$
+
+Para el día 0, se asume que no hay \emph{check-outs} ni estancias que crucen a ese día, de tal forma que se tiene la siguiente ecuación para el día 0: 
+$$\sum_{j=1}^{T} x_{0,j} \leq C$$
+
+El modelo de optimización se define como sigue:
+
+Maximizar: $$\sum_{i=0}^{T-1}\sum_{j=i+1}^{T} R_{i,j}x_{i,j}$$
+
+Sujeto a: $$\sum_{i=0}^{k-1}\sum_{j=k+1}^{T} x_{i,j} + \sum_{j=k+1}^{T} x_{k,j} - \sum_{i=0}^{k-1} x_{i,k} \leq C$$
+$$\sum_{j=1}^{T} x_{0,j} \leq C$$
+$$x_{i,j} \leq U_{i,j}$$
+$$x_{i,j} \geq 0$$
+$$\forall 0\leq i < j \leq T$$
+
+Si bien este problema pareciera ser un problema de integración lineal, se debe considerar que los parámetros $U_{i,j}$ son desconocidos al inicio del periodo de planeación. Mas aún, los ingresos pudieran no ser fijos como se quisiera ya que recordemos que se pueden fijar distintos precios para la misma habitación, lo que puede resultar en una variación de la demanda del producto. Una manera de resolver este problema pudiera ser reemplazando los parámetros por su mejor estimador puntual, en primera instancia utilizando la esperanza de $E(U_{i,j})$.
+
+Muchas veces utilizando este método se pueden obtener resultados razonables, sin embargo esto no siempre garantiza una solución factible y para solucionar esto se han utilizado otras herramientas como la \emph{Optimización Robusta} que es un enfoque proactivo usado para resolver problemas estocásticos.
 
 \subsection*{Resumen}

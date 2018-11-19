@@ -89,4 +89,16 @@ Pan,B., Yang, Y
 Aziz, et al.
 \newblock {\em Dynamic Pricing for Hotel Revenue Management Using Price Multipliers}
 \newblock Faculty of Computers and Information, Cairo University 2011.
+
+\bibitem{Reaside2000}
+Reaside,R., Windle D.
+\newblock {\em Quantitive aspects of yield management}
+\newblock London: Cassell 2000.
+
+\bibitem{rmHotel}
+Kin Keng Lai, Wan Lung Ng
+\newblock {\em A stochastic approach to hotel revenue optimization}
+\newblock University of Hong Kong 2003.
+
+
 \end{thebibliography}
