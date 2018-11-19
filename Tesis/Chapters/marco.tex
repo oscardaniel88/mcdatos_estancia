@@ -385,3 +385,22 @@ Si bien este problema pareciera ser un problema de integración lineal, se debe 
 Muchas veces utilizando este método se pueden obtener resultados razonables, sin embargo esto no siempre garantiza una solución factible y para solucionar esto se han utilizado otras herramientas como la \emph{Optimización Robusta} que es un enfoque proactivo usado para resolver problemas estocásticos.
 
 \subsection*{Resumen}
+
+Los modelos de optimización de ingresos han tenido un gran avance en la industria de las aerolíneas, sin embargo, aún hay un trecho muy largo por recorrer para poder aplicarlos con el mismo nível de maduréz en la industria de la hotelería.
+
+Como se revisó anteriormente, existen muchas propuestas de enfoques diferentes para la implementación del modelo de optimización de ingresos en hoteles y la elección de alguno de ellos dependerá de los siguientes factores:
+
+\begin{itemize}
+  \item Habilidades estadísticas del equipo administrativo de la propiedad
+  \item Nível de desagregación de datos con los que cuenta la propiedad
+  \item Capacidad de cómputo con el que la propiedad cuenta para el cálculo del modelo
+  \item Nível de automatización de procesos dentro de la propiedad, es decir, si cuenta con la capacidad de poder hacer cambios de precios e inventarios en línea
+\end{itemize}
+
+Si bien, en el apartado anterior se presentaron enfoques de vanguardia (modelos de inteligencia artificial y modelos de big data) que toman en cuenta toda la información generada por los sistemas propios del hotel y fuentes externas para ser procesado por un modelo de \emph{caja negra} para obtener un resultado, este tipo de modelos no permiten que el equipo que lo opera comprendan plenamente su funcionamiento, lo cual censura las aportaciones que el equipo pueda hacer para enriquecerlo, es por ello que para fines de este trabajo de investigación utilizaremos un modelo convencional compuesto por dos módulos: un módelo de regresión poisson para el cálculo del pronóstico de la demanda, y un módelo de maximización sujeto a restricciones para el cálculo de precios óptimos por día de reservación.
+
+El primer módulo pronósticará la demanda utilizando datos para un hotel de negocios ubicado en una de las avenidas más importantes de la Ciudad de México. El set de datos con el que se contó durante esta investigación contenía el detalle de cada una de las reservaciones realizadas para esta propiedad desde 2014 hasta el 11 de agosto de 2018.
+
+El segundo módulo asignará los precios óptimos para un tipo de habitación estándar tomando en cuenta los días de antelación con los que se reserva una habitación en la propiedad, de tal forma que al finalizar el proceso se cuente con una matriz de días de antelación vs precio óptimo.
+
+En los apartados posteriores se explicará a detalle la construcción del módelo propuesto y los resultados obtenidos.
