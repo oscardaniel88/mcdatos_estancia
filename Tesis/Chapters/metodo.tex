@@ -2,3 +2,21 @@
 \label{ch:metodologia}
 
 En el presente capítulo se presentará la metodología utilizada para la creación de un módulo propuesto para la predicción de demanda y maximización de ingresos en hoteles. La metodología guiará la estructura de este trabajo con el fin de hacer de él una contribución científica. La presente investigación se puede dividir en dos partes. La primera, consistió en el desarrollo un modelo capaz de predecir la demanda y ofrecer recomendaciones de precios para maximizar el ingreso diario de una propiedad. La segunda parte consistió en probar dicho modelo y discutir los resultados obtenidos con la finalidad de abrir nuevas líneas de investigación.
+
+\section*{Diseño del modelo}
+
+Para poder construír un modelo de predicción de demanda y maximización de ingresos para los hoteles que fueron sujetos al estudio, se siguieron una serie de pasos descritos a continuación:
+
+\subsubsection*{Entendimiento del negocio}
+
+El primer paso durante la construcción del modelo fue el entendimiento del negocio ya que para poder interpretar los datos es necesario comprender el negocio que está implicito en los datos. Durante esta etapa se trabajó con el equipo de gestión comercial de las propiedades para entender qué datos son analizados durante el proceso de toma de decisiones, de dónde son obtenidos estos datos y qué variables son de mayor interés para el negocio.
+
+\subsubsection*{Identificación de las fuentes de datos}
+
+Una vez comprendido el negocio y detectadas las variables de interés durante el proceso de la toma de decisiones, se identificaron las fuentes de datos, las cuales son nutridas por dos principales sistemas dentro de las propiedades: la central de reservaciones y el sistema de gestión de la propiedad. El primero es el sistema que sirve para dar servicio a todos los huéspedes que buscan una habitación mediante los canales de reservación disponibles (sitio web, call center, aplicaciones móviles, correos electrónicos, etc) y el segundo es que gestiona la propiedad y da servicio al huésped desde que llega hasta que se retira de la propiedad. Estos sistemas contienen toda la información del proceso desde que se encuentra en estatus de reservación hasta que llega a un estatus de \emph{check out}.
+
+\subsubsection*{Análisis exploratorio de datos}
+
+Luego de haber identificado las principales fuentes de datos, se diseñaron los procesos de extracción de información necesarios para obtener los datos que serían utilizados para la construcción del modelo. Para poder entender los datos, se ejecutó un análisis exploratorio de datos, en dónde se pudo observar el comportamiento de las variables de interés, su distribución probabilística, se detectaron temporalidades en los datos, nível de limpieza de datos y datos atípicos que pudieran generar problemas al momento de la implementación del modelo final.
+
+\subsubsection*{Construcción del modelo}
