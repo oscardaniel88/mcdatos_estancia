@@ -151,7 +151,40 @@ Como se puede observar en las gráficas presentadas anteriormente, esta propieda
 A continuación se presenta una gráfica de níveles de ocupación por día de la semana:
 
 \definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}
-\includegraphics[width=\maxwidth]{Figures/Ocupacion_Dia_Semana-1} 
+\includegraphics[width=\maxwidth]{Figures/Ocupacion_Dia_Semana-1}
+
+
+\subsection*{Tarifa Promedio de la propiedad}
+
+El tercer conjunto de datos utilizado contiene los valores de la tarifa promedio \emph{ADR: Average Daily Rate} en el tiempo. Estos datos fueron obtenidos directamente del PMS y es el resultado de sumar los ingresos generados por las habitaciones divididos por el número total de cuartos vendidos. 
+
+A continuación se presenta la línea de tiempo con los valores para la tarifa promedio a lo largo del tiempo.
+
+\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}
+\includegraphics[width=\maxwidth]{figures/IndicadoresTarifaPromedio-1} 
+
+De esta última gráfica se puede observar que los precios siguen una tendencia positiva con respecto al tiempo, a medida que pasa el tiempo, los precios incrementan, sin embargo podemos notar también que a medida que pasa el tiempo los precios varían más. Si contrastamos la información presentada en la gráfica de la tarifa promedo vs el tiempo y la presentada en la gráfica de ocupación vs el tiempo podemos ver que aunque los precios han aumentado en esta propiedad, las tendencias en los níveles de ocupación permanecen constantes.
+
+\subsection*{Precios Públicos en el tiempo}
+
+Como se mencionó anteriormente, una propiedad típicamente tiene diferentes precios disponibles para cada uno de los segmentos de mercado a los que atiende. La tarifa que se ofrece al público que llega al hotel sin una reservación previa se le conoce como \emph{tarifa pública} y generalmente es la tarifa con el precio mas alto de la cúal desprenden todas las demás tarifas, es decir, el conjunto de tarifas disponible en el hotel serán descuentos realizados sobre la \emph{tarifa pública}.
+
+El tercer data set con el se trabajo el desarrollo del modelo contiene la información de las tarifas públicas para el hotel en cuestión y su competencia a lo largo del tiempo. Esto nos ayudará a conocer el precio del producto ofrecido en el mercado objetivo, de tal forma que los precios arrojados por el modelo se encuentren siempre dentro del mercado.
+
+Los precios de la competencia fueron obtenidos de las páginas electrónicas de las agencias en línea, booking.com y expedia.com principalmente.
+
+A continuación se presentan las líneas de tiempo con los precios públicos para el conjunto de propiedades.
+
+\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}
+\includegraphics[width=\maxwidth]{figures/PreciosGraf-1} 
+
+En la gráfica anterior se puede observar que hay algunos datos atípicos ya que es poco probable encontrar habitaciones en este segmento de hoteles por arriba de los \$3,000 MXN. Para confirmar esto se realizó una gráfica de caja y bigotes (boxplot) en la cuál se puede observar a primera vista los datos atípicos contenidos en el \emph{data set}.
+
+\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}
+\includegraphics[width=\maxwidth]{figures/PreciosBoxPlot-1} 
+
+
+
 
 
 

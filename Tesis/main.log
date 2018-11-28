@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017) (preloaded format=pdflatex 2017.10.5)  26 NOV 2018 19:47
+This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017) (preloaded format=pdflatex 2017.10.5)  27 NOV 2018 19:03
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1171,21 +1171,56 @@ File: Figures/Ocupacion_Dia_Semana-1.pdf Graphic file (type pdf)
 Package pdftex.def Info: Figures/Ocupacion_Dia_Semana-1.pdf used on input line 
 154.
 (pdftex.def)             Requested size: 345.0pt x 114.99918pt.
+LaTeX Info: Redefining \. on input line 157.
+LaTeX Info: Redefining \% on input line 157.
+ [38 <./figures/HabitacionesOcupadas-1.pdf> <./Figures/Ocupacion-1.pdf>]
+
+Package xcolor Warning: Incompatible color definition on input line 163.
+
+<figures/IndicadoresTarifaPromedio-1.pdf, id=194, 1011.78pt x 361.35pt>
+File: figures/IndicadoresTarifaPromedio-1.pdf Graphic file (type pdf)
+
+<use figures/IndicadoresTarifaPromedio-1.pdf>
+Package pdftex.def Info: figures/IndicadoresTarifaPromedio-1.pdf used on input 
+line 164.
+(pdftex.def)             Requested size: 345.0pt x 123.21576pt.
+LaTeX Info: Redefining \. on input line 171.
+LaTeX Info: Redefining \% on input line 171.
+ [39 <./Figures/Ocupacion_Dia_Semana-1.pdf> <./figures/IndicadoresTarifaPromedi
+o-1.pdf>]
+
+Package xcolor Warning: Incompatible color definition on input line 178.
+
+<figures/PreciosGraf-1.pdf, id=211, 1011.78pt x 361.35pt>
+File: figures/PreciosGraf-1.pdf Graphic file (type pdf)
+
+<use figures/PreciosGraf-1.pdf>
+Package pdftex.def Info: figures/PreciosGraf-1.pdf used on input line 179.
+(pdftex.def)             Requested size: 345.0pt x 123.21576pt.
+
+
+Package xcolor Warning: Incompatible color definition on input line 183.
+
+<figures/PreciosBoxPlot-1.pdf, id=212, 1445.4pt x 1084.05pt>
+File: figures/PreciosBoxPlot-1.pdf Graphic file (type pdf)
+
+<use figures/PreciosBoxPlot-1.pdf>
+Package pdftex.def Info: figures/PreciosBoxPlot-1.pdf used on input line 184.
+(pdftex.def)             Requested size: 345.0pt x 258.73822pt.
 )
 LaTeX Info: Redefining \. on input line 145.
 LaTeX Info: Redefining \% on input line 145.
- [38 <./figures/HabitacionesOcupadas-1.pdf> <./Figures/Ocupacion-1.pdf>]
+ [40 <./figures/PreciosGraf-1.pdf>]
 LaTeX Info: Redefining \. on input line 145.
 LaTeX Info: Redefining \% on input line 145.
- [39 <./Figures/Ocupacion_Dia_Semana-1.pdf>]
-(./main.bbl [40
+ [41 <./figures/PreciosBoxPlot-1.pdf>] (./main.bbl [42
 
 
 
 ])
 LaTeX Info: Redefining \. on input line 179.
 LaTeX Info: Redefining \% on input line 179.
- [41] (./main.aux
+ [43] (./main.aux
 LaTeX Info: Redefining \. on input line 6.
 LaTeX Info: Redefining \% on input line 6.
 LaTeX Info: Redefining \. on input line 10.
@@ -1196,8 +1231,9 @@ LaTeX Info: Redefining \. on input line 22.
 LaTeX Info: Redefining \% on input line 22.
 LaTeX Info: Redefining \. on input line 26.
 LaTeX Info: Redefining \% on input line 26.
- (./Chapters/introduction.aux)
-(./Chapters/marco.aux) (./Chapters/metodo.aux) (./Chapters/modelo.aux)) )
+
+(./Chapters/introduction.aux) (./Chapters/marco.aux) (./Chapters/metodo.aux)
+(./Chapters/modelo.aux)) )
 (\end occurred inside a group at level 3)
 
 ### simple group (level 3) entered at line 365 ({)
@@ -1205,10 +1241,10 @@ LaTeX Info: Redefining \% on input line 26.
 ### simple group (level 1) entered at line 60 ({)
 ### bottom level 
 Here is how much of TeX's memory you used:
- 7453 strings out of 492995
- 102121 string characters out of 6132704
+ 7468 strings out of 492995
+ 102614 string characters out of 6132704
  224150 words of memory out of 5000000
- 10760 multiletter control sequences out of 15000+600000
+ 10772 multiletter control sequences out of 15000+600000
  55551 words of font info for 39 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  41i,17n,45p,1222b,610s stack positions out of 5000i,500n,10000p,200000b,80000s
@@ -1232,10 +1268,10 @@ l/texlive/2017/texmf-dist/fonts/type1/public/lm/lmr7.pfb></usr/local/texlive/20
 ist/fonts/type1/public/lm/lmsy10.pfb></usr/local/texlive/2017/texmf-dist/fonts/
 type1/public/lm/lmsy7.pfb></usr/local/texlive/2017/texmf-dist/fonts/type1/publi
 c/lm/lmtt10.pfb>
-Output written on main.pdf (48 pages, 1089747 bytes).
+Output written on main.pdf (50 pages, 1147708 bytes).
 PDF statistics:
- 267 PDF objects out of 1000 (max. 8388607)
- 186 compressed objects within 2 object streams
+ 296 PDF objects out of 1000 (max. 8388607)
+ 206 compressed objects within 3 object streams
  0 named destinations out of 1000 (max. 500000)
- 36 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 51 words of extra memory for PDF output out of 10000 (max. 10000000)
 
