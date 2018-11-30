@@ -197,6 +197,28 @@ En el siguiente apartado detallaremos cómo se utilizaron los datos presentados 
 
 \section*{Modelo de Predicción de Demanda}
 
+El modelo de predicción de demanda toma como entrada los datos de las curvas de \emph{pickup} para el hotel para cada día del periodo estudiado. Estas curvas describen la velocidad con la que una propiedad vende su inventario para un día en específico de tal forma que el modelo propuesto pueda ajustar una curva que resuma el comportamiento de la propiedad en un día similar al estudiado y de esta forma se pueda generar unna predicción de los cuartos vendidos en la propiedad y los días de antelación con los que serán vendidos.
+
+A continuación se muestra un resumen del conjunto de datos que alimentan al modelo de predicción de demanda
+
+\begin{verbatim}
+ prop_code date_create    date_in nights antelacion
+1      CEINS  2017-03-25 2017-03-26      1          1
+2      CEINS  2016-12-26 2017-01-01      3          6
+3      CEINS  2016-12-26 2017-01-02      3          7
+4      CEINS  2016-12-26 2017-01-05      1         10
+5      CEINS  2016-12-26 2017-01-03      1          8
+6      CEINS  2016-12-26 2017-01-04      1          9
+7      CEINS  2016-12-26 2017-01-05      1         10
+8      CEINS  2016-12-26 2017-01-01      1          6
+9      CEINS  2016-12-26 2017-01-02      1          7
+10     CEINS  2016-12-26 2017-01-03      1          8
+11     CEINS  2016-12-26 2017-01-04      1          9
+12     CEINS  2016-12-27 2017-01-02      1          6
+13     CEINS  2016-12-27 2017-01-03      1          7
+14     CEINS  2016-12-27 2017-01-03      1          7
+15     CEINS  2016-12-27 2017-01-04      1          8
+\end{verbatim}
 
 
 
