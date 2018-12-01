@@ -199,7 +199,9 @@ En el siguiente apartado detallaremos cómo se utilizaron los datos presentados 
 
 El modelo de predicción de demanda toma como entrada los datos de las curvas de \emph{pickup} para el hotel para cada día del periodo estudiado. Estas curvas describen la velocidad con la que una propiedad vende su inventario para un día en específico de tal forma que el modelo propuesto pueda ajustar una curva que resuma el comportamiento de la propiedad en un día similar al estudiado y de esta forma se pueda generar unna predicción de los cuartos vendidos en la propiedad y los días de antelación con los que serán vendidos.
 
-A continuación se muestra un resumen del conjunto de datos que alimentan al modelo de predicción de demanda
+Este modelo está compuesto por dos módulos principales. El primero es una regresión \emph{Poisson} definida como $log(E(Y|X)) = \beta_0 + \beta_1X$, que se alimentará con las curvas de \emph{pickup} que describen el comportamiento del hotel. Cómo resultado de este módulo obtendremos un parámetro $\beta_0$ y un parámetro $\beta_1$ que describen la curva que mejor ajusta al \emph{pickup} del hotel.
+
+A continuación se muestra un resumen del conjunto de datos que alimentan al primer módulo del modelo de predicción de demanda:
 
 \begin{verbatim}
  prop_code date_create    date_in nights antelacion
@@ -219,6 +221,21 @@ A continuación se muestra un resumen del conjunto de datos que alimentan al mod
 14     CEINS  2016-12-27 2017-01-03      1          7
 15     CEINS  2016-12-27 2017-01-04      1          8
 \end{verbatim}
+
+Una vez obtenidos los parámetros $\beta_0$ y $\beta_1$ de la regresión \emph{Poisson}, se procede a generar predictores potenciales de la demanda a partir de los datos con los que contamos para este análisis.
+
+Los predictores definidos son:
+
+\begin{itemize}
+  \item diaSem: Definido como factores que van de Lunes a Domingo
+  \item Mes: Definido como factores que van de Enero a Diciembre
+  \item Eventos: 1 si la plaza cuenta con algun evento social, deportivo, o de entretenimiento en esa fecha, 0 en caso contrario
+  \item PT: Definido como la tarifa promedio de la propiedad dividida entre la tarifa promedio de la competencia
+  \item TDC: El valor del peso frente al dólar para cada día
+  \item $beta_0$: El parámetro $\beta_0$ obtenido de la regresión \emph{Poisson}
+  \item $beta_1$: El parámetro $\beta_1$ obtenido de la regresión \emph{Poisson}
+\end{itemize}
+
 
 
 
