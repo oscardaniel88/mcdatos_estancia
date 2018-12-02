@@ -236,7 +236,95 @@ Los predictores definidos son:
   \item $beta_1$: El parámetro $\beta_1$ obtenido de la regresión \emph{Poisson}
 \end{itemize}
 
+A continuación podemos observar la matriz de correlaciones de los predictores propuestos vs la ocupación de la propiedad (esto debe cambiar, se debe correlacionar los predictores vs la $\beta_0$ y $\beta_1$)
+
+\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}
+\includegraphics[width=\maxwidth]{figures/Correlacion-1} 
 
 
+Con estos predictores definidos se procede a alimentar una regresión lineal que calculará nuevos parámetros $\beta_{0*}$ y $\beta_{1*}$. A partir de estos nuevos parámetros se construyen las curvas de \emph{pickup} que ayuden a predecir la demanda de la propiedad en días futuros.
+
+Una vez concluído el cálculo, se genera una matriz en la cuál se plasma la estimación del número de \emph{cuartos} que se venderán en una ventana futura:
+
+\begin{verbatim}
+          dia cn_predic
+       <date>     <int>
+1  2018-06-01        92
+2  2018-06-02        78
+3  2018-06-03        96
+4  2018-06-04        99
+5  2018-06-05       132
+6  2018-06-06       151
+7  2018-06-07       138
+8  2018-06-08        88
+9  2018-06-09        77
+10 2018-06-10       109
+\end{verbatim}
+
+Esta matriz será la entrada del modelo que recomendará los precios por habitación para maximizar los ingresos de la propiedad.
+
+
+\section*{Modelo de maximización de ingresos}
+
+Una vez pronósticado el nível de ocupación para cada una de las propiedades de la cadena, se alimentó un modelo de pricing dinámico que entrega recomendaciones de precios para la tarifa pública tomando en cuenta la demanda pronósticada para cierto día del año.
+
+Típicamente el gerente de la propiedad controla la cantidad de cuartos ofrecidos a diferentes precios, es decir, se asigna cierto número de cuartos a cada nível de tarifa de tal forma que cuando el inventario asignado al precio mas bajo se agota, se consume el inventario asignado al siguiente nivel de tarifa que será mayor al primer precio ofertado.
+
+A continuación se muestra un esquema donde se ejemplifica la idea mencionada anteriormente:
+
+\begin{figure}[!]
+  \includegraphics[width=\linewidth]{Figures/buckets.png}
+  \caption{Asignacion de inventario}
+  \label{fig:Asignacion de Inventario}
+\end{figure}
+
+Como se puede observar, tenemos un inventario de 32 cuartos divido en 4 níveles de precios:
+\begin{itemize}[noitemsep]
+\item 12 cuartos son ofrecidos a un valor de 110 USD
+\item 8 cuartos son ofrecidos a un valor de 120 USD
+\item 7 cuartos son ofrecidos a un valor de 130 USD
+\item 5 cuartos son ofrecidos a un valor de 155 USD
+\end{itemize}
+
+\subsection*{Formulación del modelo}
+
+Un problema de maximización de ingresos es básicamente un problema de optimización sujeto a restricciones, en este caso, se quiere maximizar la siguiente función objetivo:
+$$\sum_{n=0}^{n}p_i*o_i$$
+En donde i es la índice de la noche, $p_i$ es el precio del cuarto para la i-ésima noche y $o_i$ es la ocupación pronósticada (demanda) para la i-ésima noche al precio $p_i$. Asumimos también que la función de la ocupación (demanda) está sujeta al precio bajo la siguiente relación:
+$$o = o_{nominal} * (\frac{p}{p_{nominal}})^e$$
+Donde $o_{nominal}$ corresponde a la ocupación pronosticada para una noche dada tomando como base un precio nominal ($p_{nominal}$). Para este caso el $p_{nominal}$ es igual a la tarifa pública promediada a lo largo del año. El valor de $e$ (elasticidad) toma un valor = -2. En otras palabras, $p$ incrementa en un 10\% y la demanda decrece cerca de un 20\%.
+
+Existen las siguientes restricciones también: $$o_i \leq Capacidad\ \forall i$$ y $$p_i > 0\ \forall i$$
+
+En otras palabras, la ocupación no puede exceder a la capacidad del hotel y los precios deben ser siempre mayores a cero.
+
+Para poder hacer una asignación dinámica de los precios, evitando tener que correr el modelo conforme la información del hotel es actualizada, se partió el inventario en 4 níveles de disponiblidad (159,120,80 y 40 cuartos disponibles). Para cada nível de capacidad se resolvió la función objetivo para obtener 4 conjuntos de precios, de esta forma, el gerente de la propiedad puede saber a qué nível de precio debe subir la tarifa pública de la propiedad conforme las habitaciones disponibles decrecen.
+
+El modelo de maximización de ingresos arroja como resultado una matriz de día vs precio por niveles de inventario. A continuación se muestra un ejemplo:
+
+\begin{verbatim}
+##            day       40       80       120       159
+## 137 2018-05-17 1616.650 1374.773 1122.4972  975.1633
+## 77  2018-03-18 1701.113 1675.709 1368.2105 1188.6253
+## 52  2018-02-21 1666.334 1529.706 1248.9996 1085.0615
+## 16  2018-01-16 1647.043 1463.557 1194.9895 1038.1406
+## 24  2018-01-24 1702.217 1681.071 1372.5888 1192.4289
+## 93  2018-04-03 1703.315 1686.416 1376.9532 1196.2205
+## 78  2018-03-19 1621.479 1387.804 1133.1372  984.4067
+## 167 2018-06-16 1498.239 1138.420  929.5160  807.5119
+## 139 2018-05-19 1527.223 1184.905  967.4709  840.4850
+## 174 2018-06-23 1518.070 1169.615  954.9869  829.6396
+\end{verbatim}
+
+\subsection*{Consideraciones del modelo}
+
+Este modelo se formuló considerando los siguientes puntos:
+\begin{itemize}[noitemsep]
+  \item Se consideran estancias de una sola noche
+  \item No se toman en cuenta reservaciones para grupos ni cancelaciones
+  \item Asusmimos paridad de precios entre los canales, es decir, los precios no varían entre los canales de venta
+  \item Se considera solamente un tipo de habitación, el incremento por cambio de habitación es un monto fijo conocido como gap
+  \item Se asume un valor para la elasticidad (-2) que es un valor razonable para la industria
+\end{itemize}
 
 

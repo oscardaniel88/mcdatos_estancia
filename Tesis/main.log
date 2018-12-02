@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.17 (MiKTeX 2.9.6100 64-bit) (preloaded format=pdflatex 2016.12.10)  30 NOV 2018 22:10
+This is pdfTeX, Version 3.14159265-2.6-1.40.17 (MiKTeX 2.9.6100 64-bit) (preloaded format=pdflatex 2016.12.10)  2 DEC 2018 13:54
 entering extended mode
 **./main.tex
 (main.tex
@@ -1220,17 +1220,49 @@ LaTeX Info: Redefining \% on input line 198.
  [41 <./figures/PreciosBoxPlot-1.pdf> <./figures/TiposdeCambio-1.pdf>]
 LaTeX Info: Redefining \. on input line 223.
 LaTeX Info: Redefining \% on input line 223.
- [42])
+ [42]
+
+Package xcolor Warning: Incompatible color definition on input line 241.
+
+<figures/Correlacion-1.pdf, id=240, 1445.4pt x 1084.05pt>
+File: figures/Correlacion-1.pdf Graphic file (type pdf)
+
+<use figures/Correlacion-1.pdf>
+Package pdftex.def Info: figures/Correlacion-1.pdf used on input line 242.
+(pdftex.def)             Requested size: 345.0pt x 258.73822pt.
+LaTeX Info: Redefining \. on input line 245.
+LaTeX Info: Redefining \% on input line 245.
+ [43]
+LaTeX Info: Redefining \. on input line 262.
+LaTeX Info: Redefining \% on input line 262.
+ [44 <./figures/Correlacion-1.pdf>]
+
+LaTeX Warning: No positions in optional float specifier.
+               Default added (so using `!tbp') on input line 275.
+
+<Figures/buckets.png, id=253, 664.4825pt x 357.335pt>
+File: Figures/buckets.png Graphic file (type png)
+
+<use Figures/buckets.png>
+Package pdftex.def Info: Figures/buckets.png used on input line 276.
+(pdftex.def)             Requested size: 345.0pt x 185.53174pt.
+LaTeX Info: Redefining \. on input line 283.
+LaTeX Info: Redefining \% on input line 283.
+ [45 <./Figures/buckets.png>]
+LaTeX Info: Redefining \. on input line 302.
+LaTeX Info: Redefining \% on input line 302.
+ [46])
 LaTeX Info: Redefining \. on input line 145.
 LaTeX Info: Redefining \% on input line 145.
- [43] (main.bbl [44
+ [47] (main.bbl
+[48
 
 
 
 ])
 LaTeX Info: Redefining \. on input line 179.
 LaTeX Info: Redefining \% on input line 179.
- [45] (main.aux
+ [49] (main.aux
 LaTeX Info: Redefining \. on input line 6.
 LaTeX Info: Redefining \% on input line 6.
 LaTeX Info: Redefining \. on input line 10.
@@ -1241,9 +1273,8 @@ LaTeX Info: Redefining \. on input line 22.
 LaTeX Info: Redefining \% on input line 22.
 LaTeX Info: Redefining \. on input line 26.
 LaTeX Info: Redefining \% on input line 26.
-
-(Chapters/introduction.aux) (Chapters/marco.aux) (Chapters/metodo.aux)
-(Chapters/modelo.aux)) )
+ (Chapters/introduction.aux) (Chapters/marco.aux)
+(Chapters/metodo.aux) (Chapters/modelo.aux)) )
 (\end occurred inside a group at level 3)
 
 ### simple group (level 3) entered at line 365 ({)
@@ -1251,10 +1282,10 @@ LaTeX Info: Redefining \% on input line 26.
 ### simple group (level 1) entered at line 60 ({)
 ### bottom level 
 Here is how much of TeX's memory you used:
- 7437 strings out of 493333
- 100998 string characters out of 3139193
+ 7450 strings out of 493333
+ 101334 string characters out of 3139193
  221751 words of memory out of 3000000
- 10716 multiletter control sequences out of 15000+200000
+ 10727 multiletter control sequences out of 15000+200000
  55551 words of font info for 39 fonts, out of 3000000 for 9000
  1141 hyphenation exceptions out of 8191
  41i,17n,45p,1224b,631s stack positions out of 5000i,500n,10000p,200000b,50000s
@@ -1276,9 +1307,9 @@ nts/type1/public/lm/lmr5.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/lm
 gram Files/MiKTeX 2.9/fonts/type1/public/lm/lmsy10.pfb><C:/Program Files/MiKTeX
  2.9/fonts/type1/public/lm/lmsy7.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/p
 ublic/lm/lmtt10.pfb>
-Output written on main.pdf (52 pages, 1200900 bytes).
+Output written on main.pdf (56 pages, 1382318 bytes).
 PDF statistics:
- 307 PDF objects out of 1000 (max. 8388607)
+ 329 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
- 56 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 66 words of extra memory for PDF output out of 10000 (max. 10000000)
 

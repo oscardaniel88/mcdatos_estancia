@@ -1,0 +1,58 @@
+\contentsline {section}{\numberline {1}Objetivo}{1}
+\contentsline {section}{\numberline {2}Contexto de Negocio}{1}
+\contentsline {paragraph}{Ubicaci\IeC {\'o}n}{2}
+\contentsline {paragraph}{Hoteles}{2}
+\contentsline {paragraph}{Crecimiento}{2}
+\contentsline {section}{\numberline {3}Descripci\IeC {\'o}n del Problema}{3}
+\contentsline {subsection}{\numberline {3.1}Gesti\IeC {\'o}n de las propiedades}{3}
+\contentsline {paragraph}{Canales de Venta}{3}
+\contentsline {paragraph}{\textbf {Canales de venta tradicionales}}{4}
+\contentsline {paragraph}{\textbf {Canales de venta electr\IeC {\'o}nicos}}{4}
+\contentsline {paragraph}{Segmentos de Mercado}{4}
+\contentsline {paragraph}{Tarifas}{5}
+\contentsline {paragraph}{Variables estudiadas}{5}
+\contentsline {subsection}{\numberline {3.2}Situaci\IeC {\'o}n Actual}{6}
+\contentsline {subsection}{\numberline {3.3}Propuesta de mejora al proceso}{6}
+\contentsline {section}{\numberline {4}Metodolog\IeC {\'\i }a Propuesta}{7}
+\contentsline {subsection}{\numberline {4.1}Plan de implementaci\IeC {\'o}n}{7}
+\contentsline {subsection}{\numberline {4.2}Fuentes de datos}{7}
+\contentsline {subsection}{\numberline {4.3}An\IeC {\'a}lisis Exploratorio de Datos}{8}
+\contentsline {paragraph}{Descripci\IeC {\'o}n del DataSet}{8}
+\contentsline {paragraph}{Ocupaci\IeC {\'o}n}{10}
+\contentsline {paragraph}{Pickup}{11}
+\contentsline {paragraph}{Pickup por Canal de Venta}{12}
+\contentsline {paragraph}{Canales de Venta}{13}
+\contentsline {paragraph}{Segmentos de Mercado}{14}
+\contentsline {paragraph}{Producci\IeC {\'o}n de Cuartos por Segmentos}{15}
+\contentsline {paragraph}{Estancia Promedio por Segmento}{16}
+\contentsline {paragraph}{Ocupaci\IeC {\'o}n en el tiempo}{18}
+\contentsline {paragraph}{Tarifa Promedio en el tiempo}{18}
+\contentsline {paragraph}{Penetraci\IeC {\'o}n de Ocupaci\IeC {\'o}n en el tiempo}{19}
+\contentsline {paragraph}{Penetraci\IeC {\'o}n de Tarifa en el tiempo}{19}
+\contentsline {paragraph}{Penetraci\IeC {\'o}n de Ocupaci\IeC {\'o}n vs Penetraci\IeC {\'o}n de Tarifa}{19}
+\contentsline {paragraph}{Precio de la competencia}{20}
+\contentsline {paragraph}{Precios en el tiempo}{20}
+\contentsline {paragraph}{Precios publicos}{21}
+\contentsline {paragraph}{Precios publicos en el tiempo}{22}
+\contentsline {paragraph}{Calidad}{22}
+\contentsline {paragraph}{Calidad vs Precio}{22}
+\contentsline {paragraph}{Tipo de Cambio}{23}
+\contentsline {paragraph}{Correlaci\IeC {\'o}n de variables}{23}
+\contentsline {paragraph}{Duraci\IeC {\'o}n de Estancia}{24}
+\contentsline {paragraph}{Conclusiones}{25}
+\contentsline {subsection}{\numberline {4.4}Propuesta de Modelo Predictivo}{25}
+\contentsline {paragraph}{Antecedentes del modelo}{25}
+\contentsline {paragraph}{Yield Management en la hoteler\IeC {\'\i }a}{26}
+\contentsline {paragraph}{Trabajo previo}{26}
+\contentsline {paragraph}{Descripci\IeC {\'o}n del modelo}{26}
+\contentsline {paragraph}{Modelo de regresi\IeC {\'o}n Poisson}{27}
+\contentsline {paragraph}{Modelo de regresi\IeC {\'o}n lineal}{27}
+\contentsline {subsection}{\numberline {4.5}Interpretaci\IeC {\'o}n del modelo}{28}
+\contentsline {paragraph}{Modelo simple de pricing din\IeC {\'a}mico}{29}
+\contentsline {subparagraph}{Problema de asignaci\IeC {\'o}n de precios}{29}
+\contentsline {subparagraph}{Formulaci\IeC {\'o}n Matem\IeC {\'a}tica}{30}
+\contentsline {subparagraph}{Limitantes del modelo}{31}
+\contentsline {subparagraph}{Resultados del modelo de pricing}{31}
+\contentsline {section}{\numberline {5}Anexo A: Implementaci\IeC {\'o}n del modelo pron\IeC {\'o}stico de demanda}{32}
+\contentsline {section}{\numberline {6}Anexo B: Implementaci\IeC {\'o}n del Modelo de Pricing}{36}
+\contentsline {section}{\numberline {7}Referencias}{40}
