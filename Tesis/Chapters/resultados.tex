@@ -5,3 +5,67 @@ En el presente capítulo se presentarán a detalle los resultados obtenidos por 
 
 \section*{Interpretación del modelo}
 
+Como hemos mencionado en capítulos anteriores, el modelo propuesto se compone de dos módulos principales, el primero de ellos se encarga de pronósticar la demanda de cuartos noche para un día dado con cierto tiempo de anticipación, mientras que el segundo módulo toma esa información y cálcula los precios por habitación que maximizan el ingreso de la propiedad tomando en cuenta las restricciones definidas.
+
+A continuación explicaremos detalladamente las salidas obtenidas en cada uno de los módulos definidos, la manera en que se deben interpretar esas salidas y los resultados obtenidos para el desempeño del modelo.
+
+\subsection*{Pronóstico de Demanda}
+
+El modelo de pronóstico de demanda toma como entrada las curvas de \emph{pickup} para una propiedad en específico, información de su ocupación histórica, lineas de tiempo de tarifa promedio, lineas de tiempo de tarifas publicas propias y de la competencia, etc. Al finalizar el procesamiento de la información se obtiene una matriz que contiene, entre otras variables, el parámetro $\beta_0$ y $\beta_1$ con el que se puede reconstruír la curva de pickup para un día futuro. De esta manera podemos obtener una buena aproximación de los cuartos que serán vendidos en cierto día y con qué velocidad se realizará esta venta.
+
+A continuación se presenta un extracto de los resultados obtenidos por el modelo de pronóstico de demanda:
+
+\begin{verbatim}
+##   hotel        dia  AAbeta0       AAbeta1 AAvariacion
+## 1 CEINS 2018-01-01 2.335294 -2.489863e-06   0.1884625
+## 2 CEINS 2018-01-02 2.984073 -2.818019e-06   0.1321997
+## 3 CEINS 2018-01-03 3.301841 -3.535574e-06   0.3262416
+## 4 CEINS 2018-01-04 3.782523 -2.295688e-06   0.1744051
+## 5 CEINS 2018-01-05 3.761697 -1.089675e-06   0.0925871
+## 6 CEINS 2018-01-06 3.140137 -2.292639e-06   0.1887511
+##       tdc       PO       PT    diasem  mes eventos1 eventos
+## 1 19.7354 0.840382 0.872720     lunes ene.        0       0
+## 2 19.7354 1.096970 1.025310    martes ene.        0       0
+## 3 19.6629 0.927171 0.992081 miércoles ene.        0       0
+## 4 19.4899 1.045640 1.024860    jueves ene.        0       0
+## 5 19.3717 0.927771 0.953648   viernes ene.        0       0
+## 6 19.2427 1.334990 0.908828    sábado ene.        0       0
+##   pred.beta0  pred.beta1
+## 1   3.159533 -0.12278602
+## 2   3.916035 -0.11603131
+## 3   3.874017 -0.10891126
+## 4   4.159721 -0.10283409
+## 5   3.698266 -0.08467446
+## 6   3.771660 -0.09371103
+\end{verbatim}
+
+Para poder reconstruír la curva de \emph{pickup} pronosticada se debe tomar los parámetros \emph{pred.beta0} y \emph{pred.beta1} para evaluar la siguiente expresión: $$E[y|x]=e^{\beta_0 + \beta_1x}$$
+
+Dónde:
+\begin{itemize}[noitemsep]
+\item $E[y|x]$ = El valor esperado de cuartos noches para un día en específico dado $x$ días de antelación
+\item $\beta_0$ = pred.beta0
+\item $\beta_1$ = pred.beta1
+\item $x$ = días de antelación
+\end{itemize}
+
+Evaluando esta expresión en distintas fechas obtenemos las siguientes curvas de pronóstico de ocupación:
+
+\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}
+\includegraphics[width=\maxwidth]{Figures/ValidacionModelo-1} 
+
+Podemos observar que la curva pronosticada tiene un buen ajuste sobre la curva real en la mayoría de los casos.
+
+Para evaluar el desempeño del modelo se utilizó la medida \emph{MAPE} definida como: $$MAPE=\frac{1}{n}\sum_{t=1}^{n}|\frac{y_t-h_t}{y_t}|$$
+
+Dónde:
+\begin{itemize}[noitemsep]
+  \item n = Número de puntos ajustados
+  \item $y_t$ = Cuartos noche vendidos en el tiempo $t$
+  \item $h_t$ = Venta de cuartos noche pronósticada en el tiempo $t$
+\end{itemize}
+
+
+
+
+
