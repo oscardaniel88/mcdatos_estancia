@@ -56,6 +56,8 @@ Evaluando esta expresión en distintas fechas obtenemos las siguientes curvas de
 
 Podemos observar que la curva pronosticada tiene un buen ajuste sobre la curva real en la mayoría de los casos.
 
+Para realizar la validación del modelo se dividió el data set en dos partes, la primera parte se utilizó para el entrenamiento del modelo y la segunda parte para la validación del mismo, de esta forma se pudo comparar el pronóstico de demanda arrojado por el modelo contra la demanda real de la propiedad en 220 días para el año 2018.
+
 Para evaluar el desempeño del modelo se utilizó la medida \emph{MAPE} definida como: $$MAPE=\frac{1}{n}\sum_{t=1}^{n}|\frac{y_t-h_t}{y_t}|$$
 
 Dónde:
@@ -66,6 +68,38 @@ Dónde:
 \end{itemize}
 
 
+El \emph{MAPE} observado durante la validación del modelo fue de 17.67\% que de acuerdo con la investigación realizada en el capítulo dos está dentro de los parámetros aceptables.
 
+
+\subsection*{Modelo de maximización de ingresos}
+
+El modelo de recomendaciones de precio toma como entrada la demanda pronósticada por el módelo de pronóstico de demanda. A partir de ahi, se define un problema de maximización sujeto a restricciones y se arroja una matriz que contiene los precios para un tipo de cuarto dependiendo del inventario disponible dentro de la propidad.
+
+A continuación se muestra un extracto del resultado:
+
+\begin{verbatim}
+##            day       40       80       120       159
+## 137 2018-05-17 1616.650 1374.773 1122.4972  975.1633
+## 77  2018-03-18 1701.113 1675.709 1368.2105 1188.6253
+## 52  2018-02-21 1666.334 1529.706 1248.9996 1085.0615
+## 16  2018-01-16 1647.043 1463.557 1194.9895 1038.1406
+## 24  2018-01-24 1702.217 1681.071 1372.5888 1192.4289
+## 93  2018-04-03 1703.315 1686.416 1376.9532 1196.2205
+## 78  2018-03-19 1621.479 1387.804 1133.1372  984.4067
+## 167 2018-06-16 1498.239 1138.420  929.5160  807.5119
+## 139 2018-05-19 1527.223 1184.905  967.4709  840.4850
+## 174 2018-06-23 1518.070 1169.615  954.9869  829.6396
+\end{verbatim}
+
+La manera en la que se debe interpretar esta matriz es la siguiente: Para el día 17 de mayo de 2018, las habitaciones sencillas de este hotel deben de tener un precio de 975.16 MXN si el inventario disponible esta entre 121 y 159 habitaciones disponibles. Si se tienen entre 81 y 120 habitaciones disponibles, el precio debe de ser de 1122.49 MXN y así sucesivamente. De esta manera podemos asignar un lote de habitaciones a diferentes rangos de precios siendo las últimas habitaciones disponibles las que tengan el precio más alto.
+
+
+A continuación se presenta una gráfica con los resultados obtenidos por el modelo de maximización de ingresos:
+
+\includegraphics[width=\maxwidth]{figures/Pricing_graph-1} 
+
+Para medir el desempeño del modelo de maximización de ingresos, se tomaron los resultados y se calcularon las tarifas promedio a partir de los datos obtenidos y se compararon contra las tarifas promedio reportadas por la propiedad para el año 2018.
+
+\includegraphics[width=\maxwidth]{figures/Pricing-1} 
 
 

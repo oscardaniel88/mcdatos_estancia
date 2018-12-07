@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017) (preloaded format=pdflatex 2017.10.5)  6 DEC 2018 19:08
+This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017) (preloaded format=pdflatex 2017.10.5)  7 DEC 2018 13:41
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1286,20 +1286,43 @@ File: Figures/ValidacionModelo-1.pdf Graphic file (type pdf)
 <use Figures/ValidacionModelo-1.pdf>
 Package pdftex.def Info: Figures/ValidacionModelo-1.pdf used on input line 55.
 (pdftex.def)             Requested size: 345.0pt x 258.73822pt.
-LaTeX Info: Redefining \. on input line 59.
-LaTeX Info: Redefining \% on input line 59.
- [50 <./Figures/ValidacionModelo-1.pdf>])
+LaTeX Info: Redefining \. on input line 60.
+LaTeX Info: Redefining \% on input line 60.
+ [50 <./Figures/ValidacionModelo-1.pdf>]
+Overfull \hbox (3.69286pt too wide) in paragraph at lines 76--77
+[]\OT1/lmr/m/n/10 El mo-de-lo de re-co-men-da-cio-nes de pre-cio to-ma co-mo en
+-tra-da la de-man-da pron^^Sosti-
+ []
+
+LaTeX Info: Redefining \. on input line 92.
+LaTeX Info: Redefining \% on input line 92.
+[51] <figures/Pricing_graph-1.pdf, id=285, 1445.4pt x 1084.05pt>
+File: figures/Pricing_graph-1.pdf Graphic file (type pdf)
+
+<use figures/Pricing_graph-1.pdf>
+Package pdftex.def Info: figures/Pricing_graph-1.pdf used on input line 99.
+(pdftex.def)             Requested size: 345.0pt x 258.73822pt.
+
+<figures/Pricing-1.pdf, id=286, 1445.4pt x 1084.05pt>
+File: figures/Pricing-1.pdf Graphic file (type pdf)
+
+<use figures/Pricing-1.pdf>
+Package pdftex.def Info: figures/Pricing-1.pdf used on input line 103.
+(pdftex.def)             Requested size: 345.0pt x 258.73822pt.
+)
 LaTeX Info: Redefining \. on input line 147.
 LaTeX Info: Redefining \% on input line 147.
-
-[51] (./main.bbl [52
+ [52 <./figures/Pricing_graph-1.pdf>]
+LaTeX Info: Redefining \. on input line 147.
+LaTeX Info: Redefining \% on input line 147.
+ [53 <./figures/Pricing-1.pdf>] (./main.bbl [54
 
 
 
 ])
 LaTeX Info: Redefining \. on input line 179.
 LaTeX Info: Redefining \% on input line 179.
- [53] (./main.aux
+ [55] (./main.aux
 LaTeX Info: Redefining \. on input line 6.
 LaTeX Info: Redefining \% on input line 6.
 LaTeX Info: Redefining \. on input line 10.
@@ -1310,9 +1333,9 @@ LaTeX Info: Redefining \. on input line 22.
 LaTeX Info: Redefining \% on input line 22.
 LaTeX Info: Redefining \. on input line 26.
 LaTeX Info: Redefining \% on input line 26.
- (./Chapters/introduction.aux)
-(./Chapters/marco.aux) (./Chapters/metodo.aux) (./Chapters/modelo.aux)
-(./Chapters/resultados.aux)) )
+
+(./Chapters/introduction.aux) (./Chapters/marco.aux) (./Chapters/metodo.aux)
+(./Chapters/modelo.aux) (./Chapters/resultados.aux)) )
 (\end occurred inside a group at level 3)
 
 ### simple group (level 3) entered at line 365 ({)
@@ -1320,13 +1343,13 @@ LaTeX Info: Redefining \% on input line 26.
 ### simple group (level 1) entered at line 60 ({)
 ### bottom level 
 Here is how much of TeX's memory you used:
- 7500 strings out of 492995
- 103445 string characters out of 6132704
+ 7510 strings out of 492995
+ 103707 string characters out of 6132704
  224150 words of memory out of 5000000
- 10793 multiletter control sequences out of 15000+600000
+ 10801 multiletter control sequences out of 15000+600000
  55551 words of font info for 39 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 41i,17n,45p,1222b,633s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 41i,17n,45p,1222b,635s stack positions out of 5000i,500n,10000p,200000b,80000s
 {/usr/local/texlive/2017/texmf-dist/fonts/enc/dvips/lm/lm-rm.en
 c}{/usr/local/texlive/2017/texmf-dist/fonts/enc/dvips/lm/lm-mathsy.enc}{/usr/lo
 cal/texlive/2017/texmf-dist/fonts/enc/dvips/lm/lm-mathit.enc}{/usr/local/texliv
@@ -1347,10 +1370,10 @@ l/texlive/2017/texmf-dist/fonts/type1/public/lm/lmr7.pfb></usr/local/texlive/20
 ist/fonts/type1/public/lm/lmsy10.pfb></usr/local/texlive/2017/texmf-dist/fonts/
 type1/public/lm/lmsy7.pfb></usr/local/texlive/2017/texmf-dist/fonts/type1/publi
 c/lm/lmtt10.pfb>
-Output written on main.pdf (60 pages, 1474359 bytes).
+Output written on main.pdf (62 pages, 1492319 bytes).
 PDF statistics:
- 351 PDF objects out of 1000 (max. 8388607)
- 242 compressed objects within 3 object streams
+ 370 PDF objects out of 1000 (max. 8388607)
+ 255 compressed objects within 3 object streams
  0 named destinations out of 1000 (max. 500000)
- 71 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 81 words of extra memory for PDF output out of 10000 (max. 10000000)
 

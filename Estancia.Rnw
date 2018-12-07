@@ -845,7 +845,7 @@ cowplot::plot_grid(plotlist = plots, ncol = 4)
 detach(package:plyr)
 library(dplyr)
 #2018-01-17
-antelacion <-0
+antelacion <- -1
 validacion_mape<-series2018 %>% select(dia,pred.beta0,pred.beta1) %>% 
   filter(dia<='2018-08-11')
 
@@ -857,7 +857,7 @@ names(reales)<-c("dia","cuartos_reales")
 
 validacion_mape<- validacion_mape %>% inner_join(reales)
 
-validacion_mape$mape<- (validacion_mape$cuartos_reales - validacion_mape$cn_predic)/validacion_mape$cuartos_reales
+validacion_mape$mape<- (abs(validacion_mape$cuartos_reales - validacion_mape$cn_predic))/validacion_mape$cuartos_reales
 
 print("mape:")
 (sum(validacion_mape$mape)/nrow(validacion_mape))*100
@@ -925,6 +925,19 @@ prices<-as.data.frame(prices)
 names(prices)<-c("day","40","80","120","159")
 prices[sample(nrow(prices), 10), ]
 pricing_ocup$habs_disp<-159-pricing_ocup$cn_predic
+
+prices$tp_pron<-(prices$`40` + prices$`80` + prices$`120` + prices$`159`) / 4
+tp_real <- indicadores %>%  select(fecha, tp) %>% filter(fecha>= '2018-01-01')
+names(tp_real)<-c("day","tp")
+
+prices <- prices %>% inner_join(tp_real)
+
+price_result <- prices %>% select(day,tp_pron, tp)
+
+price_result <- price_result %>% gather(day)
+names(price_result)<-c("day","Rate_type","Value") 
+
+ggplot(price_result,aes(day,Value, col=Rate_type))+geom_line()
 #head(pricing_ocup)
 @
 ~\\
