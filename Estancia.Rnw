@@ -24,7 +24,7 @@
 opts_chunk$set(fig.width=14, fig.height=5, fig.path='figures/',
                warning=FALSE, message=FALSE, tidy=FALSE)
 options(width=60)
-set.seed(53079239)
+#set.seed(53079239)
 @
 
 <<libraries, include=FALSE>>=
@@ -803,6 +803,7 @@ dias<-series2018 %>% select(dia) %>%
 val<-sample(1:223,30)
 i<-1
 plots<-list()
+mape<-list()
 for(index in val){
 fecha<-dias[index,]
 beta0<-as.numeric(series2018 %>% filter(dia==fecha) %>% select(pred.beta0)) 
@@ -829,8 +830,37 @@ plots[[i]]<-ggplot(data=test_result, aes(antelacion,cn_predic),guide=TRUE)+
   geom_point()+geom_line(data=datos_reales, aes(x=antelacion,y=cumsum, colour="red"))+
   xlab("Antelacion")+ylab("Cuartos Vendidos")
 i<-i+1
+
+resultados_mape<-test_result[1:29,]
+MAPE_DS<- datos_reales %>% inner_join(resultados_mape)
+MAPE_DS$MAPE<-(MAPE_DS$cumsum-MAPE_DS$cn_predic)/MAPE_DS$cumsum
+
+mape[[i]] <- (sum(MAPE_DS$MAPE)/29)*100
+
 }
 cowplot::plot_grid(plotlist = plots, ncol = 4)
+@
+
+<<Caluclo MAPE, echo=FALSE, fig.width=20, fig.height=15>>=
+detach(package:plyr)
+library(dplyr)
+#2018-01-17
+antelacion <-0
+validacion_mape<-series2018 %>% select(dia,pred.beta0,pred.beta1) %>% 
+  filter(dia<='2018-08-11')
+
+validacion_mape$cn_predic<-as.integer(exp(validacion_mape$pred.beta0 + validacion_mape$pred.beta1*antelacion))
+
+reales <- res2018al11ago %>% select(date_in,nights) %>%  group_by(date_in) %>% 
+  summarise(cuartos=sum(nights))
+names(reales)<-c("dia","cuartos_reales")
+
+validacion_mape<- validacion_mape %>% inner_join(reales)
+
+validacion_mape$mape<- (validacion_mape$cuartos_reales - validacion_mape$cn_predic)/validacion_mape$cuartos_reales
+
+print("mape:")
+(sum(validacion_mape$mape)/nrow(validacion_mape))*100
 @
 ~\\
 \paragraph{Modelo simple de pricing dinámico}~\\
