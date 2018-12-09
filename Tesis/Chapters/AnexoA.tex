@@ -1,0 +1,139 @@
+\chapter{Anexo A: Implementación de modelo de pronóstico de demanda}
+\label{ch:anexoa}
+
+\begin{verbatim}
+library(plyr)
+HIS_CEINS<-read_csv("datos/EST_PAS_UNIC_CEINS.csv")
+RES_CEINS <- read.csv("datos/CEINS_RESERVAS.csv")
+#Juntamos todas las tablas en un solo dataset
+#datos <- rbind(HIS_CEINS, RES_CEINS)
+datos <- HIS_CEINS
+#Modelo de regresion Poisson para obtener
+#parametros de modelo predictivo
+modelo.1<-function(base,h){
+  hotel<-subset(base,prop_code==h)
+  dia<-sort(unique(hotel$date_in))
+  ndia<-length(dia)
+  beta0<-rep(0,ndia)
+  beta1<-rep(0,ndia)
+  variacion<-rep(0,ndia)
+  for(i in 1:ndia){
+    eleccion <- ddply(subset(hotel,as.character(date_in)==
+                               as.character(dia[i]),
+                             select = c('antelacion','nights')),
+                      .(antelacion),summarise, 
+                      nights = sum(nights))
+    eleccion <- eleccion[with(eleccion,order(-antelacion)), ]
+    eleccion$nights <- cumsum(eleccion$nights)
+    eleccion <- eleccion[eleccion$antelacion<=60,]
+    mod <- glm(nights~antelacion, family = "poisson", 
+               data = eleccion)
+    coeficientes <- coef(mod)
+    beta0[i] <- coeficientes[1]
+    beta1[i]<- coeficientes[2]
+    variacion[i] <- sqrt(mod$deviance)
+  }
+  yresp <- data.frame(hotel=rep(h,ndia),dia,beta0,beta1,variacion)
+  return(yresp)
+}
+
+# Prepara datos 2017 de entrada del modelo
+res <- ddply(datos,.(prop_code,date_create,date_in), 
+             summarise, nights=sum(nights))
+res$prop_code<-toupper(res$prop_code)
+res$antelacion <- as.numeric(res$date_in - res$date_create)
+res <- subset(res,format(res$date_in, "%Y")=="2017")
+yresp.1 <- modelo.1(res,"CEINS")
+yresp<-yresp.1
+
+
+### Preparacion de datos para modelo predictivo (2018)
+series2018 <- subset(yresp,format(yresp$dia, "%Y")=="2017")
+series2018$dia <- as.Date(series2018$dia)+365
+names(series2018) <- c("hotel","dia","AAbeta0",
+                       "AAbeta1","AAvariacion")
+
+### Series a la fecha de corte en la extraccion
+
+#Reservas
+RES_CEXXX<-RES_CEINS
+#
+res<-RES_CEXXX
+res <- ddply(res,.(prop_code,date_create,date_in), 
+             summarise, nights=sum(nights))
+res$prop_code<-toupper(res$prop_code)
+res<-res %>% filter(date_create!="0000-00-00 00:00:00") %>% 
+  mutate(date_create=as.Date(date_create),
+  date_in=as.Date(date_in))
+res$antelacion <- as.numeric(res$date_in - res$date_create)
+series2018al11ago <- subset(series2018,as.numeric(dia)<
+                              as.numeric(as.Date("2018-08-11")))
+res2018al11ago <- subset(res,as.numeric(date_in)<
+                           as.numeric(as.Date("2018-08-11")))
+res2018al11ago <- subset(res2018al11ago,
+                  format(res2018al11ago$date_in, "%Y")=="2018")
+
+### Aplicacion del modelo a la fecha de corte por extraccion
+param.1 <- modelo.1(res2018al11ago,"CEINS")
+
+param2018 <- param.1
+series2018al11ago <- join(series2018al11ago,param2018)
+
+### Generacion de predictores de modelo predictivo
+series2018al11ago$diasem <- as.factor(weekdays
+                                      (series2018al11ago$dia))
+series2018al11ago$mes <- as.factor(format(
+  series2018al11ago$dia, "%b"))
+series2018al11ago <- join(series2018al11ago,TDC)
+series2018al11ago$eventos <- rep(0,nrow(series2018al11ago))
+series2018al11ago$eventos <- as.factor(ifelse(
+                               as.numeric(series2018al11ago$dia)
+                             <=as.numeric(as.Date("2018-08-11")) & 
+                               as.numeric(series2018al11ago$dia)>=
+                               as.numeric(as.Date("2018-03-27")),
+                               1,0))
+#series2018al11ago <-join(series2018al11ago,eventos)
+series2018al11ago$eventos<-as.factor(series2018al11ago$eventos)
+PO_PT <- indicadores %>% select(Hotel,fecha,po,pt)
+
+names(PO_PT) <- c("hotel","dia","PO","PT")
+series2018al11ago <- join(series2018al11ago,PO_PT)
+
+### Generacion de modelos predictivos por hotel
+#CEINS
+datos2018al11agoCEINS <- subset(series2018al11ago,hotel=="CEINS")
+mod.CEINS.beta0 <- lm(beta0~AAbeta0+diasem+eventos+tdc+PO+PT,
+                      data=datos2018al11agoCEINS)
+datos2018al11agoCEINS$pred.beta0 <-predict(mod.CEINS.beta0,
+                                           type='response')
+datos2018al11agoCEINS$AAbeta1[is.na(
+                             datos2018al11agoCEINS$AAbeta1)]<-0
+mod.CEINS.beta1 <- lm(beta1~AAbeta1+diasem+eventos+tdc+PO+PT,
+                      data=datos2018al11agoCEINS)
+datos2018al11agoCEINS$pred.beta1<-predict(mod.CEINS.beta1,
+                                          type='response')
+
+### Aplica los modelos a la serie completa 2018
+series2018 <- join(series2018,TDC)
+series2018$AAbeta1[is.na(series2018$AAbeta1)]<-0
+series2018 <- join(series2018,PO_PT)
+series2018$diasem <- as.factor(weekdays(series2018$dia))
+series2018$mes <- as.factor(format(series2018$dia, "%b"))
+
+series2018$eventos1 <- ifelse(as.numeric(series2018$dia)<=
+                                as.numeric(as.Date("2018-04-04")) & 
+                                as.numeric(series2018$dia)>=
+                                as.numeric(as.Date("2018-03-27")),
+                                1,0)
+
+series2018$eventos <- series2018$eventos1
+series2018$eventos <- as.factor(series2018$eventos)
+series2018$pred.beta0 <- ifelse(series2018$hotel=="CEINS",
+                                predict(mod.CEINS.beta0,
+                                        newdata=series2018,
+                                        type="response"),0)
+series2018$pred.beta1 <- ifelse(series2018$hotel=="CEINS",
+                                predict(mod.CEINS.beta1,
+                                        newdata=series2018,
+                                        type="response"),0)
+\end{verbatim}

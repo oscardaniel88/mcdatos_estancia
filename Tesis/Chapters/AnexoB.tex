@@ -1,0 +1,220 @@
+\chapter{Anexo B: Implementación de modelo de optimización de ingresos}
+\label{ch:anexob}
+
+\begin{verbatim}
+import pandas as pd
+import numpy as np
+import scipy
+import math as mt
+import pickle as pkl
+import os
+import psycopg2
+import matplotlib
+import matplotlib.pyplot as plt
+from numpy.random import normal
+import calendar
+from scipy.optimize import curve_fit
+%matplotlib inline
+plt.rcParams['figure.figsize'] = (16,8)
+import warnings
+warnings.filterwarnings('ignore')
+import plotly.plotly as py
+import plotly.graph_objs as go
+import plotly.figure_factory as ff
+from plotly.offline import download_plotlyjs, 
+init_notebook_mode, plot, iplot
+init_notebook_mode(connected=True)
+from datetime import datetime
+from datetime import timedelta
+
+# Cargamos los resultados de la regresion poisson para pronosticar ocupacion
+data = pd.read_csv("data/forecasted_demand.csv")
+date_start = min(data.dia.values)
+date_end = max(data.dia.values)
+date_end=datetime.strptime(date_end, '%Y-%m-%d')
+date_end= date_end +  timedelta(days=1)
+nb_days = (pd.to_datetime(date_end) - pd.to_datetime(date_start)).days
+forecasted_demand = data.cn_predic.values
+forecasted_demand=pd.DataFrame(forecasted_demand,
+                               index=pd.date_range(start=date_start,
+                                                   end=date_end,closed='left'),
+                               columns=['occupancy'])
+forecasted_demand.occupancy=data.cn_predic.values
+
+
+# Let's assume a demand price elasticity function:
+
+def demand_price_elasticity(price, nominal_demand, elasticity=-2.0, nominal_price=120.0):
+    """Returns demand given a value for the elasticity, nominal demand and nominal price.
+
+    Parameters
+    ----------
+
+    price (numpy.ndarray):
+        one-dimensional price array. The length of that array should correspond to the
+        length of the forecast period.
+
+    nominal_demand (numpy.ndarray):
+        one-dimensional forecasted occupancy array. The length of that array should
+        correspond to the length of the forecast period.
+
+    elasticity (float):
+        value of the elasticity between price and demand. A value of e=-2 is reasonable.
+
+    nominal_price (float):
+        room rate for which the forecast was computed.
+
+    Returns
+    -------
+
+    A numpy.ndarray of expected demand.
+    """
+
+    return nominal_demand * ( price / nominal_price ) ** (elasticity)
+
+import scipy.optimize as optimize
+
+# definition of the objective function:
+
+def objective(p_t, nominal_demand=np.array([50,40,30,20]),
+              elasticity=-2.0, nominal_price=1200.0):
+    """
+    Definition of the objective function. This is the function that want to minimize.
+    (minus sign in front)
+
+    Parameters
+    ----------
+
+    p_t (numpy.ndarray):
+        one-dimensional price array. The length of that array should correspond to the
+        length of the forecast period.
+
+    nominal_demand (numpy.ndarray):
+        one-dimensional forecasted occupancy array. The length of that array should
+        correspond to the length of the forecast period.
+
+    elasticity (float):
+        value of the elasticity between price and demand. A value of e=-2 is
+        reasonable.
+
+    nominal price (float):
+        room rate for which the forecast was computed.
+
+    Returns
+    -------
+
+    Value of the objective function (float).
+
+    Note: here we're trying to minimize the objective function. That's where the
+    minus sign comes_in.
+
+    """
+
+    return (-1.0 * np.sum( p_t * demand_price_elasticity(p_t, nominal_demand=nominal_demand,
+                                                        elasticity=elasticity,
+                                                        nominal_price=nominal_price) )) / 100
+
+def constraint_1(p_t):
+    """ This constraint ensures that the prices are positive.
+    """
+    return p_t
+
+
+def constraint_2(p_t, capacity=20, forecasted_demand=35.0,
+                 elasticity=-2.0, nominal_price=1200.0):
+    """ This constraint ensures that the demand does not exceed
+    capacity.
+
+    Parameters
+    ----------
+
+    p_t (float):
+        Room price
+
+    capacity (integer):
+        Capacity of the hotel (in rooms).
+
+    forecasted_demand (float):
+        Forecasted demand (in rooms) for that night
+
+    elasticity (float):
+        slope of the
+
+    nominal_price (float):
+        The price for which the forecasted_demand was computed.
+
+    Returns
+    -------
+    Returns an array of excess capacity.
+
+    """
+    return capacity - demand_price_elasticity(p_t, nominal_demand=forecasted_demand,
+                                                        elasticity=elasticity,
+                                                        nominal_price=nominal_price)
+
+# Let's run the optimization algorithm over four overlapping segments
+# of 20, 40, 60, 80 room capacity.
+
+# We look at four capacity segments: 20, 40, 60, and 80 (full capacity)
+# rooms available.
+capacities = [20.0, 40.0, 60.0, 80.0]
+
+optimization_results = {}
+for capacity in capacities:
+
+    # Nominal price associated with forecasted demand:
+    nominal_price = 1200.0
+    # Forecasted demand:
+    nominal_demand = forecasted_demand['occupancy'].values
+    # Assumed price elasticity:
+    elasticity = -2.0
+
+    # Starting values:
+    p_start = 1250.0 * np.ones(len(nominal_demand))
+
+    # bounds on the prices. Let's stick with reasonable values.
+    # One could be more sophisticated here and apply constraints
+    # that limit the prices to be in range of what competitors
+    # are charging, for example.
+    bounds = tuple((100.0, 2000.0) for p in p_start)
+
+    # Constraints:
+    constraints = ({'type': 'ineq', 'fun':  lambda x:  constraint_1(x)},
+               {'type': 'ineq', 'fun':  lambda x, capacity=capacity,
+                                           forecasted_demand=nominal_demand,
+                                           elasticity=elasticity,
+                                           nominal_price=nominal_price: constraint_2(x,capacity=capacity,
+                                                                                     forecasted_demand=nominal_demand,
+                                                                                     elasticity=elasticity,
+                                                                                     nominal_price=nominal_price)})
+
+    opt_results = optimize.minimize(objective, p_start, args=(nominal_demand,
+                                                              elasticity,
+                                                              nominal_price),
+                                    method='SLSQP', bounds=bounds,
+                                    constraints=constraints)
+
+    optimization_results[capacity] = opt_results
+    
+# Plotting the resulting rates vs dates.
+
+time_array = np.linspace(1,len(nominal_demand),len(nominal_demand))
+rate_df = pd.DataFrame(index=time_array)
+
+for capacity in optimization_results.keys():
+    rate_df = pd.concat([rate_df,
+                         pd.DataFrame(optimization_results[capacity]['x'],
+                                      columns=['{}'.format(capacity)],
+                                      index=time_array)],
+                        axis=1)
+
+rate_df.index.name = 'Day'
+datelist = pd.date_range(start=date_start, end=date_end, closed='left').tolist()
+rate_df.index = [ x.date() for x in datelist]
+
+# Save rate dataframe to local folder:
+
+rate_df.to_csv('data/rates.csv')
+
+
+\end{verbatim}

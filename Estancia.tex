@@ -784,6 +784,17 @@ Validamos el modelo con fechas aleatorias y obtenemos las siguientes gráficas:
 \includegraphics[width=\maxwidth]{figures/ValidacionModelo-1} 
 
 \end{knitrout}
+
+\begin{knitrout}
+\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
+
+
+{\ttfamily\noindent\bfseries\color{errorcolor}{\#\# Error in detach(package:plyr): invalid 'name' argument}}\begin{verbatim}
+## [1] "mape:"
+## [1] 17.67243
+\end{verbatim}
+\end{kframe}
+\end{knitrout}
 ~\\
 \paragraph{Modelo simple de pricing dinámico}~\\
 Una vez pronósticado el nível de ocupación para cada una de las propiedades de la cadena, se alimentó un modelo de pricing dinámico que entrega recomendaciones de precios para la tarifa pública tomando en cuenta la demanda pronósticada para cierto día del año.
@@ -830,31 +841,29 @@ Este modelo se formuló considerando los siguientes puntos:
   \item Se asume un valor para la elasticidad (-2) que es un valor razonable para la industria
 \end{itemize}
 
-\begin{knitrout}
-\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
 
-
-{\ttfamily\noindent\bfseries\color{errorcolor}{\#\# Error in eval(substitute(expr), envir, enclos): Failed to open 'C:\textbackslash{}Users\textbackslash{}lucky\textbackslash{}Documents\textbackslash{}GitHub\textbackslash{}mcdatos\_estancia\textbackslash{}result\textbackslash{}forecasted\_demand.csv'.}}\end{kframe}
-\end{knitrout}
 \subparagraph{Resultados del modelo de pricing}~\\
 El modelo de pricing, como comentarmos anteriormente, arroja como resultado una matriz de día vs precio por niveles de inventario. A continuación se muestra un ejemplo:
 ~\\
 \begin{knitrout}
 \definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
 \begin{verbatim}
-##            day       40       80       120       159
-## 137 2018-05-17 1616.650 1374.773 1122.4972  975.1633
-## 77  2018-03-18 1701.113 1675.709 1368.2105 1188.6253
-## 52  2018-02-21 1666.334 1529.706 1248.9996 1085.0615
-## 16  2018-01-16 1647.043 1463.557 1194.9895 1038.1406
-## 24  2018-01-24 1702.217 1681.071 1372.5888 1192.4289
-## 93  2018-04-03 1703.315 1686.416 1376.9532 1196.2205
-## 78  2018-03-19 1621.479 1387.804 1133.1372  984.4067
-## 167 2018-06-16 1498.239 1138.420  929.5160  807.5119
-## 139 2018-05-19 1527.223 1184.905  967.4709  840.4850
-## 174 2018-06-23 1518.070 1169.615  954.9869  829.6396
+##            day       40       80      120      159
+## 107 2018-04-17 1797.715 2177.611 2052.235 1782.867
+## 58  2018-02-27 1758.654 1935.701 1672.648 1453.103
+## 144 2018-05-24 1792.407 2141.922 1985.174 1724.609
+## 51  2018-02-20 1799.337 2188.696 2074.106 1801.868
+## 67  2018-03-08 1780.087 2062.619 1851.891 1608.820
+## 56  2018-02-25 1766.800 1982.328 1734.455 1506.798
+## 203 2018-07-22 1761.104 1949.520 1690.537 1468.645
+## 184 2018-07-03 1798.808 2185.047 2066.841 1795.557
+## 187 2018-07-06 1752.048 1899.247 1627.063 1413.502
+## 154 2018-06-03 1762.291 1956.279 1699.412 1476.355
+## [1] 57555.7
 \end{verbatim}
 \end{kframe}
+\includegraphics[width=\maxwidth]{figures/Pricing-1} 
+
 \end{knitrout}
 ~\\
 Graficando los resultados:
@@ -862,13 +871,20 @@ Graficando los resultados:
 \begin{knitrout}
 \definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
 \begin{verbatim}
-##          day        40        80      120      159
-## 1 2018-01-01  874.0001  643.4283 525.3570 456.4010
-## 2 2018-01-02 1332.4657  948.6833 774.5967 672.9266
-## 3 2018-01-03 1309.8597  929.5160 758.9466 659.3307
-## 4 2018-01-04 1451.1448 1073.3126 876.3561 761.3295
-## 5 2018-01-05 1198.8353  848.5281 692.8203 601.8838
-## 6 2018-01-06 1244.1752  879.7727 718.3314 624.0464
+##          day       40       80       120       159
+## 1 2018-01-01 1404.540 1017.112  831.8153  722.6349
+## 2 2018-01-02 1658.592 1502.048 1226.4447 1065.4671
+## 3 2018-01-03 1649.574 1471.733 1201.6655 1043.9403
+## 4 2018-01-04 1705.934 1676.832 1387.5638 1205.4384
+## 5 2018-01-05 1604.489 1343.501 1096.9655  952.9827
+## 6 2018-01-06 1623.362 1392.960 1137.3580  988.0735
+##     tp_pron      tp
+## 1  994.0256 1119.21
+## 2 1363.1380 1342.68
+## 3 1341.7283 1256.69
+## 4 1493.9420 1273.01
+## 5 1249.4846 1147.34
+## 6 1285.4382 1093.78
 \end{verbatim}
 \end{kframe}
 \includegraphics[width=\maxwidth]{figures/Pricing_graph-1} 
