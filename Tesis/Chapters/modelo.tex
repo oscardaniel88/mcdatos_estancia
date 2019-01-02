@@ -289,7 +289,7 @@ Como se puede observar, tenemos un inventario de 32 cuartos divido en 4 níveles
 \subsection*{Formulación del modelo}
 
 Un problema de maximización de ingresos es básicamente un problema de optimización sujeto a restricciones, en este caso, se quiere maximizar la siguiente función objetivo:
-$$\sum_{n=0}^{n}p_i*o_i$$
+$$\sum_{i=0}^{n}p_i*o_i$$
 En donde i es la índice de la noche, $p_i$ es el precio del cuarto para la i-ésima noche y $o_i$ es la ocupación pronósticada (demanda) para la i-ésima noche al precio $p_i$. Asumimos también que la función de la ocupación (demanda) está sujeta al precio bajo la siguiente relación:
 $$o = o_{nominal} * (\frac{p}{p_{nominal}})^e$$
 Donde $o_{nominal}$ corresponde a la ocupación pronosticada para una noche dada tomando como base un precio nominal ($p_{nominal}$). Para este caso el $p_{nominal}$ es igual a la tarifa pública promediada a lo largo del año. El valor de $e$ (elasticidad) toma un valor = -2. En otras palabras, $p$ incrementa en un 10\% y la demanda decrece cerca de un 20\%.
