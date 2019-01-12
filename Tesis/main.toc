@@ -6,10 +6,10 @@
 \select@language {spanish}
 \contentsline {chapter}{\numberline {1}Introducci\IeC {\'o}n}{1}
 \contentsline {chapter}{\numberline {2}Marco te\IeC {\'o}rico}{6}
-\contentsline {chapter}{\numberline {3}Metodolog\IeC {\'\i }a}{30}
-\contentsline {chapter}{\numberline {4}Dise\IeC {\~n}o y Desarrollo}{33}
-\contentsline {chapter}{\numberline {5}Interpretaci\IeC {\'o}n y Resultados}{48}
-\contentsline {chapter}{\numberline {6}Conclusiones}{54}
-\contentsline {chapter}{\numberline {7}Anexo A: Implementaci\IeC {\'o}n de modelo de pron\IeC {\'o}stico de demanda}{55}
-\contentsline {chapter}{\numberline {8}Anexo B: Implementaci\IeC {\'o}n de modelo de optimizaci\IeC {\'o}n de ingresos}{60}
-\contentsline {chapter}{References}{67}
+\contentsline {chapter}{\numberline {3}Metodolog\IeC {\'\i }a}{31}
+\contentsline {chapter}{\numberline {4}Dise\IeC {\~n}o y Desarrollo}{34}
+\contentsline {chapter}{\numberline {5}Interpretaci\IeC {\'o}n y Resultados}{49}
+\contentsline {chapter}{\numberline {6}Conclusiones}{55}
+\contentsline {chapter}{\numberline {7}Anexo A: Implementaci\IeC {\'o}n de modelo de pron\IeC {\'o}stico de demanda}{56}
+\contentsline {chapter}{\numberline {8}Anexo B: Implementaci\IeC {\'o}n de modelo de optimizaci\IeC {\'o}n de ingresos}{61}
+\contentsline {chapter}{References}{68}
