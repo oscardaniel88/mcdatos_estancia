@@ -253,7 +253,21 @@ dónde $\tau_s$ es el estado de intercepción; $x_t$ es un vector de variables e
 
 donde $q_{ij}$ es el parámetro transformado definido como $$q_{ij}=-log(\frac{p_{ij}}{p_{ik}})$$
 
-Para empezar con la estimación del modelo se utiliza el algorimto EM \emph{expectation-maximization} el cuál arroja el valor inicial. Posteriormente se predicen las probabilidades de cada uno de los estados y actualizando la verosimilitud en cada paso. Un paso clave de esta estimación es el cálculo de la verosimilitud de los estados latentes la cual es obtenida mediante la iteración de la verosimilitud condicional.
+Para empezar con la estimación del modelo se utiliza el algorimto EM \emph{expectation-maximization} el cuál arroja el valor inicial para los parámetros del modelo. Este algoritmo es utilizado en modelos estadísticos para encontrar parámetros máximos verosímiles de variables latentes o que no han sido observadas. A continuación se explica brevemente el algoritmo iterativo de \emph{EM}.
+
+Dado un modelo estadístico que genera un conjunto de datos observados $X$, un conjunto de datos no observados, latentes o faltantes $Z$, un vector de parámetros desconocidos $\theta$ y una funcion de verosimilitud $L(\theta;X,Z) = p(X,Z|\theta)$, el estimador máximo verosímil de los parámetros desconocidos se determina maximizando la verosimilitud marginal de los datos observados: $$L(\theta;X) = p(X|\theta) = \int p(X,Z|\theta)dZ$$
+
+Sin embargo, esta cantidad es a menudo intratable. (Por ejemplo, si $Z$ es una secuencia de eventos de tal forma que el número de valores crece exponencialmente con la longitud de la secuencia, haciendo extremadamente difícil obtener un cálculo exacto).
+
+El algorítmo \emph{EM} busca encontrar el estimador máximo verosímil de la verosimilitud marginal aplicando los siguientes dos pasos de manera iterativa:
+
+\begin{enumerate}
+  \item \emph{Esperanza - Paso E}: Define $Q(\theta|\theta^t)$ como el valor esperado del logaritmo de la funcion de verosimilitud de $\theta$, con respecto a la distribución condicional de $Z$ dado $X$ y los parámetros actuales para $\theta^t$, es decir: $$Q(\theta|\theta^t) = E_{Z|X,\theta^t}[log L(\theta;X,Z)]$$
+  \item \emph{Maximización - Paso M}: Encontrar los parámetros que maximizan la siguiente ecuación: $$\theta^{t+1} = argmax_\theta Q(\theta|\theta^t)$$
+\end{enumerate}
+
+
+Una vez encontrados los parámetros iniciales, se predicen las probabilidades de cada uno de los estados, actualizando la verosimilitud en cada paso. Un paso clave de esta estimación es el cálculo de la verosimilitud de los estados latentes la cual es obtenida mediante la iteración de la verosimilitud condicional.
 
 Para medir el desempeño de ambos modelos se utilizó la medida \emph{MAPE} $$MAPE=\frac{1}{n}\sum_{t=1}^{n}|\frac{y_t-h_t}{y_t}|$$ 
 
@@ -408,7 +422,7 @@ Como se revisó anteriormente, existen muchas propuestas de enfoques diferentes 
   \item Nível de automatización de procesos dentro de la propiedad, es decir, si cuenta con la capacidad de poder hacer cambios de precios e inventarios en línea
 \end{itemize}
 
-Si bien, en el apartado anterior se presentaron enfoques de vanguardia (modelos de inteligencia artificial y modelos de big data) que toman en cuenta toda la información generada por los sistemas propios del hotel y fuentes externas para ser procesado por un modelo de \emph{caja negra} para obtener un resultado, este tipo de modelos no permiten que el equipo que lo opera comprendan plenamente su funcionamiento, lo cual censura las aportaciones que el equipo pueda hacer para enriquecerlo, es por ello que para fines de este trabajo de investigación utilizaremos un modelo convencional compuesto por dos módulos: un módelo de regresión poisson para el cálculo del pronóstico de la demanda, y un módelo de maximización sujeto a restricciones para el cálculo de precios óptimos por día de reservación.
+Para fines de este trabajo de investigación utilizaremos, dados los alcances buscados por la cadena de hoteles en cuestión, se optó por la construcción de un modelo convencional compuesto por dos módulos: un módelo de regresión poisson para el cálculo del pronóstico de la demanda, y un módelo de maximización sujeto a restricciones para el cálculo de precios óptimos por día de reservación. Esto nos facilitó la explicación del funcionamiento del modelo al equipo encargado de la gestión comercial de los hoteles, permitiendo que ellos aportaran parte de su conocimiento sobre el comportamiento comercial de los hoteles y las plazas durante la etapa de construcción, enriqueciendo el modelo final.
 
 El primer módulo pronósticará la demanda utilizando datos para un hotel de negocios ubicado en una de las avenidas más importantes de la Ciudad de México. El set de datos con el que se contó durante esta investigación contenía el detalle de cada una de las reservaciones realizadas para esta propiedad desde 2014 hasta el 11 de agosto de 2018.
 
