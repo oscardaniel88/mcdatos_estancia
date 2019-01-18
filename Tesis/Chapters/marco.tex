@@ -235,9 +235,20 @@ En el sector de turismo y hospitalidad se han hecho esfuerzos para obtener model
 
 Existen algunos trabajos en donde se adoptan dos métodos principales para obtener la ocupación de un hotel a partir de datos generados en línea. Los metódos utilizados son: \emph{ARIMAX} con variables externas y \emph{Modelo de regresión dinámica con cambios Markov (MS DR)}
 
-Los modelos \emph{ARIMA} \emph{(autorregresive integrated moving average)} son utilizados para hacer pronósticos basados en información histórica de la variable a predecir. Este tipo de modelos asumen que los valores futuros para la variable a predecir dependen linearmente de los valores pasados. Los modelos \emph{ARIMAX} son una generalización de los modelos \emph{ARIMA} en dónde se incluyen predictores independ
+Los modelos \emph{ARIMA} \emph{(autoregresive integrated moving average)}son modelos dinámicos de series temporales utilizados para hacer pronósticos basados en información histórica de la variable a predecir. En otras palabras, este tipo de modelos asumen que los valores futuros para la variable a predecir dependen linearmente de los valores pasados y no de variables independientes. Los modelos \emph{ARIMAX} son una generalización de los modelos \emph{ARIMA} en dónde se incluyen predictores independientes. El modelo ARIMAX es similar a un modelo de regresión multivariada pero permite tomar ventaja de la autocorrelación que puede estar presente en los residuos de la regresión para mejorar el pronóstico. 
 
+Los modelos \emph{ARIMA / ARIMAX} estan compuestos por dos partes principales: Uno o mas términos autoregresivos (AR) y uno o más términos de promedios móviles (MA - moving averages). Los términos autoregresivos de la variable dependiente son valores anteriores para esa variable que tienen una relación significativa con el valor más reciente, mientras que los promedios móviles son residuos (errores pasados) de estimaciónes previas. La \emph{I} dentro del acrónimo \emph{ARIMA} quiere decir que el modelo es \emph{integrado} lo cual indica que las series de tiempo han sido diferenciadas una o mas veces para hacerlas estacionarias antes de empezar el modelo.
 
+El modelo \emph{ARIMA} se define como: $$Y_t = -(\Delta^d Y_t - Y_t) + \phi_0 + \sum_{i=1}^p \phi \Delta^d Y_{t-i} - \sum_{i=1}^q \theta \epsilon_{t-i} + \epsilon_t$$
+
+En donde:
+\begin{itemize}
+  \item $d$ corresponde a las $d$ diferencias que son necesarias para convertir la serie original en estacionaria
+  \item $\phi_1 ,..., \phi_p$ son los parámetros pertenecientes a la parte \emph{autorregresiva} del modelo
+  \item $\theta_1 ,..., \theta_q$, los parámetros pertenecientes a la parte de \emph{promedios móviles} del modelo
+  \item $\phi_0$ es una constante
+  \item $\epsilon_t$ es el término del error (llamado también innovación o perturbación estocástica)
+\end{itemize}
 
 En el estudio presentado por \texttt{Pan y Yang (2017)} se presentan dos modelos de series de tiempo en el que se incoroporan tres fuentes de información generada en línea para predecir la ocupación de un hotel. Los datos de entrada contenían datos que describían:
 \begin{itemize}
