@@ -250,6 +250,11 @@ En donde:
   \item $\epsilon_t$ es el término del error (llamado también innovación o perturbación estocástica)
 \end{itemize}
 
+Los modelos \emph{ARIMA / ARMA / ARIMAX} son una opción común para realizar análisis de series de tiempo arrojando resultados satisfactorios, sin embargo, este tipo de modelos no son capaces de representar patrones dinámicos no lineales. Sería poco efectivo intentar analizar los datos de las tasas de crecimiento del \emph{PIB} utilizando modelos \emph{ARMA} ya que estos datos no presentan un simple patrón linear en su comportamiento. Las tasas de crecimiento del \emph{PIB} tienen distintos comportamientos dependiendo del momento económico del país. Durante una expansión económica la tasa de crecimiento fluctúa alrededor de valores más altos que durante los periodos de contracción, dónde fluctua en níveles inferiores y menos persistentes. Para este tipo de casos se deben utilizar modelos no lineales de series de tiempo.
+
+Uno de los modelos no lineales de series de tiempo más populares es el \emph{Modelo de cambios de Markov}. Este modelo involucra múltiples estructuras (ecuaciones) capaces de caracterizar los comportamientos de las series de tiempo en distintos régimenes permitiendo el cambio entre dichas estructuras, haciendo que el modelo sea capáz de capturar comportamientos de patrones dinámicos complejos. Una de las características de este modelo es que el mecanísmo que permite el cambio entre los distintas estructuras definidas, es controlado por una variable de estado no observada que sigue una cadena de Markov de primer órden. Dicha propiedad indica que el valor 
+
+
 En el estudio presentado por \texttt{Pan y Yang (2017)} se presentan dos modelos de series de tiempo en el que se incoroporan tres fuentes de información generada en línea para predecir la ocupación de un hotel. Los datos de entrada contenían datos que describían:
 \begin{itemize}
   \item Tráfico generado en el sitio web de la propiedad
