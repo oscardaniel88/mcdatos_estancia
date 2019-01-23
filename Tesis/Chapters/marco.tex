@@ -235,9 +235,12 @@ En el sector de turismo y hospitalidad se han hecho esfuerzos para obtener model
 
 Existen algunos trabajos en donde se adoptan dos métodos principales para obtener la ocupación de un hotel a partir de datos generados en línea. Los metódos utilizados son: \emph{ARIMAX} y \emph{MS DR}
 
+\subsubsection*{Modelos ARIMA}
+
 Los modelos \emph{ARIMA} \emph{(autoregresive integrated moving average)}son modelos dinámicos de series temporales utilizados para hacer pronósticos basados en información histórica de la variable a predecir. En otras palabras, este tipo de modelos asumen que los valores futuros para la variable a predecir dependen linearmente de los valores pasados y no de variables independientes. Los modelos \emph{ARIMAX} son una generalización de los modelos \emph{ARIMA} en dónde se incluyen predictores independientes. El modelo ARIMAX es similar a un modelo de regresión multivariada pero permite tomar ventaja de la autocorrelación que puede estar presente en los residuos de la regresión para mejorar el pronóstico. 
 
 Los modelos \emph{ARIMA / ARIMAX} estan compuestos por dos partes principales: Uno o mas términos autoregresivos (AR) y uno o más términos de promedios móviles (MA - moving averages). Los términos autoregresivos de la variable dependiente son valores anteriores para esa variable que tienen una relación significativa con el valor más reciente, mientras que los promedios móviles son residuos (errores pasados) de estimaciónes previas. La \emph{I} dentro del acrónimo \emph{ARIMA} quiere decir que el modelo es \emph{integrado} lo cual indica que las series de tiempo han sido diferenciadas una o mas veces para hacerlas estacionarias antes de empezar el modelo.
+\subsubsection*{Definición de Modelo ARMA / ARIMA / ARMAX}
 
 El modelo \emph{ARIMA} se define como: $$Y_t = -(\Delta^d Y_t - Y_t) + \phi_0 + \sum_{i=1}^p \phi \Delta^d Y_{t-i} - \sum_{i=1}^q \theta \epsilon_{t-i} + \epsilon_t$$
 
@@ -252,7 +255,11 @@ En donde:
 
 Los modelos \emph{ARIMA / ARMA / ARIMAX} son una opción común para realizar análisis de series de tiempo arrojando resultados satisfactorios, sin embargo, este tipo de modelos no son capaces de representar patrones dinámicos no lineales. Sería poco efectivo intentar analizar los datos de las tasas de crecimiento del \emph{PIB} utilizando modelos \emph{ARMA} ya que estos datos no presentan un simple patrón linear en su comportamiento. Las tasas de crecimiento del \emph{PIB} tienen distintos comportamientos dependiendo del momento económico del país. Durante una expansión económica la tasa de crecimiento fluctúa alrededor de valores más altos que durante los periodos de contracción, dónde fluctua en níveles inferiores y menos persistentes. Para este tipo de casos se deben utilizar modelos no lineales de series de tiempo.
 
-Uno de los modelos no lineales de series de tiempo más populares es el \emph{Modelo de cambios de Markov}. Este modelo involucra múltiples estructuras (ecuaciones) capaces de caracterizar los comportamientos de las series de tiempo en distintos régimenes permitiendo el cambio entre dichas estructuras, haciendo que el modelo sea capáz de capturar comportamientos de patrones dinámicos complejos. Una de las características de este modelo es que el mecanísmo que permite el cambio entre los distintas estructuras definidas, es controlado por una variable de estado no observada que sigue una cadena de Markov de primer órden. Dicha propiedad indica que el valor 
+\subsubsection*{Modelo de cambios Markov}
+
+Uno de los modelos no lineales de series de tiempo más populares es el \emph{Modelo de cambios Markov}. Este modelo involucra múltiples estructuras (ecuaciones) capaces de caracterizar los comportamientos de las series de tiempo en distintos régimenes permitiendo el cambio entre dichas estructuras, haciendo que el modelo sea capáz de capturar comportamientos de patrones dinámicos complejos. Una de las características de este modelo es que el mecanísmo que permite el cambio entre los distintas estructuras definidas, es controlado por una variable de estado no observada que sigue una cadena de Markov de primer órden, dicha propiedad indica que el valor actual de la variable de estado depende de su valor inmediatamente anterior. Dadas estas propiedades, el modelo de cambios Markov es un candidato perfecto para describir datos que muestran distintos patrones dinámico en diferentes periodos de tiempo.
+
+\subsubsection*{Definición de modelo de cambios Markov}
 
 
 En el estudio presentado por \texttt{Pan y Yang (2017)} se presentan dos modelos de series de tiempo en el que se incoroporan tres fuentes de información generada en línea para predecir la ocupación de un hotel. Los datos de entrada contenían datos que describían:
@@ -291,7 +298,7 @@ Una vez encontrados los parámetros iniciales, se predicen las probabilidades de
 
 Para medir el desempeño de ambos modelos se utilizó la medida \emph{MAPE} $$MAPE=\frac{1}{n}\sum_{t=1}^{n}|\frac{y_t-h_t}{y_t}|$$ 
 
-Los resultados arrojan que el modelo ARIMAX tuvo un mejor desempeño con un \emph{MAPE} del 3.804\% comparado con el 4.714\% obtenido por el modelo MS DR
+Los resultados arrojan que el modelo ARMAX tuvo un mejor desempeño con un \emph{MAPE} del 3.804\% comparado con el 4.714\% obtenido por el modelo MSDR
 
 Se puede concluír que los modelos basados en big data presentan una alternativa para poder generar pronósticos de ocupación y demanda utilizando información exógena a los hoteles, sin embargo se debe tomar en cuenta que el costo asociado a la configuración y puesta en marcha de este tipo de modelos es alto ya que se debe de contar con una infraestructura que pueda soportar el manejo de grandes volúmenes de información.
 
