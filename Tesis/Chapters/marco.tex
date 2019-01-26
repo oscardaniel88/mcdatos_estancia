@@ -128,7 +128,11 @@ Los modelos basados en series de tiempo consideran unicamente las series de tiem
 
 Para entender el enfoque basado en reservaciones se debe comprender el concepto de \emph{pick-up} de un hotel. El \emph{pick-up} está definido como el aumento o disminución de habitaciones reservadas entre dos fechas concretas y para un periodo determinado. Por ejemplo, al 21 de abril el número de habitaciones reservadas para el 1 de mayo es de 3 habitaciones y al 26 de abril las habitaciones reservadas para la misma fecha son ya 13.  Por lo tanto, el pick-up para el 1 de mayo entre el 21 de abril al 26 de abril es de 10 habitaciones.
 
-\includegraphics[width=\maxwidth]{figures/pickupEjemplo.pdf} 
+\begin{figure}
+  \centering
+      \includegraphics[width=\maxwidth,height=8cm]{figures/pickupEjemplo.pdf} 
+  \caption{Curva de Pickup}
+\end{figure}
 
 El enfoque basado en reservaciones hace uso de la información contenida en las reservaciones para pronosticar llegadas futuras. En este tipo de modelos típicamente se considera el \emph{pick-up}. Esto quiere decir que dadas \emph{K} reservaciones para un dia futuro \emph{T}, esperamos tener un \emph{pick-up} de \emph{N} reservaciones más desde este momento hasta el momento T. El pronóstico entonces será \emph{K + N}
 
@@ -201,7 +205,11 @@ Y el Kernel Gaussiano $$k(x_1,x_2)=exp(-\frac{||x_1-x_2||^2}{2{\delta}^2})$$
 
 Una red neuronal es un modelo de \texttt{M.L.} capáz de clasificar y realizar regresión. Esta compuesta por $n$ capas totalmente conectadas de neuronas artificiales formando un grafo conectado (en el caso más simple se tiene una capa oculta y una capa de salida). En este modelo, la salida de cada capa de neuronas será la entrada de la siguiente capa. A continuación se muestra una representación de una red neuronal multicapa.
 
-\includegraphics[width=\maxwidth]{figures/NeuralNetwork.png} 
+\begin{figure}
+  \centering
+      \includegraphics[width=10cm,height=8cm]{figures/NeuralNetwork.png} 
+  \caption{Ejemplo de red neuronal}
+\end{figure}
 
 Cada una de las neuronas dentro de la red contiene una función que define su estado, dicha función es llamada \emph{función de activación}. En este caso, la función de activación es dada por la siguiente ecuación $$y=f(\sum_{i}^{n} w_ix_i+b)$$ donde $f$ es una función de activación. Entre las opciones más populares de funciones de activación se encuentran: la sigmoide $y = (1+exp(-x))^{-1}$ y la función lineal $y=x$. La elección de la función de activación en la capa de salida define el tipo de red neuronal (si clasifica o realiza regresión)
 
@@ -259,8 +267,8 @@ Los modelos \emph{ARIMA / ARMA / ARIMAX} son una opción común para realizar an
 
 Uno de los modelos no lineales de series de tiempo más populares es el \emph{Modelo de cambios Markov}. Este modelo involucra múltiples estructuras (ecuaciones) capaces de caracterizar los comportamientos de las series de tiempo en distintos régimenes permitiendo el cambio entre dichas estructuras, haciendo que el modelo sea capáz de capturar comportamientos de patrones dinámicos complejos. Una de las características de este modelo es que el mecanísmo que permite el cambio entre los distintas estructuras definidas, es controlado por una variable de estado no observada que sigue una cadena de Markov de primer órden, dicha propiedad indica que el valor actual de la variable de estado depende de su valor inmediatamente anterior. Dadas estas propiedades, el modelo de cambios Markov es un candidato perfecto para describir datos que muestran distintos patrones dinámico en diferentes periodos de tiempo.
 
-\subsubsection*{Definición de modelo de cambios Markov}
 
+\subsubsection*{Implementación de modelos ARMAX / MSDR}
 
 En el estudio presentado por \texttt{Pan y Yang (2017)} se presentan dos modelos de series de tiempo en el que se incoroporan tres fuentes de información generada en línea para predecir la ocupación de un hotel. Los datos de entrada contenían datos que describían:
 \begin{itemize}
