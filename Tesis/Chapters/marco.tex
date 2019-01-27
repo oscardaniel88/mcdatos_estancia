@@ -339,16 +339,76 @@ El modelo recomendará un precio tomando en cuenta el precio de referencia dado 
 
 $$Precio_{final} = P_{Referencia} * M_{tiempo} * M_{capacidad} * M_{LoS} * M_{Grupo}$$
 
+A continuación se describe a detalle el comportaiento de cada uno de los multiplicadores, esto con el fin de poder sentar las bases necesarias para poder fijar sus valores en un modelo operativo.
+
+\subsubsection*{Multiplicador de precio basado en el tiempo}
+
+El tiempo que va de la fecha de reservación a la fecha de llegada es una variable muy importante dentro del cálculo del precio de la habitación. En la gráfica presentada a continuación se muestra el valor del multiplicador del precio (eje y) contra el tiempo que queda antes de la llegada del huésped al hotel (eje x). Al principio de la ventana de reservación, los precios deben ser bajos con la finalidad de agotar el inventario rápidamente, es por ello que el multiplicador empieza en un nivel bajo $y_2^t$. Esto puede ser considerado como un descuento \emph{"early bird"}. A medida que el tiempo avanza y la fecha de llegada es más cercana el descuento es cada vez menor, entonces el valor del multiplicador aumenta. El incremento en el valor del multiplicador continua hasta unos pocos días antes de la fecha de llegada (alcanzando su valor máximo en $y_3^t$). Es en este punto en donde los cuartos vacantes tienen baja probabilidad de ser vendidos en el tiempo restante, por lo que es prudente fijar un precio bajo para los cuartos vacantes con el fin de evitar que se queden sin ser ocupados. Es por ello que el valor del multiplicador disminuye hasta que alcanza su punto m{inimo en $y_1^t$ en la fecha de llegada.
+
+\begin{figure}[H]
+  \centering
+      \includegraphics[width=\maxwidth,height=8cm]{figures/Time_Mult.png} 
+  \caption{Comportamiento del multiplicador de precio basado en el tiempo}
+\end{figure}
+
+\subsubsection*{Multiplicador de precio basado en la capacidad}
+
+En lo que respecta al multiplicador del precio basado en la capacidad, se asume que una forma lineal con pendiente negativa, como se muestra en la figura a continuación.
+
+\begin{figure}[H]
+  \centering
+      \includegraphics[width=\maxwidth,height=8cm]{figures/Cap_Mult.png} 
+  \caption{Comportamiento del multiplicador de precio basado en la capacidad}
+\end{figure}
+
+El eje x representa el número total de cuartos vacantes para la fecha objetivo, mientras que el eje y representa el valor del multiplicador. Si se cuentan con un alto numero de cuartos vacantes se deber{an ofrecer incentivos para venderlos, es por aquí donde el valor de este multiplicador alcanza su punto mas bajo $y_1^c$. El valor del multiplicador deberá incrementar a medida que la capacidad restante del hotel decrece, hasta que alcanza su valor máximo $y_2^c$ donde ya no hay mas cuartos por vender.
+
+\subsubsection*{Multiplicador de precio basado en la longitud de estancia}
+
+\begin{figure}[H]
+  \centering
+      \includegraphics[width=\maxwidth,height=8cm]{figures/Los_Mult.png} 
+  \caption{Comportamiento del multiplicador de precio basado en la longitud de estancia}
+\end{figure}
+
+EL precio debería ser monotónicamente decreciente conforme la longitud de estancia es mayor con la finalidad de incentivar estancias más largas (lo que garantiza un ingreso mayor). La figura presentada anteriormente muestra la relación sugerida para el multiplicador de precio basado en la longitud de estancia. Lo que se puede observar de la figura es que el valor del multiplicador varía linearmente desde un valor máximo $y_2^L$ para una longitud de estancia de 1 día, a un valor minimo $y_1^L$ para el valor de la longitud de estancia mas larga típicamente encontrada en la propiedad.
+
+\subsubsection*{Multiplicador de precio basado en el tamaño del grupo}
+
+\begin{figure}[H]
+  \centering
+      \includegraphics[width=\maxwidth,height=8cm]{figures/Group_Mult.png} 
+  \caption{Comportamiento del multiplicador de precio basado en el tamaño del grupo}
+\end{figure}
+
+Se considera que la función que describe el comportamiento del multiplicador del precio basado en el tamaño del grupo varía linearmente desde un valor máximo $y_2^G$ donde no existe un grupo, hasta su mínimo $y_1^G$ para el tamaño máximo de un grupo típicamente encontrado en esa propiedad.
+
+\subsubsection*{Variables de optimización y restricciones}
+
+Dentro de este modelo se asume que el valor promedio de cada una de las funciones de los multiplicadores de precio equivale a 1. Esto debido a que los multiplicadores son considerados factores de corrección que multiplicarán al precio de referencia. Es por este hecho que los valores de los multiplicadores deben ser asignados alrededor de 1, donde un valor mayor a 1 significa un aumento en el precio y un valor menor a 1 significa un descuento en el precio.
+
+Las variables de optimización son las siguientes: \emph{multiplicador basado en el tiempo}:$y_1^T$,$y_2^T$ \& $t_1$; \emph{multiplicador basado en la capacidad}: $y_2^C$; \emph{multiplicador basado en la longitud de estancia}: $y_2^L$; \emph{multiplicador basado en el tamaño de grupo}: $y_2^G$. El algoritmo de optimización deberá fijar el valor de estas variables para poder maximizar el ingreso obtenido.
+Para poder modelar el proceso de optimización se deben tomar en cuenta las siguientes restricciones:
+
+\begin{itemize}
+  \item Multiplicador basado en el tiempo: $0 \leq y_1^T \leq y_2^T \leq y_3^T$; $0 \leq t_1 \leq T_0$
+  \item Multiplicador basado en la capacidad: $1 \leq y_2^C \leq C_0$
+  \item Multiplicador basado en la longitud de estancia: $1 \leq y_2^L \leq L_0$
+  \item Multiplicador basado en el tamaño del grupo: $1 \leq y_2^G \leq G_0$
+\end{itemize}
+
+\subsubsection*{Optimización}
+
+Para comenzar con la optimización, se deben tomar en cuenta las reservaciones presentes y pasadas generadas en la propiedad. Una vez analizada esta información se simularán reservaciones futuras. Se asume que los precios para las reservaciones generadas siguen la tendencia de los precios de referencia durante las diferentes temporalidades de la propiedad obtenidas de las reservaciones históricas. Posteriormente, el algoritmo de optimización prueba diferentes valores para los multiplicadores y fija el precio para los nuevos cuartos reservados. Hay que tomar en cuenta que cada cuarto reservado tiene un precio diferente debido a que cada cuarto tiene condiciones específicas como el tiempo de antelación con el que se hizo la reserva, la longitud de la estancia, la capacidad disponible del hotel, etc. Al sumar el ingreso generado por cada uno de los cuartos reservados se obtiene el conjunto de valores para cada uno de los multiplicadores de precio, de tal forma que el algoritmo continúa buscando valores hasta obtener el ingreso máximo.
+
 Como se puede observar, este modelo es sencillo, sin embargo tiene algunas limitantes:
 \begin{itemize}
   \item Las funciones lineales de los multiplicadores deberán ser afinadas continuamente
-  \item Todo el modelo depende de la elecciòn de un precio inicial dado
+  \item Todo el modelo depende de la elección de un precio inicial dado
   \item Se debe estimar la elasticidad del precio, esta estimación tendrá un error
 \end{itemize}
 
 Sin embargo, una gran ventaja de este modelo es la forma transparente en la que opera, permitiendo que el equipo administrativo de las propiedades se familiarice con estos sistemas.
-
-
 
 \subsection*{Modelo de maximización sujeto a restricciones}
 
