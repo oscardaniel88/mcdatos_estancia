@@ -35,58 +35,24 @@ A continuación se presenta el diccionario de datos del \emph{data set} que cont
 
 \subsubsection*{Resumen de datos}
 
-\begin{verbatim}
-##    rsrv_code        date_create                 
-##  Min.   :6265739   Min.   :2016-07-20 18:31:59  
-##  1st Qu.:7499788   1st Qu.:2017-03-27 10:10:09  
-##  Median :7999769   Median :2017-06-30 12:12:57  
-##  Mean   :8007253   Mean   :2017-06-27 13:38:02  
-##  3rd Qu.:8505582   3rd Qu.:2017-09-27 13:22:36  
-##  Max.   :9053354   Max.   :2018-01-01 03:08:21  
-##     date_in                   
-##  Min.   :2017-01-01 00:00:00  
-##  1st Qu.:2017-04-04 00:00:00  
-##  Median :2017-07-06 00:00:00  
-##  Mean   :2017-07-06 02:18:17  
-##  3rd Qu.:2017-10-08 00:00:00  
-##  Max.   :2017-12-31 00:00:00  
-##     date_out                       nights 
-##  Min.   :2017-01-02 00:00:00   Min.   :1  
-##  1st Qu.:2017-04-05 00:00:00   1st Qu.:1  
-##  Median :2017-07-07 00:00:00   Median :1  
-##  Mean   :2017-07-07 02:18:17   Mean   :1  
-##  3rd Qu.:2017-10-09 00:00:00   3rd Qu.:1  
-##  Max.   :2018-01-01 00:00:00   Max.   :1  
-##   prop_code           mkt_sgm            Dia_Sem         
-##  Length:44391       Length:44391       Length:44391      
-##  Class :character   Class :character   Class :character  
-##  Mode  :character   Mode  :character   Mode  :character  
-##                                                          
-##                                                          
-##                                                          
-##   rate_code            bucket             Ingresos   
-##  Length:44391       Length:44391       Min.   :   0  
-##  Class :character   Class :character   1st Qu.:1200  
-##  Mode  :character   Mode  :character   Median :1462  
-##                                        Mean   :1449  
-##                                        3rd Qu.:1658  
-##                                        Max.   :3900  
-##    rsrv_src          rsrv_type          room_type        
-##  Length:44391       Length:44391       Length:44391      
-##  Class :character   Class :character   Class :character  
-##  Mode  :character   Mode  :character   Mode  :character  
-##                                                          
-##                                                          
-##                                                          
-##       pax       
-##  Min.   :0.000  
-##  1st Qu.:1.000  
-##  Median :1.000  
-##  Mean   :1.271  
-##  3rd Qu.:1.000  
-##  Max.   :5.000
-\end{verbatim}
-
+\begin{table}[H]
+\begin{tabular}{lllll}
+Variable     & Tipo de dato & Min        & Max        & Media \\
+rsrv\_code   & Big Int      & 6265739    & 9053354    & NA    \\
+date\_create & Fecha        & 2016-07.20 & 2018-01-01 & NA    \\
+date\_ in    & Fecha        & 2017-01-01 & 2017-12-31 & NA    \\
+date\_out    & Fecha        & 2017-01-02 & 2018-01-01 & NA    \\
+prop\_code   & Factor       & NA         & NA         & NA    \\
+mkt\_sgm     & Factor       & NA         & NA         & NA    \\
+Dia\_sem     & Factor       & NA         & NA         & NA    \\
+rate\_code   & Factor       & NA         & NA         & NA    \\
+bucket       & Factor       & NA         & NA         & NA    \\
+rsrv\_src    & Factor       & NA         & NA         & NA    \\
+rsrv\_type   & Factor       & NA         & NA         & NA    \\
+Ingresos     & Float        & 0          & 3900       & 1449  \\
+PAX          & Integer      & 0          & 5          & 1.271 \\
+\end{tabular}
+\end{table}
 Es importante resaltar que los datos fueron trabajados para presentarse de manera desagregada, es decir, si una reservación ampara una estancia de 5 noches, en el \emph{data set final} se presenta un registro por cada noche de la estancia, por ejemplo:
 
 \begin{knitrout}
