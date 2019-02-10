@@ -4,16 +4,17 @@
 Este capítulo describirá el diseño y desarrollo del modelo de predicción de demanda y optimización de ingresos. El primer paso será presentar los \emph{data sets} utilizados. El segundo paso consistirá en describir el modelo, sus módulos, el funcionamiento y la arquitectura.
 
 \section*{Data Sets}
+Para la construcción del modelo de predicción de demanda se utilizaron tres data sets que contienen la información suficiente para poder hacer un pronóstico efectivo de la demanda de una propiedad.
 
 \subsection*{Detalle de reservaciones}
 
-Para la construcción del modelo de predicción de demanda se utilizaron tres data sets que contienen la información suficiente para poder hacer un pronóstico efectivo de la demanda de una propiedad.
 
-El primer data set utilizado fue extraído directamente del sistema de gestión de propiedades y contiene información de todas las reservaciones marcadas en los libros de la propiedad, así como la información de las estancias pasadas. A continuación se presenta a detalle la información contenida en este data set, el diccionario de datos y un breve resumen de la información en cada una de las columnas.
+El primer data set utilizado fue extraído directamente del sistema de gestión de propiedades (PMS) y contiene información detallada de todas las reservaciones generadas en la propiedad, así como la información de las estancias pasadas. Para poder obtener esta información se realizarón procesos automáticos de extracción, transformación y carga de información. 
+
+A continuación se presenta el detalle de la información obtenida del PMS así como el diccionario de datos y un breve resumen de la información en cada una de las columnas.
 
 \subsubsection*{Diccionario de Datos}
 
-A continuación se presenta el diccionario de datos del \emph{data set} que contiene la información detallada de las reservaciones:
 
 \begin{itemize}
   \item rsrv\_code: Código de confirmación de la reservación
@@ -53,6 +54,7 @@ Ingresos     & Float        & 0          & 3900       & 1449  \\
 PAX          & Integer      & 0          & 5          & 1.271 \\
 \end{tabular}
 \end{table}
+
 Es importante resaltar que los datos fueron trabajados para presentarse de manera desagregada, es decir, si una reservación ampara una estancia de 5 noches, en el \emph{data set final} se presenta un registro por cada noche de la estancia, por ejemplo:
 
 \begin{knitrout}
@@ -82,19 +84,19 @@ rsrv\_code & date\_create & date\_in & date\_out & nights & room\_type\\
 \end{table}
 \end{knitrout}
 
-Como se puede observar, el número de reservación es el mismo en los seis registros, lo mismo ocurre con la fecha de creación, las noches y el tipo de habitación, sin embargo, la fecha de entrada y la fecha de salida va cambiando en cada registro.
+Como se puede observar, el número de reservación es el mismo en los seis registros, lo mismo ocurre con la fecha de creación, las noches y el tipo de habitación, sin embargo, la fecha de entrada y la fecha de salida va cambiando en cada registro, lo que nos permite medir la demanda generada por aquellas reservaciones que contemplan más de una noche de estancia en la propiedad. 
 
 \subsubsection*{Curvas de Pickup}
 
-Del data set anterior podemos obtener las curvas de pickup del hotel. Estas curvas describen el comportamiento de las reservaciones para la propiedad en cuestión ya que mediante ellas podemos saber con cuanto tiempo de anticipación los huéspedes comienzan a reservar una habitación en la propiedad. A continuación se muestran las curvas de pickup para esta propiedad:
+Del data set anterior podemos obtener las curvas de pickup del hotel. Estas curvas describen el comportamiento de las reservaciones para la propiedad en cuestión ya que mediante ellas podemos saber con cuanto tiempo de anticipación se comienzan a reservar las habitaciones de la propiedad. A continuación se muestran las curvas de pickup para esta propiedad:
 
-\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}
-\includegraphics[width=\maxwidth]{Figures/pickup-1} 
+\begin{figure}[H]
+  \centering
+      \includegraphics[width=\maxwidth,height=10cm]{figures/pickupzoom-1}  
+  \caption{Curva de pickup}
+\end{figure}
 
-\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}
-\includegraphics[width=\maxwidth]{figures/pickupzoom-1} 
-
-Analizando las gráficas presentadas anteriormente podemos concluír que la demanda de esta propiedad comienza 25 días antes de la llegada del huésped al hotel, e incrementa considerablemente 5 días antes de la llegada del huésped al hotel. Este dato nos indica que el huésped comienza a buscar una habitación dentro de esta propiedad en un lapso no mayor a 25 días antes de emprender su viaje.
+Analizando las gráficas presentadas anteriormente podemos concluír que la demanda de esta propiedad comienza 25 días antes de la llegada del huésped al hotel, e incrementa considerablemente 5 días antes de la llegada del huésped al hotel. Este dato nos indica que el huésped comienza a buscar una habitación dentro de esta propiedad en un lapso no mayor a 25 días antes de emprender su viaje y la demanda de habitaciones incrementa considerablemente 5 días antes de la fecha de llegada a la propiedad.
 
 Las curvas de \emph{pickup} son importantes dentro del proceso de toma de decisiones ya que le indican al equipo que gestiona la propiedad el tiempo de antelación con el cual deberían llevar a cabo las acciones necesarias para poder optimizar el ingreso generado por la renta de habitaciones.
 
@@ -102,22 +104,27 @@ Las curvas de \emph{pickup} son importantes dentro del proceso de toma de decisi
 
 El segundo \emph{data set} con el que se trabajó contiene las líneas de tiempo de los níveles de ocupación de la propiedad. Este set de datos es de suma importancia ya que proporciona información relevante con respecto a las temporalidades del hotel, mismas que deben ser reflejadas en el resultado del modelo.
 
-Las temporalidades del hotel pueden ser desde periodos con alta o baja ocupación, inclusive por día de la semana ya que al ser un hotel enfocado a viajes de negocio, se esperaría tener una alta ocupación los días laborales (Lunes a Jueves) y una baja ocupación los fines de semana (Viernes a Domingo).
+Las temporalidades del hotel pueden ser desde periodos con alta o baja ocupación, inclusive por día de la semana ya que al ser un hotel enfocado a viajeros de negocio, se esperaría tener una alta ocupación los días laborales (Lunes a Jueves) y una baja ocupación los fines de semana (Viernes a Domingo).
 
-A continuación se presentan un par de gráficas que describen el contenido del \emph{data set} en cuestión:
+A continuación se presenta el contenido de este \emph{data set}:
 
-\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}
-\includegraphics[width=\maxwidth]{figures/HabitacionesOcupadas-1} 
+\begin{figure}[H]
+  \centering
+      \includegraphics[width=\maxwidth,height=10cm]{figures/HabitacionesOcupadas-1}   
+  \caption{\% Ocupación 2017}
+\end{figure}
 
-\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}
-\includegraphics[width=\maxwidth]{Figures/Ocupacion-1} 
 
-Como se puede observar en las gráficas presentadas anteriormente, esta propiedad tiene niveles de ocupación alrededor del 75\% llegando en repetidas ocasiones al 100\% de ocupación. Las caídas en los níveles de ocupación ocurren los fines de semana, lo cual confirma que el mercado objetivo de la propiedad estudiada es el turismo de negocios.
+Como se puede observar en la gráfica presentada anteriormente, esta propiedad tiene altos níveles de ocupación (alredor del 75\% de ocupación) agotando en repetidas ocasiones su inventario disponible (159 cuartos). Las caídas en los níveles de ocupación ocurren los fines de semana, lo cual confirma que el mercado objetivo de la propiedad estudiada es el turismo de negocios.
 
 A continuación se presenta una gráfica de níveles de ocupación por día de la semana:
 
-\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}
-\includegraphics[width=\maxwidth]{Figures/Ocupacion_Dia_Semana-1}
+\begin{figure}[H]
+  \centering
+      \includegraphics[width=\maxwidth,height=10cm]{Figures/Ocupacion_Dia_Semana-1}   
+  \caption{Ocupación por día de la semana}
+\end{figure}
+
 
 
 \subsection*{Tarifa Promedio de la propiedad}
@@ -126,16 +133,20 @@ El tercer conjunto de datos utilizado contiene los valores de la tarifa promedio
 
 A continuación se presenta la línea de tiempo con los valores para la tarifa promedio a lo largo del tiempo.
 
-\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}
-\includegraphics[width=\maxwidth]{figures/IndicadoresTarifaPromedio-1} 
+\begin{figure}[H]
+  \centering
+      \includegraphics[width=\maxwidth,height=10cm]{figures/IndicadoresTarifaPromedio-1}    
+  \caption{Tarifa Promedio 2017}
+\end{figure}
 
-De esta última gráfica se puede observar que los precios siguen una tendencia positiva con respecto al tiempo, a medida que pasa el tiempo, los precios incrementan, sin embargo podemos notar también que a medida que pasa el tiempo los precios varían más. Si contrastamos la información presentada en la gráfica de la tarifa promedo vs el tiempo y la presentada en la gráfica de ocupación vs el tiempo podemos ver que aunque los precios han aumentado en esta propiedad, las tendencias en los níveles de ocupación permanecen constantes.
+
+De esta última gráfica se puede observar que los precios siguen una tendencia positiva con respecto al tiempo, a medida que pasa el tiempo, los precios incrementan, sin embargo podemos notar también que a medida que pasa el tiempo los precios varían más. Si contrastamos la información presentada en la gráfica de la tarifa promedo vs el tiempo (Figura 4.4) y la presentada en la gráfica de ocupación vs el tiempo (Figura 4.2) podemos ver que aunque los precios han aumentado en esta propiedad, las tendencias en los níveles de ocupación permanecen constantes.
 
 \subsection*{Precios Públicos en el tiempo}
 
 Como se mencionó anteriormente, una propiedad típicamente tiene diferentes precios disponibles para cada uno de los segmentos de mercado a los que atiende. La tarifa que se ofrece al público que llega al hotel sin una reservación previa se le conoce como \emph{tarifa pública} y generalmente es la tarifa con el precio mas alto de la cúal desprenden todas las demás tarifas, es decir, el conjunto de tarifas disponible en el hotel serán descuentos realizados sobre la \emph{tarifa pública}.
 
-El tercer data set con el se trabajo el desarrollo del modelo contiene la información de las tarifas públicas para el hotel en cuestión y su competencia a lo largo del tiempo. Esto nos ayudará a conocer el precio del producto ofrecido en el mercado objetivo, de tal forma que los precios arrojados por el modelo se encuentren siempre dentro del mercado.
+El tercer data set utilizado durante el desarrollo del modelo, contiene la información de las tarifas públicas de la propiedad y su competencia a lo largo del tiempo. Esto nos ayudará a conocer el precio del producto ofrecido en el mercado objetivo, de tal forma que los precios arrojados por el modelo se encuentren siempre dentro del mercado.
 
 Los precios de la competencia fueron obtenidos de las páginas electrónicas de las agencias en línea, booking.com y expedia.com principalmente.
 
@@ -163,7 +174,7 @@ En el siguiente apartado detallaremos cómo se utilizaron los datos presentados 
 
 \section*{Modelo de Predicción de Demanda}
 
-El modelo de predicción de demanda toma como entrada los datos de las curvas de \emph{pickup} para el hotel para cada día del periodo estudiado. Estas curvas describen la velocidad con la que una propiedad vende su inventario para un día en específico de tal forma que el modelo propuesto pueda ajustar una curva que resuma el comportamiento de la propiedad en un día similar al estudiado y de esta forma se pueda generar unna predicción de los cuartos vendidos en la propiedad y los días de antelación con los que serán vendidos.
+El modelo de predicción de demanda toma como entrada los datos de las curvas de \emph{pickup} para el hotel para cada día del periodo estudiado. Estas curvas describen la velocidad con la que una propiedad vende su inventario para un día en específico. El objetivo del modelo propuesto es utilizar estos datos para ajustar una curva que resuma el comportamiento de la propiedad en un día similar al estudiado y de esta forma generar una predicción de los cuartos ocupados en la propiedad y los días de antelación con los que serán vendidos.
 
 Este modelo está compuesto por dos módulos principales. El primero es una regresión \emph{Poisson} definida como $log(E(Y|X)) = \beta_0 + \beta_1X$, que se alimentará con las curvas de \emph{pickup} que describen el comportamiento del hotel. Cómo resultado de este módulo obtendremos un parámetro $\beta_0$ y un parámetro $\beta_1$ que describen la curva que mejor ajusta al \emph{pickup} del hotel.
 
@@ -197,15 +208,9 @@ Los predictores definidos son:
   \item Mes: Definido como factores que van de Enero a Diciembre
   \item Eventos: 1 si la plaza cuenta con algun evento social, deportivo, o de entretenimiento en esa fecha, 0 en caso contrario
   \item PT: Definido como la tarifa promedio de la propiedad dividida entre la tarifa promedio de la competencia
-  \item TDC: El valor del peso frente al dólar para cada día
   \item $beta_0$: El parámetro $\beta_0$ obtenido de la regresión \emph{Poisson}
   \item $beta_1$: El parámetro $\beta_1$ obtenido de la regresión \emph{Poisson}
 \end{itemize}
-
-A continuación podemos observar la matriz de correlaciones de los predictores propuestos vs la ocupación de la propiedad (esto debe cambiar, se debe correlacionar los predictores vs la $\beta_0$ y $\beta_1$)
-
-\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}
-\includegraphics[width=\maxwidth]{figures/Correlacion-1} 
 
 
 Con estos predictores definidos se procede a alimentar una regresión lineal que calculará nuevos parámetros $\beta_{0*}$ y $\beta_{1*}$. A partir de estos nuevos parámetros se construyen las curvas de \emph{pickup} que ayuden a predecir la demanda de la propiedad en días futuros.

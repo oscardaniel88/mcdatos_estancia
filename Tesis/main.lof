@@ -6,7 +6,7 @@
 \select@language {spanish}
 \addvspace {10\p@ }
 \addvspace {10\p@ }
-\contentsline {figure}{\numberline {2.1}{\ignorespaces Curva de Pickup}}{14}
+\contentsline {figure}{\numberline {2.1}{\ignorespaces Ejemplo de curva de pickup}}{14}
 \contentsline {figure}{\numberline {2.2}{\ignorespaces Ejemplo de red neuronal}}{19}
 \contentsline {figure}{\numberline {2.3}{\ignorespaces Comportamiento del multiplicador de precio basado en el tiempo}}{29}
 \contentsline {figure}{\numberline {2.4}{\ignorespaces Comportamiento del multiplicador de precio basado en la capacidad}}{30}
@@ -15,7 +15,11 @@
 \contentsline {figure}{\numberline {2.7}{\ignorespaces Flujo de check-ins y check-outs para el d\IeC {\'\i }a k.}}{37}
 \addvspace {10\p@ }
 \addvspace {10\p@ }
-\contentsline {figure}{\numberline {4.1}{\ignorespaces Asignacion de inventario}}{54}
+\contentsline {figure}{\numberline {4.1}{\ignorespaces Curva de pickup}}{46}
+\contentsline {figure}{\numberline {4.2}{\ignorespaces \% Ocupaci\IeC {\'o}n 2017}}{48}
+\contentsline {figure}{\numberline {4.3}{\ignorespaces Ocupaci\IeC {\'o}n por d\IeC {\'\i }a de la semana}}{49}
+\contentsline {figure}{\numberline {4.4}{\ignorespaces Tarifa Promedio 2017}}{50}
+\contentsline {figure}{\numberline {4.5}{\ignorespaces Asignacion de inventario}}{56}
 \addvspace {10\p@ }
 \addvspace {10\p@ }
 \addvspace {10\p@ }

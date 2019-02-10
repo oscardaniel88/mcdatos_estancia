@@ -304,13 +304,17 @@ De las primeras preguntas que se vienen a la mente al momento de analizar la inf
 <<HabitacionesOcupadas, echo=FALSE>>=
 tl_habocup <- historico_ocupacion %>% group_by(date_in) %>% summarise(nights=sum(nights))
 ggplot(tl_habocup, aes(date_in, nights)) + geom_line() +
- xlab("") + ylab("Cuartos Ocupados")+ggtitle("Habitaciones Ocupadas")
+ xlab("") + ylab("Cuartos Ocupados")+ theme_bw() + theme(axis.text=element_text(size=16),
+        axis.title=element_text(size=16,face="bold"))
+
+##ggsave("Tesis/Figures/HabitacionesOcupadas-1.pdf")
 @
 ~\\
 <<Ocupacion, echo=FALSE>>=
 tl_ocup <- historico_ocupacion %>% group_by(date_in) %>% summarise(ocupacion=sum(nights)/159)
 ggplot(tl_ocup, aes(date_in, ocupacion)) + geom_line() +
- xlab("") + ylab("% Ocupacion")+ggtitle("% Ocupacion") + geom_smooth()
+ xlab("") + ylab("% Ocupacion")+ theme_bw() +theme(axis.text=element_text(size=16),
+        axis.title=element_text(size=30,face="bold"))
 @
 ~\\
 Como podemos observar esta propiedad tiene niveles de ocupación alrededor del 75\% llegando en repetidas ocasiones al 100\% de ocupación. Las caídas en los níveles de ocupación se deben a los fines de semana. A continuación presentamos una gráfica que nos ayudará a sustentar esta conclusión.
@@ -324,8 +328,9 @@ ocup_dia_sem <- historico_ocupacion %>% group_by(date_in) %>% summarise(nights=s
                                                               mutate(ocup=nights/(semanas*159))
 
 ggplot(ocup_dia_sem, aes(dia_sem,ocup)) + geom_bar(stat="identity") +
- xlab("Dia de la semana") + ylab("% Ocupacion")+ggtitle("% Ocupacion por dia de la semana") +
-  scale_x_discrete(limits=c("lun","mar","mie","jue","vie","sab","dom"))
+ xlab("Dia de la semana") + ylab("% Ocupacion")+
+  scale_x_discrete(limits=c("lun","mar","mie","jue","vie","sab","dom"))+ theme_bw() + theme(axis.text=element_text(size=16),
+        axis.title=element_text(size=30,face="bold"))
 
 @
 \paragraph{Pickup} ~\\
@@ -345,7 +350,8 @@ ggplot(pickup_rsrv, aes(antelacion, reservas)) + geom_line() + xlim(-1,100) + gg
 @
 ~\\
 <<pickupzoom, echo=FALSE>>=
-ggplot(pickup_rsrv, aes(antelacion, reservas)) + geom_line() + xlim(-1,25) + ggtitle("Pickup 25 dias")
+ggplot(pickup_rsrv, aes(antelacion, reservas)) + geom_line() + xlim(-1,25) + theme_bw()+theme(axis.text=element_text(size=16),
+        axis.title=element_text(size=30,face="bold"))
 @
 \paragraph{Pickup por Canal de Venta} ~\\
 Como podemos observar en la gráfica "Pickup 25 días" el mayor número de reservaciones en esta propiedad ocurre 5 días antes de que el huésped llegue al hotel. Con esto podemos concluír que los clientes que visitan esta propiedad planean su estancia con a lo más 5 días de antelación. 
@@ -465,7 +471,8 @@ ggplot(indicadores, aes(fecha, occ)) + geom_line() +
 \paragraph{Tarifa Promedio en el tiempo} ~\\
 <<IndicadoresTarifaPromedio, echo=FALSE>>=
 ggplot(indicadores, aes(fecha, tp)) + geom_line() +
- xlab("") + ylab("TP" )+ggtitle("Tarifa Promedio") + geom_smooth()
+ xlab("") + ylab("TP" )+ggtitle("Tarifa Promedio") + theme_bw() +theme(axis.text=element_text(size=16),
+        axis.title=element_text(size=30,face="bold"))
 @
 \paragraph{Penetración de Ocupación en el tiempo} ~\\
 <<IndicadoresPO, echo=FALSE>>=

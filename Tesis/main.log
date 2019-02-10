@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.17 (MiKTeX 2.9.6100 64-bit) (preloaded format=pdflatex 2016.12.10)  4 FEB 2019 13:07
+This is pdfTeX, Version 3.14159265-2.6-1.40.17 (MiKTeX 2.9.6100 64-bit) (preloaded format=pdflatex 2016.12.10)  10 FEB 2019 14:44
 entering extended mode
 **./main.tex
 (main.tex
@@ -1170,167 +1170,129 @@ Cap\'{\i }tulo 4.
 
 
 ]
-LaTeX Info: Redefining \. on input line 56.
-LaTeX Info: Redefining \% on input line 56.
+LaTeX Info: Redefining \. on input line 57.
+LaTeX Info: Redefining \% on input line 57.
  [44]
 
-Package xcolor Warning: Incompatible color definition on input line 59.
+Package xcolor Warning: Incompatible color definition on input line 61.
 
 
-Overfull \hbox (20.0058pt too wide) in paragraph at lines 62--82
+Overfull \hbox (20.0058pt too wide) in paragraph at lines 64--84
  [][] 
  []
 
-LaTeX Info: Redefining \. on input line 90.
-LaTeX Info: Redefining \% on input line 90.
-[45]
-
-Package xcolor Warning: Incompatible color definition on input line 91.
-
-<Figures/pickup-1.pdf, id=203, 1011.78pt x 361.35pt>
-File: Figures/pickup-1.pdf Graphic file (type pdf)
-
-<use Figures/pickup-1.pdf>
-Package pdftex.def Info: Figures/pickup-1.pdf used on input line 92.
-(pdftex.def)             Requested size: 345.0pt x 123.21576pt.
-
-
-Package xcolor Warning: Incompatible color definition on input line 94.
-
-<figures/pickupzoom-1.pdf, id=204, 1011.78pt x 361.35pt>
+LaTeX Info: Redefining \. on input line 89.
+LaTeX Info: Redefining \% on input line 89.
+[45] <figures/pickupzoom-1.pdf, id=203, 794.97pt x 614.295pt>
 File: figures/pickupzoom-1.pdf Graphic file (type pdf)
 
 <use figures/pickupzoom-1.pdf>
 Package pdftex.def Info: figures/pickupzoom-1.pdf used on input line 95.
-(pdftex.def)             Requested size: 345.0pt x 123.21576pt.
-LaTeX Info: Redefining \. on input line 104.
-LaTeX Info: Redefining \% on input line 104.
- [46 <./Figures/pickup-1.pdf> <./figures/pickupzoom-1.pdf>]
-
-Package xcolor Warning: Incompatible color definition on input line 109.
-
-<figures/HabitacionesOcupadas-1.pdf, id=218, 867.24pt x 289.08pt>
+(pdftex.def)             Requested size: 345.00856pt x 284.52878pt.
+LaTeX Info: Redefining \. on input line 100.
+LaTeX Info: Redefining \% on input line 100.
+ [46 <./figures/pickupzoom-1.pdf>]
+<figures/HabitacionesOcupadas-1.pdf, id=213, 794.97pt x 614.295pt>
 File: figures/HabitacionesOcupadas-1.pdf Graphic file (type pdf)
 
 <use figures/HabitacionesOcupadas-1.pdf>
 Package pdftex.def Info: figures/HabitacionesOcupadas-1.pdf used on input line 
-110.
-(pdftex.def)             Requested size: 345.0pt x 114.99918pt.
-
-
-Package xcolor Warning: Incompatible color definition on input line 112.
-
-<Figures/Ocupacion-1.pdf, id=219, 867.24pt x 289.08pt>
-File: Figures/Ocupacion-1.pdf Graphic file (type pdf)
-
-<use Figures/Ocupacion-1.pdf>
-Package pdftex.def Info: Figures/Ocupacion-1.pdf used on input line 113.
-(pdftex.def)             Requested size: 345.0pt x 114.99918pt.
-
-
-Package xcolor Warning: Incompatible color definition on input line 119.
-
-<Figures/Ocupacion_Dia_Semana-1.pdf, id=220, 867.24pt x 289.08pt>
+113.
+(pdftex.def)             Requested size: 345.00856pt x 284.52878pt.
+LaTeX Info: Redefining \. on input line 116.
+LaTeX Info: Redefining \% on input line 116.
+ [47]
+<Figures/Ocupacion_Dia_Semana-1.pdf, id=217, 794.97pt x 614.295pt>
 File: Figures/Ocupacion_Dia_Semana-1.pdf Graphic file (type pdf)
 
 <use Figures/Ocupacion_Dia_Semana-1.pdf>
 Package pdftex.def Info: Figures/Ocupacion_Dia_Semana-1.pdf used on input line 
-120.
-(pdftex.def)             Requested size: 345.0pt x 114.99918pt.
-LaTeX Info: Redefining \. on input line 123.
-LaTeX Info: Redefining \% on input line 123.
- [47 <./figures/HabitacionesOcupadas-1.pdf> <./Figures/Ocupacion-1.pdf>]
-
-Package xcolor Warning: Incompatible color definition on input line 129.
-
-<figures/IndicadoresTarifaPromedio-1.pdf, id=237, 1011.78pt x 361.35pt>
+124.
+(pdftex.def)             Requested size: 345.00856pt x 284.52878pt.
+LaTeX Info: Redefining \. on input line 127.
+LaTeX Info: Redefining \% on input line 127.
+ [48 <./figures/HabitacionesOcupadas-1.pdf>] <figures/IndicadoresTarifaPromedio
+-1.pdf, id=228, 794.97pt x 614.295pt>
 File: figures/IndicadoresTarifaPromedio-1.pdf Graphic file (type pdf)
 
 <use figures/IndicadoresTarifaPromedio-1.pdf>
 Package pdftex.def Info: figures/IndicadoresTarifaPromedio-1.pdf used on input 
-line 130.
-(pdftex.def)             Requested size: 345.0pt x 123.21576pt.
-LaTeX Info: Redefining \. on input line 137.
-LaTeX Info: Redefining \% on input line 137.
- [48 <./Figures/Ocupacion_Dia_Semana-1.pdf> <./figures/IndicadoresTarifaPromedi
-o-1.pdf>]
+line 138.
+(pdftex.def)             Requested size: 345.00856pt x 284.52878pt.
+LaTeX Info: Redefining \. on input line 141.
+LaTeX Info: Redefining \% on input line 141.
+ [49 <./Figures/Ocupacion_Dia_Semana-1.pdf>]
+LaTeX Info: Redefining \. on input line 148.
+LaTeX Info: Redefining \% on input line 148.
+ [50 <./figures/IndicadoresTarifaPromedio-1.pdf>]
 
-Package xcolor Warning: Incompatible color definition on input line 144.
+Package xcolor Warning: Incompatible color definition on input line 155.
 
-<figures/PreciosGraf-1.pdf, id=255, 1011.78pt x 361.35pt>
+<figures/PreciosGraf-1.pdf, id=247, 1011.78pt x 361.35pt>
 File: figures/PreciosGraf-1.pdf Graphic file (type pdf)
 
 <use figures/PreciosGraf-1.pdf>
-Package pdftex.def Info: figures/PreciosGraf-1.pdf used on input line 145.
+Package pdftex.def Info: figures/PreciosGraf-1.pdf used on input line 156.
 (pdftex.def)             Requested size: 345.0pt x 123.21576pt.
 
 
-Package xcolor Warning: Incompatible color definition on input line 149.
+Package xcolor Warning: Incompatible color definition on input line 160.
 
-<figures/PreciosBoxPlot-1.pdf, id=256, 1445.4pt x 1084.05pt>
+<figures/PreciosBoxPlot-1.pdf, id=248, 1445.4pt x 1084.05pt>
 File: figures/PreciosBoxPlot-1.pdf Graphic file (type pdf)
 
 <use figures/PreciosBoxPlot-1.pdf>
-Package pdftex.def Info: figures/PreciosBoxPlot-1.pdf used on input line 150.
+Package pdftex.def Info: figures/PreciosBoxPlot-1.pdf used on input line 161.
 (pdftex.def)             Requested size: 345.0pt x 258.73822pt.
-LaTeX Info: Redefining \. on input line 152.
-LaTeX Info: Redefining \% on input line 152.
- [49 <./figures/PreciosGraf-1.pdf>]
+LaTeX Info: Redefining \. on input line 163.
+LaTeX Info: Redefining \% on input line 163.
+ [51 <./figures/PreciosGraf-1.pdf>]
 
-Package xcolor Warning: Incompatible color definition on input line 158.
+Package xcolor Warning: Incompatible color definition on input line 169.
 
-<figures/TiposdeCambio-1.pdf, id=265, 1011.78pt x 361.35pt>
+<figures/TiposdeCambio-1.pdf, id=257, 1011.78pt x 361.35pt>
 File: figures/TiposdeCambio-1.pdf Graphic file (type pdf)
 
 <use figures/TiposdeCambio-1.pdf>
-Package pdftex.def Info: figures/TiposdeCambio-1.pdf used on input line 159.
+Package pdftex.def Info: figures/TiposdeCambio-1.pdf used on input line 170.
 (pdftex.def)             Requested size: 345.0pt x 123.21576pt.
-LaTeX Info: Redefining \. on input line 164.
-LaTeX Info: Redefining \% on input line 164.
- [50 <./figures/PreciosBoxPlot-1.pdf> <./figures/TiposdeCambio-1.pdf>]
-LaTeX Info: Redefining \. on input line 189.
-LaTeX Info: Redefining \% on input line 189.
- [51]
-
-Package xcolor Warning: Incompatible color definition on input line 207.
-
-<figures/Correlacion-1.pdf, id=285, 1445.4pt x 1084.05pt>
-File: figures/Correlacion-1.pdf Graphic file (type pdf)
-
-<use figures/Correlacion-1.pdf>
-Package pdftex.def Info: figures/Correlacion-1.pdf used on input line 208.
-(pdftex.def)             Requested size: 345.0pt x 258.73822pt.
-LaTeX Info: Redefining \. on input line 211.
-LaTeX Info: Redefining \% on input line 211.
- [52]
-LaTeX Info: Redefining \. on input line 228.
-LaTeX Info: Redefining \% on input line 228.
- [53 <./figures/Correlacion-1.pdf>]
+LaTeX Info: Redefining \. on input line 175.
+LaTeX Info: Redefining \% on input line 175.
+ [52 <./figures/PreciosBoxPlot-1.pdf> <./figures/TiposdeCambio-1.pdf>]
+LaTeX Info: Redefining \. on input line 200.
+LaTeX Info: Redefining \% on input line 200.
+ [53]
+LaTeX Info: Redefining \. on input line 233.
+LaTeX Info: Redefining \% on input line 233.
+ [54]
 
 LaTeX Warning: No positions in optional float specifier.
-               Default added (so using `!tbp') on input line 241.
+               Default added (so using `!tbp') on input line 246.
 
-<Figures/buckets.png, id=298, 664.4825pt x 357.335pt>
+<Figures/buckets.png, id=281, 664.4825pt x 357.335pt>
 File: Figures/buckets.png Graphic file (type png)
 
 <use Figures/buckets.png>
-Package pdftex.def Info: Figures/buckets.png used on input line 242.
+Package pdftex.def Info: Figures/buckets.png used on input line 247.
 (pdftex.def)             Requested size: 345.0pt x 185.53174pt.
-LaTeX Info: Redefining \. on input line 249.
-LaTeX Info: Redefining \% on input line 249.
- [54 <./Figures/buckets.png>]
-LaTeX Info: Redefining \. on input line 268.
-LaTeX Info: Redefining \% on input line 268.
- [55])
+LaTeX Info: Redefining \. on input line 263.
+LaTeX Info: Redefining \% on input line 263.
+ [55]
+LaTeX Info: Redefining \. on input line 272.
+LaTeX Info: Redefining \% on input line 272.
+ [56 <./Figures/buckets.png>]
+LaTeX Info: Redefining \. on input line 299.
+LaTeX Info: Redefining \% on input line 299.
+ [57])
 LaTeX Info: Redefining \. on input line 146.
 LaTeX Info: Redefining \% on input line 146.
- [56]
+ [58]
 \openout2 = `Chapters/resultados.aux'.
 
 
 (Chapters/resultados.tex
 Cap\'{\i }tulo 5.
-[57
+[59
 
 
 
@@ -1342,11 +1304,11 @@ kup \OT1/lmr/m/n/10 pro-nos-ti-ca-da se de-be to-mar los parame-
 
 LaTeX Info: Redefining \. on input line 42.
 LaTeX Info: Redefining \% on input line 42.
-[58]
+[60]
 
 Package xcolor Warning: Incompatible color definition on input line 54.
 
-<Figures/ValidacionModelo-1.pdf, id=316, 1445.4pt x 1084.05pt>
+<Figures/ValidacionModelo-1.pdf, id=302, 1445.4pt x 1084.05pt>
 File: Figures/ValidacionModelo-1.pdf Graphic file (type pdf)
 
 <use Figures/ValidacionModelo-1.pdf>
@@ -1354,7 +1316,7 @@ Package pdftex.def Info: Figures/ValidacionModelo-1.pdf used on input line 55.
 (pdftex.def)             Requested size: 345.0pt x 258.73822pt.
 LaTeX Info: Redefining \. on input line 60.
 LaTeX Info: Redefining \% on input line 60.
- [59 <./Figures/ValidacionModelo-1.pdf>]
+ [61 <./Figures/ValidacionModelo-1.pdf>]
 Overfull \hbox (3.69286pt too wide) in paragraph at lines 76--77
 []\OT1/lmr/m/n/10 El mo-de-lo de re-co-men-da-cio-nes de pre-cio to-ma co-mo en
 -tra-da la de-man-da pronosti-
@@ -1362,14 +1324,14 @@ Overfull \hbox (3.69286pt too wide) in paragraph at lines 76--77
 
 LaTeX Info: Redefining \. on input line 92.
 LaTeX Info: Redefining \% on input line 92.
-[60] <figures/Pricing_graph-1.pdf, id=329, 1445.4pt x 1084.05pt>
+[62] <figures/Pricing_graph-1.pdf, id=314, 1445.4pt x 1084.05pt>
 File: figures/Pricing_graph-1.pdf Graphic file (type pdf)
 
 <use figures/Pricing_graph-1.pdf>
 Package pdftex.def Info: figures/Pricing_graph-1.pdf used on input line 99.
 (pdftex.def)             Requested size: 345.0pt x 258.73822pt.
 
-<figures/Pricing-1.pdf, id=330, 1445.4pt x 1084.05pt>
+<figures/Pricing-1.pdf, id=315, 1445.4pt x 1084.05pt>
 File: figures/Pricing-1.pdf Graphic file (type pdf)
 
 <use figures/Pricing-1.pdf>
@@ -1377,15 +1339,15 @@ Package pdftex.def Info: figures/Pricing-1.pdf used on input line 103.
 (pdftex.def)             Requested size: 345.0pt x 258.73822pt.
 LaTeX Info: Redefining \. on input line 105.
 LaTeX Info: Redefining \% on input line 105.
- [61 <./figures/Pricing_graph-1.pdf>])
+ [63 <./figures/Pricing_graph-1.pdf>])
 LaTeX Info: Redefining \. on input line 148.
 LaTeX Info: Redefining \% on input line 148.
- [62 <./figures/Pricing-1.pdf>]
+ [64 <./figures/Pricing-1.pdf>]
 \openout2 = `Chapters/Conclusiones.aux'.
 
  (Chapters/Conclusiones.tex
 Cap\'{\i }tulo 6.
-) [63
+) [65
 
 
 
@@ -1394,7 +1356,7 @@ Cap\'{\i }tulo 6.
 
  (Chapters/AnexoA.tex
 Cap\'{\i }tulo 7.
-[64
+[66
 
 
 
@@ -1412,10 +1374,10 @@ Package Fancyhdr Warning: \headheight is too small (12.0pt):
  We now make it that large for the rest of the document.
  This may cause the page layout to be inconsistent, however.
 
-[65]
+[67]
 LaTeX Info: Redefining \. on input line 139.
 LaTeX Info: Redefining \% on input line 139.
- [66]
+ [68]
 Overfull \hbox (1.499pt too wide) in paragraph at lines 139--139
 []                             \OT1/lmtt/m/n/10 <=as.numeric(as.Date("2018-08-1
 1")) &[] 
@@ -1429,7 +1391,7 @@ dia)>=[]
 
 LaTeX Info: Redefining \. on input line 139.
 LaTeX Info: Redefining \% on input line 139.
-[67]
+[69]
 Overfull \hbox (6.74898pt too wide) in paragraph at lines 139--139
 []                                \OT1/lmtt/m/n/10 as.numeric(as.Date("2018-04-
 04")) &[] 
@@ -1444,12 +1406,12 @@ Overfull \hbox (1.499pt too wide) in paragraph at lines 139--139
 )
 LaTeX Info: Redefining \. on input line 152.
 LaTeX Info: Redefining \% on input line 152.
- [68]
+ [70]
 \openout2 = `Chapters/AnexoB.aux'.
 
  (Chapters/AnexoB.tex
 Cap\'{\i }tulo 8.
-[69
+[71
 
 
 
@@ -1497,7 +1459,7 @@ y should correspond to the[]
 
 LaTeX Info: Redefining \. on input line 220.
 LaTeX Info: Redefining \% on input line 220.
-[70]
+[72]
 Overfull \hbox (90.74873pt too wide) in paragraph at lines 220--220
 []        \OT1/lmtt/m/n/10 one-dimensional forecasted occupancy array. The leng
 th of that array should[] 
@@ -1529,7 +1491,7 @@ y should correspond to the[]
 
 LaTeX Info: Redefining \. on input line 220.
 LaTeX Info: Redefining \% on input line 220.
-[71]
+[73]
 Overfull \hbox (90.74873pt too wide) in paragraph at lines 220--220
 []        \OT1/lmtt/m/n/10 one-dimensional forecasted occupancy array. The leng
 th of that array should[] 
@@ -1567,7 +1529,7 @@ nal_price=nominal_price) )) / 100[]
 
 LaTeX Info: Redefining \. on input line 220.
 LaTeX Info: Redefining \% on input line 220.
-[72]
+[74]
 Overfull \hbox (95.99872pt too wide) in paragraph at lines 220--220
 []    \OT1/lmtt/m/n/10 return capacity - demand_price_elasticity(p_t, nominal_d
 emand=forecasted_demand,[] 
@@ -1593,7 +1555,7 @@ Overfull \hbox (17.24895pt too wide) in paragraph at lines 220--220
 
 LaTeX Info: Redefining \. on input line 220.
 LaTeX Info: Redefining \% on input line 220.
-[73]
+[75]
 Overfull \hbox (27.74892pt too wide) in paragraph at lines 220--220
 []\OT1/lmtt/m/n/10 # We look at four capacity segments: 20, 40, 60, and 80 (ful
 l capacity)[] 
@@ -1649,7 +1611,7 @@ Overfull \hbox (59.24883pt too wide) in paragraph at lines 220--220
 
 LaTeX Info: Redefining \. on input line 220.
 LaTeX Info: Redefining \% on input line 220.
-[74]
+[76]
 Overfull \hbox (38.24889pt too wide) in paragraph at lines 220--220
 []                                                              \OT1/lmtt/m/n/1
 0 elasticity,[] 
@@ -1694,14 +1656,14 @@ sed='left').tolist()[]
 )
 LaTeX Info: Redefining \. on input line 154.
 LaTeX Info: Redefining \% on input line 154.
- [75] (main.bbl [76
+ [77] (main.bbl [78
 
 
 
 ])
 LaTeX Info: Redefining \. on input line 186.
 LaTeX Info: Redefining \% on input line 186.
- [77] (main.aux
+ [79] (main.aux
 LaTeX Info: Redefining \. on input line 6.
 LaTeX Info: Redefining \% on input line 6.
 LaTeX Info: Redefining \. on input line 10.
@@ -1725,13 +1687,13 @@ LaTeX Info: Redefining \% on input line 26.
 ### simple group (level 1) entered at line 60 ({)
 ### bottom level 
 Here is how much of TeX's memory you used:
- 7533 strings out of 493333
- 103195 string characters out of 3139193
+ 7518 strings out of 493333
+ 102822 string characters out of 3139193
  221865 words of memory out of 3000000
- 10772 multiletter control sequences out of 15000+200000
+ 10760 multiletter control sequences out of 15000+200000
  59773 words of font info for 40 fonts, out of 3000000 for 9000
  1141 hyphenation exceptions out of 8191
- 41i,17n,45p,1297b,677s stack positions out of 5000i,500n,10000p,200000b,50000s
+ 41i,17n,45p,1297b,670s stack positions out of 5000i,500n,10000p,200000b,50000s
 {C:/Program Files/MiKTeX 2.9/fonts/enc/dvips/lm/lm-rm.enc}{C:/P
 rogram Files/MiKTeX 2.9/fonts/enc/dvips/lm/lm-mathsy.enc}{C:/Program Files/MiKT
 eX 2.9/fonts/enc/dvips/lm/lm-mathit.enc}{C:/Program Files/MiKTeX 2.9/fonts/enc/
@@ -1751,9 +1713,9 @@ gram Files/MiKTeX 2.9/fonts/type1/public/lm/lmri7.pfb><C:/Program Files/MiKTeX
 2.9/fonts/type1/public/lm/lmsy10.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/p
 ublic/lm/lmsy7.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/lm/lmtt10.pf
 b>
-Output written on main.pdf (84 pages, 1677587 bytes).
+Output written on main.pdf (86 pages, 1660396 bytes).
 PDF statistics:
- 456 PDF objects out of 1000 (max. 8388607)
+ 442 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
- 111 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 96 words of extra memory for PDF output out of 10000 (max. 10000000)
 
