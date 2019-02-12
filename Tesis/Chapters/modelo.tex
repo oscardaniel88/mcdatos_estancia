@@ -152,8 +152,12 @@ Los precios de la competencia fueron obtenidos de las páginas electrónicas de 
 
 A continuación se presentan las líneas de tiempo con los precios públicos para el conjunto de propiedades.
 
-\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}
-\includegraphics[width=\maxwidth]{figures/PreciosGraf-1} 
+\begin{figure}[H]
+  \centering
+      \includegraphics[width=\maxwidth,height=8cm]{figures/PreciosGraf-1}    
+  \caption{Precios de la competencia en el tiempo}
+\end{figure}
+
 
 En la gráfica anterior se puede observar que hay algunos datos atípicos ya que es poco probable encontrar habitaciones en este segmento de hoteles por arriba de los \$3,000 MXN. Para confirmar esto se realizó una gráfica de caja y bigotes (boxplot) en la cuál se puede observar a primera vista los datos atípicos contenidos en el \emph{data set}.
 
@@ -162,12 +166,6 @@ En la gráfica anterior se puede observar que hay algunos datos atípicos ya que
 
 Los datos atípicos fueron eliminados antes de proceder a trabajar con el módelo final.
 
-\subsection*{Tipo de cambio}
-
-El último \emph{data set} utilizado para la construcción del modelo contiene la información histórica de los tipos de cambio del peso frente al dólar.
-
-\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}
-\includegraphics[width=\maxwidth]{figures/TiposdeCambio-1} 
 
 En el siguiente apartado detallaremos cómo se utilizaron los datos presentados para la construcción del modelo de predicción de demanda y maximización de ingresos.
 

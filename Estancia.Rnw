@@ -496,10 +496,17 @@ Para este proyecto contamos con un dataset que contiene información sobre los p
 ~\\
 <<PrecioCompetencia, echo=FALSE>>=
 summary(competencia)
+competencia <- competencia %>% filter(!nombre %in% c('Holiday Inn Mexico City - Trade Center','Holiday Inn Mexico City-Plaza Universidad','Courtyard by Marriott Mexico City Revolucion') ) 
+nombre<-competencia$nombre %>% unique()
+Hotel<-c('Hotel1','Hotel2','Hotel3','Hotel4','Hotel5')
+comp<-cbind(nombre,Hotel)
+comp<-as.data.frame(comp)
+competencia <-competencia %>% inner_join(comp)
 @
 \paragraph{Precios en el tiempo} ~\\
 <<PreciosGraf, echo=FALSE>>=
-ggplot(competencia, aes(fecha,precio,colour=nombre)) + geom_line()
+ggplot(competencia, aes(fecha,precio,colour=Hotel)) + geom_line()  + theme_bw() +theme(axis.text=element_text(size=16),
+        axis.title=element_text(size=30,face="bold"),legend.position="top",legend.text=element_text(size=15)) 
 @
 ~\\
 Nos llaman la atención algunos datos que salen del patrón del comportamiento, para estudiarlos con mas detalle veamos la siguiente gráfica:
