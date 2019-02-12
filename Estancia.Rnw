@@ -512,8 +512,9 @@ ggplot(competencia, aes(fecha,precio,colour=Hotel)) + geom_line()  + theme_bw() 
 Nos llaman la atención algunos datos que salen del patrón del comportamiento, para estudiarlos con mas detalle veamos la siguiente gráfica:
 ~\\
 <<PreciosBoxPlot, echo=FALSE,fig.width=20, fig.height=15>>=
-ggplot(competencia, aes(nombre,precio)) + geom_boxplot(outlier.colour="red", outlier.shape=1,
-                outlier.size=2)+ theme(axis.text.x = element_text(angle = 60, hjust = 1))
+ggplot(competencia, aes(Hotel,precio)) + geom_boxplot(outlier.colour="red", outlier.shape=1,
+                outlier.size=2)+ theme(axis.text.x = element_text(angle = 60, hjust = 1))+ theme_bw() +theme(axis.text=element_text(size=16),
+        axis.title=element_text(size=30,face="bold"),legend.position="top",legend.text=element_text(size=15)) 
 @
 ~\\
 Podemos observar que este data set contiene datos atípicos, por ejemplo los hoteles "Courtyard by Marriot Mexico City Revolución", "Holiday Inn Mexico City-Plaza Universidad" y "Holiday Inn Mexico City - Trade Center" tienen tarifas arriba de los \$10,000 MXN, lo cual es poco probable ya que son hoteles que compiten directamente con CityExpress y su mercado es el mismo (Viajero de Negocios). Estos casos se deberán tomarse en cuenta al momento de construír el modelo de pronóstico y pricing dinámico para evitar resultados erróneos. 

@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017) (preloaded format=pdflatex 2017.10.5)  11 FEB 2019 18:25
+This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017) (preloaded format=pdflatex 2017.10.5)  12 FEB 2019 10:58
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1235,43 +1235,39 @@ File: figures/PreciosGraf-1.pdf Graphic file (type pdf)
 Package pdftex.def Info: figures/PreciosGraf-1.pdf used on input line 157.
 (pdftex.def)             Requested size: 345.00856pt x 227.62303pt.
 
-
-Package xcolor Warning: Incompatible color definition on input line 164.
-
-LaTeX Info: Redefining \. on input line 165.
-LaTeX Info: Redefining \% on input line 165.
-[51 <./figures/PreciosGraf-1.pdf>]
-<figures/PreciosBoxPlot-1.pdf, id=259, 1445.4pt x 1084.05pt>
+<figures/PreciosBoxPlot-1.pdf, id=250, 794.97pt x 614.295pt>
 File: figures/PreciosBoxPlot-1.pdf Graphic file (type pdf)
 
 <use figures/PreciosBoxPlot-1.pdf>
-Package pdftex.def Info: figures/PreciosBoxPlot-1.pdf used on input line 165.
-(pdftex.def)             Requested size: 345.0pt x 258.73822pt.
-LaTeX Info: Redefining \. on input line 178.
-LaTeX Info: Redefining \% on input line 178.
+Package pdftex.def Info: figures/PreciosBoxPlot-1.pdf used on input line 166.
+(pdftex.def)             Requested size: 345.00856pt x 227.62303pt.
+LaTeX Info: Redefining \. on input line 168.
+LaTeX Info: Redefining \% on input line 168.
+ [51 <./figures/PreciosGraf-1.pdf>]
+LaTeX Info: Redefining \. on input line 183.
+LaTeX Info: Redefining \% on input line 183.
  [52 <./figures/PreciosBoxPlot-1.pdf>]
-LaTeX Info: Redefining \. on input line 209.
-LaTeX Info: Redefining \% on input line 209.
-
-[53]
-LaTeX Info: Redefining \. on input line 241.
-LaTeX Info: Redefining \% on input line 241.
+LaTeX Info: Redefining \. on input line 214.
+LaTeX Info: Redefining \% on input line 214.
+ [53]
+LaTeX Info: Redefining \. on input line 246.
+LaTeX Info: Redefining \% on input line 246.
  [54]
 
 LaTeX Warning: No positions in optional float specifier.
-               Default added (so using `!tbp') on input line 244.
+               Default added (so using `!tbp') on input line 249.
 
-<Figures/buckets.png, id=275, 664.4825pt x 357.335pt>
+<Figures/buckets.png, id=276, 664.4825pt x 357.335pt>
 File: Figures/buckets.png Graphic file (type png)
 
 <use Figures/buckets.png>
-Package pdftex.def Info: Figures/buckets.png used on input line 245.
+Package pdftex.def Info: Figures/buckets.png used on input line 250.
 (pdftex.def)             Requested size: 345.0pt x 185.53174pt.
-LaTeX Info: Redefining \. on input line 261.
-LaTeX Info: Redefining \% on input line 261.
+LaTeX Info: Redefining \. on input line 266.
+LaTeX Info: Redefining \% on input line 266.
  [55 <./Figures/buckets.png>]
-LaTeX Info: Redefining \. on input line 286.
-LaTeX Info: Redefining \% on input line 286.
+LaTeX Info: Redefining \. on input line 291.
+LaTeX Info: Redefining \% on input line 291.
  [56])
 LaTeX Info: Redefining \. on input line 146.
 LaTeX Info: Redefining \% on input line 146.
@@ -1297,7 +1293,7 @@ LaTeX Info: Redefining \% on input line 42.
 
 Package xcolor Warning: Incompatible color definition on input line 54.
 
-<Figures/ValidacionModelo-1.pdf, id=292, 1445.4pt x 1084.05pt>
+<Figures/ValidacionModelo-1.pdf, id=293, 1445.4pt x 1084.05pt>
 File: Figures/ValidacionModelo-1.pdf Graphic file (type pdf)
 
 <use Figures/ValidacionModelo-1.pdf>
@@ -1313,14 +1309,14 @@ Overfull \hbox (3.69286pt too wide) in paragraph at lines 76--77
 
 LaTeX Info: Redefining \. on input line 92.
 LaTeX Info: Redefining \% on input line 92.
-[61] <figures/Pricing_graph-1.pdf, id=305, 1445.4pt x 1084.05pt>
+[61] <figures/Pricing_graph-1.pdf, id=306, 1445.4pt x 1084.05pt>
 File: figures/Pricing_graph-1.pdf Graphic file (type pdf)
 
 <use figures/Pricing_graph-1.pdf>
 Package pdftex.def Info: figures/Pricing_graph-1.pdf used on input line 99.
 (pdftex.def)             Requested size: 345.0pt x 258.73822pt.
 
-<figures/Pricing-1.pdf, id=306, 1445.4pt x 1084.05pt>
+<figures/Pricing-1.pdf, id=307, 1445.4pt x 1084.05pt>
 File: figures/Pricing-1.pdf Graphic file (type pdf)
 
 <use figures/Pricing-1.pdf>
@@ -1682,7 +1678,7 @@ Here is how much of TeX's memory you used:
  10816 multiletter control sequences out of 15000+600000
  59773 words of font info for 40 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 41i,17n,45p,1295b,670s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 41i,17n,45p,1295b,669s stack positions out of 5000i,500n,10000p,200000b,80000s
 {/usr/local/texlive/2017/texmf-dist/fonts/enc/dvips/lm/lm-rm.en
 c}{/usr/local/texlive/2017/texmf-dist/fonts/enc/dvips/lm/lm-mathsy.enc}{/usr/lo
 cal/texlive/2017/texmf-dist/fonts/enc/dvips/lm/lm-mathit.enc}{/usr/local/texliv
@@ -1704,10 +1700,10 @@ ist/fonts/type1/public/lm/lmri7.pfb></usr/local/texlive/2017/texmf-dist/fonts/t
 ype1/public/lm/lmsy10.pfb></usr/local/texlive/2017/texmf-dist/fonts/type1/publi
 c/lm/lmsy7.pfb></usr/local/texlive/2017/texmf-dist/fonts/type1/public/lm/lmtt10
 .pfb>
-Output written on main.pdf (85 pages, 1590534 bytes).
+Output written on main.pdf (85 pages, 1582760 bytes).
 PDF statistics:
- 435 PDF objects out of 1000 (max. 8388607)
- 293 compressed objects within 3 object streams
+ 436 PDF objects out of 1000 (max. 8388607)
+ 294 compressed objects within 3 object streams
  0 named destinations out of 1000 (max. 500000)
  91 words of extra memory for PDF output out of 10000 (max. 10000000)
 
