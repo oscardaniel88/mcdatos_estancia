@@ -348,6 +348,22 @@ pickup_rsrv$reservas<-rev(cumsum(rev(pickup_rsrv$reservas)))
 ggplot(pickup_rsrv, aes(antelacion, reservas)) + geom_line() + xlim(-1,100) + ggtitle("Pickup 100 dias")
 
 @
+
+<<pickup_ejemplo, echo=FALSE>>=
+historico_grp_rsrv <- historico_ocupacion %>% filter(date_in == '2017-05-01')
+historico_grp_rsrv <- historico_grp_rsrv %>% group_by(rsrv_code) %>% summarise(nights=sum(nights),
+                                                                      date_create = min(date_create),
+                                                                      date_in = min(date_in),
+                                                                      date_out = max(date_out),
+                                                                      count = 1)
+historico_grp_rsrv$antelacion<-as.integer(difftime(historico_grp_rsrv$date_in,historico_grp_rsrv$date_create, units="days"))
+historico_grp_rsrv$date_create<-as.Date(historico_grp_rsrv$date_create, format = "%Y-%m-%d")
+pickup_rsrv <- historico_grp_rsrv %>% group_by(date_create,date_in,antelacion) %>% summarise(cuartos=sum(nights))
+pickup_rsrv <- arrange(pickup_rsrv,antelacion)
+pickup_rsrv$cuartos<-rev(cumsum(rev(pickup_rsrv$cuartos)))
+ggplot(pickup_rsrv, aes(antelacion, cuartos)) + geom_line() + xlim(-1,100) + ggtitle("Pickup 100 dias")
+
+@
 ~\\
 <<pickupzoom, echo=FALSE>>=
 ggplot(pickup_rsrv, aes(antelacion, reservas)) + geom_line() + xlim(-1,25) + theme_bw()+theme(axis.text=element_text(size=16),
