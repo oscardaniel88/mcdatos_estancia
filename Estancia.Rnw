@@ -361,7 +361,8 @@ historico_grp_rsrv$date_create<-as.Date(historico_grp_rsrv$date_create, format =
 pickup_rsrv <- historico_grp_rsrv %>% group_by(date_create,date_in,antelacion) %>% summarise(cuartos=sum(nights))
 pickup_rsrv <- arrange(pickup_rsrv,antelacion)
 pickup_rsrv$cuartos<-rev(cumsum(rev(pickup_rsrv$cuartos)))
-ggplot(pickup_rsrv, aes(antelacion, cuartos)) + geom_line() + xlim(-1,100) + ggtitle("Pickup 100 dias")
+ggplot(pickup_rsrv, aes(antelacion, cuartos)) + geom_line() + xlim(-1,100) + theme_bw() + theme(axis.text=element_text(size=16),
+        axis.title=element_text(size=30,face="bold"))
 
 @
 ~\\
@@ -855,20 +856,26 @@ datos_reales <- datos_reales %>% select(antelacion,nights) %>% dplyr::group_by(a
                 summarise(cn=sum(nights))
 
 datos_reales$cumsum <- rev(cumsum(rev(datos_reales$cn))) 
+datos_reales$version<-c("real")
+test_result$version<-c("pronostico")
+names(test_result)<-c("antelacion","cumsum","version")
+datos_reales <- datos_reales %>% select(antelacion,cumsum,version)
+plot_result <- as.data.frame(rbind(datos_reales,test_result))
 
-datos_reales<- datos_reales %>% select(antelacion,cumsum)
-plots[[i]]<-ggplot(data=test_result, aes(antelacion,cn_predic),guide=TRUE)+
-  geom_point()+geom_line(data=datos_reales, aes(x=antelacion,y=cumsum, colour="red"))+
-  xlab("Antelacion")+ylab("Cuartos Vendidos")
-i<-i+1
+plots[[i]]<-ggplot(plot_result, aes(antelacion,cumsum,colour=version)) + geom_line()  + theme_bw() +theme(axis.text=element_text(size=16),
+        axis.title=element_text(size=30,face="bold"),legend.position="top",legend.text=element_text(size=15)) 
 
 resultados_mape<-test_result[1:29,]
-MAPE_DS<- datos_reales %>% inner_join(resultados_mape)
-MAPE_DS$MAPE<-(MAPE_DS$cumsum-MAPE_DS$cn_predic)/MAPE_DS$cumsum
+datos_reales<- datos_reales %>% select(antelacion,cumsum)
+MAPE_DS<- datos_reales %>% inner_join(resultados_mape,by=c("antelacion"))
+MAPE_DS$MAPE<-abs(MAPE_DS$cumsum.x-MAPE_DS$cumsum.y)/MAPE_DS$cumsum.x
 
 mape[[i]] <- (sum(MAPE_DS$MAPE)/29)*100
+i<-i+1
 
 }
+
+
 cowplot::plot_grid(plotlist = plots, ncol = 4)
 @
 

@@ -211,7 +211,7 @@ Los predictores definidos son:
 \begin{itemize}
   \item diaSem: Definido como factores que van de Lunes a Domingo
   \item Mes: Definido como factores que van de Enero a Diciembre
-  \item Eventos: 1 si la plaza cuenta con algun evento social, deportivo, o de entretenimiento en esa fecha, 0 en caso contrario
+  \item Eventos: Toma el valor 1 si la plaza cuenta con algun evento social, deportivo, o de entretenimiento en esa fecha, 0 en caso contrario
   \item PT: Definido como la tarifa promedio de la propiedad dividida entre la tarifa promedio de la competencia
   \item $beta_0$: El parámetro $\beta_0$ obtenido de la regresión \emph{Poisson}
   \item $beta_1$: El parámetro $\beta_1$ obtenido de la regresión \emph{Poisson}
@@ -220,35 +220,36 @@ Los predictores definidos son:
 
 Con estos predictores definidos se procede a alimentar una regresión lineal que calculará nuevos parámetros $\beta_{0*}$ y $\beta_{1*}$. A partir de estos nuevos parámetros se construyen las curvas de \emph{pickup} que ayuden a predecir la demanda de la propiedad en días futuros.
 
-Una vez concluído el cálculo, se genera una matriz en la cuál se plasma la estimación del número de \emph{cuartos} que se venderán en una ventana futura:
+Una vez concluído el cálculo, se genera una matriz en la cuál se plasma la estimación del número de \emph{cuartos} ocupados que en una ventana futura:
 
-\begin{verbatim}
-          dia cn_predic
-       <date>     <int>
-1  2018-06-01        92
-2  2018-06-02        78
-3  2018-06-03        96
-4  2018-06-04        99
-5  2018-06-05       132
-6  2018-06-06       151
-7  2018-06-07       138
-8  2018-06-08        88
-9  2018-06-09        77
-10 2018-06-10       109
-\end{verbatim}
+\begin{table}[H]
+\centering
+\begin{tabular}{ll}
+Dia        & Cuartos Ocupados \\
+2018-06-01 & 92               \\
+2018-06-02 & 78               \\
+2018-06-03 & 96               \\
+2018-06-04 & 99               \\
+2018-06-05 & 132              \\
+2018-06-06 & 151              \\
+2018-06-07 & 138              \\
+2018-06-08 & 88               \\
+2018-06-09 & 77              
+\end{tabular}
+\end{table}
 
 Esta matriz será la entrada del modelo que recomendará los precios por habitación para maximizar los ingresos de la propiedad.
 
 
 \section*{Modelo de maximización de ingresos}
 
-Una vez pronósticado el nível de ocupación para cada una de las propiedades de la cadena, se alimentó un modelo de pricing dinámico que entrega recomendaciones de precios para la tarifa pública tomando en cuenta la demanda pronósticada para cierto día del año.
+Una vez pronósticado los cuartos ocupados para cada una de las propiedades de la cadena, se alimentó un modelo de pricing dinámico que entrega recomendaciones de precios para la tarifa pública tomando en cuenta la demanda pronósticada para cierto día del año.
 
 Típicamente el gerente de la propiedad controla la cantidad de cuartos ofrecidos a diferentes precios, es decir, se asigna cierto número de cuartos a cada nível de tarifa de tal forma que cuando el inventario asignado al precio mas bajo se agota, se consume el inventario asignado al siguiente nivel de tarifa que será mayor al primer precio ofertado.
 
 A continuación se muestra un esquema donde se ejemplifica la idea mencionada anteriormente:
 
-\begin{figure}[!]
+\begin{figure}[H]
   \includegraphics[width=\linewidth]{Figures/buckets.png}
   \caption{Asignacion de inventario}
   \label{fig:Asignacion de Inventario}
@@ -274,23 +275,21 @@ Existen las siguientes restricciones también: $$o_i \leq Capacidad\ \forall i$$
 
 En otras palabras, la ocupación no puede exceder a la capacidad del hotel y los precios deben ser siempre mayores a cero.
 
+Una vez definidas la función objetivo y las restricciones, se ejecuta el modelo de optimización utilizando el método de \emph{Programación cuadrática secuencial}, un algóritmo útil para resolver problemas de optimización no lineales.
+
 Para poder hacer una asignación dinámica de los precios, evitando tener que correr el modelo conforme la información del hotel es actualizada, se partió el inventario en 4 níveles de disponiblidad (159,120,80 y 40 cuartos disponibles). Para cada nível de capacidad se resolvió la función objetivo para obtener 4 conjuntos de precios, de esta forma, el gerente de la propiedad puede saber a qué nível de precio debe subir la tarifa pública de la propiedad conforme las habitaciones disponibles decrecen.
 
 El modelo de maximización de ingresos arroja como resultado una matriz de día vs precio por niveles de inventario. A continuación se muestra un ejemplo:
+\\
+\\
+{\centering
+\csvautotabular{data/rates.csv}\par
 
+}
 \begin{verbatim}
-##            day       40       80       120       159
-## 137 2018-05-17 1616.650 1374.773 1122.4972  975.1633
-## 77  2018-03-18 1701.113 1675.709 1368.2105 1188.6253
-## 52  2018-02-21 1666.334 1529.706 1248.9996 1085.0615
-## 16  2018-01-16 1647.043 1463.557 1194.9895 1038.1406
-## 24  2018-01-24 1702.217 1681.071 1372.5888 1192.4289
-## 93  2018-04-03 1703.315 1686.416 1376.9532 1196.2205
-## 78  2018-03-19 1621.479 1387.804 1133.1372  984.4067
-## 167 2018-06-16 1498.239 1138.420  929.5160  807.5119
-## 139 2018-05-19 1527.223 1184.905  967.4709  840.4850
-## 174 2018-06-23 1518.070 1169.615  954.9869  829.6396
+
 \end{verbatim}
+De la matriz que arroja el modelo de optimización de precios podemos obtener el precio sugerido para cada nivel de inventario disponible por día pronósticado. Por ejemplo, para el día 7 de julio de 2018 el modelo sugiere un precio público para habitación sencilla de \$784.76 si el hotel tiene entre 121 y 159 habitaciones disponibles; \$903.32 si se tienen entre 81 y 120 habitaciones disponibles; \$1106.34 enre 41 y 80 habitaciones disponibles; y finalmente un precio de \$1476.07 entre 1 y 40 habitaciones disponibles.
 
 \subsection*{Consideraciones del modelo}
 
