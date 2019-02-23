@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017) (preloaded format=pdflatex 2017.10.5)  13 FEB 2019 17:13
+This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017) (preloaded format=pdflatex 2017.10.5)  19 FEB 2019 10:01
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -952,13 +952,22 @@ LaTeX Info: Redefining \. on input line 5.
 LaTeX Info: Redefining \% on input line 5.
 LaTeX Info: Redefining \. on input line 6.
 LaTeX Info: Redefining \% on input line 6.
-)
+ [2
+
+])
 \tf@lof=\write5
 \openout5 = `main.lof'.
 
- [2
+LaTeX Info: Redefining \. on input line 130.
+LaTeX Info: Redefining \% on input line 130.
 
-] (./main.lot
+
+Package Fancyhdr Warning: \headheight is too small (12.0pt): 
+ Make it at least 13.28749pt.
+ We now make it that large for the rest of the document.
+ This may cause the page layout to be inconsistent, however.
+
+[3] (./main.lot
 LaTeX Info: Redefining \. on input line 1.
 LaTeX Info: Redefining \% on input line 1.
 LaTeX Info: Redefining \. on input line 2.
@@ -973,13 +982,12 @@ LaTeX Info: Redefining \% on input line 6.
 \tf@lot=\write6
 \openout6 = `main.lot'.
 
- [3
+ [4
 
 ]
 \openout2 = `Chapters/introduction.aux'.
 
-
-(./Chapters/introduction.tex
+ (./Chapters/introduction.tex
 Cap\'{\i }tulo 1.
 [1
 
@@ -1033,7 +1041,7 @@ LaTeX Info: Redefining \% on input line 109.
 LaTeX Info: Redefining \. on input line 130.
 LaTeX Info: Redefining \% on input line 130.
  [13]
-<figures/pickupEjemplo.pdf, id=80, 794.97pt x 614.295pt>
+<figures/pickupEjemplo.pdf, id=83, 794.97pt x 614.295pt>
 File: figures/pickupEjemplo.pdf Graphic file (type pdf)
 
 <use figures/pickupEjemplo.pdf>
@@ -1063,7 +1071,7 @@ LaTeX Info: Redefining \% on input line 188.
 LaTeX Info: Redefining \. on input line 207.
 LaTeX Info: Redefining \% on input line 207.
  [18]
-<figures/NeuralNetwork.png, id=106, 178.86826pt x 99.7326pt>
+<figures/NeuralNetwork.png, id=109, 178.86826pt x 99.7326pt>
 File: figures/NeuralNetwork.png Graphic file (type png)
 
 <use figures/NeuralNetwork.png>
@@ -1106,7 +1114,7 @@ LaTeX Info: Redefining \% on input line 324.
  [26]
 LaTeX Info: Redefining \. on input line 339.
 LaTeX Info: Redefining \% on input line 339.
- [27] <figures/Time_Mult.png, id=137, 499.11469pt x 231.11343pt>
+ [27] <figures/Time_Mult.png, id=140, 499.11469pt x 231.11343pt>
 File: figures/Time_Mult.png Graphic file (type png)
 
 <use figures/Time_Mult.png>
@@ -1115,7 +1123,7 @@ Package pdftex.def Info: figures/Time_Mult.png used on input line 350.
 LaTeX Info: Redefining \. on input line 353.
 LaTeX Info: Redefining \% on input line 353.
  [28]
-<figures/Cap_Mult.png, id=142, 468.24937pt x 220.57407pt>
+<figures/Cap_Mult.png, id=145, 468.24937pt x 220.57407pt>
 File: figures/Cap_Mult.png Graphic file (type png)
 
 <use figures/Cap_Mult.png>
@@ -1124,7 +1132,7 @@ Package pdftex.def Info: figures/Cap_Mult.png used on input line 360.
 LaTeX Info: Redefining \. on input line 363.
 LaTeX Info: Redefining \% on input line 363.
  [29 <./figures/Time_Mult.png>]
-<figures/Los_Mult.png, id=147, 453.94594pt x 206.27063pt>
+<figures/Los_Mult.png, id=151, 453.94594pt x 206.27063pt>
 File: figures/Los_Mult.png Graphic file (type png)
 
 <use figures/Los_Mult.png>
@@ -1133,7 +1141,7 @@ Package pdftex.def Info: figures/Los_Mult.png used on input line 370.
 LaTeX Info: Redefining \. on input line 373.
 LaTeX Info: Redefining \% on input line 373.
  [30 <./figures/Cap_Mult.png>]
-<figures/Group_Mult.png, id=153, 476.53032pt x 207.77625pt>
+<figures/Group_Mult.png, id=156, 476.53032pt x 207.77625pt>
 File: figures/Group_Mult.png Graphic file (type png)
 
 <use figures/Group_Mult.png>
@@ -1154,7 +1162,7 @@ LaTeX Info: Redefining \% on input line 427.
 LaTeX Info: Redefining \. on input line 458.
 LaTeX Info: Redefining \% on input line 458.
  [35]
-<./Figures/Figure1.PNG, id=171, 371.88937pt x 141.52875pt>
+<./Figures/Figure1.PNG, id=175, 371.88937pt x 141.52875pt>
 File: ./Figures/Figure1.PNG Graphic file (type png)
 
 <use ./Figures/Figure1.PNG>
@@ -1214,7 +1222,7 @@ Overfull \hbox (20.0058pt too wide) in paragraph at lines 64--84
 
 LaTeX Info: Redefining \. on input line 89.
 LaTeX Info: Redefining \% on input line 89.
-[45] <figures/pickupzoom-1.pdf, id=206, 794.97pt x 614.295pt>
+[45] <figures/pickupzoom-1.pdf, id=209, 794.97pt x 614.295pt>
 File: figures/pickupzoom-1.pdf Graphic file (type pdf)
 
 <use figures/pickupzoom-1.pdf>
@@ -1223,7 +1231,7 @@ Package pdftex.def Info: figures/pickupzoom-1.pdf used on input line 95.
 LaTeX Info: Redefining \. on input line 100.
 LaTeX Info: Redefining \% on input line 100.
  [46 <./figures/pickupzoom-1.pdf>]
-<figures/HabitacionesOcupadas-1.pdf, id=216, 794.97pt x 614.295pt>
+<figures/HabitacionesOcupadas-1.pdf, id=219, 794.97pt x 614.295pt>
 File: figures/HabitacionesOcupadas-1.pdf Graphic file (type pdf)
 
 <use figures/HabitacionesOcupadas-1.pdf>
@@ -1233,7 +1241,7 @@ Package pdftex.def Info: figures/HabitacionesOcupadas-1.pdf used on input line
 LaTeX Info: Redefining \. on input line 116.
 LaTeX Info: Redefining \% on input line 116.
  [47]
-<Figures/Ocupacion_Dia_Semana-1.pdf, id=220, 794.97pt x 614.295pt>
+<Figures/Ocupacion_Dia_Semana-1.pdf, id=224, 794.97pt x 614.295pt>
 File: Figures/Ocupacion_Dia_Semana-1.pdf Graphic file (type pdf)
 
 <use Figures/Ocupacion_Dia_Semana-1.pdf>
@@ -1243,7 +1251,7 @@ Package pdftex.def Info: Figures/Ocupacion_Dia_Semana-1.pdf used on input line
 LaTeX Info: Redefining \. on input line 127.
 LaTeX Info: Redefining \% on input line 127.
  [48 <./figures/HabitacionesOcupadas-1.pdf>] <figures/IndicadoresTarifaPromedio
--1.pdf, id=231, 794.97pt x 614.295pt>
+-1.pdf, id=234, 794.97pt x 614.295pt>
 File: figures/IndicadoresTarifaPromedio-1.pdf Graphic file (type pdf)
 
 <use figures/IndicadoresTarifaPromedio-1.pdf>
@@ -1256,14 +1264,14 @@ LaTeX Info: Redefining \% on input line 141.
 LaTeX Info: Redefining \. on input line 148.
 LaTeX Info: Redefining \% on input line 148.
  [50 <./figures/IndicadoresTarifaPromedio-1.pdf>]
-<figures/PreciosGraf-1.pdf, id=250, 794.97pt x 614.295pt>
+<figures/PreciosGraf-1.pdf, id=253, 794.97pt x 614.295pt>
 File: figures/PreciosGraf-1.pdf Graphic file (type pdf)
 
 <use figures/PreciosGraf-1.pdf>
 Package pdftex.def Info: figures/PreciosGraf-1.pdf used on input line 157.
 (pdftex.def)             Requested size: 345.00856pt x 227.62303pt.
 
-<figures/PreciosBoxPlot-1.pdf, id=251, 794.97pt x 614.295pt>
+<figures/PreciosBoxPlot-1.pdf, id=254, 794.97pt x 614.295pt>
 File: figures/PreciosBoxPlot-1.pdf Graphic file (type pdf)
 
 <use figures/PreciosBoxPlot-1.pdf>
@@ -1281,7 +1289,7 @@ LaTeX Info: Redefining \% on input line 215.
 LaTeX Info: Redefining \. on input line 248.
 LaTeX Info: Redefining \% on input line 248.
  [54]
-<Figures/buckets.png, id=277, 664.4825pt x 357.335pt>
+<Figures/buckets.png, id=280, 664.4825pt x 357.335pt>
 File: Figures/buckets.png Graphic file (type png)
 
 <use Figures/buckets.png>
@@ -1293,8 +1301,8 @@ LaTeX Info: Redefining \% on input line 269.
 LaTeX Info: Redefining \. on input line 282.
 LaTeX Info: Redefining \% on input line 282.
  [56]
-LaTeX Info: Redefining \. on input line 297.
-LaTeX Info: Redefining \% on input line 297.
+LaTeX Info: Redefining \. on input line 298.
+LaTeX Info: Redefining \% on input line 298.
  [57])
 LaTeX Info: Redefining \. on input line 146.
 LaTeX Info: Redefining \% on input line 146.
@@ -1316,52 +1324,72 @@ pic-kup \OT1/lmr/m/n/10 pro-nos-ti-ca-da se de-be to-mar los par^^Same-
 
 LaTeX Info: Redefining \. on input line 42.
 LaTeX Info: Redefining \% on input line 42.
-[60]
+[60] <figures/Resultados-1.pdf, id=301, 794.97pt x 614.295pt>
+File: figures/Resultados-1.pdf Graphic file (type pdf)
 
-Package xcolor Warning: Incompatible color definition on input line 54.
+<use figures/Resultados-1.pdf>
+Package pdftex.def Info: figures/Resultados-1.pdf used on input line 56.
+(pdftex.def)             Requested size: 345.00856pt x 284.52878pt.
 
-<Figures/ValidacionModelo-1.pdf, id=298, 1445.4pt x 1084.05pt>
-File: Figures/ValidacionModelo-1.pdf Graphic file (type pdf)
+<figures/Resultados-2.pdf, id=302, 794.97pt x 614.295pt>
+File: figures/Resultados-2.pdf Graphic file (type pdf)
 
-<use Figures/ValidacionModelo-1.pdf>
-Package pdftex.def Info: Figures/ValidacionModelo-1.pdf used on input line 55.
-(pdftex.def)             Requested size: 345.0pt x 258.73822pt.
-LaTeX Info: Redefining \. on input line 60.
-LaTeX Info: Redefining \% on input line 60.
- [61 <./Figures/ValidacionModelo-1.pdf>]
-Overfull \hbox (3.69286pt too wide) in paragraph at lines 76--77
+<use figures/Resultados-2.pdf>
+Package pdftex.def Info: figures/Resultados-2.pdf used on input line 62.
+(pdftex.def)             Requested size: 345.00856pt x 227.62303pt.
+LaTeX Info: Redefining \. on input line 65.
+LaTeX Info: Redefining \% on input line 65.
+ [61 <./figures/Resultados-1.pdf>]
+<figures/Resultados-3.pdf, id=312, 794.97pt x 614.295pt>
+File: figures/Resultados-3.pdf Graphic file (type pdf)
+
+<use figures/Resultados-3.pdf>
+Package pdftex.def Info: figures/Resultados-3.pdf used on input line 68.
+(pdftex.def)             Requested size: 345.00856pt x 227.62303pt.
+
+<figures/Resultados-4.pdf, id=313, 794.97pt x 614.295pt>
+File: figures/Resultados-4.pdf Graphic file (type pdf)
+
+<use figures/Resultados-4.pdf>
+Package pdftex.def Info: figures/Resultados-4.pdf used on input line 74.
+(pdftex.def)             Requested size: 345.00856pt x 284.52878pt.
+LaTeX Info: Redefining \. on input line 77.
+LaTeX Info: Redefining \% on input line 77.
+ [62 <./figures/Resultados-2.pdf> <./figures/Resultados-3.pdf>]
+LaTeX Info: Redefining \. on input line 88.
+LaTeX Info: Redefining \% on input line 88.
+ [63 <./figures/Resultados-4.pdf>]
+Overfull \hbox (3.69286pt too wide) in paragraph at lines 97--98
 []\OT1/lmr/m/n/10 El mo-de-lo de re-co-men-da-cio-nes de pre-cio to-ma co-mo en
 -tra-da la de-man-da pron^^Sosti-
  []
 
-LaTeX Info: Redefining \. on input line 84.
-LaTeX Info: Redefining \% on input line 84.
-[62] <figures/Pricing_graph-1.pdf, id=310, 1445.4pt x 1084.05pt>
+LaTeX Info: Redefining \. on input line 111.
+LaTeX Info: Redefining \% on input line 111.
+[64] <figures/Pricing_graph-1.pdf, id=341, 794.97pt x 614.295pt>
 File: figures/Pricing_graph-1.pdf Graphic file (type pdf)
 
 <use figures/Pricing_graph-1.pdf>
-Package pdftex.def Info: figures/Pricing_graph-1.pdf used on input line 94.
-(pdftex.def)             Requested size: 345.0pt x 258.73822pt.
-LaTeX Info: Redefining \. on input line 96.
-LaTeX Info: Redefining \% on input line 96.
- [63]
-<figures/Pricing-1.pdf, id=314, 1445.4pt x 1084.05pt>
+Package pdftex.def Info: figures/Pricing_graph-1.pdf used on input line 115.
+(pdftex.def)             Requested size: 345.0pt x 266.59752pt.
+
+<figures/Pricing-1.pdf, id=342, 794.97pt x 614.295pt>
 File: figures/Pricing-1.pdf Graphic file (type pdf)
 
 <use figures/Pricing-1.pdf>
-Package pdftex.def Info: figures/Pricing-1.pdf used on input line 98.
-(pdftex.def)             Requested size: 345.0pt x 258.73822pt.
-LaTeX Info: Redefining \. on input line 100.
-LaTeX Info: Redefining \% on input line 100.
- [64 <./figures/Pricing_graph-1.pdf>])
+Package pdftex.def Info: figures/Pricing-1.pdf used on input line 119.
+(pdftex.def)             Requested size: 345.0pt x 266.59752pt.
+LaTeX Info: Redefining \. on input line 121.
+LaTeX Info: Redefining \% on input line 121.
+ [65 <./figures/Pricing_graph-1.pdf>])
 LaTeX Info: Redefining \. on input line 148.
 LaTeX Info: Redefining \% on input line 148.
- [65 <./figures/Pricing-1.pdf>]
+ [66 <./figures/Pricing-1.pdf>]
 \openout2 = `Chapters/Conclusiones.aux'.
 
  (./Chapters/Conclusiones.tex
 Cap\'{\i }tulo 6.
-) [66
+) [67
 
 
 
@@ -1370,7 +1398,7 @@ Cap\'{\i }tulo 6.
 
  (./Chapters/AnexoA.tex
 Cap\'{\i }tulo 7.
-[67
+[68
 
 
 
@@ -1383,15 +1411,15 @@ acion)[]
 LaTeX Info: Redefining \. on input line 139.
 LaTeX Info: Redefining \% on input line 139.
 
-Package Fancyhdr Warning: \headheight is too small (12.0pt): 
+Package Fancyhdr Warning: \headheight is too small (13.28749pt): 
  Make it at least 23.27768pt.
  We now make it that large for the rest of the document.
  This may cause the page layout to be inconsistent, however.
 
-[68]
+[69]
 LaTeX Info: Redefining \. on input line 139.
 LaTeX Info: Redefining \% on input line 139.
- [69]
+ [70]
 Overfull \hbox (1.499pt too wide) in paragraph at lines 139--139
 []                             \OT1/lmtt/m/n/10 <=as.numeric(as.Date("2018-08-1
 1")) &[] 
@@ -1405,7 +1433,7 @@ dia)>=[]
 
 LaTeX Info: Redefining \. on input line 139.
 LaTeX Info: Redefining \% on input line 139.
-[70]
+[71]
 Overfull \hbox (6.74898pt too wide) in paragraph at lines 139--139
 []                                \OT1/lmtt/m/n/10 as.numeric(as.Date("2018-04-
 04")) &[] 
@@ -1420,12 +1448,12 @@ Overfull \hbox (1.499pt too wide) in paragraph at lines 139--139
 )
 LaTeX Info: Redefining \. on input line 152.
 LaTeX Info: Redefining \% on input line 152.
- [71]
+ [72]
 \openout2 = `Chapters/AnexoB.aux'.
 
  (./Chapters/AnexoB.tex
 Cap\'{\i }tulo 8.
-[72
+[73
 
 
 
@@ -1473,7 +1501,7 @@ y should correspond to the[]
 
 LaTeX Info: Redefining \. on input line 220.
 LaTeX Info: Redefining \% on input line 220.
-[73]
+[74]
 Overfull \hbox (90.74873pt too wide) in paragraph at lines 220--220
 []        \OT1/lmtt/m/n/10 one-dimensional forecasted occupancy array. The leng
 th of that array should[] 
@@ -1505,7 +1533,7 @@ y should correspond to the[]
 
 LaTeX Info: Redefining \. on input line 220.
 LaTeX Info: Redefining \% on input line 220.
-[74]
+[75]
 Overfull \hbox (90.74873pt too wide) in paragraph at lines 220--220
 []        \OT1/lmtt/m/n/10 one-dimensional forecasted occupancy array. The leng
 th of that array should[] 
@@ -1543,7 +1571,7 @@ nal_price=nominal_price) )) / 100[]
 
 LaTeX Info: Redefining \. on input line 220.
 LaTeX Info: Redefining \% on input line 220.
-[75]
+[76]
 Overfull \hbox (95.99872pt too wide) in paragraph at lines 220--220
 []    \OT1/lmtt/m/n/10 return capacity - demand_price_elasticity(p_t, nominal_d
 emand=forecasted_demand,[] 
@@ -1569,7 +1597,7 @@ Overfull \hbox (17.24895pt too wide) in paragraph at lines 220--220
 
 LaTeX Info: Redefining \. on input line 220.
 LaTeX Info: Redefining \% on input line 220.
-[76]
+[77]
 Overfull \hbox (27.74892pt too wide) in paragraph at lines 220--220
 []\OT1/lmtt/m/n/10 # We look at four capacity segments: 20, 40, 60, and 80 (ful
 l capacity)[] 
@@ -1625,7 +1653,7 @@ Overfull \hbox (59.24883pt too wide) in paragraph at lines 220--220
 
 LaTeX Info: Redefining \. on input line 220.
 LaTeX Info: Redefining \% on input line 220.
-[77]
+[78]
 Overfull \hbox (38.24889pt too wide) in paragraph at lines 220--220
 []                                                              \OT1/lmtt/m/n/1
 0 elasticity,[] 
@@ -1670,14 +1698,14 @@ sed='left').tolist()[]
 )
 LaTeX Info: Redefining \. on input line 154.
 LaTeX Info: Redefining \% on input line 154.
- [78] (./main.bbl [79
+ [79] (./main.bbl [80
 
 
 
 ])
 LaTeX Info: Redefining \. on input line 186.
 LaTeX Info: Redefining \% on input line 186.
- [80] (./main.aux
+ [81] (./main.aux
 LaTeX Info: Redefining \. on input line 6.
 LaTeX Info: Redefining \% on input line 6.
 LaTeX Info: Redefining \. on input line 10.
@@ -1701,13 +1729,13 @@ LaTeX Info: Redefining \% on input line 26.
 ### simple group (level 1) entered at line 60 ({)
 ### bottom level 
 Here is how much of TeX's memory you used:
- 8807 strings out of 492995
- 133054 string characters out of 6132704
+ 8822 strings out of 492995
+ 133417 string characters out of 6132704
  253905 words of memory out of 5000000
- 12046 multiletter control sequences out of 15000+600000
+ 12058 multiletter control sequences out of 15000+600000
  59773 words of font info for 40 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 41i,17n,47p,1295b,669s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 41i,17n,47p,1295b,656s stack positions out of 5000i,500n,10000p,200000b,80000s
 {/usr/local/texlive/2017/texmf-dist/fonts/enc/dvips/lm/lm-rm.en
 c}{/usr/local/texlive/2017/texmf-dist/fonts/enc/dvips/lm/lm-mathsy.enc}{/usr/lo
 cal/texlive/2017/texmf-dist/fonts/enc/dvips/lm/lm-mathit.enc}{/usr/local/texliv
@@ -1729,10 +1757,10 @@ ist/fonts/type1/public/lm/lmri7.pfb></usr/local/texlive/2017/texmf-dist/fonts/t
 ype1/public/lm/lmsy10.pfb></usr/local/texlive/2017/texmf-dist/fonts/type1/publi
 c/lm/lmsy7.pfb></usr/local/texlive/2017/texmf-dist/fonts/type1/public/lm/lmtt10
 .pfb>
-Output written on main.pdf (87 pages, 1586328 bytes).
+Output written on main.pdf (89 pages, 1485043 bytes).
 PDF statistics:
- 443 PDF objects out of 1000 (max. 8388607)
- 299 compressed objects within 3 object streams
+ 474 PDF objects out of 1000 (max. 8388607)
+ 321 compressed objects within 4 object streams
  0 named destinations out of 1000 (max. 500000)
- 91 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 106 words of extra memory for PDF output out of 10000 (max. 10000000)
 

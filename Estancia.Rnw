@@ -975,7 +975,8 @@ price_result <- prices %>% select(day,tp_pron, tp)
 price_result <- price_result %>% gather(day)
 names(price_result)<-c("day","Rate_type","Value") 
 
-ggplot(price_result,aes(day,Value, col=Rate_type))+geom_line()
+ggplot(price_result,aes(day,Value, col=Rate_type))+geom_line()+ theme_bw() +theme(axis.text=element_text(size=16),
+        axis.title=element_text(size=30,face="bold"),legend.position="top",legend.text=element_text(size=15)) 
 #head(pricing_ocup)
 @
 ~\\
@@ -984,7 +985,8 @@ Graficando los resultados:
 <<Pricing_graph, echo=FALSE, fig.width=20, fig.height=15>>=
 head(prices)
 prices_tidy <- prices %>% gather('habs_disp','tarifa',2:5)
-ggplot(data=prices_tidy,aes(x=day,y=tarifa, col=habs_disp))+geom_line()
+ggplot(data=prices_tidy,aes(x=day,y=tarifa, col=habs_disp))+geom_line()+ theme_bw() +theme(axis.text=element_text(size=16),
+        axis.title=element_text(size=30,face="bold"),legend.position="top",legend.text=element_text(size=15)) 
 @
 \section{Anexo A: Implementación del modelo pronóstico de demanda}
 <<AnexoModelo, echo=TRUE, eval=FALSE>>=
