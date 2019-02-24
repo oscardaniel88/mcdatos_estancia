@@ -53,6 +53,7 @@ rsrv\_type   & Factor       & NA         & NA         & NA    \\
 Ingresos     & Float        & 0          & 3900       & 1449  \\
 PAX          & Integer      & 0          & 5          & 1.271 \\
 \end{tabular}
+\caption{Resumen de datos obtenidos del PMS} 
 \end{table}
 
 Es importante resaltar que los datos fueron trabajados para presentarse de manera desagregada, es decir, si una reservación ampara una estancia de 5 noches, en el \emph{data set final} se presenta un registro por cada noche de la estancia, por ejemplo:
@@ -80,6 +81,7 @@ rsrv\_code & date\_create & date\_in & date\_out & nights & room\_type\\
 6265739 & 2016-07-20 18:31:59 & 2017-04-12 & 2017-04-13 & 1 & NSK\\
 \hline
 \end{tabular}
+\caption{DataSet detalle de reservas} 
 \rowcolors{2}{white}{white}
 \end{table}
 \end{knitrout}
@@ -202,6 +204,7 @@ date\_create & date\_in   & antelacion & rooms \\
 2017-04-30   & 2017-05-01 & 0          & 71    \\
 2017-05-01   & 2017-05-01 & -1         & 72    \\
 \end{tabular}
+\caption{Datos de entrada para el modelo de pronóstico de demanda} 
 \end{table}
 
 Una vez obtenidos los parámetros $\beta_0$ y $\beta_1$ de la regresión \emph{Poisson}, se procede a generar predictores potenciales de la demanda a partir de los datos con los que contamos para este análisis.
@@ -236,6 +239,7 @@ Dia        & Cuartos Ocupados \\
 2018-06-08 & 88               \\
 2018-06-09 & 77              
 \end{tabular}
+\caption{Pronóstico de cuartos noche ocupados} 
 \end{table}
 
 Esta matriz será la entrada del modelo que recomendará los precios por habitación para maximizar los ingresos de la propiedad.
@@ -277,18 +281,37 @@ En otras palabras, la ocupación no puede exceder a la capacidad del hotel y los
 
 Una vez definidas la función objetivo y las restricciones, se ejecuta el modelo de optimización utilizando el método de \emph{Programación cuadrática secuencial}, un algóritmo útil para resolver problemas de optimización no lineales.
 
+El método de \emph{programación cuadrática secuencial} es un método iterativo para problemas optimización no-lineales con restricciones. Este método es utilizado en problemas matemáticos en los cuáles la función objetivo y las restricciones son doblemente continuamente diferenciables.
+
+En \emph{programación cuadrática secuencial} se resuelven una serie de subproblemas de optimización de un modelo cuadrático de la función objetivo sujeta a una linearización de las restricciones. Si el problema no cuenta con restricciones, el método se reduce al \emph{método de Newton} para encontrar un punto donde el gradiente de la función objetivo desaparece. Si el problema tiene restricciones de igualdad, el método es equivalente a aplicar el \emph{método de Newton} para encontrar las condiciones óptimas de primer orden o las condiciones de \emph{Karush-Kuhn-Tucker}
+
+Las bases del aglorítmo son las siguientes:
+
+Se debe considerar un problema no-lineal de la forma: $$\min_x f(x)$$ Sujeto a $$b(x) \geq 0$$ $$c(x) = 0$$
+
+El \emph{Lagrangiano} para este problema es: $$\mathcal{L}(x,\lambda,\sigma)=f(x)-\lambda^Tb(x)-\sigma^Tc(x)$$
+
+Donde $\lambda$ y $\sigma$ son \emph{multiplicadores lagrangianos}. En la iteración $x_k$, el aglorítmo de programación cuadratica secuencial define la dirección de búsqueda apropiada $d_k$ como solución al subproblema de programación cuadrática: 
+
+$$\min_d f(x_k) + \nabla f(x_k)^T d + \frac{1}{2}d^T \nabla_{xx}^2 \mathcal{L} (x_k,\lambda_k,\sigma_k)d$$
+Sujeto a
+$$b(x_k) + \nabla b(x_k)^T d\geq 0$$
+$$c(x_k) + \nabla c(x_k)^T d = 0$$
+
+Para fines de este trabajo de investigación, se utilizó la implementación del método \emph{SQP} contenido en el paquete \emph{Scipy} en  \emph{Python}
+
 Para poder hacer una asignación dinámica de los precios, evitando tener que correr el modelo conforme la información del hotel es actualizada, se partió el inventario en 4 níveles de disponiblidad (159,120,80 y 40 cuartos disponibles). Para cada nível de capacidad se resolvió la función objetivo para obtener 4 conjuntos de precios, de esta forma, el gerente de la propiedad puede saber a qué nível de precio debe subir la tarifa pública de la propiedad conforme las habitaciones disponibles decrecen.
 
 El modelo de maximización de ingresos arroja como resultado una matriz de día vs precio por niveles de inventario. A continuación se muestra un ejemplo:
 \\
 \\
-{\centering
-\csvautotabular{data/rates.csv}\par
 
-}
-\begin{verbatim}
+\begin{table}[H]
+  \centering
+  \csvautotabular{data/rates.csv}\par
+  \caption{Matriz de asignacion de precio por inventario disponible} 
+\end{table}
 
-\end{verbatim}
 De la matriz que arroja el modelo de optimización de precios podemos obtener el precio sugerido para cada nivel de inventario disponible por día pronósticado. Por ejemplo, para el día 7 de julio de 2018 el modelo sugiere un precio público para habitación sencilla de \$784.76 si el hotel tiene entre 121 y 159 habitaciones disponibles; \$903.32 si se tienen entre 81 y 120 habitaciones disponibles; \$1106.34 enre 41 y 80 habitaciones disponibles; y finalmente un precio de \$1476.07 entre 1 y 40 habitaciones disponibles.
 
 \subsection*{Consideraciones del modelo}
