@@ -23,7 +23,7 @@ Hotel1 & 2018-01-01  & 2.335294 & -2.48986e-06 & 3.1595     & -0.1227     \\
 Hotel1 & 2018-01-02  & 2.984073 & -2.81809e-06 & 3.9160     & -0.1160     \\
 Hotel1 & 2018-01-03  & 3.301841 & -3.53557e-06 & 3.8740     & -0.1089     \\
 Hotel1 & 2018-01-04  & 3.782523 & -2.29568e-06 & 4.1597     & -0.1028     \\
-Hotel1 & 2018--01-05 & 3.761697 & -1.08967e-06 & 3.6982     & -0.0846    
+Hotel1 & 2018-01-05 & 3.761697 & -1.08967e-06 & 3.6982     & -0.0846    
 \end{tabular}
 \caption{Resultados arrojados por el modelo de predicción de demanda} 
 \end{table}
@@ -37,6 +37,49 @@ Dónde:
 \item $\beta_1$ = pred.beta1
 \item $x$ = días de antelación
 \end{itemize}
+
+Para construír las curvas de \emph{pickup} pronósticadas se elige un día de la tabla de resultados arrojados por el modelo. Tomaremos los valores de \texttt{pred.beta0} y \texttt{pred.beta1} para el día elegido. Posteriormente x tomará valores de -1 a 25 para representar la curva en un rango de -1 a 25 días de antelación, siendo -1 las llegadas que llegan a la propiedad después de las 23:59 pm del día elegido.
+
+Si tomamos el día 2018-01-04 tendríamos una tabla de interpretación como la que se muestra a continuación:
+
+$$pred.beta0 = 4.1597$$ $$pred.beta1 = -0.1028$$
+
+\begin{table}[H]
+\centering
+\begin{tabular}{cc}
+Antelación & Cuartos Ocupados (Predicción) \\
+-1         & 71                            \\
+0          & 64                            \\
+1          & 58                            \\
+2          & 52                            \\
+3          & 47                            \\
+4          & 42                            \\
+5          & 38                            \\
+6          & 35                            \\
+7          & 31                            \\
+8          & 28                            \\
+9          & 25                            \\
+10         & 23                            \\
+11         & 21                            \\
+12         & 19                            \\
+13         & 17                            \\
+14         & 15                            \\
+15         & 14                            \\
+16         & 12                            \\
+17         & 11                            \\
+18         & 10                            \\
+19         & 9                             \\
+20         & 8                             \\
+21         & 7                             \\
+22         & 7                             \\
+23         & 6                             \\
+24         & 5                             \\
+25         & 5                            
+\end{tabular}
+\caption{Interpretación de resultados arrojados por el modelo de pronóstico de demanda}
+\end{table}
+
+Podemos ver que en esta expresión \texttt{pred.beta0} indica cuantos cuartos ocupados se tendrán para el día estudiado, mientras que \texttt{pred.beta1} dicta cuantos cuartos incrementan conforme X se acerca a 0 (día de la llegada de los huéspedes al hotel).
 
 Evaluando esta expresión en distintas fechas obtenemos las siguientes curvas de pronóstico de ocupación:
 

@@ -9,7 +9,7 @@
 \contentsline {chapter}{\numberline {3}Metodolog\IeC {\'\i }a}{40}
 \contentsline {chapter}{\numberline {4}Dise\IeC {\~n}o y Desarrollo}{43}
 \contentsline {chapter}{\numberline {5}Interpretaci\IeC {\'o}n y Resultados}{60}
-\contentsline {chapter}{\numberline {6}Conclusiones}{68}
-\contentsline {chapter}{\numberline {7}Anexo A: Implementaci\IeC {\'o}n de modelo de pron\IeC {\'o}stico de demanda}{69}
-\contentsline {chapter}{\numberline {8}Anexo B: Implementaci\IeC {\'o}n de modelo de optimizaci\IeC {\'o}n de ingresos}{74}
-\contentsline {chapter}{References}{81}
+\contentsline {chapter}{\numberline {6}Conclusiones}{70}
+\contentsline {chapter}{\numberline {7}Anexo A: Implementaci\IeC {\'o}n de modelo de pron\IeC {\'o}stico de demanda}{71}
+\contentsline {chapter}{\numberline {8}Anexo B: Implementaci\IeC {\'o}n de modelo de optimizaci\IeC {\'o}n de ingresos}{76}
+\contentsline {chapter}{References}{83}
