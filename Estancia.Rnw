@@ -350,7 +350,7 @@ ggplot(pickup_rsrv, aes(antelacion, reservas)) + geom_line() + xlim(-1,100) + gg
 @
 
 <<pickup_ejemplo, echo=FALSE>>=
-historico_grp_rsrv <- historico_ocupacion %>% filter(date_in == '2017-05-01')
+historico_grp_rsrv <- historico_ocupacion ###%>% filter(date_in == '2017-05-01')
 historico_grp_rsrv <- historico_grp_rsrv %>% group_by(rsrv_code) %>% summarise(nights=sum(nights),
                                                                       date_create = min(date_create),
                                                                       date_in = min(date_in),
@@ -1345,6 +1345,47 @@ rate_df.to_csv('data/rates.csv')
 
 
 @
+
+<<Ridge, echo=FALSE>>=
+library(data.table)
+library(dplyr)
+library(tidyr)
+historico_ridge <-read.csv("datos/CEINS_RESERVAS.csv")
+dias<-select(historico_ridge,date_in) %>% unique()
+antelacion <-as.data.frame(rep(seq(1,27)-2,nrow(dias)))
+days<-rep(dias,27)
+days<-as.data.frame(days)
+days<- days %>% gather("days","value") %>% arrange(value) %>% select(value)
+ant<-cbind(days,antelacion)
+names(ant)<-c("date_in","antelacion")
+ant$nights<-0
+historico_ridge$antelacion<-as.integer(difftime(as.POSIXlt(historico_ridge$date_in),as.POSIXlt(as.Date(historico_ridge$date_create),"%Y-%m-%d"), units="days"))
+historico_ridge <- historico_ridge %>% arrange(date_in,antelacion)
+historico_ridge<-historico_ridge %>% select(rsrv_code,date_in,date_out,antelacion,nights)
+historico_ridge <- historico_ridge %>% group_by(date_in,antelacion) %>% summarise(cuartosOcupados=sum(nights))
+historico_ridge<-historico_ridge %>% group_by(date_in) %>% mutate(antelacion = (antelacion),
+                                                                  cuartosOcupados = rev(cuartosOcupados),
+                                                                  acumulado = cumsum(cuartosOcupados))
+
+
+
+new_df<-historico_ridge %>%  right_join(ant)
+
+historico_ridge2<-historico_ridge %>% filter(antelacion>=25) %>% group_by(date_in)%>% summarise(cuartosOcupados2=sum(cuartosOcupados))
+historico_ridge2$antelacion<-25
+
+new_df<-new_df %>% left_join(historico_ridge2)
+new_df[is.na(new_df)] <- 0
+new_df$cuartosOcupados<-new_df$cuartosOcupados+new_df$cuartosOcupados2
+
+new_df<-new_df %>% group_by(date_in) %>% mutate(antelacion = rev(antelacion),
+                                                                  cuartosOcupados =rev(cuartosOcupados),
+                                                                  acumulado =cumsum(cuartosOcupados)) %>% select(date_in,antelacion,acumulado)
+
+new_df<-new_df %>% spread(antelacion,acumulado)
+
+@
+
 
 \section{Referencias}
 \end{document}
