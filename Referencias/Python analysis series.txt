@@ -1,0 +1,15 @@
+﻿https://drsimonj.svbtle.com/ridge-regression-with-glmnet
+
+https://towardsdatascience.com/an-end-to-end-project-on-time-series-analysis-and-forecasting-with-python-4835e6bf050b
+
+https://medium.com/@stallonejacob/time-series-forecast-a-basic-introduction-using-python-414fcb963000
+
+https://medium.com/open-machine-learning-course/open-machine-learning-course-topic-9-time-series-analysis-in-python-a270cb05e0b3
+
+https://machinelearningmastery.com/time-series-forecasting-methods-in-python-cheat-sheet/
+
+https://www.analyticsvidhya.com/blog/2016/02/time-series-forecasting-codes-python/
+
+https://towardsdatascience.com/how-to-perform-lasso-and-ridge-regression-in-python-3b3b75541ad8
+
+https://towardsdatascience.com/ridge-and-lasso-regression-a-complete-guide-with-python-scikit-learn-e20e34bcbf0b
