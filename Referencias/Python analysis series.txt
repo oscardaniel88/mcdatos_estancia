@@ -13,3 +13,15 @@ https://www.analyticsvidhya.com/blog/2016/02/time-series-forecasting-codes-pytho
 https://towardsdatascience.com/how-to-perform-lasso-and-ridge-regression-in-python-3b3b75541ad8
 
 https://towardsdatascience.com/ridge-and-lasso-regression-a-complete-guide-with-python-scikit-learn-e20e34bcbf0b
+
+https://towardsdatascience.com/how-not-to-use-machine-learning-for-time-series-forecasting-avoiding-the-pitfalls-19f9d7adf424
+
+https://www.kaggle.com/niyamatalmass/machine-learning-for-time-series-analysis
+
+https://www.datacamp.com/courses/machine-learning-for-time-series-data-in-python
+
+https://stackabuse.com/time-series-analysis-with-lstm-using-pythons-keras-library/
+
+https://machinelearningmastery.com/time-series-forecasting-supervised-learning/
+
+https://machinelearningmastery.com/convert-time-series-supervised-learning-problem-python/
