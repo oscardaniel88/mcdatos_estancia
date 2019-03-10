@@ -187,7 +187,7 @@ Dónde el factor de regularización $\alpha$ controla la importancia relativa de
 
 Las nuevas predicciones se pueden calcular como sigue: $$h(X) = \theta^Tx=\sum_{i=1}^{n} \theta_ix_i$$
 
-\subsubsection*{Ridge Regresión con Kernel}
+\subsubsection*{Regresión de Ridge con Kernel}
 
 Este método consta de aplicar el truco del Kernel a la regresión previamente comentada, esto con la finalidad de projectar los datos originales en un espectro de variables sin tener que explicitamente calcular las transformaciones. Para esto, se comienza con el vector de pesos optimizados para la Regresión de Ridge: $$\theta = (X^TX+\lambda I)^{-1} X^T y$$
 
@@ -227,15 +227,15 @@ El entrenamiento de este tipo de modelos consiste en encontrar un conjunto de va
 
 \subsection*{Desempeño de algoritmos de M.L.}
 
-Para realizar el entrenamiento, validación y pruebas de estos modelos se utilizó un proceso de \emph{Cross Validation} en cada uno de los data sets.  La validación cruzada consiste en dividir en dos conjuntos complementarios los datos de muestra, realizar el análisis de un subconjunto (denominado datos de entrenamiento o \emph{training set}), y validar el análisis en el otro subconjunto (denominado datos de prueba o \emph{test set}), de forma que la función de aproximación sólo se ajusta con el conjunto de datos de entrenamiento y a partir de aquí calcula los valores de salida para el conjunto de datos de prueba (valores que no ha analizado antes).
+Generalmente este tipo de modelos son entrenados, validados y probados siguiendo un proceso llamado \emph{validación cruzada}. Este proceso consiste en dividir en dos conjuntos complementarios los datos de muestra, para realizar el análisis de un subconjunto (denominado datos de entrenamiento o \emph{training set}), y validar el análisis en el otro subconjunto (denominado datos de prueba o \emph{test set}), de forma que la función de aproximación sólo se ajusta con el conjunto de datos de entrenamiento y a partir de aquí calcula los valores de salida para el conjunto de datos de prueba (valores que no ha analizado antes).
 
-Los pronósticos se hicieron para un día posterior y para 7 días posteriores, midiendo el desempeño del modelo utilizando la medida \emph{MAPE} (Mean Absolute Percentage Error) definida como: $$MAPE=\frac{1}{n}\sum_{t=1}^{n}|\frac{y_t-h_t}{y_t}|$$
+La medida que permite evaluar el desempeño de este tipo de modelos es el  \emph{MAPE} (Mean Absolute Percentage Error) definida como: $$MAPE=\frac{1}{n}\sum_{t=1}^{n}|\frac{y_t-h_t}{y_t}|$$
 
-Los resultados mostraron que la \emph{regresión de Ridge} una transformación polinomial de grado dos tuvo el mejor desempeño con un \emph{MAPE} del 8.20\% durante la validación y un \emph{MAPE} del 8.65\% durante las pruebas. Durante el proceso de pruebas no se tuvo evidencia de sobreajuste del modelo. Decimos que un modelo tiene sobreajuste cuando el algoritmo de aprendizaje queda ajustado a unas características muy específicas de los datos de entrenamiento que no tienen relación causal con la función objetivo, lo cual ocasiona que el desempeño del modelo decaiga al utilizar nuevos datos.
+Los resultados mostraron que la \emph{regresión de Ridge} una transformación polinomial de grado dos tuvo el mejor desempeño con un \emph{MAPE} del 8.20\% durante la validación y un \emph{MAPE} del 8.65\% durante las pruebas.
 
 Por otra parte el modelo la \emph{regresión de Ridge con Kernel} tuvo un \emph{MAPE} de 8.69\% durante la validación, seguido por la \emph{red neuronal} con un \emph{MAPE} del 12.89\% y finalmente la \emph{red neuronal RBF} con un \emph{MAPE} de 26.32\%.
 
-Los resultados obtenidos durante esta investigación fueron bastante prometedores sustentando el uso de modelos de \texttt{M.L.} como modelos de caja negra para estimar la ocupación futura de una propiedad, sin requerir conocimiento o experiencia estadística del estaff del hotel, permitiendo nuevos avances el las técnicas de \emph{revenue management} en el sector de hospitalidad.
+Los resultados obtenidos durante esta investigación fueron bastante prometedores y sustentaron el uso de modelos de \texttt{M.L.} como modelos de caja negra para estimar la ocupación futura de una propiedad sin requerir conocimiento o experiencia estadística del estaff del hotel, permitiendo nuevos avances en las técnicas de \emph{revenue management} en el sector de hospitalidad.
 
 \subsection*{Modelos de Big Data}
 
@@ -509,7 +509,6 @@ Muchas veces utilizando este método se pueden obtener resultados razonables, si
 Los modelos de optimización de ingresos han tenido un gran avance en la industria de las aerolíneas, sin embargo, aún hay un trecho muy largo por recorrer para poder aplicarlos con el mismo nível de maduréz en la industria de la hotelería.
 
 Como se revisó anteriormente, existen muchas propuestas de enfoques diferentes para la implementación del modelo de optimización de ingresos en hoteles y la elección de alguno de ellos dependerá de los siguientes factores:
-
 \begin{itemize}
   \item Habilidades estadísticas del equipo administrativo de la propiedad
   \item Nível de desagregación de datos con los que cuenta la propiedad

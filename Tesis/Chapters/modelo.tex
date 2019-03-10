@@ -21,14 +21,15 @@ Finalmente dentro de esta capa se cuenta con un tercer sistema que provee inform
 
 Una vez obtenida la información de los sistemas transaccionales, se ejecuta un proceso de \emph{Transformación y Carga} de información que depósita la información de interés en una base de datos analítica (segunda capa). Esta base de datos está diseñada para poder analizar la información de manera ágil. Es aqui donde se puede cruzar la información de los diferentes sistemas ya que durante el proceso de \emph{Transformación y Carga} se homolgan los identificadores de las distintas propiedades antes de ser depósitadas en el modelo de datos analítico.
 
-Una vez cargada la información en el modelo analítico, la información es procesada en \emph{R} con el fin de alimentar tres modelos que pronóstican demanda de una propiedad. El primer modelo esta basado en una regresion lineal generalizada con liga Poisson, el segundo se trata de un modelo de inteligencia artificial basado en una regresión de ridge, y finalmente contamos con una red neuronal. Una vez ejecutados, se elige el resultado del modelo con el mejor desempeño, para finalmente alimentar al modelo de optimización de ingresos desarrollad en \emph{python} con ayuda de la libería \emph{scipy}.
+La información es procesada en \emph{R} y \emph{python} con el fin de alimentar tres modelos que pronóstican demanda de una propiedad. El primer modelo esta basado en una regresion lineal generalizada con liga Poisson, el segundo se trata de un modelo de inteligencia artificial basado en una regresión de ridge, y finalmente se cuenta con un modelo de análisis de series de tiempo \emph{ARIMA}. Una vez ejecutados, se elige el resultado del modelo con el mejor desempeño tomando en cuenta el \emph{MAPE} de cada uno de los resultados arrojados por los modelos, para finalmente alimentar al modelo de optimización de ingresos desarrollad en \emph{python} con ayuda de la libería \emph{scipy}.
 
 Al finalizar la ejecución de esta aplicación el usuario obtiene como resultado una matriz en donde se visualizan días de venta futura vs el inventario disponible y el precio asignado a cada nivel de inventario disponible. 
 
 En las siguientes secciones de este capítulo se describirá de manera detallada la capa 2 y capa 3 de la solución propuesta.
 
-\section*{Data Sets}
-Para la construcción del modelo de predicción de demanda se utilizaron tres data sets que contienen la información suficiente para poder hacer un pronóstico efectivo de la demanda de una propiedad.
+\section*{Regresión lineal generalizada con liga Poisson}
+
+Para la construcción del modelo de predicción de demanda basado en una regresión lineal generalizada con liga Poisson se utilizaron tres data sets que contienen la información suficiente para poder hacer un pronóstico efectivo de la demanda de una propiedad.
 
 \subsection*{Detalle de reservaciones}
 
@@ -198,7 +199,7 @@ Los datos atípicos fueron eliminados antes de proceder a trabajar con el módel
 En el siguiente apartado detallaremos cómo se utilizaron los datos presentados para la construcción del modelo de predicción de demanda y maximización de ingresos.
 
 
-\section*{Modelo de Predicción de Demanda}
+\subsection*{Modelo de Predicción de Demanda - glm con liga Poisson}
 
 El modelo de predicción de demanda toma como entrada los datos de las curvas de \emph{pickup} para el hotel para cada día del periodo estudiado. Estas curvas describen la velocidad con la que una propiedad vende su inventario para un día en específico. El objetivo del modelo propuesto es utilizar estos datos para ajustar una curva que resuma el comportamiento de la propiedad en un día similar al estudiado y de esta forma generar una predicción de los cuartos ocupados en la propiedad y los días de antelación con los que serán vendidos.
 
@@ -267,6 +268,11 @@ Dia        & Cuartos Ocupados \\
 \end{table}
 
 Esta matriz será la entrada del modelo que recomendará los precios por habitación para maximizar los ingresos de la propiedad.
+
+
+\section*{Regresión de Ridge}
+
+\section*{Análisis de series de tiempo - ARIMA}
 
 
 \section*{Modelo de maximización de ingresos}
