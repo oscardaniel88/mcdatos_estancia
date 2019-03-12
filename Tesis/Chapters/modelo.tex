@@ -267,10 +267,39 @@ Dia        & Cuartos Ocupados \\
 \caption{Pronóstico de cuartos noche ocupados} 
 \end{table}
 
-Esta matriz será la entrada del modelo que recomendará los precios por habitación para maximizar los ingresos de la propiedad.
-
 
 \section*{Regresión de Ridge}
+
+El segundo modelo propuesto se trata de una regresión de Ridge, el cuál es un método de \emph{machine learning} que consiste en incluír en la función de minimización del error un término de penalización que permite evitar el sobreajuste del modelo y proporciona un menor error de generalización.
+
+Este modelo, al tratarse de una técnica de \emph{machine learning} requiere que los datos de entrada sean modelados de manera tal que existan \emph{n} variables independientes que expliquen una variable dependiente \emph{y} a la cuál se ajustará la regresión.
+
+\subsection*{Datos de entrada}
+
+Para poder aplicar la \emph{regresión de Ridge} se utilizó una serie temporal que incluye la información de los cuartos ocupados de la propiedad para cada día del año desde el 01 de enero de 2013 hasta el 14 de agosto del 2018, como se muestra a continuación:
+
+\begin{table}[H]
+  \centering
+  \csvautotabular{data/Ejemplo_indicadores.csv}\par
+  \caption{Cuartos noche ocupados vs tiempo}
+\end{table}
+
+Para poder utilizar la regresión propuesta se deben transformar los datos de manera que tengamos una columna \emph{y} que contiene la ocupación del día que se quiere pronósticar, explicada por la ocupación de los \emph{n} días pasados. A continuación se muestra un ejemplo:
+
+\begin{table}[H]
+  \centering
+  \csvautotabular{data/indicadores_ej.csv}\par
+  \caption{Conjunto de datos de entrada para la regresión de Ridge}
+\end{table}
+
+Adicionalmente se agregaron variables para indicarle al modelo el año, mes y día del que se trata, asi como variables \emph{dummy} que indican el día de la semana del que se trata, dejando el conjunto de datos final como se muestra a continuación:
+
+\begin{table}[H]
+  \centering
+  \csvautotabular{data/indicadores.csv}\par
+  \caption{Conjunto de datos de entrada para la regresión de Ridge}
+\end{table}
+
 
 \section*{Análisis de series de tiempo - ARIMA}
 

@@ -13,11 +13,14 @@
 \contentsline {table}{\numberline {4.2}{\ignorespaces DataSet detalle de reservas}}{48}
 \contentsline {table}{\numberline {4.3}{\ignorespaces Datos de entrada para el modelo de pron\IeC {\'o}stico de demanda}}{56}
 \contentsline {table}{\numberline {4.4}{\ignorespaces Pron\IeC {\'o}stico de cuartos noche ocupados}}{57}
-\contentsline {table}{\numberline {4.5}{\ignorespaces Matriz de asignacion de precio por inventario disponible}}{61}
+\contentsline {table}{\numberline {4.5}{\ignorespaces Cuartos noche ocupados vs tiempo}}{59}
+\contentsline {table}{\numberline {4.6}{\ignorespaces Conjunto de datos de entrada para la regresi\IeC {\'o}n de Ridge}}{60}
+\contentsline {table}{\numberline {4.7}{\ignorespaces Conjunto de datos de entrada para la regresi\IeC {\'o}n de Ridge}}{61}
+\contentsline {table}{\numberline {4.8}{\ignorespaces Matriz de asignacion de precio por inventario disponible}}{65}
 \addvspace {10\p@ }
-\contentsline {table}{\numberline {5.1}{\ignorespaces Resultados arrojados por el modelo de predicci\IeC {\'o}n de demanda}}{64}
-\contentsline {table}{\numberline {5.2}{\ignorespaces Interpretaci\IeC {\'o}n de resultados arrojados por el modelo de pron\IeC {\'o}stico de demanda}}{66}
-\contentsline {table}{\numberline {5.3}{\ignorespaces Matriz de asignacion de precio por inventario disponible}}{70}
+\contentsline {table}{\numberline {5.1}{\ignorespaces Resultados arrojados por el modelo de predicci\IeC {\'o}n de demanda}}{68}
+\contentsline {table}{\numberline {5.2}{\ignorespaces Interpretaci\IeC {\'o}n de resultados arrojados por el modelo de pron\IeC {\'o}stico de demanda}}{70}
+\contentsline {table}{\numberline {5.3}{\ignorespaces Matriz de asignacion de precio por inventario disponible}}{74}
 \addvspace {10\p@ }
 \addvspace {10\p@ }
 \addvspace {10\p@ }
