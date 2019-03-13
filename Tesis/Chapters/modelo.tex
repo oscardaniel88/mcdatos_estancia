@@ -297,9 +297,36 @@ Adicionalmente se agregaron variables para indicarle al modelo el año, mes y d�
 \begin{table}[H]
   \centering
   \csvautotabular{data/indicadores.csv}\par
-  \caption{Conjunto de datos de entrada para la regresión de Ridge}
+  \caption{Variables adicionales de entrada para la regresión de Ridge}
 \end{table}
 
+\subsection*{Implementación del modelo}
+
+La regresión de Ridge fue implementada en \emph{python 3.5.2} con ayuda de la liberería \texttt{sklearn}. Para poder entrenar al modelo se dividió el conjunto de datos en dos partes: el conjunto de entrenamiento (que contiene el 66\% de los registros) y el conjunto de pruebas (que contiene el 33\% restante). 
+
+Para entrenar el modelo se definieron 10 valores diferentes para el parámetro $\alpha$ = 1e-15, 1e-10, 1e-8, 1e-4, 1e-3,1e-2, .1, 5, 10, 20 y se entrenó el módelo para cada uno de los valores de $\alpha$ buscando el menor \emph{rss} definido como: $$\sum_{i=1}^{n}(y_i - f(x_i))^2$$
+
+Donde $y_i$ es el valor a predecir y $f(x_i)$ es el valor pronosticado por el modelo.
+
+A continuación se muestran los \emph{rss} obtenidos para cada valor de $\alpha$
+
+\begin{table}[]
+\centering
+\begin{tabular}{ll}
+Alpha Value & Rss    \\
+1e-15       & 7.2368 \\
+1e-10       & 7.2368 \\
+1e-08       & 7.2368 \\
+0.0001      & 7.2369 \\
+0.001       & 7.2381 \\
+0.01        & 7.3057 \\
+0.1         & 8.3252 \\
+5           & 18.247 \\
+10          & 21.69  \\
+20          & 25.9621
+\end{tabular}
+\caption{Valores residuales cuadráticos para los distintos valores de $\alpha$}
+\end{table}
 
 \section*{Análisis de series de tiempo - ARIMA}
 
