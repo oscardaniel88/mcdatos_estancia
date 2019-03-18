@@ -9,9 +9,9 @@
 \contentsline {chapter}{\numberline {3}Metodolog\IeC {\'\i }a}{40}
 \contentsline {chapter}{\numberline {4}Dise\IeC {\~n}o y Desarrollo}{43}
 \contentsline {chapter}{\numberline {5}Interpretaci\IeC {\'o}n y Resultados}{76}
-\contentsline {chapter}{\numberline {6}Conclusiones}{87}
-\contentsline {chapter}{\numberline {7}Anexo A: Implementaci\IeC {\'o}n de modelo de pron\IeC {\'o}stico de demanda utilizando un modelo lineal generalizado con liga Poisson}{88}
-\contentsline {chapter}{\numberline {8}Anexo B: Implementaci\IeC {\'o}n de modelo de pron\IeC {\'o}stico de demanda utilizando una regresi\IeC {\'o}n de Ridge}{93}
-\contentsline {chapter}{\numberline {9}Anexo C: Implementaci\IeC {\'o}n de modelo de pron\IeC {\'o}stico de demanda utilizando un modelo de an\IeC {\'a}lisis de series de tiempo ARIMA}{98}
-\contentsline {chapter}{\numberline {10}Anexo D: Implementaci\IeC {\'o}n de modelo de optimizaci\IeC {\'o}n de ingresos}{102}
-\contentsline {chapter}{References}{106}
+\contentsline {chapter}{\numberline {6}Conclusiones}{88}
+\contentsline {chapter}{\numberline {7}Anexo A: Implementaci\IeC {\'o}n de modelo de pron\IeC {\'o}stico de demanda utilizando un modelo lineal generalizado con liga Poisson}{89}
+\contentsline {chapter}{\numberline {8}Anexo B: Implementaci\IeC {\'o}n de modelo de pron\IeC {\'o}stico de demanda utilizando una regresi\IeC {\'o}n de Ridge}{94}
+\contentsline {chapter}{\numberline {9}Anexo C: Implementaci\IeC {\'o}n de modelo de pron\IeC {\'o}stico de demanda utilizando un modelo de an\IeC {\'a}lisis de series de tiempo ARIMA}{99}
+\contentsline {chapter}{\numberline {10}Anexo D: Implementaci\IeC {\'o}n de modelo de optimizaci\IeC {\'o}n de ingresos}{103}
+\contentsline {chapter}{References}{107}

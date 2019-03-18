@@ -1,7 +1,7 @@
 \chapter{Interpretación y Resultados}
 \label{ch:results}
 
-En el presente capítulo se presentarán a detalle los resultados obtenidos por cada uno de los modelos propuestos para el pronóstico de demanda y el módelo utilizado para la maximización de ingresos. También se discutirá la forma en la que se deberán interpretar los resultados de los mismos y así evitar sacar conclusiones erróneas o fuera de contexto.
+En el presente capítulo se presentarán a detalle los resultados obtenidos por cada uno de los modelos propuestos para el pronóstico de demanda y el módelo para la maximización de ingresos. También se discutirá la forma en la que se deberán interpretar los resultados de los mismos y así evitar sacar conclusiones erróneas o fuera de contexto.
 
 \section*{Interpretación de los modelos de pronóstico de ocupación}
 Como hemos mencionado en capítulos anteriores, la solución propuesta se compone de dos modulos principales, el primero de ellos se encarga de pronosticar la demanda de cuartos noche, mientras que el segundo modulo toma esa información y calcula los precios por habitación  que  maximizan  el  ingreso  de  la  propiedad  tomando  en  cuenta  las restricciones definidas para la propiedad. A continuación explicaremos detalladamente los resultados obtenidos en cada uno de los modelos propuestos.
@@ -119,9 +119,25 @@ Dónde:
 \end{itemize}
 
 
-El \emph{MAPE} observado durante la validación del modelo fue de 17.67\% que de acuerdo con la investigación realizada en el capítulo dos está dentro de los parámetros aceptables.
+El \emph{MAPE} observado durante la validación del modelo fue de 17.67\%.
 
 \subsection*{Modelo de regresión de Ridge}
+
+Durante la implementación del modelo basado en una regresión de Ridge, se utilizaron varios valores para el parámetro $\alpha$ (factor de regularización). De los resultados que obtuvimos notamos que el modelo tuvo un mejor desempeño cuando $\alpha = 1*e^{-15}$. El parámetro $\alpha$ también es conocido como el \emph{coeficiente de regularización}, el cual es usado para mejorar el condicionamiento del problema y reduce la varianza de las predicciones generadas. Mientras más grande es $\alpha$ mayor es la regularización. 
+
+En la siguiente gráfica se muestra el efecto que tiene los distintos valores de $\alpha$ sobre las predicciones generadas:
+
+\begin{figure}[H]
+  \centering
+      \includegraphics[width=\maxwidth,height=10cm]{figures/alphas_ridge.png}  
+  \caption{Efecto de $\alpha$ sobre las predicciones generadas}
+\end{figure}
+
+Como podemos observar, a mayor valor de $\alpha$ disminuye la varianza de las predicciones pero incrementa el sesgo. A menor valor de $\alpha$ tenemos un comportamiento opuesto.
+
+La regresión de \emph{Ridge} nos regresa una matriz de coeficientes que multiplican a las variables de entrada del modelo, de tal forma que $y=\beta_0 + \beta_1*x_1 + \beta_2*x_2 + ,..., \beta_n*x_n$. Para generar predicciones para días futuros lo que el modelo internamente hace es tomar la matriz de coeficientes generados por la regresión y los multiplica por la matriz de predictores y como resultado arroja la $\hat{y}$.
+
+El \emph{MAPE} obtenido para este modelo, utilizando una ventana de rezagos de 400 días  para pronósticar una ocupación futura y $\alpha = 1*e^{-15}$ fue de 15.1815\%.
 
 \subsection*{Modelo de análisis de series temporales ARIMA}
 
