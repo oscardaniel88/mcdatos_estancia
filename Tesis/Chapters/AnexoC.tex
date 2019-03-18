@@ -1,0 +1,105 @@
+\chapter{Anexo C: Implementación de modelo de pronóstico de demanda utilizando un modelo de análisis de series de tiempo ARIMA}
+\label{ch:anexoa¡c}
+
+\begin{verbatim}
+import warnings
+import itertools
+import numpy as np
+import pandas as pd
+import statsmodels.api as sm
+import matplotlib.pyplot as plt
+%matplotlib inline
+from matplotlib.pylab import rcParams
+rcParams['figure.figsize'] = 12, 10
+
+df = pd.read_csv("data/Indicadores_CEINS.csv")
+ocupacion = df.loc[df['fecha'] >= '2013-01-01']
+ocupacion['fecha'].min(), ocupacion['fecha'].max()
+ocupacion.head()
+
+cols = ['Hotel','habs_disp','tp','po','pt','te']
+ocupacion = ocupacion.drop(cols, axis=1)
+ocupacion = ocupacion.sort_values('fecha')
+ocupacion.isnull().sum()
+ocupacion.head()
+
+ocupacion = ocupacion.groupby('fecha')['occ'].sum().reset_index()
+
+ocupacion['fecha']=pd.to_datetime(ocupacion['fecha'])
+ocupacion = ocupacion.set_index('fecha')
+
+y = ocupacion
+
+p = d = q = range(0, 2)
+pdq = list(itertools.product(p, d, q))
+seasonal_pdq = [(x[0], x[1], x[2], 60) for x in list(itertools.product(p, d, q))]
+print('Examples of parameter combinations for Seasonal ARIMA...')
+print('SARIMAX: {} x {}'.format(pdq[1], seasonal_pdq[1]))
+print('SARIMAX: {} x {}'.format(pdq[1], seasonal_pdq[2]))
+print('SARIMAX: {} x {}'.format(pdq[2], seasonal_pdq[3]))
+print('SARIMAX: {} x {}'.format(pdq[2], seasonal_pdq[4]))
+
+for param in pdq:
+    for param_seasonal in seasonal_pdq:
+        try:
+            mod = sm.tsa.statespace.SARIMAX(y,order=param,
+            seasonal_order=param_seasonal,
+            enforce_stationarity=False,
+            enforce_invertibility=False)
+            results = mod.fit()
+            print('ARIMA{}x{}60 - AIC:{}'.format(param, 
+            param_seasonal, 
+            results.aic))
+        except:
+            continue
+            
+mod = sm.tsa.statespace.SARIMAX(y,
+                                order=(1, 1, 1),
+                                seasonal_order=(1, 0, 1, 60),
+                                enforce_stationarity=False,
+                                enforce_invertibility=False)
+results = mod.fit()
+print(results.summary().tables[1])
+
+pred = results.get_prediction(start=pd.to_datetime('2017-01-01'), dynamic=False)
+pred_ci = pred.conf_int()
+ax = y['2014':].plot(label='observed')
+pred.predicted_mean.plot(ax=ax, 
+label='Pronóstico un paso adelante', 
+alpha=.7, figsize=(14, 7))
+ax.fill_between(pred_ci.index,
+                pred_ci.iloc[:, 0],
+                pred_ci.iloc[:, 1], color='k', alpha=.2)
+ax.set_xlabel('Date')
+ax.set_ylabel('Ocupación')
+plt.legend()
+plt.savefig('Figures/ARIMA_pred.png')
+plt.show()
+
+real=y['2017':]
+MAPE = (sum(abs((real['occ']-pred.predicted_mean))/
+real['occ'])/len(real['occ']))*100
+print(MAPE)
+
+y2=y[2018:]
+pred_uc = results.get_forecast(steps=30)
+pred_ci = pred_uc.conf_int()
+ax = y2.plot(label='observed', figsize=(14, 7))
+pred_uc.predicted_mean.plot(ax=ax, label='Forecast')
+ax.set_xlabel('Date')
+ax.set_ylabel('occ')
+plt.legend()
+plt.savefig('Figures/ArimaPred.png',dpi=100)
+plt.show()
+
+arima_pred = pred_uc.predicted_mean
+arima_pred.to_csv('data/arima_pred.csv', sep=',')
+
+
+
+
+
+
+
+
+\end{verbatim}

@@ -1,17 +1,15 @@
 \chapter{Interpretación y Resultados}
 \label{ch:results}
 
-En el presente capítulo se presentarán a detalle los resultados obtenidos por el módelo de pronóstico de demanda y maximización de ingresos. También se discutirá la forma en la que se deberán interpretar los resultados del mismo y así evitar sacar conclusiones erróneas o fuera de contexto.
+En el presente capítulo se presentarán a detalle los resultados obtenidos por cada uno de los modelos propuestos para el pronóstico de demanda y el módelo utilizado para la maximización de ingresos. También se discutirá la forma en la que se deberán interpretar los resultados de los mismos y así evitar sacar conclusiones erróneas o fuera de contexto.
 
-\section*{Interpretación del modelo}
+\section*{Interpretación de los modelos de pronóstico de ocupación}
+Como hemos mencionado en capítulos anteriores, la solución propuesta se compone de dos modulos principales, el primero de ellos se encarga de pronosticar la demanda de cuartos noche, mientras que el segundo modulo toma esa información y calcula los precios por habitación  que  maximizan  el  ingreso  de  la  propiedad  tomando  en  cuenta  las restricciones definidas para la propiedad. A continuación explicaremos detalladamente los resultados obtenidos en cada uno de los modelos propuestos.
 
-Como hemos mencionado en capítulos anteriores, el modelo propuesto se compone de dos módulos principales, el primero de ellos se encarga de pronósticar la demanda de cuartos noche para un día dado con cierto tiempo de anticipación, mientras que el segundo módulo toma esa información y cálcula los precios por habitación que maximizan el ingreso de la propiedad tomando en cuenta las restricciones definidas.
 
-A continuación explicaremos detalladamente las salidas obtenidas en cada uno de los módulos definidos, la manera en que se deben interpretar esas salidas y los resultados obtenidos para el desempeño del modelo.
+\subsection*{Modelo de regresión lineal generalizada con liga Poisson}
 
-\subsection*{Pronóstico de Demanda}
-
-El modelo de pronóstico de demanda toma como entrada las curvas de \emph{pickup} para una propiedad en específico, información de su ocupación histórica, lineas de tiempo de tarifa promedio, lineas de tiempo de tarifas publicas propias y de la competencia, etc. Al finalizar el procesamiento de la información se obtiene una matriz que contiene, entre otras variables, el parámetro $\beta_0$ y $\beta_1$ con el que se puede reconstruír la curva de pickup para un día futuro. De esta manera podemos obtener una buena aproximación de los cuartos que serán vendidos en cierto día y con qué velocidad se realizará esta venta.
+Este modelo toma como entrada las curvas de \emph{pickup} para una propiedad en específico, información de su ocupación histórica, lineas de tiempo de tarifa promedio, lineas de tiempo de tarifas publicas propias y de la competencia, etc. Al finalizar el procesamiento de la información se obtiene una matriz que contiene, entre otras variables, el parámetro $\beta_0$ y $\beta_1$ con el que se puede reconstruír la curva de pickup para un día futuro. De esta manera podemos obtener una buena aproximación de los cuartos que serán vendidos en cierto día y con qué velocidad se realizará esta venta.
 
 A continuación se presenta un extracto de los resultados obtenidos por el modelo de pronóstico de demanda:
 
@@ -123,6 +121,9 @@ Dónde:
 
 El \emph{MAPE} observado durante la validación del modelo fue de 17.67\% que de acuerdo con la investigación realizada en el capítulo dos está dentro de los parámetros aceptables.
 
+\subsection*{Modelo de regresión de Ridge}
+
+\subsection*{Modelo de análisis de series temporales ARIMA}
 
 \subsection*{Modelo de maximización de ingresos}
 

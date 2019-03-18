@@ -254,17 +254,17 @@ Una vez concluído el cálculo, se genera una matriz en la cuál se plasma la es
 \centering
 \begin{tabular}{ll}
 Dia        & Cuartos Ocupados \\
-2018-06-01 & 92               \\
-2018-06-02 & 78               \\
-2018-06-03 & 96               \\
-2018-06-04 & 99               \\
-2018-06-05 & 132              \\
-2018-06-06 & 151              \\
-2018-06-07 & 138              \\
-2018-06-08 & 88               \\
-2018-06-09 & 77              
+2018-08-14 & 92               \\
+2018-08-15 & 78               \\
+2018-08-16 & 96               \\
+2018-08-17 & 99               \\
+2018-08-18 & 132              \\
+2018-08-19 & 151              \\
+2018-08-20 & 138              \\
+2018-08-21 & 88               \\
+2018-08-22 & 77              
 \end{tabular}
-\caption{Pronóstico de cuartos noche ocupados} 
+\caption{Pronóstico de cuartos noche ocupados (Regresión con liga Poisson)} 
 \end{table}
 
 
@@ -308,7 +308,9 @@ Para entrenar el modelo se definieron 10 valores diferentes para el parámetro $
 
 Donde $y_i$ es el valor a predecir y $f(x_i)$ es el valor pronosticado por el modelo.
 
-A continuación se muestran los \emph{rss} obtenidos para cada valor de $\alpha$
+El proceso anteriormente descrito se iteró $n$ veces. En cada iteración se incrementaron las variables explicativas para la variable de salida, es decir, se incrementó el número de días anteriores que intentan explicar la ocupación de la propiedad en el día 0, de tal forma que que la ocupación en el día $t_0$ es explicada por la ocupación en los días $t_{-1},...,t_{-n}$ para toda $n$ en ${1,2,3,...,400}$
+
+A continuación se muestran los \emph{rss} obtenidos para cada valor de $\alpha$ con $n = 400$
 
 \begin{table}[]
 \centering
@@ -328,12 +330,133 @@ Alpha Value & Rss    \\
 \caption{Valores residuales cuadráticos para los distintos valores de $\alpha$}
 \end{table}
 
+Como se puede observar, el valor del parámetro $\alpha$ con el menor \emph{rss} es $1e^{-15}$, es por ello que se eleigió este modelo como el final. 
+
+Para poder pronósticar utilzando esta técnica se debe de definir una ventana que le indique al modelo cuantos días posteriores al día 0 se quieren pronósticar. De esta forma el modelo pronosticará la ocupación día $t_1$ y utilizará el resultado para pronósticar el día $t_2$ y así sucesivamente hasta pronósticar los días dentro de la ventana definida.
+
+Utilizando el procedimiento anteriormente descrito, se validó el modelo final con el conjunto de datos de prueba y se obtuvo un \emph{MAPE} = 15.1815.
+
+A continuación se muestra una gráfica de los resultados del pronóstico, utilizando el conjunto de pruebas vs la ocupación real del hotel.
+
+\begin{figure}[H]
+  \centering
+      \includegraphics[width=\maxwidth,height=8cm]{figures/RidgeTest.png}    
+  \caption{Validación de predicciones utilizando regresión de Ridge}
+\end{figure}
+
+Podemos notar que el modelo tiene un buen ajuste vs los datos reales, incluso cuando la ocupación real tiene una caída hacía finales del año 2017, el resultado del modelo presenta un comportamiento similar. Podemos notar que los pronósticos sobrepasan el 100\% de ocupación lo cuál indica que hay un alta probabilidad de poder sobrevender la propiedad en algunas fechas.
+
+\begin{figure}[H]
+  \centering
+      \includegraphics[width=\maxwidth,height=8cm]{figures/RidgePronostico.png}    
+  \caption{Generación de predicciones utilizando regresión de Ridge}
+\end{figure}
+
+
+Como resultado del modelo se genera una matriz en la cuál se plasma la estimación del número de \emph{cuartos ocupados} que en la ventana futura definida:
+
+\begin{table}[H]
+\centering
+\begin{tabular}{ll}
+Dia        & Cuartos Ocupados \\
+2018-08-14 & 136              \\
+2018-08-15 & 143              \\
+2018-08-16 & 138              \\
+2018-08-17 & 108              \\
+2018-08-18 & 99               \\
+2018-08-19 & 79               \\
+2018-08-20 & 130              \\
+2018-08-21 & 150              \\
+2018-08-22 & 154              
+\end{tabular}
+\caption{Pronóstico de cuartos noche ocupados (Regresión de Ridge)} 
+\end{table}
+
 \section*{Análisis de series de tiempo - ARIMA}
+
+El análisis de series de tiempo trata de extraer estadísticas significantes y otras características de los datos. El pronóstico a partir de series de tiempo utiliza un modelo estádistico para predecir valores futuros basandose en los datos previamente observados.
+
+Este tipo de modelos son muy comunes para el análisis y pronóstico de datos no estacionarios como: índicadores económicos, clima, acciones, precios y ventas. Para fines de este trabajo se utilizará un modelo de series de tiempo para análizar y predecir valores para la ocupación del hotel que está siendo analizado.
+
+\subsection*{Datos de entrada}
+
+Los datos de entrada para este modelo constan fueron modelados en forma de una matriz de fecha vs ocupación en esa fecha.
+
+Graficando esta información podemos darnos cuenta que existen patrones marcados en los datos presentados:
+
+\begin{figure}[H]
+  \centering
+      \includegraphics[width=\maxwidth,height=8cm]{figures/TsOcc.png}    
+  \caption{Serie de tiempo para la ocupación de la propiedad desde 2013 hasta 2018}
+\end{figure}
+
+Podemos observar que la ocupación del hotel es inestable, presentando temporadas de alta ocupación y algunas de baja ocupación (generalmente hacia finales del año corriente y principios del año siguiente).
+
+Se puede ampliar en análisis descomponiendo esta serie de tiempo en su tendencia, temporalidad y el \emph{ruido} contenido en la serie:
+
+\begin{figure}[H]
+  \centering
+      \includegraphics[width=\maxwidth,height=8cm]{figures/Decomp.png}    
+  \caption{Descomposición de la serie de tiempo de ocupación}
+\end{figure}
+
+Esta descomposción confirma que la ocupación es inestable, sin embargo, en la gráfica de la tendencia se pueden observar las temporadas de alta ocupación y de baja ocupación, lo cual es de gran ayuda para entender el comportamiento de la ocupación en esta propiedad.
+
+\subsection*{Implementación del modelo}
+
+El modelo ARIMA contiene 3 parámetros que deben ser optimizados para mejorar el desempeño del modelo. Estos tres parámetros son conocidos como \emph{p,d,q} y definen la temporalidad, tendencia y ruido en los datos, además se debe específicar por medio de un parámetro la ventana de días pasados que serán considerados por el módelo para analizar la tendencia de los datos.
+
+Para poder optimizar dichos parámetros se hicieron las n combinaciones de los tres parámetros cuando cada uno de ellos toma dos valores (0 o 1).
+
+Se dividió el conjunto de datos de entrada en dos: entrenamiento y pruebas. El modelo ARIMA fue implementado utilizando la libería \emph{statsmodels} en \emph{python 3.5.2} con cada uno de las combinaciones existentes para los tres parámetros buscando la configuración óptima utilizando el criterio de información de \emph{Akaike} o \emph{AIC}. Este criterio es una medida d ela calidad de un modelo estadístico para un conjunto dado de datos y está definido como: $$AIC = 2k - 2ln(L)$$
+
+Dónde $k$ es el número de parámetros en el modelo estadístico, y $L$ es el máximo valor de la función de verosimilitud para el modelo estimado.
+
+Una vez entrenado el modelo con el conjunto de entrenamiento para todos los valores distintos de los parámetros, se eligió el modelo con el menor valor de \emph{AIC} como el final $p=d=q=1$ con una ventana de temporalidad $v_t= 60$ ($AIC = -2301.9321$).
+El modelo fue validado utilizando el conjunto de pruebas y se pronosticaron valores para la ocupación de la propiedad en los años 2017 y 2018.
+
+A continuación se muestra una gráfica con los resultados de la validación y se puede notar que los pronósticos obtenidos se alinean aceptablemente a la tendencia mostrada por los valores reales.
+
+\begin{figure}[H]
+  \centering
+      \includegraphics[width=\maxwidth,height=8cm]{figures/ARIMA_predTest.png}    
+  \caption{Validación de las predicciones generadas por el modelo ARIMA}
+\end{figure}
+
+
+El MAPE reportado por este modelo fue de 18.1597.
+
+Posteriormente se pronósticaron valores para días mayores al 13 de agosto de 2018 obteniendo los resultados mostrados a continuación.
+
+\begin{figure}[H]
+  \centering
+      \includegraphics[width=\maxwidth,height=8cm]{figures/ArimaPred.png}    
+  \caption{Predicciones generadas por el modelo ARIMA}
+\end{figure}
+
+Los resultados fueron almacenados en una matriz que contiene la fecha y el pronóstico de la ocupación para ese día con la finalidad de poder alimentar al modelo de maximización de ingresos.
+
+\begin{table}[H]
+\centering
+\begin{tabular}{ll}
+Dia        & Cuartos Ocupados \\
+2018-08-14 & 130              \\
+2018-08-15 & 134              \\
+2018-08-16 & 129              \\
+2018-08-17 & 123              \\
+2018-08-18 & 114              \\
+2018-08-19 & 112              \\
+2018-08-20 & 114              \\
+2018-08-21 & 128              \\
+2018-08-22 & 132              
+\end{tabular}
+\caption{Pronóstico de cuartos noche ocupados (ARIMA)} 
+\end{table}
 
 
 \section*{Modelo de maximización de ingresos}
 
-Una vez pronósticado los cuartos ocupados para cada una de las propiedades de la cadena, se alimentó un modelo de pricing dinámico que entrega recomendaciones de precios para la tarifa pública tomando en cuenta la demanda pronósticada para cierto día del año.
+Una vez pronósticado los cuartos ocupados para cada una de las propiedades de la cadena, se eligió el resultado del modelo de pronóstico de ocupación con el menor \emph{MAPE} y este alimentó un modelo de pricing dinámico que entrega recomendaciones de precios para la tarifa pública tomando en cuenta la demanda pronósticada para cierto día del año.
 
 Típicamente el gerente de la propiedad controla la cantidad de cuartos ofrecidos a diferentes precios, es decir, se asigna cierto número de cuartos a cada nível de tarifa de tal forma que cuando el inventario asignado al precio mas bajo se agota, se consume el inventario asignado al siguiente nivel de tarifa que será mayor al primer precio ofertado.
 

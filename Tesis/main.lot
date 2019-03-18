@@ -12,16 +12,20 @@
 \contentsline {table}{\numberline {4.1}{\ignorespaces Resumen de datos obtenidos del PMS}}{48}
 \contentsline {table}{\numberline {4.2}{\ignorespaces DataSet detalle de reservas}}{48}
 \contentsline {table}{\numberline {4.3}{\ignorespaces Datos de entrada para el modelo de pron\IeC {\'o}stico de demanda}}{56}
-\contentsline {table}{\numberline {4.4}{\ignorespaces Pron\IeC {\'o}stico de cuartos noche ocupados}}{57}
+\contentsline {table}{\numberline {4.4}{\ignorespaces Pron\IeC {\'o}stico de cuartos noche ocupados (Regresi\IeC {\'o}n con liga Poisson)}}{57}
 \contentsline {table}{\numberline {4.5}{\ignorespaces Cuartos noche ocupados vs tiempo}}{59}
 \contentsline {table}{\numberline {4.6}{\ignorespaces Conjunto de datos de entrada para la regresi\IeC {\'o}n de Ridge}}{60}
 \contentsline {table}{\numberline {4.7}{\ignorespaces Variables adicionales de entrada para la regresi\IeC {\'o}n de Ridge}}{61}
 \contentsline {table}{\numberline {4.8}{\ignorespaces Valores residuales cuadr\IeC {\'a}ticos para los distintos valores de $\alpha $}}{62}
-\contentsline {table}{\numberline {4.9}{\ignorespaces Matriz de asignacion de precio por inventario disponible}}{66}
+\contentsline {table}{\numberline {4.9}{\ignorespaces Pron\IeC {\'o}stico de cuartos noche ocupados (Regresi\IeC {\'o}n de Ridge)}}{64}
+\contentsline {table}{\numberline {4.10}{\ignorespaces Pron\IeC {\'o}stico de cuartos noche ocupados (ARIMA)}}{70}
+\contentsline {table}{\numberline {4.11}{\ignorespaces Matriz de asignacion de precio por inventario disponible}}{74}
 \addvspace {10\p@ }
-\contentsline {table}{\numberline {5.1}{\ignorespaces Resultados arrojados por el modelo de predicci\IeC {\'o}n de demanda}}{69}
-\contentsline {table}{\numberline {5.2}{\ignorespaces Interpretaci\IeC {\'o}n de resultados arrojados por el modelo de pron\IeC {\'o}stico de demanda}}{71}
-\contentsline {table}{\numberline {5.3}{\ignorespaces Matriz de asignacion de precio por inventario disponible}}{75}
+\contentsline {table}{\numberline {5.1}{\ignorespaces Resultados arrojados por el modelo de predicci\IeC {\'o}n de demanda}}{77}
+\contentsline {table}{\numberline {5.2}{\ignorespaces Interpretaci\IeC {\'o}n de resultados arrojados por el modelo de pron\IeC {\'o}stico de demanda}}{79}
+\contentsline {table}{\numberline {5.3}{\ignorespaces Matriz de asignacion de precio por inventario disponible}}{84}
+\addvspace {10\p@ }
+\addvspace {10\p@ }
 \addvspace {10\p@ }
 \addvspace {10\p@ }
 \addvspace {10\p@ }

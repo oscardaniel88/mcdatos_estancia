@@ -22,12 +22,20 @@
 \contentsline {figure}{\numberline {4.5}{\ignorespaces Tarifa Promedio 2017}}{53}
 \contentsline {figure}{\numberline {4.6}{\ignorespaces Precios de la competencia en el tiempo}}{54}
 \contentsline {figure}{\numberline {4.7}{\ignorespaces Precios de la competencia en el tiempo}}{55}
-\contentsline {figure}{\numberline {4.8}{\ignorespaces Asignacion de inventario}}{63}
+\contentsline {figure}{\numberline {4.8}{\ignorespaces Validaci\IeC {\'o}n de predicciones utilizando regresi\IeC {\'o}n de Ridge}}{63}
+\contentsline {figure}{\numberline {4.9}{\ignorespaces Generaci\IeC {\'o}n de predicciones utilizando regresi\IeC {\'o}n de Ridge}}{64}
+\contentsline {figure}{\numberline {4.10}{\ignorespaces Serie de tiempo para la ocupaci\IeC {\'o}n de la propiedad desde 2013 hasta 2018}}{66}
+\contentsline {figure}{\numberline {4.11}{\ignorespaces Descomposici\IeC {\'o}n de la serie de tiempo de ocupaci\IeC {\'o}n}}{67}
+\contentsline {figure}{\numberline {4.12}{\ignorespaces Validaci\IeC {\'o}n de las predicciones generadas por el modelo ARIMA}}{68}
+\contentsline {figure}{\numberline {4.13}{\ignorespaces Predicciones generadas por el modelo ARIMA}}{69}
+\contentsline {figure}{\numberline {4.14}{\ignorespaces Asignacion de inventario}}{71}
 \addvspace {10\p@ }
-\contentsline {figure}{\numberline {5.1}{\ignorespaces Curva de pickup real vs pronosticada (1)}}{72}
-\contentsline {figure}{\numberline {5.2}{\ignorespaces Curva de pickup real vs pronosticada (2)}}{73}
-\contentsline {figure}{\numberline {5.3}{\ignorespaces Curva de pickup real vs pronosticada (3)}}{73}
-\contentsline {figure}{\numberline {5.4}{\ignorespaces Curva de pickup real vs pronosticada (4)}}{74}
+\contentsline {figure}{\numberline {5.1}{\ignorespaces Curva de pickup real vs pronosticada (1)}}{80}
+\contentsline {figure}{\numberline {5.2}{\ignorespaces Curva de pickup real vs pronosticada (2)}}{81}
+\contentsline {figure}{\numberline {5.3}{\ignorespaces Curva de pickup real vs pronosticada (3)}}{81}
+\contentsline {figure}{\numberline {5.4}{\ignorespaces Curva de pickup real vs pronosticada (4)}}{82}
+\addvspace {10\p@ }
+\addvspace {10\p@ }
 \addvspace {10\p@ }
 \addvspace {10\p@ }
 \addvspace {10\p@ }

@@ -1,0 +1,112 @@
+\chapter{Anexo D: Implementación de modelo de optimización de ingresos}
+\label{ch:anexod}
+
+\begin{verbatim}
+import pandas as pd
+import numpy as np
+import scipy
+import math as mt
+import pickle as pkl
+import os
+import psycopg2
+import matplotlib
+import matplotlib.pyplot as plt
+from numpy.random import normal
+import calendar
+from scipy.optimize import curve_fit
+plt.rcParams['figure.figsize'] = (16,8)
+import warnings
+warnings.filterwarnings('ignore')
+import plotly.plotly as py
+import plotly.graph_objs as go
+import plotly.figure_factory as ff
+from plotly.offline import download_plotlyjs, 
+init_notebook_mode, plot, iplot
+init_notebook_mode(connected=True)
+from datetime import datetime
+from datetime import timedelta
+
+# Cargamos los resultados de la regresion poisson para pronosticar ocupacion
+data = pd.read_csv("data/forecasted_demand.csv")
+date_start = min(data.dia.values)
+date_end = max(data.dia.values)
+date_end=datetime.strptime(date_end, '%Y-%m-%d')
+date_end= date_end +  timedelta(days=1)
+nb_days = (pd.to_datetime(date_end) - pd.to_datetime(date_start)).days
+forecasted_demand = data.cn_predic.values
+forecasted_demand=pd.DataFrame(forecasted_demand,
+                               index=pd.date_range(start=date_start,
+                                                   end=date_end,closed='left'),
+                               columns=['occupancy'])
+forecasted_demand.occupancy=data.cn_predic.values
+
+def demand_price_elasticity(price, nominal_demand, elasticity=-2.0, nominal_price=120.0):      return nominal_demand * ( price / nominal_price ) ** (elasticity)
+
+import scipy.optimize as optimize
+
+def objective(p_t, nominal_demand=np.array([50,40,30,20]),
+              elasticity=-2.0, nominal_price=1200.0):
+    return (-1.0 * np.sum( p_t * demand_price_elasticity(p_t, 
+            nominal_demand=nominal_demand,
+            elasticity=elasticity,
+            nominal_price=nominal_price) )) / 100
+
+def constraint_1(p_t):
+    return p_t
+
+
+def constraint_2(p_t, capacity=20, forecasted_demand=35.0,
+                 elasticity=-2.0, nominal_price=1200.0):
+    return capacity - demand_price_elasticity(p_t, 
+                            nominal_demand=forecasted_demand,
+                            elasticity=elasticity,
+                            nominal_price=nominal_price)
+
+capacities = [20.0, 40.0, 60.0, 80.0]
+
+optimization_results = {}
+for capacity in capacities:
+    nominal_price = 1200.0
+    nominal_demand = forecasted_demand['occupancy'].values
+    elasticity = -2.0
+
+    p_start = 1250.0 * np.ones(len(nominal_demand))
+
+    bounds = tuple((100.0, 2000.0) for p in p_start)
+
+    constraints = ({'type': 'ineq', 'fun':  lambda x:  constraint_1(x)},
+               {'type': 'ineq', 'fun':  lambda x, capacity=capacity,
+                                           forecasted_demand=nominal_demand,
+                                           elasticity=elasticity,
+                                           nominal_price=
+                                           nominal_price: constraint_2(x,
+                                           capacity=capacity,
+                                           forecasted_demand=nominal_demand,                                                           elasticity=elasticity,
+                                           nominal_price=nominal_price)})
+
+    opt_results = optimize.minimize(objective, p_start,
+                                    args=(nominal_demand,
+                                    elasticity,
+                                    nominal_price),
+                                    method='SLSQP', bounds=bounds,
+                                    constraints=constraints)
+
+    optimization_results[capacity] = opt_results
+
+time_array = np.linspace(1,len(nominal_demand),len(nominal_demand))
+rate_df = pd.DataFrame(index=time_array)
+
+for capacity in optimization_results.keys():
+    rate_df = pd.concat([rate_df,
+                         pd.DataFrame(optimization_results[capacity]['x'],
+                                      columns=['{}'.format(capacity)],
+                                      index=time_array)],axis=1)
+
+rate_df.index.name = 'Day'
+datelist = pd.date_range(start=date_start, end=date_end, closed='left').tolist()
+rate_df.index = [ x.date() for x in datelist]
+
+rate_df.to_csv('data/rates.csv')
+
+
+\end{verbatim}
