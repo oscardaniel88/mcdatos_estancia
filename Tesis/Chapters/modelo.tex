@@ -330,7 +330,7 @@ Alpha Value & Rss    \\
 \caption{Valores residuales cuadráticos para los distintos valores de $\alpha$}
 \end{table}
 
-Como se puede observar, el valor del parámetro $\alpha$ con el menor \emph{rss} es $1e^{-15}$, es por ello que se eleigió este modelo como el final. 
+Como se puede observar, el valor del parámetro $\alpha$ con el menor \emph{rss} es $1*e^{-15}$, es por ello que se eleigió este modelo como el final. 
 
 Para poder pronósticar utilzando esta técnica se debe de definir una ventana que le indique al modelo cuantos días posteriores al día 0 se quieren pronósticar. De esta forma el modelo pronosticará la ocupación día $t_1$ y utilizará el resultado para pronósticar el día $t_2$ y así sucesivamente hasta pronósticar los días dentro de la ventana definida.
 
@@ -372,7 +372,7 @@ Dia        & Cuartos Ocupados \\
 \caption{Pronóstico de cuartos noche ocupados (Regresión de Ridge)} 
 \end{table}
 
-\section*{Análisis de series de tiempo - ARIMA}
+\section*{Análisis de series de tiempo - SARIMA}
 
 El análisis de series de tiempo trata de extraer estadísticas significantes y otras características de los datos. El pronóstico a partir de series de tiempo utiliza un modelo estádistico para predecir valores futuros basandose en los datos previamente observados.
 
@@ -400,19 +400,23 @@ Se puede ampliar en análisis descomponiendo esta serie de tiempo en su tendenci
   \caption{Descomposición de la serie de tiempo de ocupación}
 \end{figure}
 
-Esta descomposción confirma que la ocupación es inestable, sin embargo, en la gráfica de la tendencia se pueden observar las temporadas de alta ocupación y de baja ocupación, lo cual es de gran ayuda para entender el comportamiento de la ocupación en esta propiedad.
+Esta descomposción confirma que la ocupación es inestable, sin embargo, en la gráfica de la tendencia se pueden observar las temporadas de alta ocupación y de baja ocupación, lo cual es de gran ayuda para entender el comportamiento de la ocupación en esta propiedad, además viendo estas gráficas podemos notar que los datos son estacionales, es decir, presentan un ciclo.
 
 \subsection*{Implementación del modelo}
+Dada la estacionalidad presentada en los datos, el modelo que se implementará es un modelo \emph{SARIMA} el cual es una variación del modelo \emph{ARIMA} pero que es capáz de manejar la estacionalidad contenida en los datos.
 
-El modelo ARIMA contiene 3 parámetros que deben ser optimizados para mejorar el desempeño del modelo. Estos tres parámetros son conocidos como \emph{p,d,q} y definen la temporalidad, tendencia y ruido en los datos, además se debe específicar por medio de un parámetro la ventana de días pasados que serán considerados por el módelo para analizar la tendencia de los datos.
+El modelo SARIMA contiene siete hiperparámetros que deben ser optimizados para mejorar el desempeño del modelo. Estos siete parámetros son conocidos como \emph{(p,d,q)(P,D,Q)m}. Los primeros tres definen la parte no estacionaria del modelo. Mientras que los últimos cuatro definen la parte estacionaria del modelo.  Decimos que una serie de tiempo es estacionaria cuando la media y la varianza son constantes en el tiempo.
 
-Para poder optimizar dichos parámetros se hicieron las n combinaciones de los tres parámetros cuando cada uno de ellos toma dos valores (0 o 1).
+El parámetro \emph{p} implica que la salida del modelo en el tiempo \emph{t} será una suma ponderada de los valores pasados más un término estocástico. Este valor es el número de \emph{rezagos} que se usarán.El parámetro \emph{d} es el número de diferencias no estacionarias aplicadas a la serie para convertirla en una serie estacionaria, en otras palabras, el modelo toma valores pasados y los sustrae del valor actual. Si tuvieramos una serie integrada de orden 2 y tomaramos diferencias repetidas dos veces para crear un proceso estacionario el modelo sería un ARIMA (0,2,0). El parámetro \emph{q} es un promédio móvil de los errores previos. Este tipo promedios móviles son usados para modelar ruido que se disipa gradualmente dentro de un sistema.
 
-Se dividió el conjunto de datos de entrada en dos: entrenamiento y pruebas. El modelo ARIMA fue implementado utilizando la libería \emph{statsmodels} en \emph{python 3.5.2} con cada uno de las combinaciones existentes para los tres parámetros buscando la configuración óptima utilizando el criterio de información de \emph{Akaike} o \emph{AIC}. Este criterio es una medida d ela calidad de un modelo estadístico para un conjunto dado de datos y está definido como: $$AIC = 2k - 2ln(L)$$
+La parte estacionaria del modelo \emph{(P,D,Q)m} tienen la misma estructura que la parte no estacionaria del modelo. En esta parte del modelo los tres factores operan únicamente a lo largo del periodo (m) definido para la estacionalidad del modelo. La estacionalidad es un patrón de cambios regular que se repite cada \emph{m} periodos dentro de la serie
+
+Para poder optimizar los hiperparámetros del modelo se impelentó un algoritmo llamado \emph{grid search} el cuál busca el valor de los hiperparámetros que ofrecen el mejor desempeño del modelo, tomando el \emph{AIC} de cada modelo como medida de desempeño. Este criterio es una medida de la calidad de un modelo estadístico para un conjunto dado de datos y está definido como: $$AIC = 2k - 2ln(L)$$
 
 Dónde $k$ es el número de parámetros en el modelo estadístico, y $L$ es el máximo valor de la función de verosimilitud para el modelo estimado.
 
-Una vez entrenado el modelo con el conjunto de entrenamiento para todos los valores distintos de los parámetros, se eligió el modelo con el menor valor de \emph{AIC} como el final $p=d=q=1$ con una ventana de temporalidad $v_t= 60$ ($AIC = -2301.9321$).
+Se dividió el conjunto de datos de entrada en dos: entrenamiento y pruebas. El modelo SARIMA fue implementado utilizando la libería \emph{statsmodels} en \emph{python 3.5.2}. Una vez entrenado el modelo con el conjunto de entrenamiento para todos los valores contenidos en la lista de búsqueda del algoritmo de \emph{Grid Search}, se eligió el modelo con el menor valor de \emph{AIC} como el final.
+
 El modelo fue validado utilizando el conjunto de pruebas y se pronosticaron valores para la ocupación de la propiedad en los años 2017 y 2018.
 
 A continuación se muestra una gráfica con los resultados de la validación y se puede notar que los pronósticos obtenidos se alinean aceptablemente a la tendencia mostrada por los valores reales.
@@ -420,18 +424,17 @@ A continuación se muestra una gráfica con los resultados de la validación y s
 \begin{figure}[H]
   \centering
       \includegraphics[width=\maxwidth,height=8cm]{figures/ARIMA_predTest.png}    
-  \caption{Validación de las predicciones generadas por el modelo ARIMA}
+  \caption{Validación de las predicciones generadas por el modelo SARIMA}
 \end{figure}
 
-
-El MAPE reportado por este modelo fue de 18.1597.
+El MAPE reportado por este modelo fue de 14.8880.
 
 Posteriormente se pronósticaron valores para días mayores al 13 de agosto de 2018 obteniendo los resultados mostrados a continuación.
 
 \begin{figure}[H]
   \centering
       \includegraphics[width=\maxwidth,height=8cm]{figures/ArimaPred.png}    
-  \caption{Predicciones generadas por el modelo ARIMA}
+  \caption{Predicciones generadas por el modelo SARIMA}
 \end{figure}
 
 Los resultados fueron almacenados en una matriz que contiene la fecha y el pronóstico de la ocupación para ese día con la finalidad de poder alimentar al modelo de maximización de ingresos.
@@ -450,7 +453,7 @@ Dia        & Cuartos Ocupados \\
 2018-08-21 & 128              \\
 2018-08-22 & 132              
 \end{tabular}
-\caption{Pronóstico de cuartos noche ocupados (ARIMA)} 
+\caption{Pronóstico de cuartos noche ocupados (SARIMA)} 
 \end{table}
 
 

@@ -137,9 +137,32 @@ Como podemos observar, a mayor valor de $\alpha$ disminuye la varianza de las pr
 
 La regresión de \emph{Ridge} nos regresa una matriz de coeficientes que multiplican a las variables de entrada del modelo, de tal forma que $y=\beta_0 + \beta_1*x_1 + \beta_2*x_2 + ,..., \beta_n*x_n$. Para generar predicciones para días futuros lo que el modelo internamente hace es tomar la matriz de coeficientes generados por la regresión y los multiplica por la matriz de predictores y como resultado arroja la $\hat{y}$.
 
-El \emph{MAPE} obtenido para este modelo, utilizando una ventana de rezagos de 400 días  para pronósticar una ocupación futura y $\alpha = 1*e^{-15}$ fue de 15.1815\%.
+El \emph{MAPE} obtenido para este modelo con el conjunto de datos de validación, utilizando una ventana de rezagos de 400 días  para pronósticar una ocupación futura y $\alpha = 1*e^{-15}$ fue de 15.1815\%.
 
-\subsection*{Modelo de análisis de series temporales ARIMA}
+\subsection*{Modelo de análisis de series temporales SARIMA}
+
+Como se mencionó en el capítulo anterior, para poder encontrar el modelo con mejor desempeño se implementó un algorítmo de \emph{grid search}. Dicho algorítmo toma todos los valores definidos para los hiperparámetros del modelo y lo ajusta sobre los datos de entrenamiento. Lo que este algorítmo busca es el conjunto de valores para los hiperparámetros que logran un mejor desempeño del modelo.
+
+En este caso el modelo \emph{SARIMA} con mejor desempeño fue el \emph{SARIMA(1, 0, 0)x(1, 0, 1, 7)} con un \emph{AIC=-3051.784}.
+
+A continuación se presentan las gráficas de diagnóstico obtenidas para dicho modelo. Lo que se busca en estas gráficas es que los residuales no esten correlacionados y se distribuyan normalmente con media = 0. En caso de no tener estos resultados se debe considerar mejorar el modelo ya que podemos incurrir en un alto riesgo de \emph{falsos positivos} en nuestros coeficientes.
+
+\begin{figure}[H]
+  \centering
+      \includegraphics[width=\maxwidth,height=10cm]{figures/sarimax_summary.png}  
+  \caption{Diagnóstico del modelo SARIMA(1, 0, 0)x(1, 0, 1, 7)}
+\end{figure}
+
+
+Observando la gráfica presentada podemos confiar en los resultados obtenidos ya que los residuales obtenidos no estan correlacionados y se distribuyen normalmente con media = 0. Esto lo podemos observar poniendo atención en los siguientes puntos:
+
+\begin{itemize}
+  \item La gráfica \emph{QQ} se ajusta linealmente a lo largo de la muestra con distribución normal, es decir, todos los puntos caen sobre la línea roja.
+  \item La gráfica \emph{KDE} muestra que los residuales son consistentes con una distribución normal con media = 0.
+  \item El correlograma muestra una baja autocorrelación para los residuales cuando los rezagos son mayores a 0.
+\end{itemize}
+
+Podemos confirmar el desempeño del modelo con el valor del \emph{MAPE} obtenido con el conjunto de datos de validación de 14.8880\% el cual demostró ser el mejor modelo de los tres propuestos.
 
 \subsection*{Modelo de maximización de ingresos}
 

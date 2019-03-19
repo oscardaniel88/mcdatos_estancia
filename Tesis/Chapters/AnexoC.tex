@@ -1,4 +1,4 @@
-\chapter{Anexo C: Implementación de modelo de pronóstico de demanda utilizando un modelo de análisis de series de tiempo ARIMA}
+\chapter{Implementación de modelo de pronóstico de demanda utilizando un modelo de análisis de series de tiempo SARIMA}
 \label{ch:anexoa¡c}
 
 \begin{verbatim}
@@ -39,27 +39,41 @@ print('SARIMAX: {} x {}'.format(pdq[1], seasonal_pdq[2]))
 print('SARIMAX: {} x {}'.format(pdq[2], seasonal_pdq[3]))
 print('SARIMAX: {} x {}'.format(pdq[2], seasonal_pdq[4]))
 
+lowest_aic = None
+lowest_parm = None
+lowest_param_seasonal = None
 for param in pdq:
     for param_seasonal in seasonal_pdq:
         try:
-            mod = sm.tsa.statespace.SARIMAX(y,order=param,
+            mod = sm.tsa.statespace.SARIMAX(y,
+            order=param,
             seasonal_order=param_seasonal,
             enforce_stationarity=False,
             enforce_invertibility=False)
             results = mod.fit()
-            print('ARIMA{}x{}60 - AIC:{}'.format(param, 
-            param_seasonal, 
-            results.aic))
+            current_aic = results.aic
+            if (lowest_aic == None):
+                lowest_aic = results.aic
+            if (current_aic <= lowest_aic):
+                lowest_aic = current_aic
+                lowest_parm = param
+                lowest_param_seasonal = param_seasonal
+            print('SARIMA{}x{} - AIC:{}'.format(param, param_seasonal, results.aic))
+            #print('ARIMA{}x{}7 - AIC:{}'.format(param, param_seasonal, results.aic))
         except:
             continue
+print('The best model is: 
+SARIMA{}x{} - AIC:{}'.format(lowest_parm, 
+lowest_param_seasonal, lowest_aic))
             
+
 mod = sm.tsa.statespace.SARIMAX(y,
-                                order=(1, 1, 1),
-                                seasonal_order=(1, 0, 1, 60),
+                                order=lowest_parm,
+                                seasonal_order=lowest_param_seasonal,
                                 enforce_stationarity=False,
                                 enforce_invertibility=False)
 results = mod.fit()
-print(results.summary().tables[1])
+print(results.summary())
 
 pred = results.get_prediction(start=pd.to_datetime('2017-01-01'), dynamic=False)
 pred_ci = pred.conf_int()

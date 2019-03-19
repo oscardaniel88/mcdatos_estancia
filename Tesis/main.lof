@@ -26,8 +26,8 @@
 \contentsline {figure}{\numberline {4.9}{\ignorespaces Generaci\IeC {\'o}n de predicciones utilizando regresi\IeC {\'o}n de Ridge}}{64}
 \contentsline {figure}{\numberline {4.10}{\ignorespaces Serie de tiempo para la ocupaci\IeC {\'o}n de la propiedad desde 2013 hasta 2018}}{66}
 \contentsline {figure}{\numberline {4.11}{\ignorespaces Descomposici\IeC {\'o}n de la serie de tiempo de ocupaci\IeC {\'o}n}}{67}
-\contentsline {figure}{\numberline {4.12}{\ignorespaces Validaci\IeC {\'o}n de las predicciones generadas por el modelo ARIMA}}{68}
-\contentsline {figure}{\numberline {4.13}{\ignorespaces Predicciones generadas por el modelo ARIMA}}{69}
+\contentsline {figure}{\numberline {4.12}{\ignorespaces Validaci\IeC {\'o}n de las predicciones generadas por el modelo SARIMA}}{69}
+\contentsline {figure}{\numberline {4.13}{\ignorespaces Predicciones generadas por el modelo SARIMA}}{70}
 \contentsline {figure}{\numberline {4.14}{\ignorespaces Asignacion de inventario}}{71}
 \addvspace {10\p@ }
 \contentsline {figure}{\numberline {5.1}{\ignorespaces Curva de pickup real vs pronosticada (1)}}{80}
@@ -35,6 +35,7 @@
 \contentsline {figure}{\numberline {5.3}{\ignorespaces Curva de pickup real vs pronosticada (3)}}{81}
 \contentsline {figure}{\numberline {5.4}{\ignorespaces Curva de pickup real vs pronosticada (4)}}{82}
 \contentsline {figure}{\numberline {5.5}{\ignorespaces Efecto de $\alpha $ sobre las predicciones generadas}}{84}
+\contentsline {figure}{\numberline {5.6}{\ignorespaces Diagn\IeC {\'o}stico del modelo SARIMA(1, 0, 0)x(1, 0, 1, 7)}}{85}
 \addvspace {10\p@ }
 \addvspace {10\p@ }
 \addvspace {10\p@ }
