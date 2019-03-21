@@ -965,7 +965,7 @@ prices[sample(nrow(prices), 10), ]
 pricing_ocup$habs_disp<-159-pricing_ocup$cn_predic
 
 prices$tp_pron<-(prices$`40` + prices$`80` + prices$`120` + prices$`159`) / 4
-tp_real <- indicadores %>%  select(fecha, tp) %>% filter(fecha>= '2018-01-01')
+tp_real <- indicadores %>%  select(fecha, tp) %>% filter(fecha>= '2018-08-14')
 names(tp_real)<-c("day","tp")
 
 prices <- prices %>% inner_join(tp_real)
@@ -978,6 +978,8 @@ names(price_result)<-c("day","Rate_type","Value")
 ggplot(price_result,aes(day,Value, col=Rate_type))+geom_line()+ theme_bw() +theme(axis.text=element_text(size=16),
         axis.title=element_text(size=30,face="bold"),legend.position="top",legend.text=element_text(size=15)) 
 #head(pricing_ocup)
+
+price_result %>% spread(Rate_type, Value) %>% mutate(dif = tp_pron-tp) %>% summarise(rev=sum(dif))
 @
 ~\\
 Graficando los resultados:

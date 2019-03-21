@@ -1,3 +1,18 @@
 \chapter{Conclusiones}
 \label{ch:conclusiones}
 
+En este trabajo se compararon distinas técnicas con miras a identificar cuál de ellas ofrece mejores resultados en la predicción de demanda de habitaciones y níveles de ocupación de propiedades en el sector hotelero.
+
+Las técnicas comparadas incluyeron distintos enfoques: desde enfoques tradicionales (regresión lineal generalizada con liga Poisson), aprendizaje de máquina (regresión de Ridge) y análisis de series de tiempo (SARIMA). 
+
+Los resultados encontrados muestran la superioridad de la téncina SARIMA en el pronóstico de la ocupación con un error \emph{MAPE} encontrado de 14.8880 sobre el conjunto de pruebas. Las predicciones obtenidas por el modelo mostraron ser buenas aproximaciones y no se encontró evidencia de sobreajuste del modelo.
+
+Adicionalmente se ejecutó un ejercicio que muestra una aplicación de un modelo de predicción dentro de un proceso de toma de decisiones. Para ello se implentó un modelo cuyo objetivo es maximizar los ingresos de una propiedad dado un pronóstico de ocupación en días futuros. Esta parte de la investigación mostró que las decisiones que se tomen dentro de una empresa o cualquier negocio pueden ser optimizadas si están basadas en el análisis de la información que se tenga disponible. El modelo de optimización de ingresos presentado en este trabajo muestra el beneficio que podría obtener la propiedad si fijaran los precios basándose en los resultados obtenidos por el modelo de pronóstico de demanda.
+
+En general, en nuestro país no hemos llegado a explotar las bondades que ofrece el análisis de datos y las técnicas de inteligancia artificial en el campo hotelero. Con los avances en la tecnología, la alta capacidad de cómputo y los lenguajes especializados de programación, como por ejemplo \emph{Python} que ofrecen librerías de uso libre con algoritmos implementados de aprendizaje de máquina y de técnicas de análisis de información, es mas asequible la aplicación de este tipo de técnicas, logrando con esto soluciones que puedan impactar de manera sustancial la competitividad en la industria hotelera.
+
+Para trabajos futuros se sugiere incluír en los experimentos otras variables independientes asociadas con eventos y días especiales, información del tráfico generado en el sitio web del hotel, número de llamadas a recepción o a la central de reservas, con el objeto de evaluar si estas variables son representativas y pueden contribuír en la minimización del error de validación atrapando parte del patrón generador de la ocupación diaria, referente al viajero de negocios y al de placer.
+
+Otro aspecto importante sugerido para trabajos futuros es robustecer el modelo de optimización de ingresos, ya que para fines de este trabajo se implementó tomando en cuenta algunas consideraciones que limitan su desempeño.
+
+

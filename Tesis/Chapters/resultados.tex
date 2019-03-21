@@ -14,7 +14,6 @@ Este modelo toma como entrada las curvas de \emph{pickup} para una propiedad en 
 A continuación se presenta un extracto de los resultados obtenidos por el modelo de pronóstico de demanda:
 
 \begin{table}[H]
-
 \begin{tabular}{lllllllllllll}
 Hotel  & Dia         & AABeta0  & AAbeta1      & pred.beta0 & pred.beta1  \\
 Hotel1 & 2018-01-01  & 2.335294 & -2.48986e-06 & 3.1595     & -0.1227     \\
@@ -164,9 +163,25 @@ Observando la gráfica presentada podemos confiar en los resultados obtenidos ya
 
 Podemos confirmar el desempeño del modelo con el valor del \emph{MAPE} obtenido con el conjunto de datos de validación de 14.8880\% el cual demostró ser el mejor modelo de los tres propuestos.
 
+\subsection*{Comparación de desempeño de modelos de predicción de demanda}
+
+En la siguiente tabla se muestran el desempeño de cada uno de los modelos utilzando el \emph{MAPE} como medida de desempeño:
+
+\begin{table}[H]
+\begin{tabular}{lllllllllllll}
+Modelo  & MAPE      \\
+Regresión Lineal Generalizada con Liga Poisson & 17.67 \\
+Regresion de Ridge & 15.1815 \\
+SARIMA & 14.8880
+\end{tabular}
+\caption{Desempeño de modelos propuestos} 
+\end{table}
+
+Como se puede observar el modelo que tuvo un mejor desempeño, de acuerdo al \emph{MAPE} fue el modelo de análisis de series temporales \emph{SARIMAX}. Los resultados de este modelo fueron alimentados al modelo de optimización de ingresos.
+
 \subsection*{Modelo de maximización de ingresos}
 
-El modelo de recomendaciones de precio toma como entrada la demanda pronósticada por el módelo de pronóstico de demanda. A partir de ahi, se define un problema de maximización sujeto a restricciones y se arroja una matriz que contiene los precios para un tipo de cuarto dependiendo del inventario disponible dentro de la propidad.
+El modelo de recomendaciones de precio toma como entrada la demanda pronósticada por el módelo de pronóstico de demanda con mejor desempeño de acuerdo al \emph{MAPE}. A partir de ahi, se define un problema de maximización sujeto a restricciones y se arroja una matriz que contiene los precios para un tipo de cuarto dependiendo del inventario disponible dentro de la propidad.
 
 A continuación se muestra un extracto del resultado:
 
@@ -176,18 +191,28 @@ A continuación se muestra un extracto del resultado:
   \caption{Matriz de asignacion de precio por inventario disponible}
 \end{table}
 
-La manera en la que se debe interpretar esta matriz es la siguiente: Para el día 7 de Julio de 2018, las habitaciones sencillas de este hotel deben de tener un precio de \$784.76 MXN si el inventario disponible esta entre 121 y 159 habitaciones disponibles. Si se tienen entre 81 y 120 habitaciones disponibles, el precio debe de ser de \$903.32 MXN y así sucesivamente. De esta manera podemos asignar un lote de habitaciones a diferentes rangos de precios siendo las últimas habitaciones disponibles las que tengan el precio más alto.
+La manera en la que se debe interpretar esta matriz es la siguiente: Para el día 14 de Agosto de 2018, las habitaciones sencillas de este hotel deben de tener un precio de \$1295.06 MXN si el inventario disponible esta entre 121 y 159 habitaciones disponibles. Si se tienen entre 81 y 120 habitaciones disponibles, el precio debe de ser de \$1490.73 MXN y así sucesivamente. De esta manera podemos asignar un lote de habitaciones a diferentes rangos de precios siendo las últimas habitaciones disponibles las que tengan el precio más alto.
 
 
 A continuación se presenta una gráfica con los resultados obtenidos por el modelo de maximización de ingresos:
 
-\includegraphics[width=\maxwidth]{figures/Pricing_graph-1} 
+\begin{figure}[H]
+  \centering
+      \includegraphics[width=\maxwidth,height=10cm]{figures/Pricing_graph-1}  
+  \caption{Precios propuestos para distintos niveles de inventario disponible}
+\end{figure}
+
 
 Para medir el desempeño del modelo de maximización de ingresos, se tomaron los resultados y se calcularon las tarifas promedio a partir de los datos obtenidos y se compararon contra las tarifas promedio reportadas por la propiedad para el año 2018.
 
-\includegraphics[width=\maxwidth]{figures/Pricing-1} 
+\begin{figure}[H]
+  \centering
+      \includegraphics[width=\maxwidth,height=10cm]{figures/Pricing-1}  
+  \caption{Tarifa Promedio optimizada vs Tarifa Promedio Real}
+\end{figure}
 
-Si obtenemos la diferencia de tarifas promedio, notamos que si se utilizara el resultado del modelo de optimización tendríamos un aumento en los ingresos de aproximadamente 57555.70 MXN. Sin embargo, para poder validar este resultado se propone implementar este modelo dentro de la propiedad y comprobar sus resultados en la operación.
+
+Si obtenemos la diferencia de tarifas promedio, notamos que si se utilizara el resultado del modelo de optimización tendríamos un aumento en los ingresos de aproximadamente 5947.626 MXN para el periodo del 14 de agosto 2018 al 9 de septiembre del 2019. Sin embargo, para poder validar este resultado se propone implementar este modelo dentro de la propiedad y comprobar sus resultados en la operación.
 
 
 
