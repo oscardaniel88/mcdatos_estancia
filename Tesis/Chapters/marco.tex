@@ -28,7 +28,7 @@ El equipo administrativo del hotel o propiedad, deben analizar diariamente el co
 
 Cada uno de los canales de venta van dirigidos a un segmento de mercado en específico y lo que el equipo de administración debe hacer es asegurar que la demanda del hotel se mantenga lo suficientemente alta para poder asegurar la continuidad operativa del negocio. Para lograr esto se genera una estrategia de distribución, en la cuál se designa parte del inventario a cada uno de los canales y se fija un precio a cada una de las tarifas a ofertar. Los precios para un producto en específico tienden a variar entre los diferentes canales y esto tiene que ver con el costo asociado a la operación de cada uno de los canales. Por ejemplo, el sitio web típicamente es un canal de reservación propio del hotel, lo que significa que las ventas generadas por este canal son libres de comisiones; por el contrario, las agencias de viajes en línea tienden a cobrar una comisión por la venta generada por esos canales.
 
-Lo que la administración del hotel debe conseguir es poder tener la mezcla de ventas entre sus canales que maximice el ingreso, de tal forma que los costos generados por las ventas no sean mayores a un porcentaje de los ingresos generados por la propiedad, generalmente este porcentaje es definido por la gerencia del hotel o por el equipo comercial que administra la cadena d e hoteles. Es con esta restricción donde se descartaría una asignación total del inventario a las agencias de viajes en línea, ya que la comisión de este canal puede ser de hasta el 25\% del total de la venta, lo cual podría representar una pérdida de hasta $\frac{1}{4}$ de las ganancias que se pudieron haber obtenido. Si por el contrario asignaramos todo el inventario disponible a los canales propios del hotel, si bien no se paga una comisión, la demanda generada por estos canales es inferior a la demanda generada por las agencias de viajes en línea.
+Lo que la administración del hotel debe conseguir es poder tener la mezcla de ventas entre sus canales que maximice el ingreso, de tal forma que los costos generados por las ventas no sean mayores a un porcentaje de los ingresos generados por la propiedad, generalmente este porcentaje es definido por la gerencia del hotel o por el equipo comercial que administra la cadena de hoteles. Es con esta restricción donde se descartaría una asignación total del inventario a las agencias de viajes en línea, ya que la comisión de este canal puede ser de hasta el 25\% del total de la venta, lo cual podría representar una pérdida de hasta $\frac{1}{4}$ de las ganancias que se pudieron haber obtenido. Si por el contrario asignaramos todo el inventario disponible a los canales propios del hotel, si bien no se paga una comisión, la demanda generada por estos canales es inferior a la demanda generada por las agencias de viajes en línea.
 
 \subsection*{Gestión de segmentos de mercado}
 
@@ -106,27 +106,27 @@ Se tiene registro de trabajo previo para el desarrollo de modelos de pronóstico
 
 La venta de asientos en un vuelo es un caso dónde naturalmente se puede utilizar un modelo de optimización de ingresos ya que cuenta con ciertas características que hacen que el modelado del problema sea muy intuitivo:
 \begin{itemize}
-  \item Se cuenta con un inventario reducido
-  \item El inventario es perecedero (una vez que el avión despega, los asientos vacíos no generan un ingreso
-  \item Se cuenta con un amplio segmento de mercado que genera demanda sobre el producto
-  \item Los asientos se compran con distintos tiempos de anticipación (hay clientes que compran con un mayor tiempo de anticipación que otros)
+  \item Se cuenta con un inventario reducido.
+  \item El inventario es perecedero (una vez que el avión despega, los asientos vacíos no generan un ingreso).
+  \item Se cuenta con un amplio segmento de mercado que genera demanda sobre el producto.
+  \item Los asientos se compran con distintos tiempos de anticipación (hay clientes que compran con un mayor tiempo de anticipación que otros).
   \item Se conoce el tiempo de estancia de cada uno de los clientes en la aeronave.
 \end{itemize}
 
 Las condiciones mencionadas anteriormente facilitan la construcción de un modelo de pronóstico de demanda. A continuación haremos una breve descripción de la evolución de este tipo de modelos a lo largo del tiempo.
 
-\texttt{Beckmann y Bobkowski (1958)} presentaron modelos estadísticos que describen reservaciones de pasajeros, cancelación de reservaciones y \emph{no shows}. En su trabajo los autores comparan modelos utilizando diferentes distribuciones probabilísticas: \emph{Poisson}, \emph{Binomial Negativa} y \emph{Gamma} aplicadas en datos generados por aerolineas con la finalidad de modelar las reservaciones efectivas y propone una condicion optima para un nivel de sobreventa para un vuelo en partícular.
+\texttt{Beckmann y Bobkowski (1958)} presentaron modelos estadísticos que describen reservaciones de pasajeros, cancelación de reservaciones y \emph{no shows}. En su trabajo los autores comparan modelos utilizando diferentes distribuciones probabilísticas: \emph{Poisson}, \emph{Binomial Negativa} y \emph{Gamma} aplicadas en datos generados por aerolineas con la finalidad de modelar las reservaciones efectivas y proponer una condicion optima para un nivel de sobreventa para un vuelo en partícular.
 
-Posteriormente, otros autores continuaron explorando nuevas metodologías para poder construír modelos de predicción de demanda. Uno de los autores mas citados en las investigaciones de modelos de pronóstico de demanda es Lee (1990) que presenta un artículo en donde explica don enfoques para resolver el problema de pronóstico de ocupación en aerolíneas:
+Posteriormente, otros autores continuaron explorando nuevas metodologías para poder construír modelos de predicción de demanda. Uno de los autores mas citados en las investigaciones de modelos de pronóstico de demanda es \texttt{Lee} (1990) que presenta un artículo en donde explica dos enfoques para resolver el problema de pronóstico de ocupación en aerolíneas:
 \begin{itemize}
-  \item Modelos de series de tiempo 
-  \item Modelos basados en información de reservaciones
+  \item Modelos de series de tiempo.
+  \item Modelos basados en información de reservaciones.
 \end{itemize}
 
 Los modelos basados en series de tiempo consideran unicamente las series de tiempo con la información de llegadas o porcentajes de ocupación aplicandoles modelos de series de tiempo (como suavizamiento exponencial, ARIMA, etc). En estos casos no se utiliza la información propia de las reservaciones.
 
 
-Para entender el enfoque basado en reservaciones se debe comprender el concepto de \emph{pick-up} de un hotel. El \emph{pick-up} está definido como el aumento o disminución de habitaciones reservadas entre dos fechas concretas y para un periodo determinado. Por ejemplo, al 21 de abril el número de habitaciones reservadas para el 1 de mayo es de 3 habitaciones y al 26 de abril las habitaciones reservadas para la misma fecha son ya 13.  Por lo tanto, el pick-up para el 1 de mayo entre el 21 de abril al 26 de abril es de 10 habitaciones.
+Para entender el enfoque basado en reservaciones se debe comprender el concepto de \emph{pick-up} de un hotel. El \emph{pick-up} está definido como el aumento o disminución de habitaciones reservadas entre dos fechas concretas y para un periodo determinado. Por ejemplo, al 21 de abril el número de habitaciones reservadas para el 1 de mayo es de 3 habitaciones y al 26 de abril las habitaciones reservadas para la misma fecha ya son 13.  Por lo tanto, el pick-up para el 1 de mayo entre el 21 de abril al 26 de abril es de 10 habitaciones.
 
 \begin{figure}[H]
   \centering
@@ -136,9 +136,9 @@ Para entender el enfoque basado en reservaciones se debe comprender el concepto 
 
 El enfoque basado en reservaciones hace uso de la información contenida en las reservaciones para pronosticar llegadas futuras. En este tipo de modelos típicamente se considera el \emph{pick-up}. Esto quiere decir que dadas \emph{K} reservaciones para un dia futuro \emph{T}, esperamos tener un \emph{pick-up} de \emph{N} reservaciones más desde este momento hasta el momento T. El pronóstico entonces será \emph{K + N}
 
-Existen dos versiones del modelo de \emph{pick-up} (\texttt{Weatherford y Kimes}, 2003). La versión aditiva del modelo en donde a las reservaciones registradas en el hotel se le suman el promedio de reservaciones que típicamente llegan en un periodo entre la fecha actual y la fecha de llegada del huésped (tomando la temporalidad del hotel en cuenta), y la versión multiplicativa, la cual es muy similar, con la única diferencia de únicamente se toma en cuenta una fracción de las reservaciones actualmente registradas en el hotel.
+Existen dos versiones del modelo de \emph{pick-up} \texttt{Weatherford y Kimes}, (2003). La versión aditiva del modelo en donde a las reservaciones registradas en el hotel se le suman el promedio de reservaciones que típicamente llegan en un periodo entre la fecha actual y la fecha de llegada del huésped (tomando la temporalidad del hotel en cuenta), y la versión multiplicativa, la cual es muy similar, con la única diferencia de únicamente se toma en cuenta una fracción de las reservaciones actualmente registradas en el hotel.
 
-Existen trabajos en los cuales se presenta un modelo avanzado en el cual se combinan modelos de series de tiempo y modelos basados en reservaciones, tal es el caso del artículo presentado por \texttt{Flides y Ord} (2002) en el cuál se concluye que la combinación de ambos modelos generalmente tienen un mejor desempeño en cuanto al pronóstico de la demanda. Otro trabajo que presenta un enfoque similar es el realizado por \texttt{Sa} (1987) en el cuál se utiliza una regresión multiple para desarrollar un modelo de pronóstico combinado, en este caso, la variable dependiente eran las reservaciones pendientes por llegar mientras la variable independiente incluía el número de reservaciones confirmadas, un índice de temporalidad,  índice semanal y un promedio del comportamiento histórico de las reservaciones pendientes. Esta regresión se corría para varios días antes de la llegada de los clientes (t = 7, 14, 21, y 28).
+Existen trabajos en los cuales se presenta un modelo avanzado en el cual se combinan modelos de series de tiempo y modelos basados en reservaciones, tal es el caso del artículo presentado por \texttt{Flides y Ord} (2002) en el cuál se concluye que la combinación de ambos modelos generalmente tienen un mejor desempeño en cuanto al pronóstico de la demanda. Otro trabajo que presenta un enfoque similar es el realizado por \texttt{Sa} (1987) en el cuál se utiliza una regresión multiple para desarrollar un modelo de pronóstico combinado, en este caso, la variable dependiente son las reservaciones pendientes por llegar mientras la variable independiente incluía el número de reservaciones confirmadas, un índice de temporalidad,  índice semanal y un promedio del comportamiento histórico de las reservaciones pendientes. Esta regresión se corría para varios días antes de la llegada de los clientes (t = 7, 14, 21, y 28).
 
 Es importante hacer las siguientes observaciones sobre los modelos comentados anteriormente:
 
@@ -181,7 +181,7 @@ A continuación presentaremos a detalle algunos algorímtos de \texttt{M.L.} uti
 
 \subsubsection*{Regresión de Ridge}
 
-La regresión de ridge es un algorítmo de regresión que incluye un término de regularización en su función de costos con el fin de lograr una mejor aproximación al momento de generalizar el modelo. La regresión de Ridge penaliza el algorítmo con un factor proporcional a la norma Euclidiana (L2) del vector de parámetros. $$J(\theta)=\sum_{i=1}^{n} (\theta^Tx_i - y_i)^2 + \alpha||\theta||^2$$
+La regresión de ridge es un algorítmo de regresión que incluye un término de regularización en su función de costos con el fin de lograr una mejor aproximación al momento de generalizar el modelo. La regresión de Ridge penaliza al algorítmo con un factor proporcional a la norma Euclidiana (L2) del vector de parámetros. $$J(\theta)=\sum_{i=1}^{n} (\theta^Tx_i - y_i)^2 + \alpha||\theta||^2$$
 
 Dónde el factor de regularización $\alpha$ controla la importancia relativa de la penalidad compleja. Para optimizar esta ecuación se debe encontrar la derivada de la función de costos e igualarla a cero, de tal forma que el vector de parámetros que minimza el error es: $$\theta = (X^TX+\lambda I)^{-1} X^T y$$
 
@@ -189,7 +189,7 @@ Las nuevas predicciones se pueden calcular como sigue: $$h(X) = \theta^Tx=\sum_{
 
 \subsubsection*{Regresión de Ridge con Kernel}
 
-Este método consta de aplicar el truco del Kernel a la regresión previamente comentada, esto con la finalidad de projectar los datos originales en un espectro de variables sin tener que explicitamente calcular las transformaciones. Para esto, se comienza con el vector de pesos optimizados para la Regresión de Ridge: $$\theta = (X^TX+\lambda I)^{-1} X^T y$$
+Este método consta de aplicar el truco del Kernel a la regresión previamente comentada, esto con la finalidad de proyectar los datos originales en un espectro de variables sin tener que explicitamente calcular las transformaciones. Para esto, se comienza con el vector de pesos optimizados para la Regresión de Ridge: $$\theta = (X^TX+\lambda I)^{-1} X^T y$$
 
 Se manipula algebraícamente para obtener: $$\theta = X^T(XX^T + \lambda I)^{-1}y$$
 
@@ -197,15 +197,17 @@ De tal forma que una predicción puede ser obtenida por: $$h(x') = \theta^Tx' = 
 
 Una función de Kernel evalúa a un producto punto de la forma $$f(x_1,x_2) = \phi (x_1)\cdot \phi (x_2)$$ sin tener que explícitamente calcular la transformación $\phi$. Si definimos $K_{i,j}=f(x_i,x_j)$ y $k_i = f(x_i,x')$, donde $x_i$ es la iésima fila de la matriz $X$, entonces $$h(x') = \theta^Tx' = y^T(K + \lambda I)^{-1}k$$
 
-Ajustamos un modelo en un espacio dimensional mayor inducido pro $\phi$ sin tener que incurrir en una complejidad computacional adicional. Se pueden utilizar varios Kernels, entre los más populares están el Kernel polinomial $$k(x_1,x_2)=( \gamma x_{1}^{T} x_2 + \beta)^ {\delta}$$
+Ajustamos un modelo en un espacio dimensional mayor inducido por $\phi$ sin tener que incurrir en una complejidad computacional adicional. Se pueden utilizar varios Kernels, entre los más populares están el Kernel polinomial $$k(x_1,x_2)=( \gamma x_{1}^{T} x_2 + \beta)^ {\delta}$$
 
 Y el Kernel Gaussiano $$k(x_1,x_2)=exp(-\frac{||x_1-x_2||^2}{2{\delta}^2})$$
 
 \subsubsection*{Red neuronal multicapa}
 
-Una red neuronal es un modelo de \texttt{M.L.} capáz de clasificar y realizar regresión. Esta compuesta por $n$ capas totalmente conectadas de neuronas artificiales formando un grafo conectado (en el caso más simple se tiene una capa oculta y una capa de salida). En este modelo, la salida de cada capa de neuronas será la entrada de la siguiente capa. A continuación se muestra una representación de una red neuronal multicapa.
+Una red neuronal es un modelo de \texttt{M.L.} capáz de clasificar y realizar regresión. Esta compuesta por $n$ capas totalmente conectadas de neuronas artificiales formando un grafo conectado (en el caso más simple se tiene una capa oculta y una capa de salida). En este modelo, la salida de cada capa de neuronas será la entrada de la siguiente capa. 
 
-\begin{figure}
+A continuación se muestra una representación de una red neuronal multicapa.
+
+\begin{figure}[H]
   \centering
       \includegraphics[width=10cm,height=8cm]{figures/NeuralNetwork.png} 
   \caption{Ejemplo de red neuronal}
@@ -217,7 +219,7 @@ Las redes neuronales son entrenadas mediante un algorítmo llamado \emph{propaga
 
 \subsubsection*{Red neuronal de base radial}
 
-Las redes nueronales de base radial (RBF) usualmente tienen una sola capa oculta que emplea una serie de funciones llamadas \emph{funciones de base radial} como detectores de características. Las redes RBF pueden ser utilizadas para realizar regresiones o clasificaciones. En este modelo la capa oculta utiliza funcion gaussiana como función de activación $\phi$: $$\phi_j(x)=exp(-\frac{||x-\mu_j||^2}{2\sigma_j^2})$$
+Las redes nueronales de base radial (RBF) usualmente tienen una sola capa oculta que emplea una serie de funciones llamadas \emph{funciones de base radial} como detectores de características. Las redes RBF pueden ser utilizadas para realizar regresiones o clasificaciones. En este modelo la capa oculta utiliza función gaussiana como función de activación $\phi$: $$\phi_j(x)=exp(-\frac{||x-\mu_j||^2}{2\sigma_j^2})$$
 
 Y como función de salida, se tiene la siguiente ecuación: $$y(x)=\sum_{j=0}^{M} w_{kj} \phi_j(x)$$
 
@@ -227,25 +229,25 @@ El entrenamiento de este tipo de modelos consiste en encontrar un conjunto de va
 
 \subsection*{Desempeño de algoritmos de M.L.}
 
-Generalmente este tipo de modelos son entrenados, validados y probados siguiendo un proceso llamado \emph{validación cruzada}. Este proceso consiste en dividir en dos conjuntos complementarios los datos de muestra, para realizar el análisis de un subconjunto (denominado datos de entrenamiento o \emph{training set}), y validar el análisis en el otro subconjunto (denominado datos de prueba o \emph{test set}), de forma que la función de aproximación sólo se ajusta con el conjunto de datos de entrenamiento y a partir de aquí calcula los valores de salida para el conjunto de datos de prueba (valores que no ha analizado antes).
+Generalmente este tipo de modelos son entrenados, validados y probados siguiendo un proceso llamado \emph{validación cruzada}. Este proceso consiste en dividir en dos conjuntos complementarios los datos de muestra para realizar el análisis de un subconjunto (denominado datos de entrenamiento o \emph{training set}), y validar el análisis en el otro subconjunto (denominado datos de prueba o \emph{test set}), de forma que la función de aproximación sólo se ajusta con el conjunto de datos de entrenamiento y a partir de aquí calcula los valores de salida para el conjunto de datos de prueba (valores que no ha analizado antes).
 
 La medida que permite evaluar el desempeño de este tipo de modelos es el  \emph{MAPE} (Mean Absolute Percentage Error) definida como: $$MAPE=\frac{1}{n}\sum_{t=1}^{n}|\frac{y_t-h_t}{y_t}|$$
 
-Los resultados mostraron que la \emph{regresión de Ridge} una transformación polinomial de grado dos tuvo el mejor desempeño con un \emph{MAPE} del 8.20\% durante la validación y un \emph{MAPE} del 8.65\% durante las pruebas.
+Los resultados mostraron que la \emph{regresión de Ridge} con una transformación polinomial de grado dos tuvo el mejor desempeño con un \emph{MAPE} del 8.20\% durante la validación y un \emph{MAPE} del 8.65\% durante las pruebas.
 
 Por otra parte el modelo la \emph{regresión de Ridge con Kernel} tuvo un \emph{MAPE} de 8.69\% durante la validación, seguido por la \emph{red neuronal} con un \emph{MAPE} del 12.89\% y finalmente la \emph{red neuronal RBF} con un \emph{MAPE} de 26.32\%.
 
-Los resultados obtenidos durante esta investigación fueron bastante prometedores y sustentaron el uso de modelos de \texttt{M.L.} como modelos de caja negra para estimar la ocupación futura de una propiedad sin requerir conocimiento o experiencia estadística del estaff del hotel, permitiendo nuevos avances en las técnicas de \emph{revenue management} en el sector de hospitalidad.
+Los resultados obtenidos durante esta investigación fueron bastante prometedores y sustentaron el uso de modelos de \texttt{M.L.} como modelos de caja negra para estimar la ocupación futura de una propiedad sin requerir conocimiento o experiencia estadística por parte del estaff del hotel, permitiendo nuevos avances en las técnicas de \emph{revenue management} en el sector de hospitalidad.
 
 \subsection*{Modelos de Big Data}
 
-En el sector de turismo y hospitalidad se han hecho esfuerzos para obtener modelos de pronóistico de llegadas y ocupación basados en información generada a partir de las búsquedas en páginas web y el tráfico generado en ellas. Si bien, los resultados obtenidos han confirmado la validéz de algunas fuentes de datos generados en línea, poco trabajo se ha hecho cruzando diferentes fuentes de datos, por ejemplo, utilizar los datos de las búsquedas realizadas en \emph{Google} combinados con el tráfico generado en el sitio web del hotel, los cuales deben estar altamente correlacionados (Tierney y Pan 2012).
+En el sector de turismo y hospitalidad se han hecho esfuerzos para obtener modelos de pronóistico de llegadas y ocupación basados en información generada a partir de las búsquedas en páginas web y el tráfico generado en ellas. Si bien, los resultados obtenidos han confirmado la validéz de algunas fuentes de datos generados en línea, poco trabajo se ha hecho cruzando diferentes fuentes de datos, por ejemplo, utilizar los datos de las búsquedas realizadas en \emph{Google} combinados con el tráfico generado en el sitio web del hotel, los cuales deben estar altamente correlacionados \texttt{Tierney y Pan} (2012).
 
 Existen algunos trabajos en donde se adoptan dos métodos principales para obtener la ocupación de un hotel a partir de datos generados en línea. Los metódos utilizados son: \emph{ARIMAX} y \emph{MS DR}
 
 \subsubsection*{Modelos ARIMA}
 
-Los modelos \emph{ARIMA} \emph{(autoregresive integrated moving average)}son modelos dinámicos de series temporales utilizados para hacer pronósticos basados en información histórica de la variable a predecir. En otras palabras, este tipo de modelos asumen que los valores futuros para la variable a predecir dependen linearmente de los valores pasados y no de variables independientes. Los modelos \emph{ARIMAX} son una generalización de los modelos \emph{ARIMA} en dónde se incluyen predictores independientes. El modelo ARIMAX es similar a un modelo de regresión multivariada pero permite tomar ventaja de la autocorrelación que puede estar presente en los residuos de la regresión para mejorar el pronóstico. 
+Los modelos \emph{ARIMA} \emph{(autoregresive integrated moving average)} son modelos dinámicos de series temporales utilizados para hacer pronósticos basados en información histórica de la variable a predecir. En otras palabras, este tipo de modelos asumen que los valores futuros para la variable a predecir dependen linearmente de los valores pasados y no de variables independientes. Los modelos \emph{ARIMAX} son una generalización de los modelos \emph{ARIMA} en dónde se incluyen predictores independientes. El modelo ARIMAX es similar a un modelo de regresión multivariada pero permite tomar ventaja de la autocorrelación que puede estar presente en los residuos de la regresión para mejorar el pronóstico. 
 
 Los modelos \emph{ARIMA / ARIMAX} estan compuestos por dos partes principales: Uno o mas términos autoregresivos (AR) y uno o más términos de promedios móviles (MA - moving averages). Los términos autoregresivos de la variable dependiente son valores anteriores para esa variable que tienen una relación significativa con el valor más reciente, mientras que los promedios móviles son residuos (errores pasados) de estimaciónes previas. La \emph{I} dentro del acrónimo \emph{ARIMA} quiere decir que el modelo es \emph{integrado} lo cual indica que las series de tiempo han sido diferenciadas una o mas veces para hacerlas estacionarias antes de empezar el modelo.
 \subsubsection*{Definición de Modelo ARMA / ARIMA / ARMAX}
@@ -272,9 +274,9 @@ Uno de los modelos no lineales de series de tiempo más populares es el \emph{Mo
 
 En el estudio presentado por \texttt{Pan y Yang (2017)} se presentan dos modelos de series de tiempo en el que se incoroporan tres fuentes de información generada en línea para predecir la ocupación de un hotel. Los datos de entrada contenían datos que describían:
 \begin{itemize}
-  \item Tráfico generado en el sitio web de la propiedad
-  \item Información relacionada con las peticiones realizadas a los motores de búsquedas (\emph{Google})
-  \item Información del clima en el destino en dónde se ubica la propiedad
+  \item Tráfico generado en el sitio web de la propiedad.
+  \item Información relacionada con las peticiones realizadas a los motores de búsquedas (\emph{Google}).
+  \item Información del clima en el destino en dónde se ubica la propiedad.
 \end{itemize}
 
 
@@ -313,24 +315,24 @@ Se puede concluír que los modelos basados en big data presentan una alternativa
 
 \subsection*{Modelos de optimizacion de ingresos}
 
-Recordemos que un systema de gestión de ingresos para un hotel se puede clasificar dentro de dos grandes grupos (Abdel Aziz et al, 2011). En el primer grupo tendremos todos los sistemas que controlan la cantidad de inventario que se ofrece a cada segmento de cliente. Es decir, se asigna dinámicamente un porcentaje de inventario con un precio fijo distinto para cada uno de los segmentos estudiados por el hotel. El segundo grupo se distingue por asignarle un precio de manera dinámica al inventario que cuenta con características similares. El precio será ajustado continuamente en el tiempo basando los cambios en las variaciones de la oferta y la demanda del producto.
+Recordemos que un sistema de gestión de ingresos para un hotel se puede clasificar dentro de dos grandes grupos \texttt{Abdel Aziz et al} (2011). En el primer grupo tendremos todos los sistemas que controlan la cantidad de inventario que se ofrece a cada segmento de cliente. Es decir, se asigna dinámicamente un porcentaje de inventario con un precio fijo distinto para cada uno de los segmentos estudiados por el hotel. El segundo grupo se distingue por asignarle un precio de manera dinámica al inventario que cuenta con características similares. El precio será ajustado continuamente en el tiempo basando los cambios en las variaciones de la oferta y la demanda del producto.
 
 En esta sección se presentaran los módelos utilizados en trabajos anteriores para poder asignar precios dinámicos a un inventario con el fin de maximizar los ingresos de una propiedad.
 
 \subsection*{Modelo de multiplicadores de precio}
 
-El módelo de multiplicadores de precio propone un enfoque sencillo para resolver el problema de maximización de ingresos de una propiedad.
+El modelo de multiplicadores de precio propone un enfoque sencillo para resolver el problema de maximización de ingresos de una propiedad.
 
 Este modelo propone tener un precio base de referencia (dependiendo de la temporalidad del hotel) y modificarlo utlilizando un conjunto definido de multiplicadores (cuyo valor se encuentra alrededor del 1) y que son influenciados por variables sensibles a la operación de la propiedad, por ejemplo el \% ocupación, el tiempo de antelación de una reserva, etc., de tal forma que cada multiplicador ajusta el precio por encima o por debajo del precio de referencia. 
 
 El objetivo de este modelo es maximizar los ingresos de la propiedad tomando en cuenta la demanda y la elasticidad del precio. Este modelo tiene la ventaja de enmarcar el pecio en términos de \emph{primas} o \emph{descuentos} en un tiempo variable o sobre un precio de referencia temporal definido por el staff de la propiedad y al ser un modelo muy sencillo de entender permite que el gerente de la propiedad transimita un poco de su experiencia al modelo al ser el quien define el precio de referencia para cada una de las temporadas del hotel.
 
-En trabajos previos se proponen las siguientes variables que influencían le efecto en los precios:
+En trabajos previos se proponen las siguientes variables que influencían el efecto en los precios:
 \begin{itemize}
-  \item Tiempo de antelación de una reserva
-  \item Habitaciones disponibles al momento de crear una reservación
-  \item Tiempo de estancia de una reserva (LoS)
-  \item Número de cuartos reservados (tamaño de grupo)
+  \item Tiempo de antelación de una reserva.
+  \item Habitaciones disponibles al momento de crear una reservación.
+  \item Tiempo de estancia de una reserva (LoS).
+  \item Número de cuartos reservados (tamaño de grupo).
 \end{itemize}
 
 A partir de estas variables de influencia se construyen multiplicadores (1 multiplicador por cada variable). Para simplificar la formulación del problema, los multiplicadores usualmente son formulados como funciones lineales de las variables de infulencia. Las funciones lineales son elegidas tomando en cuenta una relación lógica entre las variables de influencia y el comportamiento de la propiedad, por ejemplo, si al momento de hacer una reserva hay una alta disponibilidad de habitaciones entonces se esperaría que el multiplicador del precio lo haga bajar con la finalidad de incrementar la demanda de la propiedad.
@@ -343,7 +345,7 @@ A continuación se describe a detalle el comportaiento de cada uno de los multip
 
 \subsubsection*{Multiplicador de precio basado en el tiempo}
 
-El tiempo que va de la fecha de reservación a la fecha de llegada es una variable muy importante dentro del cálculo del precio de la habitación. En la gráfica presentada a continuación se muestra el valor del multiplicador del precio (eje y) contra el tiempo que queda antes de la llegada del huésped al hotel (eje x). Al principio de la ventana de reservación, los precios deben ser bajos con la finalidad de agotar el inventario rápidamente, es por ello que el multiplicador empieza en un nivel bajo $y_2^t$. Esto puede ser considerado como un descuento \emph{"early bird"}. A medida que el tiempo avanza y la fecha de llegada es más cercana el descuento es cada vez menor, entonces el valor del multiplicador aumenta. El incremento en el valor del multiplicador continua hasta unos pocos días antes de la fecha de llegada (alcanzando su valor máximo en $y_3^t$). Es en este punto en donde los cuartos vacantes tienen baja probabilidad de ser vendidos en el tiempo restante, por lo que es prudente fijar un precio bajo para los cuartos vacantes con el fin de evitar que se queden sin ser ocupados. Es por ello que el valor del multiplicador disminuye hasta que alcanza su punto m{inimo en $y_1^t$ en la fecha de llegada.
+El tiempo que va de la fecha de reservación a la fecha de llegada es una variable muy importante dentro del cálculo del precio de la habitación. En la gráfica presentada a continuación se muestra el valor del multiplicador del precio (eje y) contra el tiempo que queda antes de la llegada del huésped al hotel (eje x). Al principio de la ventana de reservación, los precios deben ser bajos con la finalidad de agotar el inventario rápidamente, es por ello que el multiplicador empieza en un nivel bajo $y_2^t$. Esto puede ser considerado como un descuento \emph{early bird}. A medida que el tiempo avanza y la fecha de llegada es más cercana el descuento es cada vez menor, entonces el valor del multiplicador aumenta. El incremento en el valor del multiplicador continua hasta unos pocos días antes de la fecha de llegada (alcanzando su valor máximo en $y_3^t$). Es en este punto en donde los cuartos vacantes tienen baja probabilidad de ser vendidos en el tiempo restante, por lo que es prudente fijar un precio bajo para los cuartos vacantes con el fin de evitar que se queden sin ser ocupados. Es por ello que el valor del multiplicador disminuye hasta que alcanza su punto m{inimo en $y_1^t$ en la fecha de llegada.
 
 \begin{figure}[H]
   \centering
@@ -371,7 +373,7 @@ El eje x representa el número total de cuartos vacantes para la fecha objetivo,
   \caption{Comportamiento del multiplicador de precio basado en la longitud de estancia}
 \end{figure}
 
-EL precio debería ser monotónicamente decreciente conforme la longitud de estancia es mayor con la finalidad de incentivar estancias más largas (lo que garantiza un ingreso mayor). La figura presentada anteriormente muestra la relación sugerida para el multiplicador de precio basado en la longitud de estancia. Lo que se puede observar de la figura es que el valor del multiplicador varía linearmente desde un valor máximo $y_2^L$ para una longitud de estancia de 1 día, a un valor minimo $y_1^L$ para el valor de la longitud de estancia mas larga típicamente encontrada en la propiedad.
+El precio debería ser monotónicamente decreciente conforme la longitud de estancia es mayor con la finalidad de incentivar estancias más largas (lo que garantiza un ingreso mayor). La figura presentada anteriormente muestra la relación sugerida para el multiplicador de precio basado en la longitud de estancia. Lo que se puede observar de la figura es que el valor del multiplicador varía linearmente desde un valor máximo $y_2^L$ para una longitud de estancia de 1 día, a un valor minimo $y_1^L$ para el valor de la longitud de estancia mas larga típicamente encontrada en la propiedad.
 
 \subsubsection*{Multiplicador de precio basado en el tamaño del grupo}
 
@@ -403,9 +405,9 @@ Para comenzar con la optimización, se deben tomar en cuenta las reservaciones p
 
 Como se puede observar, este modelo es sencillo, sin embargo tiene algunas limitantes:
 \begin{itemize}
-  \item Las funciones lineales de los multiplicadores deberán ser afinadas continuamente
-  \item Todo el modelo depende de la elección de un precio inicial dado
-  \item Se debe estimar la elasticidad del precio, esta estimación tendrá un error
+  \item Las funciones lineales de los multiplicadores deberán ser afinadas continuamente.
+  \item Todo el modelo depende de la elección de un precio inicial dado.
+  \item Se debe estimar la elasticidad del precio, esta estimación tendrá un error.
 \end{itemize}
 
 Sin embargo, una gran ventaja de este modelo es la forma transparente en la que opera, permitiendo que el equipo administrativo de las propiedades se familiarice con estos sistemas.
@@ -424,7 +426,7 @@ Sujeto a $$O_l \leq C_l\  \forall l$$ $$P_l \geq 0 \ \forall l$$
 
 Dónde las variables de decisión del modelo son:
 
-$P_l$: Precio para la noche $l\ \forall l$
+$P_l$: Precio para la noche $l\ \forall l$.
 
 Y las variables auxiliares:
 
@@ -434,15 +436,15 @@ $O_l$: Es el número de habitaciones reservadas para una noche dada y está defi
 
 Y las entradas del modelo:
 
-$P_{nominal}$: Precio nominal de la propiedad (usualmente la tarifa promedio histórica)
+$P_{nominal}$: Precio nominal de la propiedad (usualmente la tarifa promedio histórica).
 
-$e$: Elasticidad entre precio y demanda
+$e$: Elasticidad entre precio y demanda.
 
-$d_{a,L}$: La demanda de la estancias tipo $a,L$
+$d_{a,L}$: La demanda de la estancias tipo $a,L$.
 
-$N_l$: El número de estancias que utilizan la noche $l$
+$N_l$: El número de estancias que utilizan la noche $l$.
 
-$C_l$: El número de cuartos disponibles en el hotel
+$C_l$: El número de cuartos disponibles en el hotel.
 
 La salida de este modelo serán los precios optimos para cada noche. 
 
@@ -450,14 +452,14 @@ Es importante notar que este modelo conlleva un sofisticado problema de optimiza
 
 
 
- \subsection*{Modelo de optimización de redes}
+\subsection*{Modelo de optimización de redes}
 
-El modelo de optimización de redes es una formula de programación estocástica que permite capturar la aleatoreidad de la demanda desconocida, por ejemplo, el número de llegadas a la propiedad para cierto día o la longitud de estancia para una reserva dada)
+El modelo de optimización de redes es una fórmula de programación estocástica que permite capturar la aleatoreidad de la demanda desconocida, por ejemplo, el número de llegadas a la propiedad para cierto día o la longitud de estancia para una reserva dada)
 
 Antes de entrar al detalle de este tipo de modelos debemos de tomar en cuenta la siguiente notación:
 
 \begin{itemize}
-  \item $x_{i,j}$ es el número de reservaciones confirmadas para hacer \emph{check-in} en el día $i$ y para hacer \emph{check-out} en el día $j$, dónde $0\leq i \leq j \leq T$ . $i={0,1,2,...,T-1}$ es el índice de tiempo para \emph{check-in} y $j={1,2,3,....,T}$ es el índice para \emph{check-out}
+  \item $x_{i,j}$ es el número de reservaciones confirmadas para hacer \emph{check-in} en el día $i$ y para hacer \emph{check-out} en el día $j$, dónde $0\leq i \leq j \leq T$ . $i={0,1,2,...,T-1}$ es el índice de tiempo para \emph{check-in} y $j={1,2,3,....,T}$ es el índice para \emph{check-out}.
   \item $C$ es la capacidad total del hotel (Cuartos disponibles).
   \item $R_{i,j}$ es el ingreso ganado por la reservación con \emph{check-in} en el día $i$ y \emph{check-out} en el día $j$.
   \item $U_{i,j}$ es la demanda de reseravs con \emph{check-in} del día $i$ y \emph{check-out} el día $j$.
@@ -474,7 +476,7 @@ Se asume que no hay clientes con estancias en días anteriores al día 0 y que t
 
 \subsubsection*{Formulación de red estocástica}
 
-Los \emph{check-ins} y \emph{check-outs} pueen ser modelados como flujos de entrada y de salida de los nodos en una red. En la figura 2.1 se considera un día particular, el día $k$ ($k={1,2,...,(T-1)}$).
+Los \emph{check-ins} y \emph{check-outs} pueden ser modelados como flujos de entrada y de salida de los nodos en una red. En la figura 2.1 se considera un día particular, el día $k$ ($k={1,2,...,(T-1)}$).
 
 \begin{figure}
   \includegraphics{Figure1.PNG}
@@ -510,13 +512,13 @@ Los modelos de optimización de ingresos han tenido un gran avance en la industr
 
 Como se revisó anteriormente, existen muchas propuestas de enfoques diferentes para la implementación del modelo de optimización de ingresos en hoteles y la elección de alguno de ellos dependerá de los siguientes factores:
 \begin{itemize}
-  \item Habilidades estadísticas del equipo administrativo de la propiedad
-  \item Nível de desagregación de datos con los que cuenta la propiedad
-  \item Capacidad de cómputo con el que la propiedad cuenta para el cálculo del modelo
-  \item Nível de automatización de procesos dentro de la propiedad, es decir, si cuenta con la capacidad de poder hacer cambios de precios e inventarios en línea
+  \item Habilidades estadísticas del equipo administrativo de la propiedad.
+  \item Nível de desagregación de datos con los que cuenta la propiedad.
+  \item Capacidad de cómputo con el que la propiedad cuenta para el cálculo del modelo.
+  \item Nível de automatización de procesos dentro de la propiedad, es decir, si cuenta con la capacidad de poder hacer cambios de precios e inventarios en línea.
 \end{itemize}
 
-Para fines de este trabajo de investigación utilizaremos, dados los alcances buscados por la cadena de hoteles en cuestión, se optó por la construcción de un modelo convencional compuesto por dos módulos: un módelo de regresión poisson para el cálculo del pronóstico de la demanda, y un módelo de maximización sujeto a restricciones para el cálculo de precios óptimos por día de reservación. Esto nos facilitó la explicación del funcionamiento del modelo al equipo encargado de la gestión comercial de los hoteles, permitiendo que ellos aportaran parte de su conocimiento sobre el comportamiento comercial de los hoteles y las plazas durante la etapa de construcción, enriqueciendo el modelo final.
+Para fines de este trabajo de investigación utilizaremos, dados los alcances buscados por la cadena de hoteles en cuestión, se optó por la construcción de un modelo  compuesto por dos módulos: un módelo de pronóstico de la demanda, y un módelo de maximización sujeto a restricciones para el cálculo de precios óptimos por día de reservación.
 
 El primer módulo pronósticará la demanda utilizando datos para un hotel de negocios ubicado en una de las avenidas más importantes de la Ciudad de México. El set de datos con el que se contó durante esta investigación contenía el detalle de cada una de las reservaciones realizadas para esta propiedad desde 2014 hasta el 11 de agosto de 2018.
 
