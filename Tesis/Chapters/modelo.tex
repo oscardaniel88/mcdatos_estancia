@@ -1,7 +1,7 @@
 \chapter{Diseño y Desarrollo}
 \label{ch:modelo}
 
-Este capítulo describirá el diseño y desarrollo del modelo de predicción de demanda y optimización de ingresos, desde la arquitectura de la solución propuesta, los \emph{data sets} utilizados y finalmente los módulos de la solución y su funcionamiento.
+Este capítulo describirá el diseño y desarrollo del modelo de predicción de demanda y optimización de ingresos, desde la arquitectura propuesta, los \emph{data sets} utilizados y finalmente los módulos de la solución y su funcionamiento.
 
 \section*{Arquitectura del Modelo}
 
@@ -13,15 +13,15 @@ Este capítulo describirá el diseño y desarrollo del modelo de predicción de 
 
 \subsection*{Descripción de la arquitectura del modelo}
 
-Como se puede observar en la figura 4.1, el modelo esta compuesto por 4 capas o módulos principales. La primera capa son los sistemas transaccionales que contienen información clave para el funcionamiento del modelo propuesto. El primer sistema de interés es el \emph{PMS} o \emph{Property Management System}. Este sistema es el encargado de gestionar las propiedades y captar las reservaciones que se hacen en cada una de ellas desde los distintos canales de reservacion. En este sistema podemos encontrar información de las estancias pasadas de los huéspedes en las distintas propiedades, información de huéspedes que se encuentran en la propiedad, historial de consumos, habitaciones asignadas, formas de pago de cada uno de los consumos, reservas canceladas y huéspedes que reservaron pero no se presentaron en la propiedad. Es de este sistema de donde se obtendrá la información que describe el comportamiento de la demanada de la propiedad que es de interés para este trabajo.
+Como se puede observar en la figura 4.1, el modelo esta compuesto por 4 capas o módulos principales. La primera capa son los sistemas transaccionales que contienen información clave para el funcionamiento del modelo propuesto. El primer sistema de interés es el \emph{PMS} o \emph{Property Management System}. Este sistema es el encargado de gestionar las propiedades y captar las reservaciones que se hacen en cada una de ellas desde los distintos canales de reservacion. En este sistema podemos encontrar información de las estancias pasadas de los huéspedes en las distintas propiedades, información de huéspedes que se encuentran en la propiedad, historial de consumos, habitaciones asignadas, formas de pago de cada uno de los consumos, reservas canceladas y huéspedes que reservaron pero no se presentaron en la propiedad. Desde este sistema se obtiene la información que describe el comportamiento de la demanada de la propiedad que es de interés para este trabajo.
 
-El segundo sistema analizado fueron un conjunto de sitios web de agencias de viajes en linea. Estos sitios contienen información de la tarifa publicada en la red para diferentes tipos de habitación de la propiedad estudiada en este trabajo así como de su set competitivo (el conjunto de hoteles cercanos a la propiedad estudiada que tienen el mismo mercado objetivo). Para poder obtener la información de estos sitios, se consumió un servicio web que dado un identificador de una propiedad y un rango de fechas, devuelve el precio asociado a cada tipo de habitación disponible en el rango de fechas indicadas. Esta información es de vital importancia para poder obtener parámetros objetivos de los precios asociados al producto ofrecido en el mercado y así evitar que el modelo de optimización de ingresos devuelva precios sugeridos que se saquen al producto estudiado del mercado objetivo.
+Se analizaron también un conjunto de sitios web de agencias de viajes en linea. Estos sitios contienen información de la tarifa publicada en la red para diferentes tipos de habitación de la propiedad estudiada en este trabajo, así como de su set competitivo (el conjunto de hoteles cercanos a la propiedad estudiada que tienen el mismo mercado objetivo). Para poder obtener la información de estos sitios, se consumió un servicio web que dado un identificador de una propiedad y un rango de fechas, devuelve el precio asociado a cada tipo de habitación disponible en el rango de fechas indicadas. Esta información es de vital importancia para poder obtener parámetros objetivos de los precios asociados al producto ofrecido en el mercado y así evitar que el modelo de optimización de ingresos devuelva precios sugeridos que se saquen al producto estudiado del mercado objetivo.
 
-Finalmente dentro de esta capa se cuenta con un tercer sistema que provee información al modelo. Se trata de un aplicativo de intercambio de información entre propiedades del set competitivo sin importar la marca a la que pertenezcan. Todos los días al iniciar el día, los gerentes de cada propiedad hacen una llamada telefónica a las propiedades con las que compiten y recaban información sobre habitaciones ocupadas e ingresos obtenidos por concepto de renta habitación y con esto se calculan diferentes kpi's: \% ocupación, tarifa promedio, tarifa efectiva, etc. Dicha información es de interés para el modelo ya que con ella se puede obtener una estimación de la demanda de cuartos que existe en la plaza donde se encuentra la propiedada de interés para este trabajo de investigación asi como los precios con los cuales se esta vendiendo el producto en el mercado objetivo de esta plaza.
+Finalmente dentro de esta capa se cuenta con un tercer sistema que provee información al modelo. Se trata de un aplicativo de intercambio de información entre propiedades del set competitivo sin importar la marca a la que pertenezcan. Todos los días, los gerentes de cada propiedad hacen una llamada telefónica a las propiedades con las que compiten y recaban información sobre habitaciones ocupadas e ingresos obtenidos por concepto de renta habitación y con esto se calculan diferentes kpi's: \% ocupación, tarifa promedio, tarifa efectiva, etc. Dicha información es de interés para el modelo ya que con ella se puede obtener una estimación de la demanda de cuartos que existe en la plaza donde se encuentra la propiedada de interés para este trabajo de investigación asi como los precios con los cuales se esta vendiendo el producto en el mercado objetivo de esta plaza.
 
-Una vez obtenida la información de los sistemas transaccionales, se ejecuta un proceso de \emph{Transformación y Carga} de información que depósita la información de interés en una base de datos analítica (segunda capa). Esta base de datos está diseñada para poder analizar la información de manera ágil. Es aqui donde se puede cruzar la información de los diferentes sistemas ya que durante el proceso de \emph{Transformación y Carga} se homolgan los identificadores de las distintas propiedades antes de ser depósitadas en el modelo de datos analítico.
+Una vez obtenida la información de los sistemas transaccionales, se ejecuta un proceso de \emph{Transformación y Carga} de información que depósita la información de interés en una base de datos analítica (segunda capa). Esta base de datos está diseñada para poder analizar la información de manera ágil. Es aqui donde se puede cruzar la información de los diferentes sistemas ya que durante el proceso de \emph{transformación y carga} se homolgan los identificadores de las distintas propiedades antes de ser depósitadas en el modelo de datos analítico.
 
-La información es procesada en \emph{R} y \emph{python} con el fin de alimentar tres modelos que pronóstican demanda de una propiedad. El primer modelo esta basado en una regresion lineal generalizada con liga Poisson, el segundo se trata de un modelo de inteligencia artificial basado en una regresión de ridge, y finalmente se cuenta con un modelo de análisis de series de tiempo \emph{ARIMA}. Una vez ejecutados, se elige el resultado del modelo con el mejor desempeño tomando en cuenta el \emph{MAPE} de cada uno de los resultados arrojados por los modelos, para finalmente alimentar al modelo de optimización de ingresos desarrollad en \emph{python} con ayuda de la libería \emph{scipy}.
+La información es procesada en \emph{R} y \emph{python} con el fin de alimentar tres modelos que pronóstican demanda de una propiedad. El primer modelo esta basado en una regresion lineal generalizada con liga Poisson, el segundo se trata de un modelo de inteligencia artificial basado en una regresión de ridge, y finalmente se cuenta con un modelo de análisis de series de tiempo \emph{ARIMA}. Una vez ejecutados, se elige el resultado del modelo con el mejor desempeño tomando en cuenta el \emph{MAPE} de cada uno de los resultados arrojados por los modelos, para finalmente alimentar al modelo de optimización de ingresos desarrollado en \emph{python} con ayuda de la libería \emph{scipy}.
 
 Al finalizar la ejecución de esta aplicación el usuario obtiene como resultado una matriz en donde se visualizan días de venta futura vs el inventario disponible y el precio asignado a cada nivel de inventario disponible. 
 
@@ -36,7 +36,7 @@ Para la construcción del modelo de predicción de demanda basado en una regresi
 
 El primer data set utilizado fue extraído directamente del sistema de gestión de propiedades (PMS) y contiene información detallada de todas las reservaciones generadas en la propiedad, así como la información de las estancias pasadas. Para poder obtener esta información se realizarón procesos automáticos de extracción, transformación y carga de información. 
 
-A continuación se presenta el detalle de la información obtenida del PMS así como el diccionario de datos y un breve resumen de la información en cada una de las columnas.
+A continuación se presenta el diccionario de datos y un breve resumen de la información obtenida.
 
 \subsubsection*{Diccionario de Datos}
 
@@ -156,7 +156,7 @@ A continuación se presenta una gráfica de níveles de ocupación por día de l
 
 \subsection*{Tarifa Promedio de la propiedad}
 
-El tercer conjunto de datos utilizado contiene los valores de la tarifa promedio \emph{ADR: Average Daily Rate} en el tiempo. Estos datos fueron obtenidos directamente del PMS y es el resultado de sumar los ingresos generados por las habitaciones divididos por el número total de cuartos vendidos. 
+El tercer conjunto de datos utilizado contiene los valores de la tarifa promedio \emph{ADR: Average Daily Rate} en el tiempo. Estos datos fueron obtenidos directamente del PMS y es el resultado de sumar los ingresos generados por la venta de habitaciones divididos por el número total de cuartos vendidos. 
 
 A continuación se presenta la línea de tiempo con los valores para la tarifa promedio a lo largo del tiempo.
 
@@ -270,7 +270,7 @@ Dia        & Cuartos Ocupados \\
 
 \section*{Regresión de Ridge}
 
-El segundo modelo propuesto se trata de una regresión de Ridge, el cuál es un método de \emph{machine learning} que consiste en incluír en la función de minimización del error un término de penalización que permite evitar el sobreajuste del modelo y proporciona un menor error de generalización.
+El segundo modelo propuesto se trata de una regresión de Ridge, el cuál consiste en incluír en la función de minimización del error un término de penalización que permite evitar el sobreajuste del modelo y proporciona un menor error de generalización.
 
 Este modelo, al tratarse de una técnica de \emph{machine learning} requiere que los datos de entrada sean modelados de manera tal que existan \emph{n} variables independientes que expliquen una variable dependiente \emph{y} a la cuál se ajustará la regresión.
 
@@ -304,7 +304,7 @@ Adicionalmente se agregaron variables para indicarle al modelo el año, mes y d�
 
 La regresión de Ridge fue implementada en \emph{python 3.5.2} con ayuda de la liberería \texttt{sklearn}. Para poder entrenar al modelo se dividió el conjunto de datos en dos partes: el conjunto de entrenamiento (que contiene el 66\% de los registros) y el conjunto de pruebas (que contiene el 33\% restante). 
 
-Para entrenar el modelo se definieron 10 valores diferentes para el parámetro $\alpha$ = 1e-15, 1e-10, 1e-8, 1e-4, 1e-3,1e-2, .1, 5, 10, 20 y se entrenó el módelo para cada uno de los valores de $\alpha$ buscando el menor \emph{rss} definido como: $$\sum_{i=1}^{n}(y_i - f(x_i))^2$$
+Para entrenar el modelo se definieron 10 valores diferentes para el parámetro $\alpha$ = $1e^{-15}$, $1e^{-10}$, $1e^{-8}$, $1e^{-4}$, $1e^{-3}$,$1e^{-2}$, .1, 5, 10, 20 y se entrenó el módelo para cada uno de los valores de $\alpha$ buscando el menor \emph{rss} definido como: $$\sum_{i=1}^{n}(y_i - f(x_i))^2$$
 
 Donde $y_i$ es el valor a predecir y $f(x_i)$ es el valor pronosticado por el modelo.
 
@@ -380,7 +380,7 @@ Este tipo de modelos son muy comunes para el análisis y pronóstico de datos no
 
 \subsection*{Datos de entrada}
 
-Los datos de entrada para este modelo constan fueron modelados en forma de una matriz de fecha vs ocupación en esa fecha.
+Los datos de entrada para este modelo constan fueron modelados en forma de una matriz de fecha vs ocupación.
 
 Graficando esta información podemos darnos cuenta que existen patrones marcados en los datos presentados:
 
@@ -407,15 +407,15 @@ Dada la estacionalidad presentada en los datos, el modelo que se implementará e
 
 El modelo SARIMA contiene siete hiperparámetros que deben ser optimizados para mejorar el desempeño del modelo. Estos siete parámetros son conocidos como \emph{(p,d,q)(P,D,Q)m}. Los primeros tres definen la parte no estacionaria del modelo. Mientras que los últimos cuatro definen la parte estacionaria del modelo.  Decimos que una serie de tiempo es estacionaria cuando la media y la varianza son constantes en el tiempo.
 
-El parámetro \emph{p} implica que la salida del modelo en el tiempo \emph{t} será una suma ponderada de los valores pasados más un término estocástico. Este valor es el número de \emph{rezagos} que se usarán.El parámetro \emph{d} es el número de diferencias no estacionarias aplicadas a la serie para convertirla en una serie estacionaria, en otras palabras, el modelo toma valores pasados y los sustrae del valor actual. Si tuvieramos una serie integrada de orden 2 y tomaramos diferencias repetidas dos veces para crear un proceso estacionario el modelo sería un ARIMA (0,2,0). El parámetro \emph{q} es un promédio móvil de los errores previos. Este tipo promedios móviles son usados para modelar ruido que se disipa gradualmente dentro de un sistema.
+El parámetro \emph{p} implica que la salida del modelo en el tiempo \emph{t} será una suma ponderada de los valores pasados mas un término estocástico. Este valor es el número de \emph{rezagos} que se usarán. El parámetro \emph{d} es el número de diferencias no estacionarias aplicadas a la serie para convertirla en una serie estacionaria, en otras palabras, el modelo toma valores pasados y los sustrae del valor actual. Si tuvieramos una serie integrada de orden 2 y tomaramos diferencias repetidas dos veces para crear un proceso estacionario el modelo sería un ARIMA (0,2,0). El parámetro \emph{q} es un promédio móvil de los errores previos. Este tipo promedios móviles son usados para modelar ruido que se disipa gradualmente dentro de un sistema.
 
-La parte estacionaria del modelo \emph{(P,D,Q)m} tienen la misma estructura que la parte no estacionaria del modelo. En esta parte del modelo los tres factores operan únicamente a lo largo del periodo (m) definido para la estacionalidad del modelo. La estacionalidad es un patrón de cambios regular que se repite cada \emph{m} periodos dentro de la serie
+La parte estacionaria del modelo \emph{(P,D,Q)m} tienen la misma estructura que la parte no estacionaria del modelo. En esta parte del modelo los tres factores operan únicamente a lo largo del periodo (m) definido para la estacionalidad del modelo. La estacionalidad es un patrón de cambios regular que se repite cada \emph{m} periodos dentro de la serie.
 
 Para poder optimizar los hiperparámetros del modelo se impelentó un algoritmo llamado \emph{grid search} el cuál busca el valor de los hiperparámetros que ofrecen el mejor desempeño del modelo, tomando el \emph{AIC} de cada modelo como medida de desempeño. Este criterio es una medida de la calidad de un modelo estadístico para un conjunto dado de datos y está definido como: $$AIC = 2k - 2ln(L)$$
 
 Dónde $k$ es el número de parámetros en el modelo estadístico, y $L$ es el máximo valor de la función de verosimilitud para el modelo estimado.
 
-Se dividió el conjunto de datos de entrada en dos: entrenamiento y pruebas. El modelo SARIMA fue implementado utilizando la libería \emph{statsmodels} en \emph{python 3.5.2}. Una vez entrenado el modelo con el conjunto de entrenamiento para todos los valores contenidos en la lista de búsqueda del algoritmo de \emph{Grid Search}, se eligió el modelo con el menor valor de \emph{AIC} como el final.
+Se dividió el conjunto de datos de entrada en dos: entrenamiento y pruebas. El modelo SARIMA fue implementado utilizando la libería \emph{statsmodels} en \emph{python 3.5.2}. Una vez entrenado el modelo con el conjunto de entrenamiento para todos los valores contenidos en la lista de búsqueda del algoritmo de \emph{grid search}, se eligió el modelo con el menor valor de \emph{AIC} como el final.
 
 El modelo fue validado utilizando el conjunto de pruebas y se pronosticaron valores para la ocupación de la propiedad en los años 2017 y 2018.
 
@@ -491,9 +491,9 @@ Existen las siguientes restricciones también: $$o_i \leq Capacidad\ \forall i$$
 
 En otras palabras, la ocupación no puede exceder a la capacidad del hotel y los precios deben ser siempre mayores a cero.
 
-Una vez definidas la función objetivo y las restricciones, se ejecuta el modelo de optimización utilizando el método de \emph{Programación cuadrática secuencial}, un algóritmo útil para resolver problemas de optimización no lineales.
+Una vez definidas la función objetivo y las restricciones, se ejecuta el modelo de optimización utilizando el método de \emph{programación cuadrática secuencial}, un algóritmo útil para resolver problemas de optimización no lineales.
 
-El método de \emph{programación cuadrática secuencial} es un método iterativo para problemas optimización no-lineales con restricciones. Este método es utilizado en problemas matemáticos en los cuáles la función objetivo y las restricciones son doblemente continuamente diferenciables.
+El método de \emph{programación cuadrática secuencial} es un método iterativo para problemas optimización no-lineales con restricciones. Este método es utilizado en problemas matemáticos en los cuáles la función objetivo y las restricciones son doblemente continuas diferenciables.
 
 En \emph{programación cuadrática secuencial} se resuelven una serie de subproblemas de optimización de un modelo cuadrático de la función objetivo sujeta a una linearización de las restricciones. Si el problema no cuenta con restricciones, el método se reduce al \emph{método de Newton} para encontrar un punto donde el gradiente de la función objetivo desaparece. Si el problema tiene restricciones de igualdad, el método es equivalente a aplicar el \emph{método de Newton} para encontrar las condiciones óptimas de primer orden o las condiciones de \emph{Karush-Kuhn-Tucker}
 
@@ -530,11 +530,11 @@ De la matriz que arroja el modelo de optimización de precios podemos obtener el
 
 Este modelo se formuló considerando los siguientes puntos:
 \begin{itemize}[noitemsep]
-  \item Se consideran estancias de una sola noche
-  \item No se toman en cuenta reservaciones para grupos ni cancelaciones
-  \item Asusmimos paridad de precios entre los canales, es decir, los precios no varían entre los canales de venta
-  \item Se considera solamente un tipo de habitación, el incremento por cambio de habitación es un monto fijo conocido como gap
-  \item Se asume un valor para la elasticidad (-2) que es un valor razonable para la industria
+  \item Se consideran estancias de una sola noche.
+  \item No se toman en cuenta reservaciones para grupos ni cancelaciones.
+  \item Asusmimos paridad de precios entre los canales, es decir, los precios no varían entre los canales de venta.
+  \item Se considera solamente un tipo de habitación, el incremento por cambio de habitación es un monto fijo conocido como gap.
+  \item Se asume un valor para la elasticidad (-2) que es un valor razonable para la industria.
 \end{itemize}
 
 En el siguiente capítulo se discutirá acerca de la interpretación de los distintos modelos propuestos y los resultados obtenidos.

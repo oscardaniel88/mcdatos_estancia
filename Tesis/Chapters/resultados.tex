@@ -4,7 +4,7 @@
 En el presente capítulo se presentarán a detalle los resultados obtenidos por cada uno de los modelos propuestos para el pronóstico de demanda y el módelo para la maximización de ingresos. También se discutirá la forma en la que se deberán interpretar los resultados de los mismos y así evitar sacar conclusiones erróneas o fuera de contexto.
 
 \section*{Interpretación de los modelos de pronóstico de ocupación}
-Como hemos mencionado en capítulos anteriores, la solución propuesta se compone de dos modulos principales, el primero de ellos se encarga de pronosticar la demanda de cuartos noche, mientras que el segundo modulo toma esa información y calcula los precios por habitación  que  maximizan  el  ingreso  de  la  propiedad  tomando  en  cuenta  las restricciones definidas para la propiedad. A continuación explicaremos detalladamente los resultados obtenidos en cada uno de los modelos propuestos.
+Cómo se mencioó en capítulos anteriores, la solución propuesta se compone de dos módulos principales, el primero de ellos se encarga de pronosticar la demanda de cuartos noche, mientras que el segundo módulo toma esa información y calcula los precios por habitación  que  maximizan  el  ingreso  de  la  propiedad  tomando  en  cuenta  las restricciones definidas. A continuación explicaremos detalladamente los resultados obtenidos en cada uno de los modelos propuestos.
 
 
 \subsection*{Modelo de regresión lineal generalizada con liga Poisson}
@@ -29,10 +29,10 @@ Para poder reconstruír la curva de \emph{pickup} pronosticada se debe tomar los
 
 Dónde:
 \begin{itemize}[noitemsep]
-\item $E[y|x]$ = El valor esperado de cuartos noches para un día en específico dado $x$ días de antelación
-\item $\beta_0$ = pred.beta0
-\item $\beta_1$ = pred.beta1
-\item $x$ = días de antelación
+\item $E[y|x]$ = El valor esperado de cuartos noches para un día en específico dado $x$ días de antelación.
+\item $\beta_0$ = pred.beta0.
+\item $\beta_1$ = pred.beta1.
+\item $x$ = días de antelación.
 \end{itemize}
 
 Para construír las curvas de \emph{pickup} pronósticadas se elige un día de la tabla de resultados arrojados por el modelo. Tomaremos los valores de \texttt{pred.beta0} y \texttt{pred.beta1} para el día elegido. Posteriormente x tomará valores de -1 a 25 para representar la curva en un rango de -1 a 25 días de antelación, siendo -1 las llegadas que llegan a la propiedad después de las 23:59 pm del día elegido.
@@ -153,7 +153,7 @@ A continuación se presentan las gráficas de diagnóstico obtenidas para dicho 
 \end{figure}
 
 
-Observando la gráfica presentada podemos confiar en los resultados obtenidos ya que los residuales obtenidos no estan correlacionados y se distribuyen normalmente con media = 0. Esto lo podemos observar poniendo atención en los siguientes puntos:
+Observando las gráficas presentadas podemos confiar en los resultados obtenidos ya que los residuales obtenidos no estan correlacionados y se distribuyen normalmente con media = 0. Esto lo podemos observar poniendo atención en los siguientes puntos:
 
 \begin{itemize}
   \item La gráfica \emph{QQ} se ajusta linealmente a lo largo de la muestra con distribución normal, es decir, todos los puntos caen sobre la línea roja.
@@ -181,7 +181,7 @@ Como se puede observar el modelo que tuvo un mejor desempeño, de acuerdo al \em
 
 \subsection*{Modelo de maximización de ingresos}
 
-El modelo de recomendaciones de precio toma como entrada la demanda pronósticada por el módelo de pronóstico de demanda con mejor desempeño de acuerdo al \emph{MAPE}. A partir de ahi, se define un problema de maximización sujeto a restricciones y se arroja una matriz que contiene los precios para un tipo de cuarto dependiendo del inventario disponible dentro de la propidad.
+El modelo de recomendaciones de precio toma como entrada la demanda pronósticada por el modelo de pronóstico de demanda con mejor desempeño de acuerdo al \emph{MAPE}. A partir de ahi, se define un problema de maximización sujeto a restricciones y se arroja una matriz que contiene los precios para un tipo de cuarto dependiendo del inventario disponible dentro de la propidad.
 
 A continuación se muestra un extracto del resultado:
 
