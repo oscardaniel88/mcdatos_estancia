@@ -15,9 +15,9 @@ Este capítulo describirá el diseño y desarrollo del modelo de predicción de 
 
 Como se puede observar en la figura 4.1, el modelo esta compuesto por 4 capas o módulos principales. La primera capa son los sistemas transaccionales que contienen información clave para el funcionamiento del modelo propuesto. El primer sistema de interés es el \emph{PMS} o \emph{Property Management System}. Este sistema es el encargado de gestionar las propiedades y captar las reservaciones que se hacen en cada una de ellas desde los distintos canales de reservacion. En este sistema podemos encontrar información de las estancias pasadas de los huéspedes en las distintas propiedades, información de huéspedes que se encuentran en la propiedad, historial de consumos, habitaciones asignadas, formas de pago de cada uno de los consumos, reservas canceladas y huéspedes que reservaron pero no se presentaron en la propiedad. Desde este sistema se obtiene la información que describe el comportamiento de la demanada de la propiedad que es de interés para este trabajo.
 
-Se analizaron también un conjunto de sitios web de agencias de viajes en linea. Estos sitios contienen información de la tarifa publicada en la red para diferentes tipos de habitación de la propiedad estudiada en este trabajo, así como de su set competitivo (el conjunto de hoteles cercanos a la propiedad estudiada que tienen el mismo mercado objetivo). Para poder obtener la información de estos sitios, se consumió un servicio web que dado un identificador de una propiedad y un rango de fechas, devuelve el precio asociado a cada tipo de habitación disponible en el rango de fechas indicadas. Esta información es de vital importancia para poder obtener parámetros objetivos de los precios asociados al producto ofrecido en el mercado y así evitar que el modelo de optimización de ingresos devuelva precios sugeridos que se saquen al producto estudiado del mercado objetivo.
+Se analizaron también un conjunto de sitios web de agencias de viajes en línea. Estos sitios contienen información de la tarifa publicada en la red para diferentes tipos de habitación de la propiedad estudiada en este trabajo, así como de su set competitivo (el conjunto de hoteles cercanos a la propiedad estudiada que tienen el mismo mercado objetivo). Para poder obtener la información de estos sitios, se consumió un servicio web que dado un identificador de una propiedad y un rango de fechas, devuelve el precio asociado a cada tipo de habitación disponible en el rango de fechas indicadas. Esta información es de vital importancia para poder obtener parámetros objetivos de los precios asociados al producto ofrecido en el mercado y así evitar que el modelo de optimización de ingresos devuelva precios sugeridos que se saquen al producto estudiado del mercado objetivo.
 
-Finalmente dentro de esta capa se cuenta con un tercer sistema que provee información al modelo. Se trata de un aplicativo de intercambio de información entre propiedades del set competitivo sin importar la marca a la que pertenezcan. Todos los días, los gerentes de cada propiedad hacen una llamada telefónica a las propiedades con las que compiten y recaban información sobre habitaciones ocupadas e ingresos obtenidos por concepto de renta habitación y con esto se calculan diferentes kpi's: \% ocupación, tarifa promedio, tarifa efectiva, etc. Dicha información es de interés para el modelo ya que con ella se puede obtener una estimación de la demanda de cuartos que existe en la plaza donde se encuentra la propiedada de interés para este trabajo de investigación asi como los precios con los cuales se esta vendiendo el producto en el mercado objetivo de esta plaza.
+Finalmente dentro de esta capa se cuenta con un tercer sistema que provee información al modelo. Se trata de un aplicativo de intercambio de información entre propiedades del set competitivo sin importar la marca a la que pertenezcan. Todos los días, los gerentes de cada propiedad hacen una llamada telefónica a las propiedades con las que compiten y recaban información sobre habitaciones ocupadas e ingresos obtenidos por concepto de renta habitación y con esto se calculan diferentes kpi's: \% ocupación, tarifa promedio, tarifa efectiva, etc. Dicha información es de interés para el modelo ya que con ella se puede obtener una estimación de la demanda de cuartos que existe en la plaza donde se encuentra la propiedada de interés para este trabajo de investigación así como los precios con los cuales se esta vendiendo el producto en el mercado objetivo de esta plaza.
 
 Una vez obtenida la información de los sistemas transaccionales, se ejecuta un proceso de \emph{Transformación y Carga} de información que depósita la información de interés en una base de datos analítica (segunda capa). Esta base de datos está diseñada para poder analizar la información de manera ágil. Es aqui donde se puede cruzar la información de los diferentes sistemas ya que durante el proceso de \emph{transformación y carga} se homolgan los identificadores de las distintas propiedades antes de ser depósitadas en el modelo de datos analítico.
 
@@ -81,7 +81,7 @@ PAX          & Integer      & 0          & 5          & 1.271 \\
 \caption{Resumen de datos obtenidos del PMS} 
 \end{table}
 
-Es importante resaltar que los datos fueron trabajados para presentarse de manera desagregada, es decir, si una reservación ampara una estancia de 5 noches, en el \emph{data set final} se presenta un registro por cada noche de la estancia, por ejemplo:
+Es importante resaltar que los datos fueron trabajados para presentarse de manera desagregada, es decir, si una reservación ampara una estancia de 6 noches, en el \emph{data set final} se presenta un registro por cada noche de la estancia, por ejemplo:
 
 \begin{knitrout}
 \definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{table}[H]
@@ -248,7 +248,7 @@ Los predictores definidos son:
 
 Con estos predictores definidos se procede a alimentar una regresión lineal que calculará nuevos parámetros $\beta_{0*}$ y $\beta_{1*}$. A partir de estos nuevos parámetros se construyen las curvas de \emph{pickup} que ayuden a predecir la demanda de la propiedad en días futuros.
 
-Una vez concluído el cálculo, se genera una matriz en la cuál se plasma la estimación del número de \emph{cuartos} ocupados que en una ventana futura:
+Una vez concluído el cálculo, se genera una matriz en la cuál se plasma la estimación del número de \emph{cuartos} ocupados en una ventana futura:
 
 \begin{table}[H]
 \centering
@@ -302,7 +302,7 @@ Adicionalmente se agregaron variables para indicarle al modelo el año, mes y d�
 
 \subsection*{Implementación del modelo}
 
-La regresión de Ridge fue implementada en \emph{python 3.5.2} con ayuda de la liberería \texttt{sklearn}. Para poder entrenar al modelo se dividió el conjunto de datos en dos partes: el conjunto de entrenamiento (que contiene el 66\% de los registros) y el conjunto de pruebas (que contiene el 33\% restante). 
+La regresión de Ridge fue implementada en \emph{python 3.5.2} con ayuda del paquete \texttt{sklearn}. Para poder entrenar al modelo se dividió el conjunto de datos en dos partes: el conjunto de entrenamiento (que contiene el 66\% de los registros) y el conjunto de pruebas (que contiene el 33\% restante). 
 
 Para entrenar el modelo se definieron 10 valores diferentes para el parámetro $\alpha$ = $1e^{-15}$, $1e^{-10}$, $1e^{-8}$, $1e^{-4}$, $1e^{-3}$,$1e^{-2}$, .1, 5, 10, 20 y se entrenó el módelo para cada uno de los valores de $\alpha$ buscando el menor \emph{rss} definido como: $$\sum_{i=1}^{n}(y_i - f(x_i))^2$$
 
@@ -332,7 +332,7 @@ Alpha Value & Rss    \\
 
 Como se puede observar, el valor del parámetro $\alpha$ con el menor \emph{rss} es $1*e^{-15}$, es por ello que se eleigió este modelo como el final. 
 
-Para poder pronósticar utilzando esta técnica se debe de definir una ventana que le indique al modelo cuantos días posteriores al día 0 se quieren pronósticar. De esta forma el modelo pronosticará la ocupación día $t_1$ y utilizará el resultado para pronósticar el día $t_2$ y así sucesivamente hasta pronósticar los días dentro de la ventana definida.
+Para pronósticar utilzando esta técnica se debe de definir una ventana que le indique al modelo cuantos días posteriores al día 0 se quieren pronósticar. De esta forma el modelo pronosticará la ocupación día $t_1$ y utilizará el resultado para pronósticar el día $t_2$ y así sucesivamente hasta pronósticar los días dentro de la ventana definida.
 
 Utilizando el procedimiento anteriormente descrito, se validó el modelo final con el conjunto de datos de prueba y se obtuvo un \emph{MAPE} = 15.1815.
 
@@ -374,7 +374,7 @@ Dia        & Cuartos Ocupados \\
 
 \section*{Análisis de series de tiempo - SARIMA}
 
-El análisis de series de tiempo trata de extraer estadísticas significantes y otras características de los datos. El pronóstico a partir de series de tiempo utiliza un modelo estádistico para predecir valores futuros basandose en los datos previamente observados.
+El análisis de series de tiempo trata de extraer estadísticas significativas y otras características de los datos. El pronóstico a partir de series de tiempo utiliza un modelo estádistico para predecir valores futuros basandose en los datos previamente observados.
 
 Este tipo de modelos son muy comunes para el análisis y pronóstico de datos no estacionarios como: índicadores económicos, clima, acciones, precios y ventas. Para fines de este trabajo se utilizará un modelo de series de tiempo para análizar y predecir valores para la ocupación del hotel que está siendo analizado.
 
@@ -459,9 +459,9 @@ Dia        & Cuartos Ocupados \\
 
 \section*{Modelo de maximización de ingresos}
 
-Una vez pronósticado los cuartos ocupados para cada una de las propiedades de la cadena, se eligió el resultado del modelo de pronóstico de ocupación con el menor \emph{MAPE} y este alimentó un modelo de pricing dinámico que entrega recomendaciones de precios para la tarifa pública tomando en cuenta la demanda pronósticada para cierto día del año.
+Una vez pronósticado los cuartos ocupados, se eligió el resultado del modelo de pronóstico de ocupación con el menor \emph{MAPE} y este alimentó un modelo de pricing dinámico que entrega recomendaciones de precios para la tarifa pública tomando en cuenta la demanda pronósticada para cierto día del año.
 
-Típicamente el gerente de la propiedad controla la cantidad de cuartos ofrecidos a diferentes precios, es decir, se asigna cierto número de cuartos a cada nível de tarifa de tal forma que cuando el inventario asignado al precio mas bajo se agota, se consume el inventario asignado al siguiente nivel de tarifa que será mayor al primer precio ofertado.
+Típicamente el gerente de la propiedad controla la cantidad de cuartos ofrecidos a diferentes precios, es decir, se asigna cierto número de cuartos a cada nível de tarifa de tal forma que cuando el inventario asignado al precio más bajo se agota, se consume el inventario asignado al siguiente nivel de tarifa que será mayor al primer precio ofertado.
 
 A continuación se muestra un esquema donde se ejemplifica la idea mencionada anteriormente:
 
@@ -512,7 +512,7 @@ $$c(x_k) + \nabla c(x_k)^T d = 0$$
 
 Para fines de este trabajo de investigación, se utilizó la implementación del método \emph{SQP} contenido en el paquete \emph{Scipy} en  \emph{Python}
 
-Para poder hacer una asignación dinámica de los precios, evitando tener que correr el modelo conforme la información del hotel es actualizada, se partió el inventario en 4 níveles de disponiblidad (159,120,80 y 40 cuartos disponibles). Para cada nível de capacidad se resolvió la función objetivo para obtener 4 conjuntos de precios, de esta forma, el gerente de la propiedad puede saber a qué nível de precio debe subir la tarifa pública de la propiedad conforme las habitaciones disponibles decrecen.
+Para hacer una asignación dinámica de los precios, evitando tener que correr el modelo conforme la información del hotel es actualizada, se partió el inventario en 4 níveles de disponiblidad (159,120,80 y 40 cuartos disponibles). Para cada nível de capacidad se resolvió la función objetivo para obtener 4 conjuntos de precios, de esta forma, el gerente de la propiedad puede saber a qué nível de precio debe subir la tarifa pública de la propiedad conforme las habitaciones disponibles decrecen.
 
 El modelo de maximización de ingresos arroja como resultado una matriz de día vs precio por niveles de inventario. A continuación se muestra un ejemplo:
 \\

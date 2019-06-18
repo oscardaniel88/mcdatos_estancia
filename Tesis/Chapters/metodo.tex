@@ -5,7 +5,7 @@ En el presente capítulo se presentará la metodología utilizada para la creaci
 
 \section*{Diseño del modelo}
 
-Para poder construír un modelo de predicción de demanda y maximización de ingresos para los hoteles que fueron sujetos al estudio, se siguieron una serie de pasos descritos a continuación:
+Para construír un modelo de predicción de demanda y maximización de ingresos para los hoteles que fueron sujetos al estudio, se siguieron una serie de pasos descritos a continuación:
 
 \subsubsection*{Entendimiento del negocio}
 
@@ -17,11 +17,11 @@ Una vez comprendido el negocio y detectadas las variables de interés durante el
 
 \subsubsection*{Análisis exploratorio de datos}
 
-Luego de haber identificado las principales fuentes de datos, se diseñaron los procesos de extracción de información necesarios para obtener los datos que serían utilizados para la construcción del modelo. Para poder entender los datos, se ejecutó un análisis exploratorio, en dónde se pudo observar el comportamiento de las variables de interés, su distribución probabilística, temporalidades presentes, nível de limpieza y datos atípicos que pudieran generar problemas al momento de la implementación del modelo final.
+Luego de haber identificado las principales fuentes de datos, se diseñaron los procesos de extracción de información necesarios para obtener los datos que serían utilizados para la construcción del modelo. Para entender los datos, se ejecutó un análisis exploratorio, en dónde se observó el comportamiento de las variables de interés, su distribución probabilística, temporalidades presentes, nível de limpieza y datos atípicos que pudieran generar problemas al momento de la implementación del modelo final.
 
 \subsubsection*{Construcción del modelo}
 
-Para la construcción del modelo se tuvieron varias iteraciones en el desarrollo. La primera, consistió en el diseño de los procesos \emph{ETL} para la construcción de los \emph{sets de datos} que alimentan a los tres modelos de pronóstico de demanda propuestos. La segunda iteración se enfocó en la construcción de los tres modelos de pronóstico de demanda, durante esta etapa se analizaron distintos enfoques como: regresiones lineales generalizadas, modelos de series de tiempo (ARIMA) y finalmente regresiones de aprendizaje de máquina (regresión de Ridge). Durante la tercera iteración se construyó el modelo de optimización de ingresos. Este modelo toma como datos de entrada los resultados obtenidos por el modelo de predicción de demanda y como resultado arroja recomendaciones de precios para la tarifa publica. La última iteración consisitó en la ejecución de el modelo integral para poder medir el desempeño y poder obtener los resultados finales.
+Para la construcción del modelo se tuvieron varias iteraciones en el desarrollo. La primera, consistió en el diseño de los procesos \emph{ETL} para la construcción de los \emph{sets de datos} que alimentan a los tres modelos de pronóstico de demanda propuestos. La segunda iteración se enfocó en la construcción de los tres modelos de pronóstico de demanda, durante esta etapa se analizaron distintos enfoques como: regresiones lineales generalizadas, modelos de series de tiempo (ARIMA) y finalmente la regresión de Ridge. Durante la tercera iteración se construyó el modelo de optimización de ingresos. Este modelo toma como datos de entrada los resultados obtenidos por el modelo de predicción de demanda y como resultado arroja recomendaciones de precios para la tarifa publica. La última iteración consisitó en la ejecución de el modelo integral para poder medir el desempeño y poder obtener los resultados finales.
 
 \subsection*{Pruebas y Resultados}
 

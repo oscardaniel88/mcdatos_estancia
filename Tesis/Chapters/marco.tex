@@ -23,12 +23,12 @@ El equipo administrativo del hotel o propiedad, deben analizar diariamente el co
   \item Sitio Web 
   \item Call Center / FrontDesk
   \item Agencias de viajes en línea
-  \item Globalizadores ~ Agencias de viajes
+  \item Globalizadores / Agencias de viajes
 \end{itemize}
 
 Cada uno de los canales de venta van dirigidos a un segmento de mercado en específico y lo que el equipo de administración debe hacer es asegurar que la demanda del hotel se mantenga lo suficientemente alta para poder asegurar la continuidad operativa del negocio. Para lograr esto se genera una estrategia de distribución, en la cuál se designa parte del inventario a cada uno de los canales y se fija un precio a cada una de las tarifas a ofertar. Los precios para un producto en específico tienden a variar entre los diferentes canales y esto tiene que ver con el costo asociado a la operación de cada uno de los canales. Por ejemplo, el sitio web típicamente es un canal de reservación propio del hotel, lo que significa que las ventas generadas por este canal son libres de comisiones; por el contrario, las agencias de viajes en línea tienden a cobrar una comisión por la venta generada por esos canales.
 
-Lo que la administración del hotel debe conseguir es poder tener la mezcla de ventas entre sus canales que maximice el ingreso, de tal forma que los costos generados por las ventas no sean mayores a un porcentaje de los ingresos generados por la propiedad, generalmente este porcentaje es definido por la gerencia del hotel o por el equipo comercial que administra la cadena de hoteles. Es con esta restricción donde se descartaría una asignación total del inventario a las agencias de viajes en línea, ya que la comisión de este canal puede ser de hasta el 25\% del total de la venta, lo cual podría representar una pérdida de hasta $\frac{1}{4}$ de las ganancias que se pudieron haber obtenido. Si por el contrario asignaramos todo el inventario disponible a los canales propios del hotel, si bien no se paga una comisión, la demanda generada por estos canales es inferior a la demanda generada por las agencias de viajes en línea.
+Lo que la administración del hotel debe conseguir es la mezcla de ventas entre sus canales que maximice el ingreso, de tal forma que los costos generados por las ventas no sean mayores a un porcentaje de los ingresos generados por la propiedad, generalmente este porcentaje es definido por la gerencia del hotel o por el equipo comercial que administra la cadena de hoteles. Es con esta restricción donde se descartaría una asignación total del inventario a las agencias de viajes en línea, ya que la comisión de este canal puede ser de hasta el 25\% del total de la venta, lo cual podría representar una pérdida de hasta $\frac{1}{4}$ de las ganancias que se pudieron haber obtenido. Si por el contrario asignaramos todo el inventario disponible a los canales propios del hotel, si bien no se paga una comisión, la demanda generada por estos canales es inferior a la demanda generada por las agencias de viajes en línea.
 
 \subsection*{Gestión de segmentos de mercado}
 
@@ -71,7 +71,7 @@ Para poder conocer la situación de una propiedad frente a la competencia en una
   \item Penetración de tarifa: $\frac{tarifa\ promedio}{tarifa promedio\ plaza}$
 \end{itemize}
 
-El hotel o propiedad que cuente con los valores mas altos para estos indicadores será el hotel con mayor demanda y mayores ingresos dentro de la plaza, sin embargo, para que el análisis sea efectivo se debe escoger al set competitivo de manera adecuada, de tal forma que los hoteles contenidos dentro de este set sean de la misma categoría (para el caso de la cadena estudidada deberán ser hoteles 3 o 4 estrellas de servicios limitados) y vayan dirigidos al mismo público objetivo.
+El hotel o propiedad que cuente con los valores mas altos para estos indicadores será el hotel con mayor demanda y mayores ingresos dentro de la plaza, sin embargo, para que el análisis sea efectivo se debe escoger al set competitivo de manera adecuada, de tal forma que los hoteles contenidos dentro de este set sean de la misma categoría (para el caso de la cadena estudiada deberán ser hoteles 3 o 4 estrellas de servicios limitados), que vayan dirigidos al mismo público objetivo y que se encuentren en un radio de 5 km de distancia de la propiedad de interés.
 
 
 \subsection*{Análisis de principales indicadores}
@@ -81,7 +81,7 @@ Como se mencionó anteriormente, existen indicadores de desempeño de una propie
 \begin{itemize}
   \item \% ocupación
   \item ADR
-  \item REvpar
+  \item RevPAR
 \end{itemize}
 
 Típicamante durante el análisis realizado, se compara el desempeño de cada uno de estos indicadores de manera diaria, mensual y anual, comparando los valores contra el año anterior y buscando siempre una variación positiva entre años. En caso de tener variaciones negativas se debe buscar la causa de esta variación. Se puede tratar de una baja en la demanda general de la plaza, un periodo de recesión financiera generalizada, un nuevo competidor en la plaza, etc. Una vez identificado la causa se deben tomar las acciones necesarias para generar demanda a la propiedad en cuestión. Típicamente la forma más efectiva de hacerlo es modificar los precios de tal forma que el mercado responda favorablemente sin afectar la rentabilidad del inmueble.
@@ -157,7 +157,7 @@ La tabla 2.1 resume los modelos más comunes utilizados para pronosticar ocupaci
 \begin{tabular}{|c|l|}
 \hline
 \multicolumn{1}{|l|}{Categoria} & Modelo                                                                                                                                                    \\ \hline
-Historico                       & \begin{tabular}[c]{@{}l@{}}1. Mismo día año anterior\\ 2. Promedios móviles\\ 3. Suvizamiento exponencial\\ 4. ARIMA\end{tabular}                         \\ \hline
+Historico                       & \begin{tabular}[c]{@{}l@{}}1. Mismo día año anterior\\ 2. Promedios móviles\\ 3. Suavizamiento exponencial\\ 4. ARIMA\end{tabular}                         \\ \hline
 Avanzado                        & \begin{tabular}[c]{@{}l@{}}1. Aditivo\\   a. Pickup Clasico\\   b. Pickup Avanzado\\ 2. Multiplicativo\\   a. Curva de reservaciones\end{tabular}         \\ \hline
 Combinados                      & \begin{tabular}[c]{@{}l@{}}1. Promedios ponderados de modelo histórico y modelo avanzado\\ 2. Regresión \\ 3. Modelo de información completa\end{tabular} \\ \hline
 \end{tabular}
@@ -183,7 +183,7 @@ A continuación presentaremos a detalle algunos algorímtos de \texttt{M.L.} uti
 
 La regresión de ridge es un algorítmo de regresión que incluye un término de regularización en su función de costos con el fin de lograr una mejor aproximación al momento de generalizar el modelo. La regresión de Ridge penaliza al algorítmo con un factor proporcional a la norma Euclidiana (L2) del vector de parámetros. $$J(\theta)=\sum_{i=1}^{n} (\theta^Tx_i - y_i)^2 + \alpha||\theta||^2$$
 
-Dónde el factor de regularización $\alpha$ controla la importancia relativa de la penalidad compleja. Para optimizar esta ecuación se debe encontrar la derivada de la función de costos e igualarla a cero, de tal forma que el vector de parámetros que minimza el error es: $$\theta = (X^TX+\lambda I)^{-1} X^T y$$
+Dónde el factor de regularización $\alpha$ controla la importancia relativa de la penalización compleja. Para optimizar esta ecuación se debe encontrar la derivada de la función de costos e igualarla a cero, de tal forma que el vector de parámetros que minimza el error es: $$\theta = (X^TX+\lambda I)^{-1} X^T y$$
 
 Las nuevas predicciones se pueden calcular como sigue: $$h(X) = \theta^Tx=\sum_{i=1}^{n} \theta_ix_i$$
 
@@ -215,8 +215,6 @@ A continuación se muestra una representación de una red neuronal multicapa.
 
 Cada una de las neuronas dentro de la red contiene una función que define su estado, dicha función es llamada \emph{función de activación}. En este caso, la función de activación es dada por la siguiente ecuación $$y=f(\sum_{i}^{n} w_ix_i+b)$$ donde $f$ es una función de activación. Entre las opciones más populares de funciones de activación se encuentran: la sigmoide $y = (1+exp(-x))^{-1}$ y la función lineal $y=x$. La elección de la función de activación en la capa de salida define el tipo de red neuronal (si clasifica o realiza regresión)
 
-Las redes neuronales son entrenadas mediante un algorítmo llamado \emph{propagación hacia atrás (backpropagation)} que es una aplicación del algorítmo de descenso por gradiente que toma en cuenta la contribución de las neuronas de la capa oculta al error $E$.
-
 \subsubsection*{Red neuronal de base radial}
 
 Las redes nueronales de base radial (RBF) usualmente tienen una sola capa oculta que emplea una serie de funciones llamadas \emph{funciones de base radial} como detectores de características. Las redes RBF pueden ser utilizadas para realizar regresiones o clasificaciones. En este modelo la capa oculta utiliza función gaussiana como función de activación $\phi$: $$\phi_j(x)=exp(-\frac{||x-\mu_j||^2}{2\sigma_j^2})$$
@@ -233,21 +231,17 @@ Generalmente este tipo de modelos son entrenados, validados y probados siguiendo
 
 La medida que permite evaluar el desempeño de este tipo de modelos es el  \emph{MAPE} (Mean Absolute Percentage Error) definida como: $$MAPE=\frac{1}{n}\sum_{t=1}^{n}|\frac{y_t-h_t}{y_t}|$$
 
-Los resultados mostraron que la \emph{regresión de Ridge} con una transformación polinomial de grado dos tuvo el mejor desempeño con un \emph{MAPE} del 8.20\% durante la validación y un \emph{MAPE} del 8.65\% durante las pruebas.
-
-Por otra parte el modelo la \emph{regresión de Ridge con Kernel} tuvo un \emph{MAPE} de 8.69\% durante la validación, seguido por la \emph{red neuronal} con un \emph{MAPE} del 12.89\% y finalmente la \emph{red neuronal RBF} con un \emph{MAPE} de 26.32\%.
-
-Los resultados obtenidos durante esta investigación fueron bastante prometedores y sustentaron el uso de modelos de \texttt{M.L.} como modelos de caja negra para estimar la ocupación futura de una propiedad sin requerir conocimiento o experiencia estadística por parte del estaff del hotel, permitiendo nuevos avances en las técnicas de \emph{revenue management} en el sector de hospitalidad.
+Los resultados obtenidos durante esta investigación fueron bastante prometedores y sustentaron el uso de modelos de \texttt{M.L.} como modelos para estimar la ocupación futura de una propiedad sin requerir conocimiento o experiencia estadística por parte del estaff del hotel, permitiendo nuevos avances en las técnicas de \emph{revenue management} en el sector de hospitalidad.
 
 \subsection*{Modelos de Big Data}
 
 En el sector de turismo y hospitalidad se han hecho esfuerzos para obtener modelos de pronóistico de llegadas y ocupación basados en información generada a partir de las búsquedas en páginas web y el tráfico generado en ellas. Si bien, los resultados obtenidos han confirmado la validéz de algunas fuentes de datos generados en línea, poco trabajo se ha hecho cruzando diferentes fuentes de datos, por ejemplo, utilizar los datos de las búsquedas realizadas en \emph{Google} combinados con el tráfico generado en el sitio web del hotel, los cuales deben estar altamente correlacionados \texttt{Tierney y Pan} (2012).
 
-Existen algunos trabajos en donde se adoptan dos métodos principales para obtener la ocupación de un hotel a partir de datos generados en línea. Los metódos utilizados son: \emph{ARIMAX} y \emph{MS DR}
+Existen algunos trabajos en donde se adoptan dos métodos principales para obtener la ocupación de un hotel a partir de datos generados en línea. Los metódos utilizados son: \emph{ARIMAX} y \emph{Modelos de cambios Markov (MS DR)}
 
 \subsubsection*{Modelos ARIMA}
 
-Los modelos \emph{ARIMA} \emph{(autoregresive integrated moving average)} son modelos dinámicos de series temporales utilizados para hacer pronósticos basados en información histórica de la variable a predecir. En otras palabras, este tipo de modelos asumen que los valores futuros para la variable a predecir dependen linearmente de los valores pasados y no de variables independientes. Los modelos \emph{ARIMAX} son una generalización de los modelos \emph{ARIMA} en dónde se incluyen predictores independientes. El modelo ARIMAX es similar a un modelo de regresión multivariada pero permite tomar ventaja de la autocorrelación que puede estar presente en los residuos de la regresión para mejorar el pronóstico. 
+Los modelos \emph{autoregresive integrated moving average} \emph{(ARIMA)} son modelos dinámicos de series temporales utilizados para hacer pronósticos basados en información histórica de la variable a predecir. En otras palabras, este tipo de modelos asumen que los valores futuros para la variable a predecir dependen linearmente de los valores pasados y no de variables independientes. Los modelos \emph{ARIMAX} son una generalización de los modelos \emph{ARIMA} en dónde se incluyen predictores independientes. El modelo ARIMAX es similar a un modelo de regresión multivariada pero permite tomar ventaja de la autocorrelación que puede estar presente en los residuos de la regresión para mejorar el pronóstico. 
 
 Los modelos \emph{ARIMA / ARIMAX} estan compuestos por dos partes principales: Uno o mas términos autoregresivos (AR) y uno o más términos de promedios móviles (MA - moving averages). Los términos autoregresivos de la variable dependiente son valores anteriores para esa variable que tienen una relación significativa con el valor más reciente, mientras que los promedios móviles son residuos (errores pasados) de estimaciónes previas. La \emph{I} dentro del acrónimo \emph{ARIMA} quiere decir que el modelo es \emph{integrado} lo cual indica que las series de tiempo han sido diferenciadas una o mas veces para hacerlas estacionarias antes de empezar el modelo.
 \subsubsection*{Definición de Modelo ARMA / ARIMA / ARMAX}
@@ -263,7 +257,7 @@ En donde:
   \item $\epsilon_t$ es el término del error (llamado también innovación o perturbación estocástica)
 \end{itemize}
 
-Los modelos \emph{ARIMA / ARMA / ARIMAX} son una opción común para realizar análisis de series de tiempo arrojando resultados satisfactorios, sin embargo, este tipo de modelos no son capaces de representar patrones dinámicos no lineales. Sería poco efectivo intentar analizar los datos de las tasas de crecimiento del \emph{PIB} utilizando modelos \emph{ARMA} ya que estos datos no presentan un simple patrón linear en su comportamiento. Las tasas de crecimiento del \emph{PIB} tienen distintos comportamientos dependiendo del momento económico del país. Durante una expansión económica la tasa de crecimiento fluctúa alrededor de valores más altos que durante los periodos de contracción, dónde fluctua en níveles inferiores y menos persistentes. Para este tipo de casos se deben utilizar modelos no lineales de series de tiempo.
+Los modelos \emph{ARIMA / ARMA / ARIMAX} son una opción común para realizar análisis de series de tiempo arrojando resultados satisfactorios, sin embargo, este tipo de modelos no son capaces de representar patrones dinámicos no lineales. Sería poco efectivo intentar analizar los datos de las tasas de crecimiento del \emph{PIB} utilizando modelos \emph{ARMA} ya que estos datos no presentan un simple patrón lineal en su comportamiento. Las tasas de crecimiento del \emph{PIB} tienen distintos comportamientos dependiendo del momento económico del país. Durante una expansión económica la tasa de crecimiento fluctúa alrededor de valores más altos que durante los periodos de contracción, dónde fluctua en níveles inferiores y menos persistentes. Para este tipo de casos se deben utilizar modelos no lineales de series de tiempo.
 
 \subsubsection*{Modelo de cambios Markov}
 
@@ -280,13 +274,13 @@ En el estudio presentado por \texttt{Pan y Yang (2017)} se presentan dos modelos
 \end{itemize}
 
 
-El primer modelo presentado es un modelo \emph{ARMAX} en donde se utilizan variables generadas con \emph{big data} como predictores directos de la ocupación. El modelo se definió de la siguiente manera: $$y_t = \alpha + x_t \beta + \mu_t$$ $$\mu_t = \sum_{i=1}^{m} \rho_i \mu_{t-i} + \sum_{j=1}^{n} \theta_j \epsilon_{t-j} + \epsilon_i$$
+El primer modelo presentado es un modelo \emph{ARMAX} en donde se utilizan variables obtenidas de fuentes de información a gran escala (trafico en sitio web) como predictores directos de la ocupación. El modelo se definió de la siguiente manera: $$y_t = \alpha + x_t \beta + \mu_t$$ $$\mu_t = \sum_{i=1}^{m} \rho_i \mu_{t-i} + \sum_{j=1}^{n} \theta_j \epsilon_{t-j} + \epsilon_i$$
 
 donde $y_t$ es la variable dependiente y $x_t$ es un vector de variables exógenas independientes. Si $\beta$ es igual a 0, el modelo se convierte en un modelo ARMA(m,n) estándar.
 
 El segundo modelo presentado en este trabajo es el MSDR específicado como: $$y_t = \tau_s + x_t \alpha + z_t \beta_s + \epsilon_s$$
 
-dónde $\tau_s$ es el estado de intercepción; $x_t$ es un vector de variables exógenas con coeficientes independientes del estado; $z_t$ es un vector de variables exógenas con coeficientes dependientes del estado $\beta_s$; $\epsilon_s$ es un error normal \emph{i.i.d} con media 0 y una varianza dependiente del estado de $\sigma^2$.Este modelo permite a las variables en el vector $z_t$ con parámetros dependientes del estado tomar diferentes comportamientos basados en el estado que responden a un proceso de Markov con $J$ estados y una probabilidad transicional $p_{ij}$ específicada como sigue: $$p_{ij} = \frac{1}{1 + \sum_{m=1}^{k} exp(-q_{im})}\ si\ j = k$$ $$p_{ij} = \frac{exp(-q_{ij})}{1 + \sum_{m=1}^{k} exp(-q_{im})}\ si\ j \neq k$$
+dónde $\tau_s$ es el estado del intercepto; $x_t$ es un vector de variables exógenas con coeficientes independientes del estado; $z_t$ es un vector de variables exógenas con coeficientes dependientes del estado $\beta_s$; $\epsilon_s$ es un error normal \emph{i.i.d} con media 0 y una varianza dependiente del estado de $\sigma^2$.Este modelo permite a las variables en el vector $z_t$ con parámetros dependientes del estado tomar diferentes comportamientos basados en el estado que responden a un proceso de Markov con $J$ estados y una probabilidad transicional $p_{ij}$ específicada como sigue: $$p_{ij} = \frac{1}{1 + \sum_{m=1}^{k} exp(-q_{im})}\ si\ j = k$$ $$p_{ij} = \frac{exp(-q_{ij})}{1 + \sum_{m=1}^{k} exp(-q_{im})}\ si\ j \neq k$$
 
 donde $q_{ij}$ es el parámetro transformado definido como $$q_{ij}=-log(\frac{p_{ij}}{p_{ik}})$$
 
@@ -310,7 +304,7 @@ Para medir el desempeño de ambos modelos se utilizó la medida \emph{MAPE} $$MA
 
 Los resultados arrojan que el modelo ARMAX tuvo un mejor desempeño con un \emph{MAPE} del 3.804\% comparado con el 4.714\% obtenido por el modelo MSDR
 
-Se puede concluír que los modelos basados en big data presentan una alternativa para poder generar pronósticos de ocupación y demanda utilizando información exógena a los hoteles, sin embargo se debe tomar en cuenta que el costo asociado a la configuración y puesta en marcha de este tipo de modelos es alto ya que se debe de contar con una infraestructura que pueda soportar el manejo de grandes volúmenes de información.
+Se puede concluír que los modelos \emph{ARMAX / MS DR} presentan una buena alternativa para poder generar pronósticos de ocupación y demanda utilizando información exógena a los hoteles, sin embargo se debe tomar en cuenta que el costo asociado a la configuración y puesta en marcha de este tipo de modelos es alto ya que se debe de contar con una infraestructura que pueda soportar el manejo de grandes volúmenes de información.
 
 
 \subsection*{Modelos de optimizacion de ingresos}
@@ -373,7 +367,7 @@ El eje x representa el número total de cuartos vacantes para la fecha objetivo,
   \caption{Comportamiento del multiplicador de precio basado en la longitud de estancia}
 \end{figure}
 
-El precio debería ser monotónicamente decreciente conforme la longitud de estancia es mayor con la finalidad de incentivar estancias más largas (lo que garantiza un ingreso mayor). La figura presentada anteriormente muestra la relación sugerida para el multiplicador de precio basado en la longitud de estancia. Lo que se puede observar de la figura es que el valor del multiplicador varía linearmente desde un valor máximo $y_2^L$ para una longitud de estancia de 1 día, a un valor minimo $y_1^L$ para el valor de la longitud de estancia mas larga típicamente encontrada en la propiedad.
+El precio debería ser monotónicamente decreciente conforme la longitud de estancia es mayor con la finalidad de incentivar estancias más largas (lo que garantiza un ingreso mayor). La figura presentada anteriormente muestra la relación sugerida para el multiplicador de precio basado en la longitud de estancia. Lo que se puede observar de la figura es que el valor del multiplicador varía linealmente desde un valor máximo $y_2^L$ para una longitud de estancia de 1 día, a un valor minimo $y_1^L$ para el valor de la longitud de estancia mas larga típicamente encontrada en la propiedad.
 
 \subsubsection*{Multiplicador de precio basado en el tamaño del grupo}
 
@@ -383,7 +377,7 @@ El precio debería ser monotónicamente decreciente conforme la longitud de esta
   \caption{Comportamiento del multiplicador de precio basado en el tamaño del grupo}
 \end{figure}
 
-Se considera que la función que describe el comportamiento del multiplicador del precio basado en el tamaño del grupo varía linearmente desde un valor máximo $y_2^G$ donde no existe un grupo, hasta su mínimo $y_1^G$ para el tamaño máximo de un grupo típicamente encontrado en esa propiedad.
+Se considera que la función que describe el comportamiento del multiplicador del precio basado en el tamaño del grupo varía linealmente desde un valor máximo $y_2^G$ donde no existe un grupo, hasta su mínimo $y_1^G$ para el tamaño máximo de un grupo típicamente encontrado en esa propiedad.
 
 \subsubsection*{Variables de optimización y restricciones}
 
@@ -414,7 +408,7 @@ Sin embargo, una gran ventaja de este modelo es la forma transparente en la que 
 
 \subsection*{Modelo de maximización sujeto a restricciones}
 
-Un hotel tipicamente designa un conjunto definido de categorías de precio, posteriormente asigna un inventario a cada categoria, de tal forma que las reservaciones que se hacen con un mayor tiempo de anticipación reciben un precio mas bajo y conforme el inventario se va agotando se reservan las habitaciones con una categoría de precio mayor. El problema con este enfoque radica en que si se asigna un gran número de cuartos a la categoría de precios mas baja, se tendrá un gran número de reservaciones pero a costo de una pérdida en el ingreso generado, y por el contrario, si se asigna un mayor número a la categoría con el precio mas alto se dejaran mas cuartos sin vender.
+Un hotel típicamente designa un conjunto definido de categorías de precio, posteriormente asigna un inventario a cada categoria, de tal forma que las reservaciones que se hacen con un mayor tiempo de anticipación reciben un precio mas bajo y conforme el inventario se va agotando se reservan las habitaciones con una categoría de precio mayor. El problema con este enfoque radica en que si se asigna un gran número de cuartos a la categoría de precios mas baja, se tendrá un gran número de reservaciones pero a costo de una pérdida en el ingreso generado, y por el contrario, si se asigna un mayor número a la categoría con el precio mas alto se dejaran mas cuartos sin vender.
 
 Este tipo de modelos permite al equipo que administra la propiedad encontrar el precio óptimo para cada categoría en cada noche de tal forma que el ingreso se maximice. Esto conlleva a un sofisticado problema de optimización que tome en cuenta las reservaciones futuras y su probabilidad de ocurrencia. Los precios son dinámicos y cambian día con día. Hay que mencionar que para que este modelo sea certero depende de una buena estimación de la demanda futura de los cuartos.
 
@@ -449,7 +443,6 @@ $C_l$: El número de cuartos disponibles en el hotel.
 La salida de este modelo serán los precios optimos para cada noche. 
 
 Es importante notar que este modelo conlleva un sofisticado problema de optimización que requiere un poder de cómputo considerable para poder ser resuelto y además se debe iterar sobre distintos valores para el parámetro de elasticidad, obtenido a partir del análisis del comportamiento histórico del precio vs la ocupación de la propiedad, para encontrar el valor que garantice una solución factible del problema.
-
 
 
 \subsection*{Modelo de optimización de redes}
