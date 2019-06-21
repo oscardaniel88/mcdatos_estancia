@@ -272,11 +272,9 @@ Dia        & Cuartos Ocupados \\
 
 El segundo modelo propuesto se trata de una regresión de Ridge, el cuál consiste en incluír en la función de minimización del error un término de penalización que permite evitar el sobreajuste del modelo y proporciona un menor error de generalización.
 
-Este modelo, al tratarse de una técnica de \emph{machine learning} requiere que los datos de entrada sean modelados de manera tal que existan \emph{n} variables independientes que expliquen una variable dependiente \emph{y} a la cuál se ajustará la regresión.
-
 \subsection*{Datos de entrada}
 
-Para poder aplicar la \emph{regresión de Ridge} se utilizó una serie temporal que incluye la información de los cuartos ocupados de la propiedad para cada día del año desde el 01 de enero de 2013 hasta el 14 de agosto del 2018, como se muestra a continuación:
+Para aplicar la \emph{regresión de Ridge} se utilizó una serie temporal que incluye la información de los cuartos ocupados de la propiedad para cada día del año desde el 01 de enero de 2013 hasta el 14 de agosto del 2018, como se muestra a continuación:
 
 \begin{table}[H]
   \centering
@@ -492,8 +490,6 @@ Existen las siguientes restricciones también: $$o_i \leq Capacidad\ \forall i$$
 En otras palabras, la ocupación no puede exceder a la capacidad del hotel y los precios deben ser siempre mayores a cero.
 
 Una vez definidas la función objetivo y las restricciones, se ejecuta el modelo de optimización utilizando el método de \emph{programación cuadrática secuencial}, un algóritmo útil para resolver problemas de optimización no lineales.
-
-El método de \emph{programación cuadrática secuencial} es un método iterativo para problemas optimización no-lineales con restricciones. Este método es utilizado en problemas matemáticos en los cuáles la función objetivo y las restricciones son doblemente continuas diferenciables.
 
 En \emph{programación cuadrática secuencial} se resuelven una serie de subproblemas de optimización de un modelo cuadrático de la función objetivo sujeta a una linearización de las restricciones. Si el problema no cuenta con restricciones, el método se reduce al \emph{método de Newton} para encontrar un punto donde el gradiente de la función objetivo desaparece. Si el problema tiene restricciones de igualdad, el método es equivalente a aplicar el \emph{método de Newton} para encontrar las condiciones óptimas de primer orden o las condiciones de \emph{Karush-Kuhn-Tucker}
 

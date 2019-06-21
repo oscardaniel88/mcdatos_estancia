@@ -1,6 +1,6 @@
 \chapter{Introducción}
 \label{ch:intro}
-El \emph{revenue management} es una práctica común en la industria de hotelera que tiene como fin la maximización del ingreso. Esta prátctica surge de la necesidad de poder vender cada uno de los cuartos dentro del inventario al mayor precio posible y de esta manera poder maximizar el ingreso percibido por la propiedad derivado de la venta de cuartos (El-Gayar N, et al. 2008).
+El \emph{revenue management} es una práctica común en la industria de hotelera que tiene como fin la maximización del ingreso. Esta práctica surge de la necesidad de vender cada uno de los cuartos dentro del inventario al mayor precio posible y de esta manera poder maximizar el ingreso percibido por la propiedad derivado de la venta de cuartos (El-Gayar N, et al. 2008).
 La técnica de \emph{revenue management} tiene como base el análisis de información generada por la misma propiedad, así como información ajena a ella para generar una estrategía que ayude a maximizar los ingresos.
 Los sistemas de \emph{revenue management} aplican principios básicos de economía para configurar los precios y el control del inventario que se pretende vender, de hecho, hay tres categorías básicas de administración de demanda que son utilizadas dentro del \emph{revenue management}:
 \begin{itemize}
@@ -28,9 +28,7 @@ Se analizó el comportamiento de tres modelos de pronóstico diferentes. El prim
 
 Durante esta investigación se tuvo acceso a la base de datos de reservaciones para un hotel de negocios ubicado al sur de la Ciudad de México con información a partir del 01 de enero de 2013 hasta el 14 de agosto del 2018. También se utilizó una matriz de la calidad vs el precio de la propiedad y su set competitivo (definido como el conjunto de hoteles dentro de un radio de 5 km a la redonda y que compiten por la demanda del mismo mercado objetivo) y un calendario de eventos de la plaza en la cuál se encuentra ubicado el hotel.
 
-La primera etapa de la investigación consistió en realizar un análisis exploratorio de los datos, donde se detectó el nivel de limpieza de los datos y el comportamiento de las distintas variables de interés. Una vez concluído el análisis se generaron tres modelos de pronóstico de ocupación y se midió el desempeño de cada uno de ellos. El modelo con el mejor desempeño se encarga de entregar una matriz de pronóstico de ocupación vs fecha objetivo que sirve como datos de entrada para el modelo de maximización de ingresos y recomendaci{on de tarifa, en el cuál se resuelve un problema de optimización con restricciones utilizando el método \emph{SLSQP} teniendo como función objetivo:$$\sum_{i=0}^{n}p_i*o_i$$
-
-En donde i es la índice de la noche, $p_i$ es el precio del cuarto para la i-ésima noche y $o_i$ es la ocupación pronósticada (demanda) para la i-ésima noche al precio $p_i$
+La primera etapa de la investigación consistió en realizar un análisis exploratorio de los datos, donde se detectó el nivel de limpieza de los datos y el comportamiento de las distintas variables de interés. Una vez concluído el análisis se generaron tres modelos de pronóstico de ocupación y se midió el desempeño de cada uno de ellos. El modelo con el mejor desempeño se encarga de entregar una matriz de pronóstico de ocupación vs fecha objetivo que sirve como datos de entrada para el modelo de maximización de ingresos y recomendaci{on de tarifa, en el cuál se resuelve un problema de optimización con restricciones utilizando el método \emph{SLSQP}.
 
 En este trabajo de investigación se presentarán los resultados de cada uno de los modelos y los detalles sobre las limitantes así como los siguientes pasos para poder mejorar el desempeño de cada uno de ellos.
 

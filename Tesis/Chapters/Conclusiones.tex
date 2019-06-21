@@ -13,6 +13,15 @@ En general, en nuestro país no hemos llegado a explotar las bondades que ofrece
 
 Para trabajos futuros se sugiere incluír en los experimentos otras variables independientes asociadas con eventos y días especiales, información del tráfico generado en el sitio web del hotel, número de llamadas a recepción o a la central de reservas, con el objeto de evaluar si estas variables son representativas y pueden contribuír en la minimización del error de validación atrapando parte del patrón generador de la ocupación diaria, referente al viajero de negocios y al de placer.
 
-Otro aspecto importante sugerido para trabajos futuros es robustecer el modelo de optimización de ingresos, ya que para fines de este trabajo se implementó tomando en cuenta algunas consideraciones que limitan su desempeño.
+Otro aspecto importante sugerido para trabajos futuros es robustecer el modelo de optimización de ingresos, ya que para fines de este trabajo se implementó tomando en cuenta algunas consideraciones que limitan su desempeño: 
+\begin{itemize}[noitemsep]
+  \item Se consideran estancias de una sola noche.
+  \item No se toman en cuenta reservaciones para grupos ni cancelaciones.
+  \item Asusmimos paridad de precios entre los canales, es decir, los precios no varían entre los canales de venta.
+  \item Se considera solamente un tipo de habitación, el incremento por cambio de habitación es un monto fijo conocido como gap.
+  \item Se asume un valor para la elasticidad (-2) que es un valor razonable para la industria.
+\end{itemize}
+
+
 
 

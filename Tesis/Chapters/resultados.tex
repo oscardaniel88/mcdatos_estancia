@@ -4,7 +4,7 @@
 En el presente capítulo se presentarán a detalle los resultados obtenidos por cada uno de los modelos propuestos para el pronóstico de demanda y el módelo para la maximización de ingresos. También se discutirá la forma en la que se deberán interpretar los resultados de los mismos y así evitar sacar conclusiones erróneas o fuera de contexto.
 
 \section*{Interpretación de los modelos de pronóstico de ocupación}
-Cómo se mencioó en capítulos anteriores, la solución propuesta se compone de dos módulos principales, el primero de ellos se encarga de pronosticar la demanda de cuartos noche, mientras que el segundo módulo toma esa información y calcula los precios por habitación  que  maximizan  el  ingreso  de  la  propiedad  tomando  en  cuenta  las restricciones definidas. A continuación explicaremos detalladamente los resultados obtenidos en cada uno de los modelos propuestos.
+Cómo se mencionó en capítulos anteriores, la solución propuesta se compone de dos módulos principales, el primero de ellos se encarga de pronosticar la demanda de cuartos noche, mientras que el segundo módulo toma esa información y calcula los precios por habitación  que  maximizan  el  ingreso  de  la  propiedad  tomando  en  cuenta  las restricciones definidas. A continuación explicaremos detalladamente los resultados obtenidos en cada uno de los modelos propuestos.
 
 
 \subsection*{Modelo de regresión lineal generalizada con liga Poisson}
@@ -181,7 +181,7 @@ Como se puede observar el modelo que tuvo un mejor desempeño, de acuerdo al \em
 
 \subsection*{Modelo de maximización de ingresos}
 
-El modelo de recomendaciones de precio toma como entrada la demanda pronósticada por el modelo de pronóstico de demanda con mejor desempeño de acuerdo al \emph{MAPE}. A partir de ahi, se define un problema de maximización sujeto a restricciones y se arroja una matriz que contiene los precios para un tipo de cuarto dependiendo del inventario disponible dentro de la propidad.
+El modelo de recomendaciones de precio toma como entrada la demanda pronósticada por el modelo de pronóstico de demanda con mejor desempeño de acuerdo al \emph{MAPE}. A partir de ahí, se define un problema de maximización sujeto a restricciones y se arroja una matriz que contiene los precios para un tipo de cuarto dependiendo del inventario disponible dentro de la propidad.
 
 A continuación se muestra un extracto del resultado:
 
@@ -191,9 +191,6 @@ A continuación se muestra un extracto del resultado:
   \caption{Matriz de asignacion de precio por inventario disponible}
 \end{table}
 
-La manera en la que se debe interpretar esta matriz es la siguiente: Para el día 14 de Agosto de 2018, las habitaciones sencillas de este hotel deben de tener un precio de \$1295.06 MXN si el inventario disponible esta entre 121 y 159 habitaciones disponibles. Si se tienen entre 81 y 120 habitaciones disponibles, el precio debe de ser de \$1490.73 MXN y así sucesivamente. De esta manera podemos asignar un lote de habitaciones a diferentes rangos de precios siendo las últimas habitaciones disponibles las que tengan el precio más alto.
-
-
 A continuación se presenta una gráfica con los resultados obtenidos por el modelo de maximización de ingresos:
 
 \begin{figure}[H]
@@ -201,7 +198,6 @@ A continuación se presenta una gráfica con los resultados obtenidos por el mod
       \includegraphics[width=\maxwidth,height=10cm]{figures/Pricing_graph-1}  
   \caption{Precios propuestos para distintos niveles de inventario disponible}
 \end{figure}
-
 
 Para medir el desempeño del modelo de maximización de ingresos, se tomaron los resultados y se calcularon las tarifas promedio a partir de los datos obtenidos y se compararon contra las tarifas promedio reportadas por la propiedad para el año 2018.
 
