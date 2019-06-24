@@ -6,12 +6,12 @@
 \select@language {spanish}
 \contentsline {chapter}{\numberline {1}Introducci\IeC {\'o}n}{1}
 \contentsline {chapter}{\numberline {2}Marco te\IeC {\'o}rico}{6}
-\contentsline {chapter}{\numberline {3}Metodolog\IeC {\'\i }a}{39}
-\contentsline {chapter}{\numberline {4}Dise\IeC {\~n}o y Desarrollo}{42}
-\contentsline {chapter}{\numberline {5}Interpretaci\IeC {\'o}n y Resultados}{75}
-\contentsline {chapter}{\numberline {6}Conclusiones}{90}
-\contentsline {chapter}{\numberline {A}Implementaci\IeC {\'o}n de modelo de pron\IeC {\'o}stico de demanda utilizando un modelo lineal generalizado con liga Poisson}{92}
-\contentsline {chapter}{\numberline {B}Implementaci\IeC {\'o}n de modelo de pron\IeC {\'o}stico de demanda utilizando una regresi\IeC {\'o}n de Ridge}{97}
-\contentsline {chapter}{\numberline {C}Implementaci\IeC {\'o}n de modelo de pron\IeC {\'o}stico de demanda utilizando un modelo de an\IeC {\'a}lisis de series de tiempo SARIMA}{102}
-\contentsline {chapter}{\numberline {D}Implementaci\IeC {\'o}n de modelo de optimizaci\IeC {\'o}n de ingresos}{107}
-\contentsline {chapter}{References}{111}
+\contentsline {chapter}{\numberline {3}Metodolog\IeC {\'\i }a}{36}
+\contentsline {chapter}{\numberline {4}Dise\IeC {\~n}o y Desarrollo}{40}
+\contentsline {chapter}{\numberline {5}Interpretaci\IeC {\'o}n y Resultados}{72}
+\contentsline {chapter}{\numberline {6}Conclusiones}{87}
+\contentsline {chapter}{\numberline {A}Implementaci\IeC {\'o}n de modelo de pron\IeC {\'o}stico de demanda utilizando un modelo lineal generalizado con liga Poisson}{89}
+\contentsline {chapter}{\numberline {B}Implementaci\IeC {\'o}n de modelo de pron\IeC {\'o}stico de demanda utilizando una regresi\IeC {\'o}n de Ridge}{94}
+\contentsline {chapter}{\numberline {C}Implementaci\IeC {\'o}n de modelo de pron\IeC {\'o}stico de demanda utilizando un modelo de an\IeC {\'a}lisis de series de tiempo SARIMA}{99}
+\contentsline {chapter}{\numberline {D}Implementaci\IeC {\'o}n de modelo de optimizaci\IeC {\'o}n de ingresos}{104}
+\contentsline {chapter}{References}{108}

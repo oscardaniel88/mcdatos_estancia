@@ -36,7 +36,7 @@ Para la construcción del modelo de predicción de demanda basado en una regresi
 
 El primer data set utilizado fue extraído directamente del sistema de gestión de propiedades (PMS) y contiene información detallada de todas las reservaciones generadas en la propiedad, así como la información de las estancias pasadas. Para poder obtener esta información se realizarón procesos automáticos de extracción, transformación y carga de información. 
 
-A continuación se presenta el diccionario de datos y un breve resumen de la información obtenida.
+A continuación se presenta el diccionario de datos.
 
 \subsubsection*{Diccionario de Datos}
 
@@ -58,28 +58,6 @@ A continuación se presenta el diccionario de datos y un breve resumen de la inf
   \item room\_type: Tipo de habitación
   \item PAX: Número de personas amparadas por la reservación
 \end{itemize}
-
-\subsubsection*{Resumen de datos}
-
-\begin{table}[H]
-\begin{tabular}{lllll}
-Variable     & Tipo de dato & Min        & Max        & Media \\
-rsrv\_code   & Big Int      & 6265739    & 9053354    & NA    \\
-date\_create & Fecha        & 2016-07.20 & 2018-01-01 & NA    \\
-date\_ in    & Fecha        & 2017-01-01 & 2017-12-31 & NA    \\
-date\_out    & Fecha        & 2017-01-02 & 2018-01-01 & NA    \\
-prop\_code   & Factor       & NA         & NA         & NA    \\
-mkt\_sgm     & Factor       & NA         & NA         & NA    \\
-Dia\_sem     & Factor       & NA         & NA         & NA    \\
-rate\_code   & Factor       & NA         & NA         & NA    \\
-bucket       & Factor       & NA         & NA         & NA    \\
-rsrv\_src    & Factor       & NA         & NA         & NA    \\
-rsrv\_type   & Factor       & NA         & NA         & NA    \\
-Ingresos     & Float        & 0          & 3900       & 1449  \\
-PAX          & Integer      & 0          & 5          & 1.271 \\
-\end{tabular}
-\caption{Resumen de datos obtenidos del PMS} 
-\end{table}
 
 Es importante resaltar que los datos fueron trabajados para presentarse de manera desagregada, es decir, si una reservación ampara una estancia de 6 noches, en el \emph{data set final} se presenta un registro por cada noche de la estancia, por ejemplo:
 
