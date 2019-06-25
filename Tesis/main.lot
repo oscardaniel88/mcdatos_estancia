@@ -10,20 +10,20 @@
 \addvspace {10\p@ }
 \addvspace {10\p@ }
 \contentsline {table}{\numberline {4.1}{\ignorespaces DataSet detalle de reservas}}{44}
-\contentsline {table}{\numberline {4.2}{\ignorespaces Datos de entrada para el modelo de pron\IeC {\'o}stico de demanda}}{51}
-\contentsline {table}{\numberline {4.3}{\ignorespaces Pron\IeC {\'o}stico de cuartos noche ocupados (Regresi\IeC {\'o}n con liga Poisson)}}{52}
-\contentsline {table}{\numberline {4.4}{\ignorespaces Cuartos noche ocupados vs tiempo}}{54}
-\contentsline {table}{\numberline {4.5}{\ignorespaces Conjunto de datos de entrada para la regresi\IeC {\'o}n de Ridge}}{55}
-\contentsline {table}{\numberline {4.6}{\ignorespaces Variables adicionales de entrada para la regresi\IeC {\'o}n de Ridge}}{56}
-\contentsline {table}{\numberline {4.7}{\ignorespaces Valores residuales cuadr\IeC {\'a}ticos para los distintos valores de $\alpha $}}{57}
-\contentsline {table}{\numberline {4.8}{\ignorespaces Pron\IeC {\'o}stico de cuartos noche ocupados (Regresi\IeC {\'o}n de Ridge)}}{59}
-\contentsline {table}{\numberline {4.9}{\ignorespaces Pron\IeC {\'o}stico de cuartos noche ocupados (SARIMA)}}{65}
-\contentsline {table}{\numberline {4.10}{\ignorespaces Matriz de asignacion de precio por inventario disponible}}{70}
+\contentsline {table}{\numberline {4.2}{\ignorespaces Datos de entrada para el modelo de pron\IeC {\'o}stico de demanda}}{52}
+\contentsline {table}{\numberline {4.3}{\ignorespaces Pron\IeC {\'o}stico de cuartos noche ocupados (Regresi\IeC {\'o}n con liga Poisson)}}{53}
+\contentsline {table}{\numberline {4.4}{\ignorespaces Cuartos noche ocupados vs tiempo}}{55}
+\contentsline {table}{\numberline {4.5}{\ignorespaces Conjunto de datos de entrada para la regresi\IeC {\'o}n de Ridge}}{56}
+\contentsline {table}{\numberline {4.6}{\ignorespaces Variables adicionales de entrada para la regresi\IeC {\'o}n de Ridge}}{57}
+\contentsline {table}{\numberline {4.7}{\ignorespaces Valores residuales cuadr\IeC {\'a}ticos para los distintos valores de $\alpha $}}{58}
+\contentsline {table}{\numberline {4.8}{\ignorespaces Pron\IeC {\'o}stico de cuartos noche ocupados (Regresi\IeC {\'o}n de Ridge)}}{60}
+\contentsline {table}{\numberline {4.9}{\ignorespaces Pron\IeC {\'o}stico de cuartos noche ocupados (SARIMA)}}{66}
+\contentsline {table}{\numberline {4.10}{\ignorespaces Matriz de asignacion de precio por inventario disponible}}{71}
 \addvspace {10\p@ }
-\contentsline {table}{\numberline {5.1}{\ignorespaces Resultados arrojados por el modelo de predicci\IeC {\'o}n de demanda}}{73}
-\contentsline {table}{\numberline {5.2}{\ignorespaces Interpretaci\IeC {\'o}n de resultados arrojados por el modelo de pron\IeC {\'o}stico de demanda}}{75}
-\contentsline {table}{\numberline {5.3}{\ignorespaces Desempe\IeC {\~n}o de modelos propuestos}}{82}
-\contentsline {table}{\numberline {5.4}{\ignorespaces Matriz de asignacion de precio por inventario disponible}}{84}
+\contentsline {table}{\numberline {5.1}{\ignorespaces Resultados arrojados por el modelo de predicci\IeC {\'o}n de demanda}}{74}
+\contentsline {table}{\numberline {5.2}{\ignorespaces Interpretaci\IeC {\'o}n de resultados arrojados por el modelo de pron\IeC {\'o}stico de demanda}}{76}
+\contentsline {table}{\numberline {5.3}{\ignorespaces Desempe\IeC {\~n}o de modelos propuestos}}{83}
+\contentsline {table}{\numberline {5.4}{\ignorespaces Matriz de asignacion de precio por inventario disponible}}{85}
 \addvspace {10\p@ }
 \addvspace {10\p@ }
 \addvspace {10\p@ }

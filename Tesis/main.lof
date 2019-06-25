@@ -16,28 +16,29 @@
 \contentsline {figure}{\numberline {3.1}{\ignorespaces Modelo de proceso CRISP\IeC {\textendash }DM [CRISP-DM, 2000]}}{37}
 \addvspace {10\p@ }
 \contentsline {figure}{\numberline {4.1}{\ignorespaces Arquitectura del modelo de predicci\IeC {\'o}n de demanda y maximizaci\IeC {\'o}n de ingresos}}{40}
-\contentsline {figure}{\numberline {4.2}{\ignorespaces Curva de pickup}}{45}
-\contentsline {figure}{\numberline {4.3}{\ignorespaces \% Ocupaci\IeC {\'o}n 2017}}{46}
-\contentsline {figure}{\numberline {4.4}{\ignorespaces Ocupaci\IeC {\'o}n por d\IeC {\'\i }a de la semana}}{47}
-\contentsline {figure}{\numberline {4.5}{\ignorespaces Tarifa Promedio 2017}}{48}
-\contentsline {figure}{\numberline {4.6}{\ignorespaces Precios de la competencia en el tiempo}}{49}
+\contentsline {figure}{\numberline {4.2}{\ignorespaces Arquitectura productiva del producto de datos}}{41}
+\contentsline {figure}{\numberline {4.3}{\ignorespaces Curva de pickup}}{45}
+\contentsline {figure}{\numberline {4.4}{\ignorespaces \% Ocupaci\IeC {\'o}n 2017}}{47}
+\contentsline {figure}{\numberline {4.5}{\ignorespaces Ocupaci\IeC {\'o}n por d\IeC {\'\i }a de la semana}}{48}
+\contentsline {figure}{\numberline {4.6}{\ignorespaces Tarifa Promedio 2017}}{49}
 \contentsline {figure}{\numberline {4.7}{\ignorespaces Precios de la competencia en el tiempo}}{50}
-\contentsline {figure}{\numberline {4.8}{\ignorespaces Validaci\IeC {\'o}n de predicciones utilizando regresi\IeC {\'o}n de Ridge}}{58}
-\contentsline {figure}{\numberline {4.9}{\ignorespaces Generaci\IeC {\'o}n de predicciones utilizando regresi\IeC {\'o}n de Ridge}}{59}
-\contentsline {figure}{\numberline {4.10}{\ignorespaces Serie de tiempo para la ocupaci\IeC {\'o}n de la propiedad desde 2013 hasta 2018}}{61}
-\contentsline {figure}{\numberline {4.11}{\ignorespaces Descomposici\IeC {\'o}n de la serie de tiempo de ocupaci\IeC {\'o}n}}{62}
-\contentsline {figure}{\numberline {4.12}{\ignorespaces Validaci\IeC {\'o}n de las predicciones generadas por el modelo SARIMA}}{64}
-\contentsline {figure}{\numberline {4.13}{\ignorespaces Predicciones generadas por el modelo SARIMA}}{65}
-\contentsline {figure}{\numberline {4.14}{\ignorespaces Asignacion de inventario}}{66}
+\contentsline {figure}{\numberline {4.8}{\ignorespaces Precios de la competencia en el tiempo}}{51}
+\contentsline {figure}{\numberline {4.9}{\ignorespaces Validaci\IeC {\'o}n de predicciones utilizando regresi\IeC {\'o}n de Ridge}}{59}
+\contentsline {figure}{\numberline {4.10}{\ignorespaces Generaci\IeC {\'o}n de predicciones utilizando regresi\IeC {\'o}n de Ridge}}{60}
+\contentsline {figure}{\numberline {4.11}{\ignorespaces Serie de tiempo para la ocupaci\IeC {\'o}n de la propiedad desde 2013 hasta 2018}}{62}
+\contentsline {figure}{\numberline {4.12}{\ignorespaces Descomposici\IeC {\'o}n de la serie de tiempo de ocupaci\IeC {\'o}n}}{63}
+\contentsline {figure}{\numberline {4.13}{\ignorespaces Validaci\IeC {\'o}n de las predicciones generadas por el modelo SARIMA}}{65}
+\contentsline {figure}{\numberline {4.14}{\ignorespaces Predicciones generadas por el modelo SARIMA}}{66}
+\contentsline {figure}{\numberline {4.15}{\ignorespaces Asignacion de inventario}}{67}
 \addvspace {10\p@ }
-\contentsline {figure}{\numberline {5.1}{\ignorespaces Curva de pickup real vs pronosticada (1)}}{76}
-\contentsline {figure}{\numberline {5.2}{\ignorespaces Curva de pickup real vs pronosticada (2)}}{77}
-\contentsline {figure}{\numberline {5.3}{\ignorespaces Curva de pickup real vs pronosticada (3)}}{77}
-\contentsline {figure}{\numberline {5.4}{\ignorespaces Curva de pickup real vs pronosticada (4)}}{78}
-\contentsline {figure}{\numberline {5.5}{\ignorespaces Efecto de $\alpha $ sobre las predicciones generadas}}{80}
-\contentsline {figure}{\numberline {5.6}{\ignorespaces Diagn\IeC {\'o}stico del modelo SARIMA(1, 0, 0)x(1, 0, 1, 7)}}{81}
-\contentsline {figure}{\numberline {5.7}{\ignorespaces Precios propuestos para distintos niveles de inventario disponible}}{85}
-\contentsline {figure}{\numberline {5.8}{\ignorespaces Tarifa Promedio optimizada vs Tarifa Promedio Real}}{86}
+\contentsline {figure}{\numberline {5.1}{\ignorespaces Curva de pickup real vs pronosticada (1)}}{77}
+\contentsline {figure}{\numberline {5.2}{\ignorespaces Curva de pickup real vs pronosticada (2)}}{78}
+\contentsline {figure}{\numberline {5.3}{\ignorespaces Curva de pickup real vs pronosticada (3)}}{78}
+\contentsline {figure}{\numberline {5.4}{\ignorespaces Curva de pickup real vs pronosticada (4)}}{79}
+\contentsline {figure}{\numberline {5.5}{\ignorespaces Efecto de $\alpha $ sobre las predicciones generadas}}{81}
+\contentsline {figure}{\numberline {5.6}{\ignorespaces Diagn\IeC {\'o}stico del modelo SARIMA(1, 0, 0)x(1, 0, 1, 7)}}{82}
+\contentsline {figure}{\numberline {5.7}{\ignorespaces Precios propuestos para distintos niveles de inventario disponible}}{86}
+\contentsline {figure}{\numberline {5.8}{\ignorespaces Tarifa Promedio optimizada vs Tarifa Promedio Real}}{87}
 \addvspace {10\p@ }
 \addvspace {10\p@ }
 \addvspace {10\p@ }

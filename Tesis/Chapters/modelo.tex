@@ -11,6 +11,12 @@ Este capítulo describirá el diseño y desarrollo del modelo de predicción de 
   \caption{Arquitectura del modelo de predicción de demanda y maximización de ingresos}
 \end{figure}
 
+
+\begin{figure}[H]
+  \centering
+      \includegraphics[width=\maxwidth,height=10cm]{figures/Arquitectura2.png}  
+  \caption{Arquitectura productiva del producto de datos}
+\end{figure}
 \subsection*{Descripción de la arquitectura del modelo}
 
 Como se puede observar en la figura 4.1, el modelo esta compuesto por 4 capas o módulos principales. La primera capa son los sistemas transaccionales que contienen información clave para el funcionamiento del modelo propuesto. El primer sistema de interés es el \emph{PMS} o \emph{Property Management System}. Este sistema es el encargado de gestionar las propiedades y captar las reservaciones que se hacen en cada una de ellas desde los distintos canales de reservacion. En este sistema podemos encontrar información de las estancias pasadas de los huéspedes en las distintas propiedades, información de huéspedes que se encuentran en la propiedad, historial de consumos, habitaciones asignadas, formas de pago de cada uno de los consumos, reservas canceladas y huéspedes que reservaron pero no se presentaron en la propiedad. Desde este sistema se obtiene la información que describe el comportamiento de la demanada de la propiedad que es de interés para este trabajo.
