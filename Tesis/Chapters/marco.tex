@@ -189,7 +189,7 @@ Las nuevas predicciones se pueden calcular como sigue: $$h(X) = \theta^Tx=\sum_{
 
 \subsubsection*{Regresión de Ridge con Kernel}
 
-Este método consta de aplicar el truco del Kernel a la regresión previamente comentada, esto con la finalidad de proyectar los datos originales en un espectro de variables sin tener que explicitamente calcular las transformaciones. Para esto, se comienza con el vector de pesos optimizados para la Regresión de Ridge: $$\theta = (X^TX+\lambda I)^{-1} X^T y$$
+Este método consta de aplicar el truco del Kernel a la regresión previamente comentada, esto con la finalidad de proyectar los datos originales en un espectro de variables sin tener que explicitamente calcular las transformaciones. Para esto, se comienza con el vector de pesos optimizados para la Regresión de Ridge \texttt{Caicedo-Torres, W., Payares, 2016}: $$\theta = (X^TX+\lambda I)^{-1} X^T y$$
 
 Se manipula algebraícamente para obtener: $$\theta = X^T(XX^T + \lambda I)^{-1}y$$
 
@@ -301,10 +301,6 @@ El algorítmo \emph{EM} busca encontrar el estimador máximo verosímil de la ve
 Una vez encontrados los parámetros iniciales, se predicen las probabilidades de cada uno de los estados, actualizando la verosimilitud en cada paso. Un paso clave de esta estimación es el cálculo de la verosimilitud de los estados latentes la cual es obtenida mediante la iteración de la verosimilitud condicional.
 
 Para medir el desempeño de ambos modelos se utilizó la medida \emph{MAPE} $$MAPE=\frac{1}{n}\sum_{t=1}^{n}|\frac{y_t-h_t}{y_t}|$$ 
-
-Los resultados arrojan que el modelo ARMAX tuvo un mejor desempeño con un \emph{MAPE} del 3.804\% comparado con el 4.714\% obtenido por el modelo MSDR
-
-Se puede concluír que los modelos \emph{ARMAX / MS DR} presentan una buena alternativa para poder generar pronósticos de ocupación y demanda utilizando información exógena a los hoteles, sin embargo se debe tomar en cuenta que el costo asociado a la configuración y puesta en marcha de este tipo de modelos es alto ya que se debe de contar con una infraestructura que pueda soportar el manejo de grandes volúmenes de información.
 
 
 \subsection*{Modelos de optimizacion de ingresos}
@@ -442,7 +438,7 @@ $C_l$: El número de cuartos disponibles en el hotel.
 
 La salida de este modelo serán los precios optimos para cada noche. 
 
-Es importante notar que este modelo conlleva un sofisticado problema de optimización que requiere un poder de cómputo considerable para poder ser resuelto y además se debe iterar sobre distintos valores para el parámetro de elasticidad, obtenido a partir del análisis del comportamiento histórico del precio vs la ocupación de la propiedad, para encontrar el valor que garantice una solución factible del problema\texttt{Aziz, et al.}.
+Es importante notar que este modelo conlleva un sofisticado problema de optimización que requiere un poder de cómputo considerable para poder ser resuelto y además se debe iterar sobre distintos valores para el parámetro de elasticidad, obtenido a partir del análisis del comportamiento histórico del precio vs la ocupación de la propiedad, para encontrar el valor que garantice una solución factible del problema \texttt{Aziz, et al., 2011}.
 
 \subsection*{Resumen}
 
