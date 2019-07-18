@@ -1,6 +1,6 @@
 % Tesis ITAM CLASS -- version 0.1 (13 - Abr - 2015)
 % Clase para las tesis del ITAM
-% 
+%
 % 13 - Abr - 2015 	Victor Martinez 	victor.martinez (at) itam.mx
 % LICENSE: Creative Commons SA-BY 3.0
 \NeedsTeXFormat{LaTeX2e}[1995/12/01]
@@ -81,6 +81,12 @@
 \newcommand\publicationrights{%
 	\InputIfFileExists {derechos.tex} {\ClassInfo {tesisITAM} {Loaded derechos.tex}} {\ClassError{tesisITAM} {No derechos.tex found!}}
 }
+
+%%%%%%%%%%%%%%%%%%%%%%%%%% Agradecimientos  %%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newcommand\acknowledges{%
+	\InputIfFileExists {agradecimientos.tex} {\ClassInfo {tesisITAM} {Loaded agradecimientos.tex}} {\ClassError{tesisITAM} {No agradecimientos.tex found!}}
+}
+
 
 %%%%%%%%%%%%%%%%%%%%%%%%%% Resumen(es) %%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \AtBeginDocument{\@ifpackageloaded{babel}{%
